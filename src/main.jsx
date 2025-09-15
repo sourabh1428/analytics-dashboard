@@ -5,6 +5,8 @@ import { BrowserRouter, useLocation } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import { DynamicSEO } from './components/SEO/DynamicSEO'
 import { FullPageLoader } from './components/LoadingSpinner'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 
 // Use React.lazy for code splitting - only load components when needed
 const App = lazy(() => import('./App.jsx'))
@@ -65,6 +67,8 @@ const Root = () => {
           <Suspense fallback={<FullPageLoader />}>
             <App />
           </Suspense>
+          <Analytics />
+          <SpeedInsights />
         </HelmetProvider>
       </BrowserRouter>
     </StrictMode>
