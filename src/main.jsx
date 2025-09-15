@@ -1,7 +1,7 @@
 import { StrictMode, useEffect, lazy, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, useLocation } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import { DynamicSEO } from './components/SEO/DynamicSEO'
 import { FullPageLoader } from './components/LoadingSpinner'
@@ -27,6 +27,22 @@ const preloadCriticalImages = (images) => {
   });
 }
 
+// Track route changes in SPA for GA4 page_view
+const AnalyticsTracker = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      window.gtag('config', 'G-H54PC2W756', {
+        page_path: location.pathname + location.search + location.hash,
+        page_title: document.title
+      });
+    }
+  }, [location.pathname, location.search, location.hash]);
+
+  return null;
+}
+
 // Root component with error boundary
 const Root = () => {
   useEffect(() => {
@@ -45,6 +61,7 @@ const Root = () => {
       <BrowserRouter>
         <HelmetProvider>
           <DynamicSEO />
+          <AnalyticsTracker />
           <Suspense fallback={<FullPageLoader />}>
             <App />
           </Suspense>
