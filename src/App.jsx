@@ -5,7 +5,6 @@ import Navbar from "./components/NavBar";
 import Footer from "./components/Footer";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import LoadingSpinner from "./components/LoadingSpinner";
-import ThemeSelector from "./components/ThemeSelector";
 import { THEMES } from "./context/ThemeContext";
 import AppThemeProvider from "./context/AppThemeProvider";
 import { lazyImport } from "./utils/lazyImport.jsx";
@@ -74,7 +73,6 @@ const App = () => {
         </motion.div>
 
         <ScrollToTopButton />
-        <ThemeSelector />
       </div>
     );
   });
