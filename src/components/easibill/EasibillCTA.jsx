@@ -3,7 +3,7 @@ import { ArrowRight, CheckCircle2, Headphones, MessageCircle } from 'lucide-reac
 
 const trial = ['Connect your pharmacy profile', 'Add or import patients', 'Send your first reminders', 'Review refill performance'];
 
-const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/login';
+const DASHBOARD_LOGIN_URL = 'https://easibill.vercel.app/login';
 
 const EasibillCTA = () => {
   return (

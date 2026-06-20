@@ -22,7 +22,7 @@ const metrics = [
   { value: '9 AM', label: 'WhatsApp reminders' },
 ];
 
-const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/login';
+const DASHBOARD_LOGIN_URL = 'https://easibill.vercel.app/login';
 
 const EasibillHero = () => {
   return (

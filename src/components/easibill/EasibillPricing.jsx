@@ -26,7 +26,7 @@ const faqs = [
   ['Is patient data safe?', 'Your pharmacy owns its data. Access is restricted, reminders are tracked, and data is not shared across pharmacies.'],
 ];
 
-const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/login';
+const DASHBOARD_LOGIN_URL = 'https://easibill.vercel.app/login';
 
 const EasibillPricing = () => {
   return (

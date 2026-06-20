@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, BriefcaseBusiness, Mail, MessageCircle, Phone, Send, Users } from 'lucide-react';
 
-const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/login';
+const DASHBOARD_LOGIN_URL = 'https://easibill.vercel.app/login';
 const DISCORD_URL = 'https://discord.gg/easibill';
 
 const roles = [
