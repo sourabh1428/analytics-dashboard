@@ -3,6 +3,8 @@ import { ArrowRight, CheckCircle2, Headphones, MessageCircle } from 'lucide-reac
 
 const trial = ['Connect your pharmacy profile', 'Add or import patients', 'Send your first reminders', 'Review refill performance'];
 
+const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/login';
+
 const EasibillCTA = () => {
   return (
     <section className="px-4 sm:px-6 lg:px-8">
@@ -32,7 +34,7 @@ const EasibillCTA = () => {
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <motion.a
-                  href="/contact"
+                  href={DASHBOARD_LOGIN_URL}
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.98 }}
                   className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-slate-950 transition hover:bg-emerald-100 focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2 focus:ring-offset-slate-950"

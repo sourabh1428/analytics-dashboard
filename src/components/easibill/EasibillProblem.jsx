@@ -21,6 +21,12 @@ const losses = [
 
 const oldTools = ['Billing software tracks invoices, not relationships', 'Generic CRMs are too heavy for pharmacy counters', 'Manual WhatsApp has no delivery history or refill logic'];
 
+const counterScenes = [
+  'Staff writes "BP uncle refill" in a notebook but cannot find the bill date.',
+  'Owner forwards yesterday\'s WhatsApp list to an assistant and two patients are missed.',
+  'Patient says they bought the same strip nearby because nobody reminded them.',
+];
+
 const EasibillProblem = () => {
   return (
     <section className="px-4 sm:px-6 lg:px-8">
@@ -114,6 +120,15 @@ const EasibillProblem = () => {
             </div>
           </div>
         </motion.div>
+
+        <div className="mt-8 grid gap-3 rounded-[2rem] border border-amber-200 bg-amber-50 p-5 md:grid-cols-3">
+          {counterScenes.map((scene) => (
+            <div key={scene} className="rounded-2xl bg-white p-4 text-sm leading-6 text-slate-700 shadow-sm">
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-amber-700">Counter reality</span>
+              {scene}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

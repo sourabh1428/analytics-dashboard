@@ -26,6 +26,8 @@ const faqs = [
   ['Is patient data safe?', 'Your pharmacy owns its data. Access is restricted, reminders are tracked, and data is not shared across pharmacies.'],
 ];
 
+const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/login';
+
 const EasibillPricing = () => {
   return (
     <section className="px-4 sm:px-6 lg:px-8">
@@ -76,7 +78,7 @@ const EasibillPricing = () => {
               <p className={`mt-2 text-sm ${plan.featured ? 'text-slate-400' : 'text-slate-500'}`}>No card needed for trial.</p>
 
               <a
-                href="/contact"
+                href={DASHBOARD_LOGIN_URL}
                 className={`mt-8 inline-flex w-full items-center justify-center rounded-full px-5 py-3.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 ${
                   plan.featured
                     ? 'bg-white text-slate-950 hover:bg-emerald-100'
@@ -115,7 +117,7 @@ const EasibillPricing = () => {
                 <p className="mt-1 text-slate-600">Recovering even a handful of repeat refills can cover the monthly plan.</p>
               </div>
             </div>
-            <a href="/contact" className="inline-flex items-center justify-center rounded-full border border-emerald-300 bg-white px-5 py-3 text-sm font-semibold text-emerald-800 transition hover:border-emerald-500">
+            <a href="/lead" className="inline-flex items-center justify-center rounded-full border border-emerald-300 bg-white px-5 py-3 text-sm font-semibold text-emerald-800 transition hover:border-emerald-500">
               Talk to sales
             </a>
           </div>

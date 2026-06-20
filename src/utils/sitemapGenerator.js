@@ -21,76 +21,10 @@ const routes = [
     ]
   },
   { 
-    path: '/features', 
-    lastmod: new Date().toISOString().split('T')[0],
-    changefreq: 'weekly',
-    priority: 0.9,
-    images: [
-      {
-        loc: 'https://easibill.site/assets/features-screenshot.png',
-        caption: 'Easibill Features - Fast Invoicing Software'
-      }
-    ]
-  },
-  { 
-    path: '/industries', 
-    lastmod: new Date().toISOString().split('T')[0],
-    changefreq: 'weekly',
-    priority: 0.8 
-  },
-  { 
-    path: '/industries/retail', 
-    lastmod: new Date().toISOString().split('T')[0],
-    changefreq: 'weekly',
-    priority: 0.7 
-  },
-  { 
-    path: '/industries/restaurants', 
-    lastmod: new Date().toISOString().split('T')[0],
-    changefreq: 'weekly',
-    priority: 0.7 
-  },
-  { 
-    path: '/blog', 
-    lastmod: new Date().toISOString().split('T')[0],
-    changefreq: 'daily',
-    priority: 0.8 
-  },
-  { 
-    path: '/guides', 
-    lastmod: new Date().toISOString().split('T')[0],
-    changefreq: 'weekly',
-    priority: 0.7 
-  },
-  { 
-    path: '/tutorials', 
-    lastmod: new Date().toISOString().split('T')[0],
-    changefreq: 'weekly',
-    priority: 0.7 
-  },
-  { 
-    path: '/case-studies', 
-    lastmod: new Date().toISOString().split('T')[0],
-    changefreq: 'weekly',
-    priority: 0.7 
-  },
-  { 
     path: '/contact', 
     lastmod: new Date().toISOString().split('T')[0],
     changefreq: 'monthly',
     priority: 0.6 
-  },
-  { 
-    path: '/support', 
-    lastmod: new Date().toISOString().split('T')[0],
-    changefreq: 'weekly',
-    priority: 0.7 
-  },
-  { 
-    path: '/demo', 
-    lastmod: new Date().toISOString().split('T')[0],
-    changefreq: 'monthly',
-    priority: 0.8 
   },
   { 
     path: '/lead', 

@@ -13,7 +13,7 @@ const App = lazy(() => import('./App.jsx'))
 
 // Critical images that should be preloaded
 const CRITICAL_IMAGES = [
-  { url: 'https://img.icons8.com/fluency/50/bill.png', type: 'image' }
+  { url: '/logo.png', type: 'image' }
 ]
 
 // Performance optimization - preload critical images

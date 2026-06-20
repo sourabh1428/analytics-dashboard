@@ -4,12 +4,14 @@ import { Menu, X } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const navLinks = [
-  { name: 'Product', path: '/' },
-  { name: 'Features', path: '/features' },
-  { name: 'Pricing', path: '/pricing' },
-  { name: 'Customers', path: '/testimonials' },
+  { name: 'Product', section: 'product' },
+  { name: 'Features', section: 'features' },
+  { name: 'Pricing', section: 'pricing' },
+  { name: 'Customers', section: 'customers' },
   { name: 'Contact', path: '/contact' },
 ];
+
+const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/login';
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -33,9 +35,21 @@ const NavBar = () => {
     setIsOpen(false);
   };
 
-  const linkClass = (path) =>
+  const goToSection = (section) => {
+    if (location.pathname !== '/') {
+      navigate('/');
+      window.setTimeout(() => {
+        document.getElementById(section)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
+    } else {
+      document.getElementById(section)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    setIsOpen(false);
+  };
+
+  const linkClass = (link) =>
     `rounded-full px-3 py-2 text-sm font-medium transition ${
-      location.pathname === path
+      (link.path && location.pathname === link.path) || (link.section === 'product' && location.pathname === '/')
         ? 'bg-slate-950 text-white'
         : 'text-slate-600 hover:bg-slate-100 hover:text-slate-950'
     }`;
@@ -61,15 +75,18 @@ const NavBar = () => {
             className="flex items-center gap-3 py-3 text-left focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
             aria-label="Go to Easibill home"
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-950 text-sm font-bold text-emerald-300">
-              EB
-            </span>
+            <img src="/logo.png" alt="Easibill Logo" className="h-10 w-10 rounded-full" width="40" height="40" />
             <span className="text-lg font-semibold tracking-tight text-slate-950">Easibill</span>
           </button>
 
           <nav className="hidden items-center gap-1 md:flex" aria-label="Primary navigation">
             {navLinks.map((link) => (
-              <button key={link.name} type="button" onClick={() => goTo(link.path)} className={linkClass(link.path)}>
+              <button
+                key={link.name}
+                type="button"
+                onClick={() => link.section ? goToSection(link.section) : goTo(link.path)}
+                className={linkClass(link)}
+              >
                 {link.name}
               </button>
             ))}
@@ -78,14 +95,14 @@ const NavBar = () => {
           <div className="hidden items-center gap-2 md:flex">
             <button
               type="button"
-              onClick={() => goTo('/contact')}
+              onClick={() => window.location.assign(DASHBOARD_LOGIN_URL)}
               className="rounded-full px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 hover:text-slate-950"
             >
               Book demo
             </button>
             <button
               type="button"
-              onClick={() => goTo('/contact')}
+              onClick={() => window.location.assign(DASHBOARD_LOGIN_URL)}
               className="rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-emerald-950/10 transition hover:bg-emerald-950"
               data-conversion-button="get-started"
             >
@@ -121,7 +138,7 @@ const NavBar = () => {
                 <button
                   key={link.name}
                   type="button"
-                  onClick={() => goTo(link.path)}
+                  onClick={() => link.section ? goToSection(link.section) : goTo(link.path)}
                   className="block w-full rounded-2xl px-4 py-3 text-left text-sm font-semibold text-slate-700 hover:bg-slate-100"
                 >
                   {link.name}
@@ -130,14 +147,14 @@ const NavBar = () => {
               <div className="mt-2 grid gap-2 border-t border-slate-100 pt-3">
                 <button
                   type="button"
-                  onClick={() => goTo('/contact')}
+                  onClick={() => window.location.assign(DASHBOARD_LOGIN_URL)}
                   className="rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700"
                 >
                   Book demo
                 </button>
                 <button
                   type="button"
-                  onClick={() => goTo('/contact')}
+                  onClick={() => window.location.assign(DASHBOARD_LOGIN_URL)}
                   className="rounded-2xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white"
                 >
                   Start free trial

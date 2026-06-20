@@ -1,33 +1,61 @@
+import { ArrowRight, BriefcaseBusiness, Mail, MapPin, MessageCircle, Phone, Users } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
+
+const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/login';
+const DISCORD_URL = 'https://discord.gg/easibill';
 
 const linkGroups = [
   {
-    title: 'Product',
+    title: 'Billing Software',
     links: [
-      { label: 'Features', href: '/features' },
-      { label: 'Pricing', href: '/pricing' },
-      { label: 'Customers', href: '/testimonials' },
-      { label: 'Book a demo', href: '/contact' },
+      ['Invoicing', 'Fast GST-ready bills for counter sales and repeat patients.'],
+      ['Inventory Management', 'Know what moved, what is low, and what needs reordering.'],
+      ['Financial Reports', 'Daily sales, repeat revenue, and refill recovery visibility.'],
+      ['Point of Sale', 'Simple counter workflow for independent pharmacy teams.'],
+      ['GST Compliance', 'Clean records for pharmacy billing and reporting.'],
     ],
   },
   {
-    title: 'Use cases',
+    title: 'Industries',
     links: [
-      { label: 'Chronic refills', href: '/' },
-      { label: 'WhatsApp reminders', href: '/' },
-      { label: 'Patient segments', href: '/' },
-      { label: 'Broadcast campaigns', href: '/' },
+      ['Retail Stores', 'For local stores that need quick billing and follow-up.'],
+      ['Restaurants', 'Simple sales records and customer communication workflows.'],
+      ['Service Providers', 'Billing and reminders for appointment-led businesses.'],
+      ['E-commerce', 'Customer updates and repeat purchase messaging.'],
+      ['Wholesalers', 'Bulk order records and account follow-up.'],
+    ],
+  },
+  {
+    title: 'Resources',
+    links: [
+      ['Help Center', 'Setup guides for reminders, billing, and patient records.'],
+      ['Blog', 'Practical growth notes for Indian pharmacy owners.'],
+      ['Tutorials', 'Short walkthroughs for staff onboarding.'],
+      ['Webinars', 'Live sessions on refill automation and retention.'],
     ],
   },
   {
     title: 'Company',
     links: [
-      { label: 'Contact', href: '/contact' },
-      { label: 'Privacy', href: '/privacy' },
-      { label: 'Terms', href: '/terms' },
-      { label: 'Sitemap', href: '/sitemap' },
+      ['About Us', 'Building practical software for busy Indian counters.'],
+      ['Careers', 'Join the team shaping pharmacy retention tools.'],
+      ['Contact', 'Talk to us about sales, support, or partnerships.'],
+      ['Privacy Policy', 'How we handle pharmacy and patient data.'],
+      ['Terms of Service', 'Terms for using Easibill products.'],
     ],
+  },
+];
+
+const jobs = [
+  {
+    title: 'Senior Developer',
+    type: 'Full-time',
+    detail: 'React, Node, integrations, reliability, and product-minded engineering for a SaaS used by pharmacy teams.',
+  },
+  {
+    title: 'Sales Person',
+    type: 'Full-time',
+    detail: 'Own pharmacy demos, outbound conversations, onboarding follow-up, and local market learning.',
   },
 ];
 
@@ -43,25 +71,44 @@ const Footer = () => {
   return (
     <footer className="border-t border-slate-200 bg-white text-slate-600" data-section="footer">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-        <div className="grid gap-10 lg:grid-cols-[1.15fr_1fr]">
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <button
               type="button"
               onClick={() => navigate('/')}
               className="flex items-center gap-3 text-left focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-950 text-sm font-bold text-emerald-300">
-                EB
+              <img src="/logo.png" alt="Easibill Logo" className="h-12 w-12 rounded-full" width="48" height="48" />
+              <span>
+                <span className="block text-2xl font-semibold tracking-tight text-slate-950">Easibill</span>
+                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">Pharmacy retention OS</span>
               </span>
-              <span className="text-2xl font-semibold tracking-tight text-slate-950">Easibill</span>
             </button>
             <p className="mt-5 max-w-md leading-7">
-              WhatsApp refill reminders and retention workflows for independent pharmacies in India.
+              Simplify your billing process with fast, reliable software, then bring patients back with WhatsApp refill reminders built for Indian pharmacies.
             </p>
+
+            <div className="mt-6 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4">
+              <h3 className="font-semibold text-slate-950">Stay Updated</h3>
+              <div className="mt-3 flex overflow-hidden rounded-full border border-slate-200 bg-white">
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  className="min-w-0 flex-1 bg-transparent px-4 py-3 text-sm text-slate-950 outline-none"
+                  aria-label="Email Address"
+                />
+                <button className="bg-slate-950 px-4 text-white transition hover:bg-emerald-950" aria-label="Subscribe">
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+              </div>
+              <p className="mt-2 text-xs text-slate-500">Get the latest updates, news and product offers.</p>
+            </div>
+
             <div className="mt-6 grid gap-3 text-sm">
+              <h3 className="font-semibold text-slate-950">Contact Us</h3>
               <div className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-emerald-700" />
-                <a href="mailto:hello@easibill.io" className="hover:text-emerald-800">hello@easibill.io</a>
+                <a href="mailto:support@easibill.com" className="hover:text-emerald-800">support@easibill.com</a>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="h-4 w-4 text-emerald-700" />
@@ -72,21 +119,34 @@ const Footer = () => {
                 <span>Mumbai, India</span>
               </div>
             </div>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href={DASHBOARD_LOGIN_URL} className="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-emerald-950">
+                Open Easibill app
+              </a>
+              <a href={DISCORD_URL} className="inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-5 py-3 text-sm font-semibold text-indigo-800 transition hover:border-indigo-300">
+                <MessageCircle className="h-4 w-4" />
+                Join Discord
+              </a>
+            </div>
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2">
             {linkGroups.map((group) => (
-              <div key={group.title}>
+              <div key={group.title} className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm">
                 <h3 className="font-semibold text-slate-950">{group.title}</h3>
-                <ul className="mt-4 space-y-3">
-                  {group.links.map((link) => (
-                    <li key={link.label}>
+                <ul className="mt-4 space-y-4">
+                  {group.links.map(([label, description]) => (
+                    <li key={label}>
                       <a
-                        href={link.href}
-                        onClick={(event) => goTo(event, link.href)}
-                        className="text-sm hover:text-emerald-800"
+                        href={label === 'Careers' ? '#careers' : '/'}
+                        onClick={(event) => {
+                          if (label !== 'Careers') goTo(event, '/');
+                        }}
+                        className="block"
                       >
-                        {link.label}
+                        <span className="text-sm font-semibold text-slate-800 hover:text-emerald-800">{label}</span>
+                        <span className="mt-1 block text-xs leading-5 text-slate-500">{description}</span>
                       </a>
                     </li>
                   ))}
@@ -96,26 +156,45 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-10 rounded-[1.5rem] border border-emerald-200 bg-emerald-50 p-5">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h3 className="font-semibold text-slate-950">Ready to try refill automation?</h3>
-              <p className="mt-1 text-sm">Start with one store and your most frequent chronic-care patients.</p>
+        <div id="careers" className="mt-10 rounded-[2rem] border border-emerald-200 bg-emerald-50 p-5">
+          <div className="mb-5 flex items-center gap-3">
+            <div className="rounded-2xl bg-white p-3 text-emerald-700 shadow-sm">
+              <BriefcaseBusiness className="h-5 w-5" />
             </div>
-            <a
-              href="/contact"
-              onClick={(event) => goTo(event, '/contact')}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-emerald-950"
-            >
-              Start free trial
-              <ArrowRight className="h-4 w-4" />
-            </a>
+            <div>
+              <h3 className="text-lg font-semibold text-slate-950">We are hiring</h3>
+              <p className="text-sm text-slate-600">Open roles for people who want to build and sell useful software for real pharmacy teams.</p>
+            </div>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            {jobs.map((job) => (
+              <div key={job.title} className="rounded-2xl bg-white p-5 shadow-sm">
+                <div className="flex items-center justify-between gap-4">
+                  <h4 className="font-semibold text-slate-950">{job.title}</h4>
+                  <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">{job.type}</span>
+                </div>
+                <p className="mt-3 text-sm leading-6 text-slate-600">{job.detail}</p>
+                <a href="mailto:careers@easibill.com" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-emerald-800">
+                  Apply now
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+            ))}
           </div>
         </div>
 
         <div className="mt-8 flex flex-col gap-3 border-t border-slate-100 pt-6 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
-          <p>Copyright {currentYear} Easibill. All rights reserved.</p>
-          <p>Built for pharmacy retention, refill reminders, and patient follow-up.</p>
+          <div>
+            <p>Copyright {currentYear} Easibill. All rights reserved.</p>
+            <p className="mt-1">Easibill - Best Billing Service & Simple Billing Software</p>
+          </div>
+          <div className="flex gap-3">
+            <a href="/privacy" onClick={(event) => goTo(event, '/privacy')} className="hover:text-emerald-800">Privacy Policy</a>
+            <span>|</span>
+            <a href="/terms" onClick={(event) => goTo(event, '/terms')} className="hover:text-emerald-800">Terms of Service</a>
+            <span>|</span>
+            <a href="/sitemap" onClick={(event) => goTo(event, '/sitemap')} className="hover:text-emerald-800">Sitemap</a>
+          </div>
         </div>
       </div>
     </footer>

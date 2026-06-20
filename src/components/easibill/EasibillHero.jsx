@@ -22,6 +22,8 @@ const metrics = [
   { value: '9 AM', label: 'WhatsApp reminders' },
 ];
 
+const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/login';
+
 const EasibillHero = () => {
   return (
     <section className="relative isolate overflow-hidden px-4 pb-16 pt-28 sm:px-6 lg:px-8 lg:pb-24 lg:pt-36">
@@ -52,7 +54,7 @@ const EasibillHero = () => {
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <motion.a
-              href="/contact"
+              href={DASHBOARD_LOGIN_URL}
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
               className="group inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-6 py-3.5 text-sm font-semibold text-white shadow-xl shadow-emerald-900/20 transition hover:bg-emerald-950 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
@@ -61,7 +63,7 @@ const EasibillHero = () => {
               <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
             </motion.a>
             <motion.a
-              href="/contact"
+              href="/lead"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
               className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-6 py-3.5 text-sm font-semibold text-slate-800 shadow-sm backdrop-blur transition hover:border-emerald-300 hover:text-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"

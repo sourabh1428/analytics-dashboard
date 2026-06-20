@@ -21,10 +21,8 @@ const EasibillTestimonials = lazy(() => import("./components/easibill/EasibillTe
 const EasibillCTA = lazy(() => import("./components/easibill/EasibillCTA"));
 
 // Pages
-const FeaturesPage = lazyImport(() => import("./Pages/Features"));
-const PricingPage = lazyImport(() => import("./Pages/Pricing"));
-const TestimonialsPage = lazyImport(() => import("./Pages/Testimonials"));
 const ContactPage = lazyImport(() => import("./Pages/Contact"));
+const LeadGeneration = lazyImport(() => import("./components/LeadGeneration"));
 
 const App = () => {
   const containerRef = useRef(null);
@@ -83,34 +81,48 @@ const App = () => {
 
   const HomePage = React.memo(() => (
     <PageLayout>
-      <Suspense fallback={<LoadingSpinner />}>
+      <div id="product">
+        <Suspense fallback={<LoadingSpinner />}>
         <EasibillHero />
-      </Suspense>
+        </Suspense>
+      </div>
       
       <div className="space-y-16 pb-20 md:space-y-24 md:pb-28">
-        <Suspense fallback={<LoadingSpinner />}>
-          <EasibillProblem />
-        </Suspense>
+        <div id="problem" className="scroll-mt-28">
+          <Suspense fallback={<LoadingSpinner />}>
+            <EasibillProblem />
+          </Suspense>
+        </div>
 
-        <Suspense fallback={<LoadingSpinner />}>
-          <EasibillSolution />
-        </Suspense>
+        <div id="solution" className="scroll-mt-28">
+          <Suspense fallback={<LoadingSpinner />}>
+            <EasibillSolution />
+          </Suspense>
+        </div>
 
-        <Suspense fallback={<LoadingSpinner />}>
-          <EasibillFeatures />
-        </Suspense>
+        <div id="features" className="scroll-mt-28">
+          <Suspense fallback={<LoadingSpinner />}>
+            <EasibillFeatures />
+          </Suspense>
+        </div>
 
-        <Suspense fallback={<LoadingSpinner />}>
-          <EasibillPricing />
-        </Suspense>
+        <div id="pricing" className="scroll-mt-28">
+          <Suspense fallback={<LoadingSpinner />}>
+            <EasibillPricing />
+          </Suspense>
+        </div>
 
-        <Suspense fallback={<LoadingSpinner />}>
-          <EasibillTestimonials />
-        </Suspense>
+        <div id="customers" className="scroll-mt-28">
+          <Suspense fallback={<LoadingSpinner />}>
+            <EasibillTestimonials />
+          </Suspense>
+        </div>
 
-        <Suspense fallback={<LoadingSpinner />}>
-          <EasibillCTA />
-        </Suspense>
+        <div id="contact" className="scroll-mt-28">
+          <Suspense fallback={<LoadingSpinner />}>
+            <EasibillCTA />
+          </Suspense>
+        </div>
       </div>
     </PageLayout>
   ));
@@ -120,24 +132,14 @@ const App = () => {
       <div className="overflow-x-hidden">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/features" element={
-            <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><LoadingSpinner /></div>}>
-              <PageLayout><FeaturesPage /></PageLayout>
-            </Suspense>
-          } />
-          <Route path="/pricing" element={
-            <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><LoadingSpinner /></div>}>
-              <PageLayout><PricingPage /></PageLayout>
-            </Suspense>
-          } />
-          <Route path="/testimonials" element={
-            <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><LoadingSpinner /></div>}>
-              <PageLayout><TestimonialsPage /></PageLayout>
-            </Suspense>
-          } />
           <Route path="/contact" element={
             <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><LoadingSpinner /></div>}>
               <PageLayout><ContactPage /></PageLayout>
+            </Suspense>
+          } />
+          <Route path="/lead" element={
+            <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><LoadingSpinner /></div>}>
+              <PageLayout><LeadGeneration /></PageLayout>
             </Suspense>
           } />
         </Routes>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { User, Mail, Building, Phone, ChevronRight, ChevronLeft, Send, Briefcase, CheckCircle, AlertCircle } from 'lucide-react'
+import { User, Mail, Building, Phone, ChevronRight, ChevronLeft, Send, Briefcase, CheckCircle, AlertCircle, MessageCircle } from 'lucide-react'
 import { useNavigate } from 'react-router'
 import { useTheme } from '../context/ThemeContext'
 import { ThemedCard, ThemedButton, ThemedSection, ThemedHeading, ThemedText } from './ui/ThemedComponents'
@@ -15,6 +15,8 @@ const questions = [
   { id: 4, label: "What's your shop name?", icon: Briefcase, type: "text", name: "companyName", required: true },
   { id: 5, label: "Location", icon: Building, type: "text", name: "location", required: true },
 ]
+
+const DISCORD_URL = 'https://discord.gg/easibill';
 
 const ThankYouMessage = ({ onComplete }) => {
   useEffect(() => {
@@ -192,11 +194,10 @@ export default function LeadGeneration() {
             transition={{ duration: 0.6 }}
           >
             <ThemedHeading level={1} className="mb-6">
-              Take Your Business to the Next Level
+              Show us your pharmacy workflow
             </ThemedHeading>
             <ThemedText variant="large" className="mb-8">
-              Get started with MarketMe today and transform how you connect with customers. 
-              Fill out this form and our team will reach out to help you get started.
+              Tell us how your store handles chronic-care refills today. We will help you map the fastest path from manual WhatsApp follow-up to automated refill reminders.
             </ThemedText>
             
             <div className="space-y-6">
@@ -205,8 +206,8 @@ export default function LeadGeneration() {
                   <CheckCircle className="w-5 h-5 text-purple-400" />
                 </div>
                 <div>
-                  <h3 className="text-white font-medium text-lg">Personalized Onboarding</h3>
-                  <ThemedText variant="default">Our experts will guide you through setup and training</ThemedText>
+                  <h3 className="text-white font-medium text-lg">Pharmacy-specific onboarding</h3>
+                  <ThemedText variant="default">We help set up patient records, refill intervals, and reminder templates</ThemedText>
                 </div>
               </div>
               
@@ -215,8 +216,8 @@ export default function LeadGeneration() {
                   <CheckCircle className="w-5 h-5 text-indigo-400" />
                 </div>
                 <div>
-                  <h3 className="text-white font-medium text-lg">Free 14-Day Trial</h3>
-                  <ThemedText variant="default">Experience all premium features with no commitment</ThemedText>
+                  <h3 className="text-white font-medium text-lg">14-day refill reminder trial</h3>
+                  <ThemedText variant="default">Start with your most frequent chronic-care patients first</ThemedText>
                 </div>
               </div>
               
@@ -225,10 +226,18 @@ export default function LeadGeneration() {
                   <CheckCircle className="w-5 h-5 text-blue-400" />
                 </div>
                 <div>
-                  <h3 className="text-white font-medium text-lg">24/7 Support</h3>
-                  <ThemedText variant="default">Our dedicated team is always available to assist you</ThemedText>
+                  <h3 className="text-white font-medium text-lg">Community support</h3>
+                  <ThemedText variant="default">Join our Discord to discuss setup, pharmacy growth, and product updates</ThemedText>
                 </div>
               </div>
+
+              <a
+                href={DISCORD_URL}
+                className="inline-flex items-center gap-2 rounded-full border border-indigo-300/30 bg-indigo-500/15 px-5 py-3 text-sm font-semibold text-white hover:bg-indigo-500/25"
+              >
+                <MessageCircle className="h-4 w-4" />
+                Join Easibill Discord
+              </a>
             </div>
           </motion.div>
           
