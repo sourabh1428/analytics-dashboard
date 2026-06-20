@@ -65,10 +65,10 @@ export default defineConfig({
     cssMinify: true,
   },
   server: {
-    open: true, // Opens the browser on local development
-    host: true, // Ensures server is accessible over the network
+    open: true,
+    host: true,
     headers: {
-      'Cache-Control': 'public, max-age=31536000',
+      'Cache-Control': 'no-store',
     },
   },
   preview: {

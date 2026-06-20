@@ -1,363 +1,259 @@
-'use client'
-
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { User, Mail, Building, Phone, ChevronRight, ChevronLeft, Send, Briefcase, CheckCircle, AlertCircle, MessageCircle } from 'lucide-react'
+import { User, Mail, Building, Phone, ChevronRight, ChevronLeft, Send, Briefcase, CheckCircle2, AlertCircle, MessageCircle, ArrowRight } from 'lucide-react'
 import { useNavigate } from 'react-router'
-import { useTheme } from '../context/ThemeContext'
 import { track } from '../utils/mixpanel'
-import { ThemedCard, ThemedButton, ThemedSection, ThemedHeading, ThemedText } from './ui/ThemedComponents'
 
-// Import shared components from Leads.jsx
 const questions = [
-  { id: 1, label: "What's your name?", icon: User, type: "text", name: "name", required: true },
-  { id: 2, label: "What's your email address?", icon: Mail, type: "email", name: "email", required: true },
-  { id: 3, label: "What's your mobile number?", icon: Phone, type: "tel", name: "mobile", required: true, pattern: "[0-9]{10}" },
-  { id: 4, label: "What's your shop name?", icon: Briefcase, type: "text", name: "companyName", required: true },
-  { id: 5, label: "Location", icon: Building, type: "text", name: "location", required: true },
+  { id: 1, label: "Your name", icon: User, type: "text", name: "name", placeholder: "e.g. Ramesh Kumar", required: true },
+  { id: 2, label: "Email address", icon: Mail, type: "email", name: "email", placeholder: "e.g. ramesh@pharmacy.in", required: true },
+  { id: 3, label: "Mobile number", icon: Phone, type: "tel", name: "mobile", placeholder: "10-digit mobile", required: true, pattern: "[0-9]{10}" },
+  { id: 4, label: "Pharmacy / shop name", icon: Briefcase, type: "text", name: "companyName", placeholder: "e.g. Sharma Medical Store", required: true },
+  { id: 5, label: "City / location", icon: Building, type: "text", name: "location", placeholder: "e.g. Pune, Maharashtra", required: true },
 ]
 
 const DISCORD_URL = 'https://discord.gg/easibill';
 
-const ThankYouMessage = ({ onComplete }) => {
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      onComplete();
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, [onComplete]);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.8 }}
-      className="text-center space-y-6 py-8"
-    >
-      <CheckCircle className="w-20 h-20 text-green-400 mx-auto" />
-      <div className="space-y-3">
-        <ThemedHeading level={2}>Thank You!</ThemedHeading>
-        <ThemedText variant="large">We've received your information and will contact you soon.</ThemedText>
-      </div>
-    </motion.div>
-  );
-};
-
-const QuestionComponent = ({ question, value, onChange, error, isLast, onNext }) => {
-  const Icon = question.icon
-  const { getStyles } = useTheme();
-  const styles = getStyles();
-
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && !isLast) {
-      e.preventDefault();
-      onNext();
-    }
-  };
-
-  return (
-    <div className="space-y-4">
-      <label htmlFor={question.name} className={`block text-xl font-semibold ${styles.text} flex items-center space-x-2`}>
-        <Icon className="w-6 h-6" />
-        <span>{question.label}</span>
-        {question.required && <span className="text-red-400 text-sm">*</span>}
-      </label>
-      <input
-        type={question.type}
-        id={question.name}
-        name={question.name}
-        value={value || ''}
-        onChange={onChange}
-        onKeyDown={handleKeyDown}
-        pattern={question.pattern}
-        className={`w-full p-3 bg-white bg-opacity-20 rounded-lg backdrop-blur-md ${styles.text} placeholder-white placeholder-opacity-70 outline-none focus:ring-2 focus:ring-white ${
-          error ? 'ring-2 ring-red-400' : ''
-        }`}
-        placeholder={`Enter your ${question.name.replace(/([A-Z])/g, ' $1').toLowerCase()}`}
-        required={question.required}
-      />
-      {error && (
-        <p className="text-red-400 text-sm flex items-center gap-1">
-          <AlertCircle className="w-4 h-4" />
-          {error}
-        </p>
-      )}
-    </div>
-  )
-}
-
-// Enhanced background elements
-const BackgroundElements = () => {
-  return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
-      {Array.from({ length: 20 }).map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute rounded-full bg-gradient-to-r from-purple-600/20 to-indigo-600/20 backdrop-blur-3xl"
-          style={{
-            width: `${Math.random() * 30 + 10}rem`,
-            height: `${Math.random() * 30 + 10}rem`,
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
-          }}
-          animate={{
-            x: [0, Math.random() * 50 - 25, 0],
-            y: [0, Math.random() * 50 - 25, 0],
-            scale: [1, Math.random() * 0.3 + 0.8, 1],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{
-            duration: Math.random() * 10 + 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
-    </div>
-  );
-};
+const benefits = [
+  { title: 'Pharmacy-specific setup', body: 'We configure patient records, refill intervals, and WhatsApp templates for your store.' },
+  { title: '14-day refill reminder trial', body: 'Start with your highest-frequency chronic-care patients first.' },
+  { title: 'Community support', body: 'Join our Discord to discuss setup, pharmacy growth, and product updates.' },
+]
 
 export default function LeadGeneration() {
-  const navigate = useNavigate();
-  const [step, setStep] = useState(0);
-  const [formData, setFormData] = useState({});
-  const [errors, setErrors] = useState({});
-  const [showThankYou, setShowThankYou] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  
+  const navigate = useNavigate()
+  const [step, setStep] = useState(0)
+  const [formData, setFormData] = useState({})
+  const [errors, setErrors] = useState({})
+  const [showThankYou, setShowThankYou] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
   const validateField = (name, value) => {
-    if (questions.find(q => q.name === name)?.required && !value) {
-      return 'This field is required';
+    if (questions.find(q => q.name === name)?.required && !value?.trim()) return 'This field is required'
+    if (name === 'mobile' && value && !/^[0-9]{10}$/.test(value)) return 'Enter a valid 10-digit mobile number'
+    if (name === 'email' && value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Enter a valid email address'
+    return null
+  }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+    setErrors(prev => ({ ...prev, [name]: validateField(name, value) }))
+  }
+
+  const handleNext = () => {
+    const q = questions[step]
+    const error = validateField(q.name, formData[q.name])
+    if (!error) {
+      setStep(s => s + 1)
+    } else {
+      setErrors(prev => ({ ...prev, [q.name]: error }))
     }
-    if (name === 'mobile' && value) {
-      if (!/^[0-9]{10}$/.test(value)) {
-        return 'Please enter a valid 10-digit mobile number';
-      }
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && step < questions.length - 1) {
+      e.preventDefault()
+      handleNext()
     }
-    if (name === 'email' && value) {
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-        return 'Please enter a valid email address';
-      }
-    }
-    return null;
-  };
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Validate all fields
-    const newErrors = {};
-    questions.forEach(question => {
-      const error = validateField(question.name, formData[question.name]);
-      if (error) newErrors[question.name] = error;
-    });
+    e.preventDefault()
+    const newErrors = {}
+    questions.forEach(q => {
+      const err = validateField(q.name, formData[q.name])
+      if (err) newErrors[q.name] = err
+    })
+    if (Object.keys(newErrors).length > 0) { setErrors(newErrors); return }
 
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      setIsSubmitting(false);
-      return;
-    }
-
+    setIsSubmitting(true)
     try {
       const response = await fetch('https://landingpage-lead.sppathak1428.workers.dev/', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to send lead to worker');
-      }
-      track('demo_requested', {
-        source: 'lead_form',
-        method: 'form_submit',
-        shop_name: formData.companyName,
-        location: formData.location,
-      });
-      setShowThankYou(true);
-    } catch (error) {
-      console.error('Error submitting lead:', error);
-      setErrors({ submit: 'Failed to submit form. Please try again.' });
+      })
+      if (!response.ok) throw new Error('Failed to submit')
+      track('demo_requested', { source: 'lead_form', method: 'form_submit', shop_name: formData.companyName, location: formData.location })
+      setShowThankYou(true)
+    } catch {
+      setErrors({ submit: 'Something went wrong. Please try again.' })
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
-  };
+  }
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-    setErrors(prev => ({
-      ...prev,
-      [name]: validateField(name, value)
-    }));
-  };
-
-  const handleNext = () => {
-    const currentQuestion = questions[step];
-    const error = validateField(currentQuestion.name, formData[currentQuestion.name]);
-    if (!error) {
-      setStep(step + 1);
-    } else {
-      setErrors(prev => ({ ...prev, [currentQuestion.name]: error }));
-    }
-  };
+  const q = questions[step]
+  const Icon = q.icon
 
   return (
-    <ThemedSection>
-      <div className="w-full max-w-5xl mx-auto py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          {/* Left side - Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <ThemedHeading level={1} className="mb-6">
-              Show us your pharmacy workflow
-            </ThemedHeading>
-            <ThemedText variant="large" className="mb-8">
-              Tell us how your store handles chronic-care refills today. We will help you map the fastest path from manual WhatsApp follow-up to automated refill reminders.
-            </ThemedText>
-            
-            <div className="space-y-6">
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0 mt-1">
-                  <CheckCircle className="w-5 h-5 text-purple-400" />
-                </div>
-                <div>
-                  <h3 className="text-white font-medium text-lg">Pharmacy-specific onboarding</h3>
-                  <ThemedText variant="default">We help set up patient records, refill intervals, and reminder templates</ThemedText>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center flex-shrink-0 mt-1">
-                  <CheckCircle className="w-5 h-5 text-indigo-400" />
-                </div>
-                <div>
-                  <h3 className="text-white font-medium text-lg">14-day refill reminder trial</h3>
-                  <ThemedText variant="default">Start with your most frequent chronic-care patients first</ThemedText>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0 mt-1">
-                  <CheckCircle className="w-5 h-5 text-blue-400" />
-                </div>
-                <div>
-                  <h3 className="text-white font-medium text-lg">Community support</h3>
-                  <ThemedText variant="default">Join our Discord to discuss setup, pharmacy growth, and product updates</ThemedText>
-                </div>
-              </div>
+    <section className="relative isolate min-h-screen overflow-hidden px-4 pb-20 pt-28 sm:px-6 lg:px-8">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.15),transparent_32%),radial-gradient(circle_at_80%_10%,rgba(56,189,248,0.15),transparent_28%),linear-gradient(180deg,#f8faf8_0%,#eefbf6_60%,#ffffff_100%)]" />
 
-              <a
-                href={DISCORD_URL}
-                className="inline-flex items-center gap-2 rounded-full border border-indigo-300/30 bg-indigo-500/15 px-5 py-3 text-sm font-semibold text-white hover:bg-indigo-500/25"
-              >
-                <MessageCircle className="h-4 w-4" />
-                Join Easibill Discord
-              </a>
-            </div>
-          </motion.div>
-          
-          {/* Right side - Form */}
-          <ThemedCard 
-            className="p-6 sm:p-8 relative overflow-hidden"
+      <div className="mx-auto grid max-w-6xl items-start gap-12 lg:grid-cols-[1fr_0.9fr]">
+
+        {/* Left — benefits */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="pt-4"
+        >
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-emerald-200/80 bg-white/75 px-3 py-1.5 text-sm font-medium text-emerald-800 shadow-sm backdrop-blur">
+            Book a pharmacy demo
+          </div>
+          <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
+            See Easibill working in your store.
+          </h1>
+          <p className="mt-5 max-w-lg text-lg leading-8 text-slate-600">
+            Share a few details and we'll walk you through a live refill-reminder setup tailored to your pharmacy.
+          </p>
+
+          <div className="mt-10 space-y-5">
+            {benefits.map((b, i) => (
+              <div key={i} className="flex items-start gap-4">
+                <div className="mt-0.5 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+                  <CheckCircle2 className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="font-semibold text-slate-950">{b.title}</p>
+                  <p className="mt-0.5 text-sm text-slate-600">{b.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <a
+            href={DISCORD_URL}
+            className="mt-8 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-emerald-300 hover:text-emerald-800"
           >
-            <AnimatePresence mode="wait">
-              {showThankYou ? (
-                <ThankYouMessage onComplete={() => navigate('/')} />
-              ) : (
-                <motion.div
-                  key="form"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
+            <MessageCircle className="h-4 w-4" />
+            Join Easibill Discord
+          </a>
+        </motion.div>
+
+        {/* Right — form */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="rounded-[2rem] border border-slate-200/80 bg-white/90 p-8 shadow-xl shadow-slate-950/5 backdrop-blur"
+        >
+          <AnimatePresence mode="wait">
+            {showThankYou ? (
+              <motion.div
+                key="thanks"
+                initial={{ opacity: 0, scale: 0.92 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                className="flex flex-col items-center gap-5 py-10 text-center"
+              >
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                  <CheckCircle2 className="h-9 w-9" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-semibold text-slate-950">We've got your details!</h2>
+                  <p className="mt-2 text-slate-600">Someone from the Easibill team will reach out within one business day.</p>
+                </div>
+                <button
+                  onClick={() => navigate('/')}
+                  className="mt-2 inline-flex items-center gap-2 rounded-full bg-slate-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-950"
                 >
-                  <ThemedHeading level={2} className="text-center mb-8">
-                    Tell us about yourself
-                  </ThemedHeading>
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  Back to home <ArrowRight className="h-4 w-4" />
+                </button>
+              </motion.div>
+            ) : (
+              <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                <div className="mb-8">
+                  <h2 className="text-2xl font-semibold text-slate-950">Tell us about your pharmacy</h2>
+                  <p className="mt-1 text-sm text-slate-500">Step {step + 1} of {questions.length}</p>
+                </div>
+
+                {/* Progress dots */}
+                <div className="mb-8 flex gap-2">
+                  {questions.map((_, i) => (
+                    <div
+                      key={i}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${i === step ? 'w-8 bg-emerald-500' : i < step ? 'w-4 bg-emerald-200' : 'w-4 bg-slate-200'}`}
+                    />
+                  ))}
+                </div>
+
+                <form onSubmit={handleSubmit}>
+                  <AnimatePresence mode="wait">
                     <motion.div
                       key={step}
-                      initial={{ x: 50, opacity: 0 }}
+                      initial={{ x: 30, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
-                      exit={{ x: -50, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
+                      exit={{ x: -30, opacity: 0 }}
+                      transition={{ duration: 0.25 }}
+                      className="space-y-3"
                     >
-                      <QuestionComponent
-                        question={questions[step]}
-                        value={formData[questions[step].name]}
+                      <label htmlFor={q.name} className="flex items-center gap-2 text-sm font-semibold text-slate-700">
+                        <Icon className="h-4 w-4 text-emerald-600" />
+                        {q.label}
+                        {q.required && <span className="text-red-400">*</span>}
+                      </label>
+                      <input
+                        type={q.type}
+                        id={q.name}
+                        name={q.name}
+                        value={formData[q.name] || ''}
                         onChange={handleInputChange}
-                        error={errors[questions[step].name]}
-                        isLast={step === questions.length - 1}
-                        onNext={handleNext}
+                        onKeyDown={handleKeyDown}
+                        pattern={q.pattern}
+                        autoFocus
+                        className={`w-full rounded-2xl border px-4 py-3.5 text-slate-950 outline-none transition placeholder:text-slate-400 focus:ring-2 focus:ring-emerald-400 focus:ring-offset-1 ${errors[q.name] ? 'border-red-300 bg-red-50' : 'border-slate-200 bg-slate-50 hover:border-slate-300'}`}
+                        placeholder={q.placeholder}
                       />
+                      {errors[q.name] && (
+                        <p className="flex items-center gap-1.5 text-sm text-red-600">
+                          <AlertCircle className="h-4 w-4" /> {errors[q.name]}
+                        </p>
+                      )}
                     </motion.div>
+                  </AnimatePresence>
 
-                    {errors.submit && (
-                      <p className="text-red-400 text-sm text-center">{errors.submit}</p>
+                  {errors.submit && (
+                    <p className="mt-4 text-center text-sm text-red-600">{errors.submit}</p>
+                  )}
+
+                  <div className="mt-8 flex items-center justify-between">
+                    {step > 0 ? (
+                      <button
+                        type="button"
+                        onClick={() => setStep(s => s - 1)}
+                        className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+                      >
+                        <ChevronLeft className="h-4 w-4" /> Back
+                      </button>
+                    ) : <div />}
+
+                    {step < questions.length - 1 ? (
+                      <button
+                        type="button"
+                        onClick={handleNext}
+                        className="inline-flex items-center gap-1.5 rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-950"
+                      >
+                        Next <ChevronRight className="h-4 w-4" />
+                      </button>
+                    ) : (
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="inline-flex items-center gap-1.5 rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-950 disabled:opacity-50"
+                      >
+                        {isSubmitting ? 'Submitting…' : 'Book my demo'} <Send className="h-4 w-4" />
+                      </button>
                     )}
-
-                    <div className="flex justify-between mt-8">
-                      {step > 0 && (
-                        <ThemedButton
-                          variant="secondary"
-                          type="button"
-                          onClick={() => setStep(step - 1)}
-                          className="flex items-center space-x-2"
-                          disabled={isSubmitting}
-                        >
-                          <ChevronLeft className="w-5 h-5" />
-                          <span>Previous</span>
-                        </ThemedButton>
-                      )}
-                      {step < questions.length - 1 ? (
-                        <ThemedButton
-                          type="button"
-                          onClick={handleNext}
-                          className="flex items-center space-x-2 ml-auto"
-                          disabled={isSubmitting}
-                        >
-                          <span>Next</span>
-                          <ChevronRight className="w-5 h-5" />
-                        </ThemedButton>
-                      ) : (
-                        <ThemedButton
-                          type="submit"
-                          className="flex items-center space-x-2 ml-auto disabled:opacity-50"
-                          disabled={isSubmitting}
-                        >
-                          <span>{isSubmitting ? 'Submitting...' : 'Submit'}</span>
-                          <Send className="w-5 h-5" />
-                        </ThemedButton>
-                      )}
-                    </div>
-
-                    <div className="flex justify-center space-x-2 mt-8">
-                      {questions.map((_, index) => (
-                        <motion.div
-                          key={index}
-                          className={`h-2 rounded-full transition-all duration-300 ${
-                            index === step ? 'w-4 bg-white' : 'w-2 bg-white/30'
-                          }`}
-                          animate={{ scale: index === step ? 1.2 : 1 }}
-                        />
-                      ))}
-                    </div>
-                  </form>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </ThemedCard>
-        </div>
+                  </div>
+                </form>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
       </div>
-    </ThemedSection>
-  );
-} 
+    </section>
+  )
+}
