@@ -9,6 +9,7 @@ import {
   Sparkles,
   TrendingUp,
 } from 'lucide-react';
+import { track } from '../../utils/mixpanel';
 
 const reminders = [
   { name: 'Anita R.', medicine: 'Metformin 500mg', status: 'Reminder sent', time: '9:00 AM' },
@@ -55,6 +56,7 @@ const EasibillHero = () => {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <motion.a
               href={DASHBOARD_LOGIN_URL}
+              onClick={() => track('trial_started', { source: 'hero' })}
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
               className="group inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-6 py-3.5 text-sm font-semibold text-white shadow-xl shadow-emerald-900/20 transition hover:bg-emerald-950 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
@@ -64,6 +66,7 @@ const EasibillHero = () => {
             </motion.a>
             <motion.a
               href="/lead"
+              onClick={() => track('demo_requested', { source: 'hero', method: 'button_click' })}
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
               className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-6 py-3.5 text-sm font-semibold text-slate-800 shadow-sm backdrop-blur transition hover:border-emerald-300 hover:text-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"

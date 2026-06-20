@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Check, ShieldCheck, Sparkles } from 'lucide-react';
+import { track } from '../../utils/mixpanel';
 
 const plans = [
   {
@@ -79,6 +80,7 @@ const EasibillPricing = () => {
 
               <a
                 href={DASHBOARD_LOGIN_URL}
+                onClick={() => track('trial_started', { source: 'pricing', plan: plan.name })}
                 className={`mt-8 inline-flex w-full items-center justify-center rounded-full px-5 py-3.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 ${
                   plan.featured
                     ? 'bg-white text-slate-950 hover:bg-emerald-100'

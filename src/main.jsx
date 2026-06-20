@@ -5,6 +5,8 @@ import { BrowserRouter, useLocation } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import { DynamicSEO } from './components/SEO/DynamicSEO'
 import { FullPageLoader } from './components/LoadingSpinner'
+import ConsentBanner from './components/ConsentBanner'
+import { initMixpanel, hasConsent, trackPageView } from './utils/mixpanel'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 
@@ -29,7 +31,7 @@ const preloadCriticalImages = (images) => {
   });
 }
 
-// Track route changes in SPA for GA4 page_view
+// Track route changes in SPA for GA4 + Mixpanel page_view
 const AnalyticsTracker = () => {
   const location = useLocation();
 
@@ -40,6 +42,7 @@ const AnalyticsTracker = () => {
         page_title: document.title
       });
     }
+    trackPageView(location.pathname);
   }, [location.pathname, location.search, location.hash]);
 
   return null;
@@ -50,12 +53,15 @@ const Root = () => {
   useEffect(() => {
     // Preload critical images
     preloadCriticalImages(CRITICAL_IMAGES);
-    
+
     // Remove loading indicator
     const loadingElement = document.querySelector('.loading');
     if (loadingElement) {
       loadingElement.style.display = 'none';
     }
+
+    // Initialize Mixpanel only if consent was previously given
+    if (hasConsent()) initMixpanel();
   }, []);
 
   return (
@@ -67,6 +73,7 @@ const Root = () => {
           <Suspense fallback={<FullPageLoader />}>
             <App />
           </Suspense>
+          <ConsentBanner />
           <Analytics />
           <SpeedInsights />
         </HelmetProvider>

@@ -1,0 +1,35 @@
+import { useState } from 'react';
+import { acceptConsent, declineConsent, getConsentState } from '../utils/mixpanel';
+
+const ConsentBanner = () => {
+  const [dismissed, setDismissed] = useState(() => getConsentState() !== null);
+
+  if (dismissed) return null;
+
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-[100] border-t border-slate-200 bg-white/95 px-4 py-4 shadow-xl backdrop-blur-xl sm:px-6">
+      <div className="mx-auto flex max-w-7xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-sm text-slate-600">
+          We use analytics cookies to understand how visitors interact with this page. No personal data is shared.{' '}
+          <a href="/privacy" className="underline hover:text-emerald-700">Privacy Policy</a>
+        </p>
+        <div className="flex shrink-0 gap-2">
+          <button
+            onClick={() => { declineConsent(); setDismissed(true); }}
+            className="rounded-full border border-slate-200 px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100"
+          >
+            Decline
+          </button>
+          <button
+            onClick={() => { acceptConsent(); setDismissed(true); }}
+            className="rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-950"
+          >
+            Accept
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ConsentBanner;

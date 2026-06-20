@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { User, Mail, Building, Phone, ChevronRight, ChevronLeft, Send, Briefcase, CheckCircle, AlertCircle, MessageCircle } from 'lucide-react'
 import { useNavigate } from 'react-router'
 import { useTheme } from '../context/ThemeContext'
+import { track } from '../utils/mixpanel'
 import { ThemedCard, ThemedButton, ThemedSection, ThemedHeading, ThemedText } from './ui/ThemedComponents'
 
 // Import shared components from Leads.jsx
@@ -170,6 +171,12 @@ export default function LeadGeneration() {
       if (!response.ok) {
         throw new Error('Failed to send lead to worker');
       }
+      track('demo_requested', {
+        source: 'lead_form',
+        method: 'form_submit',
+        shop_name: formData.companyName,
+        location: formData.location,
+      });
       setShowThankYou(true);
     } catch (error) {
       console.error('Error submitting lead:', error);

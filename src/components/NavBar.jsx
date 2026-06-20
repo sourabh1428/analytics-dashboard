@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { track } from '../utils/mixpanel';
 
 const navLinks = [
   { name: 'Product', section: 'product' },
@@ -95,14 +96,14 @@ const NavBar = () => {
           <div className="hidden items-center gap-2 md:flex">
             <button
               type="button"
-              onClick={() => window.location.assign(DASHBOARD_LOGIN_URL)}
+              onClick={() => { track('demo_requested', { source: 'navbar', method: 'button_click' }); window.location.assign(DASHBOARD_LOGIN_URL); }}
               className="rounded-full px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 hover:text-slate-950"
             >
               Book demo
             </button>
             <button
               type="button"
-              onClick={() => window.location.assign(DASHBOARD_LOGIN_URL)}
+              onClick={() => { track('trial_started', { source: 'navbar' }); window.location.assign(DASHBOARD_LOGIN_URL); }}
               className="rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-emerald-950/10 transition hover:bg-emerald-950"
               data-conversion-button="get-started"
             >
@@ -147,14 +148,14 @@ const NavBar = () => {
               <div className="mt-2 grid gap-2 border-t border-slate-100 pt-3">
                 <button
                   type="button"
-                  onClick={() => window.location.assign(DASHBOARD_LOGIN_URL)}
+                  onClick={() => { track('demo_requested', { source: 'navbar', method: 'button_click' }); window.location.assign(DASHBOARD_LOGIN_URL); }}
                   className="rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700"
                 >
                   Book demo
                 </button>
                 <button
                   type="button"
-                  onClick={() => window.location.assign(DASHBOARD_LOGIN_URL)}
+                  onClick={() => { track('trial_started', { source: 'navbar' }); window.location.assign(DASHBOARD_LOGIN_URL); }}
                   className="rounded-2xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white"
                 >
                   Start free trial
