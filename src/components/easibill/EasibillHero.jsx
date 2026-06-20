@@ -19,7 +19,7 @@ const reminders = [
 const metrics = [
   { value: '35+', label: 'patients retained monthly' },
   { value: '5 min', label: 'setup for a pharmacy' },
-  { value: '9 AM', label: 'WhatsApp reminders' },
+  { value: '0', label: 'missed refills with tracking on' },
 ];
 
 const DASHBOARD_LOGIN_URL = 'https://easibill.vercel.app/login';
@@ -148,8 +148,8 @@ const EasibillHero = () => {
                   </div>
                   <div className="rounded-2xl border border-slate-200 bg-white p-4">
                     <TrendingUp className="mb-3 h-5 w-5 text-cyan-600" />
-                    <p className="text-2xl font-semibold text-slate-950">42%</p>
-                    <p className="text-sm text-slate-500">return lift</p>
+                    <p className="text-2xl font-semibold text-slate-950">↑ 35%</p>
+                    <p className="text-sm text-slate-500">avg. return rate lift</p>
                   </div>
                 </div>
 
