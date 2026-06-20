@@ -24,8 +24,8 @@
     --input: 240 3.7% 15.9%;
     --ring: 267 100% 58%;
     --radius: 0.5rem;
-    --scrollbar-thumb: #8b5cf6;
-  --scrollbar-track: #1e1e1e;
+    --scrollbar-thumb: #10b981;
+    --scrollbar-track: #e2e8f0;
   }
 }
  
@@ -45,13 +45,15 @@ body {
   overflow-y: scroll;
   scrollbar-width: thin; /* For Firefox */
   scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track); /* For Firefox */
-  background: linear-gradient(to bottom right, #1a202c, #000000); /* bg-gradient-to-br from-gray-900 to-black */
-  color: #ffffff; /* text-white */
+  background: #f8faf8;
+  color: #0f172a;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Webkit browsers like Chrome, Safari */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {

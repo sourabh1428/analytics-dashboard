@@ -3,9 +3,9 @@ import { Helmet } from 'react-helmet-async';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export const DynamicSEO = ({ 
-  title = "Easibill - Best Billing Service & Fast Invoicing Software for Local Shop Billing",
-  description = "Easibill is a simple billing software with fast invoicing capabilities for shops and businesses. The most efficient billing service in India helps you create professional invoices in seconds.",
-  keywords = "Billing Service, Fast Invoicing, Local Shop Billing, Easibill, Simple Billing Software, Best Billing Service, Shop Billing App, Billing Software India",
+  title = "Easibill - WhatsApp Refill Reminders for Indian Pharmacies",
+  description = "Easibill helps Indian pharmacies automate WhatsApp refill reminders, track due patients, and recover chronic-care revenue without replacing existing billing software.",
+  keywords = "Pharmacy CRM India, WhatsApp refill reminders, pharmacy patient retention, chronic medicine refills, Easibill",
   imageUrl = "https://easibill.site/assets/easibill-preview.png"
 }) => {
   const location = useLocation();
@@ -22,7 +22,7 @@ export const DynamicSEO = ({
       
       {/* Mobile Optimization */}
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-      <meta name="theme-color" content="#1e293b" />
+      <meta name="theme-color" content="#f8faf8" />
       
       {/* OpenGraph Tags for Social Sharing */}
       <meta property="og:url" content={canonicalUrl} />
@@ -62,10 +62,10 @@ export const DynamicSEO = ({
             "bestRating": "5",
             "worstRating": "1"
           },
-          "description": "Fast and efficient billing software for businesses of all sizes. Create professional invoices, manage inventory, and analyze sales data in one place.",
+          "description": "WhatsApp refill reminder and pharmacy retention software for Indian pharmacies.",
           "softwareVersion": "2.0",
           "fileSize": "5MB",
-          "downloadUrl": "https://easibill.site/download",
+          "downloadUrl": "https://easibill.site",
           "screenshot": "https://easibill.site/assets/easibill-screenshot.png",
           "releaseNotes": "https://easibill.site/release-notes"
         })}

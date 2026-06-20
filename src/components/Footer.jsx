@@ -1,247 +1,121 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { 
-  Facebook, 
-  Twitter, 
-  Instagram, 
-  Linkedin, 
-  Mail, 
-  Phone, 
-  MapPin,
-  ArrowRight,
-  ExternalLink
-} from 'lucide-react';
+import { ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
+
+const linkGroups = [
+  {
+    title: 'Product',
+    links: [
+      { label: 'Features', href: '/features' },
+      { label: 'Pricing', href: '/pricing' },
+      { label: 'Customers', href: '/testimonials' },
+      { label: 'Book a demo', href: '/contact' },
+    ],
+  },
+  {
+    title: 'Use cases',
+    links: [
+      { label: 'Chronic refills', href: '/' },
+      { label: 'WhatsApp reminders', href: '/' },
+      { label: 'Patient segments', href: '/' },
+      { label: 'Broadcast campaigns', href: '/' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { label: 'Contact', href: '/contact' },
+      { label: 'Privacy', href: '/privacy' },
+      { label: 'Terms', href: '/terms' },
+      { label: 'Sitemap', href: '/sitemap' },
+    ],
+  },
+];
 
 const Footer = () => {
   const navigate = useNavigate();
   const currentYear = new Date().getFullYear();
 
-  const footerLinks = [
-    {
-      title: "Billing Software",
-      links: [
-        { label: "Invoicing", href: "/features/invoicing" },
-        { label: "Inventory Management", href: "/features/inventory" },
-        { label: "Financial Reports", href: "/features/reports" },
-        { label: "Point of Sale", href: "/features/pos" },
-        { label: "GST Compliance", href: "/features/gst" }
-      ]
-    },
-    {
-      title: "Industries",
-      links: [
-        { label: "Retail Stores", href: "/industries/retail" },
-        { label: "Restaurants", href: "/industries/restaurants" },
-        { label: "Service Providers", href: "/industries/services" },
-        { label: "E-commerce", href: "/industries/ecommerce" },
-        { label: "Wholesalers", href: "/industries/wholesale" }
-      ]
-    },
-    {
-      title: "Resources",
-      links: [
-        { label: "Help Center", href: "/help" },
-        { label: "Blog", href: "/blog" },
-        { label: "API Documentation", href: "/docs/api", external: true },
-        { label: "Tutorials", href: "/tutorials" },
-        { label: "Webinars", href: "/webinars" }
-      ]
-    },
-    {
-      title: "Company",
-      links: [
-        { label: "About Us", href: "/about" },
-        { label: "Careers", href: "/careers" },
-        { label: "Contact", href: "/contact" },
-        { label: "Privacy Policy", href: "/privacy" },
-        { label: "Terms of Service", href: "/terms" }
-      ]
-    }
-  ];
-
-  const socialLinks = [
-    { icon: <Facebook size={18} />, href: "https://facebook.com/easibill", label: "Facebook" },
-    { icon: <Twitter size={18} />, href: "https://twitter.com/easibill", label: "Twitter" },
-    { icon: <Instagram size={18} />, href: "https://instagram.com/easibill", label: "Instagram" },
-    { icon: <Linkedin size={18} />, href: "https://linkedin.com/company/easibill", label: "LinkedIn" }
-  ];
-
-  const contactInfo = [
-    { icon: <Mail size={16} />, text: "support@easibill.com" },
-    { icon: <Phone size={16} />, text: "+91 800-123-4567" },
-    { icon: <MapPin size={16} />, text: "Mumbai, India" }
-  ];
+  const goTo = (event, href) => {
+    event.preventDefault();
+    navigate(href);
+  };
 
   return (
-    <footer className="bg-gray-900 text-gray-300" data-section="footer">
-      {/* Top Section */}
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
-          {/* Brand Column */}
-          <div className="lg:col-span-2">
-            <div className="mb-6">
-              <a 
-                href="/" 
-                className="flex items-center"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate('/');
-                }}
-              >
-                <img 
-                  src="https://img.icons8.com/fluency/50/bill.png" 
-                  alt="Easibill Logo" 
-                  className="h-8 w-auto" 
-                />
-                <span className="ml-2 text-white font-bold text-2xl">Easibill</span>
-              </a>
-              <p className="mt-4 text-gray-400">
-                Simplify your billing process with our fast, reliable, and easy-to-use software designed for small businesses.
-              </p>
-            </div>
-            
-            {/* Newsletter Signup */}
-            <div className="mt-6">
-              <h3 className="text-white font-medium mb-3">Stay Updated</h3>
-              <div className="flex">
-                <input 
-                  type="email" 
-                  placeholder="Email Address" 
-                  className="bg-gray-800 text-white border border-gray-700 rounded-l-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 flex-grow"
-                  aria-label="Email Address"
-                />
-                <button 
-                  className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white flex items-center justify-center px-4 rounded-r-lg transition-colors hover:from-purple-700 hover:to-indigo-700"
-                  aria-label="Subscribe to newsletter"
-                  data-conversion-button="subscribe"
-                >
-                  <ArrowRight size={20} />
-                </button>
+    <footer className="border-t border-slate-200 bg-white text-slate-600" data-section="footer">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+        <div className="grid gap-10 lg:grid-cols-[1.15fr_1fr]">
+          <div>
+            <button
+              type="button"
+              onClick={() => navigate('/')}
+              className="flex items-center gap-3 text-left focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+            >
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-950 text-sm font-bold text-emerald-300">
+                EB
+              </span>
+              <span className="text-2xl font-semibold tracking-tight text-slate-950">Easibill</span>
+            </button>
+            <p className="mt-5 max-w-md leading-7">
+              WhatsApp refill reminders and retention workflows for independent pharmacies in India.
+            </p>
+            <div className="mt-6 grid gap-3 text-sm">
+              <div className="flex items-center gap-3">
+                <Mail className="h-4 w-4 text-emerald-700" />
+                <a href="mailto:hello@easibill.io" className="hover:text-emerald-800">hello@easibill.io</a>
               </div>
-              <p className="text-xs text-gray-500 mt-2">
-                Get the latest updates, news and product offers.
-              </p>
-            </div>
-            
-            {/* Contact Information */}
-            <div className="mt-6">
-              <h3 className="text-white font-medium mb-3">Contact Us</h3>
-              <ul className="space-y-2">
-                {contactInfo.map((item, index) => (
-                  <li key={index} className="flex items-center">
-                    <span className="text-purple-400 mr-2">{item.icon}</span>
-                    <span>{item.text}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            {/* Social Links */}
-            <div className="mt-6">
-              <h3 className="text-white font-medium mb-3">Follow Us</h3>
-              <div className="flex space-x-3">
-                {socialLinks.map((social, index) => (
-                  <a 
-                    key={index}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-gray-800 hover:bg-gray-700 p-2 rounded-full transition-colors"
-                    aria-label={`Follow us on ${social.label}`}
-                    data-social-link={social.label.toLowerCase()}
-                  >
-                    <span className="text-purple-400">{social.icon}</span>
-                  </a>
-                ))}
+              <div className="flex items-center gap-3">
+                <Phone className="h-4 w-4 text-emerald-700" />
+                <a href="tel:+918001234567" className="hover:text-emerald-800">+91 800-123-4567</a>
+              </div>
+              <div className="flex items-center gap-3">
+                <MapPin className="h-4 w-4 text-emerald-700" />
+                <span>Mumbai, India</span>
               </div>
             </div>
           </div>
-          
-          {/* Navigation Links */}
-          {footerLinks.map((group, index) => (
-            <div key={index} className="lg:col-span-1">
-              <h3 className="text-white font-medium text-lg mb-4">{group.title}</h3>
-              <ul className="space-y-2">
-                {group.links.map((link, linkIndex) => (
-                  <li key={linkIndex}>
-                    <a 
-                      href={link.href}
-                      className="text-gray-400 hover:text-purple-400 transition-colors flex items-center"
-                      target={link.external ? "_blank" : undefined}
-                      rel={link.external ? "noopener noreferrer" : undefined}
-                      onClick={(e) => {
-                        if (!link.external) {
-                          e.preventDefault();
-                          navigate(link.href);
-                        }
-                      }}
-                    >
-                      {link.label}
-                      {link.external && <ExternalLink size={12} className="ml-1" />}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+
+          <div className="grid gap-8 sm:grid-cols-3">
+            {linkGroups.map((group) => (
+              <div key={group.title}>
+                <h3 className="font-semibold text-slate-950">{group.title}</h3>
+                <ul className="mt-4 space-y-3">
+                  {group.links.map((link) => (
+                    <li key={link.label}>
+                      <a
+                        href={link.href}
+                        onClick={(event) => goTo(event, link.href)}
+                        className="text-sm hover:text-emerald-800"
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-      
-      {/* Bottom Section */}
-      <div className="border-t border-gray-800">
-        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-sm text-gray-500">
-              <p>© {currentYear} Easibill. All rights reserved.</p>
-              <p className="mt-1">
-                <span className="font-medium">Easibill</span> - Best Billing Service & Simple Billing Software
-              </p>
+
+        <div className="mt-10 rounded-[1.5rem] border border-emerald-200 bg-emerald-50 p-5">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h3 className="font-semibold text-slate-950">Ready to try refill automation?</h3>
+              <p className="mt-1 text-sm">Start with one store and your most frequent chronic-care patients.</p>
             </div>
-            <div className="mt-4 md:mt-0 flex space-x-4 text-sm text-gray-500">
-              <a 
-                href="/privacy" 
-                className="hover:text-purple-400 transition-colors"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate('/privacy');
-                }}
-              >
-                Privacy Policy
-              </a>
-              <span>|</span>
-              <a 
-                href="/terms" 
-                className="hover:text-purple-400 transition-colors"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate('/terms');
-                }}
-              >
-                Terms of Service
-              </a>
-              <span>|</span>
-              <a 
-                href="/sitemap" 
-                className="hover:text-purple-400 transition-colors"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate('/sitemap');
-                }}
-              >
-                Sitemap
-              </a>
-            </div>
+            <a
+              href="/contact"
+              onClick={(event) => goTo(event, '/contact')}
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-emerald-950"
+            >
+              Start free trial
+              <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
-          
-          {/* SEO Text */}
-          <p className="mt-6 text-xs text-gray-600 max-w-5xl mx-auto text-center">
-            Easibill is India's leading billing software for small businesses, retailers, and entrepreneurs. 
-            Our easy-to-use billing service helps you create professional invoices, manage inventory, and grow your business. 
-            Experience fast invoicing and streamlined local shop billing with Easibill today.
-          </p>
-          
-          {/* Trust Badges */}
-          
+        </div>
+
+        <div className="mt-8 flex flex-col gap-3 border-t border-slate-100 pt-6 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
+          <p>Copyright {currentYear} Easibill. All rights reserved.</p>
+          <p>Built for pharmacy retention, refill reminders, and patient follow-up.</p>
         </div>
       </div>
     </footer>
@@ -249,4 +123,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
