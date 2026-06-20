@@ -28,7 +28,7 @@ const DASHBOARD_LOGIN_URL = 'https://easibill.vercel.app/login';
 const EasibillHero = () => {
   return (
     <section className="relative isolate overflow-hidden px-4 pb-16 pt-28 sm:px-6 lg:px-8 lg:pb-24 lg:pt-36">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.20),transparent_32%),radial-gradient(circle_at_80%_10%,rgba(56,189,248,0.20),transparent_28%),linear-gradient(180deg,#f8faf8_0%,#eefbf6_52%,#ffffff_100%)]" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.22),transparent_34%),radial-gradient(circle_at_80%_10%,rgba(56,189,248,0.18),transparent_30%)]" />
       <motion.div
         aria-hidden="true"
         className="absolute left-1/2 top-16 -z-10 h-80 w-80 -translate-x-1/2 rounded-full bg-emerald-300/30 blur-3xl"

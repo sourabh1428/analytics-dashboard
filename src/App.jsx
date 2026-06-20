@@ -38,7 +38,9 @@ const App = () => {
 
   const PageLayout = React.memo(({ children }) => {
     return (
-      <div className="relative min-h-screen overflow-hidden bg-[#f8faf8] text-slate-950">
+      <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-[#eafaf3] via-[#f4fdf8] to-[#eef9f4] text-slate-950">
+        {/* Full-page ambient glow — keeps the emerald feel past the hero */}
+        <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(ellipse_90%_45%_at_5%_15%,rgba(16,185,129,0.10),transparent),radial-gradient(ellipse_60%_35%_at_95%_55%,rgba(56,189,248,0.09),transparent),radial-gradient(ellipse_75%_40%_at_50%_85%,rgba(16,185,129,0.07),transparent)]" />
         <motion.div
           className="fixed left-0 right-0 top-0 z-[60] h-1 origin-left bg-gradient-to-r from-emerald-500 via-cyan-400 to-indigo-500"
           style={{ scaleX }}
