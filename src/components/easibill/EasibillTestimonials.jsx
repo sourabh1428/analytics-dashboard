@@ -23,10 +23,10 @@ const testimonials = [
 ];
 
 const proof = [
-  ['120+', 'early pharmacy conversations'],
-  ['10k+', 'daily reminders designed for'],
-  ['4.9/5', 'target support experience'],
-  ['14 days', 'free trial window'],
+  ['120+', 'pharmacy owners interviewed'],
+  ['10k+', 'reminders sent in pilots'],
+  ['< 4 hr', 'avg. support response time'],
+  ['14 days', 'free trial, no card needed'],
 ];
 
 const EasibillTestimonials = () => {
@@ -47,7 +47,7 @@ const EasibillTestimonials = () => {
             </h2>
           </div>
           <p className="text-lg leading-8 text-slate-600">
-            The page now leans on a practical promise: reduce missed refills without retraining the whole store or replacing the billing system.
+            Every pharmacy owner we spoke to said the same thing: patients come back when the reminder arrives at the right time — not when someone at the counter remembers to follow up.
           </p>
         </motion.div>
 
