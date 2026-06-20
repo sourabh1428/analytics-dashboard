@@ -42,10 +42,17 @@ const ThankYouMessage = ({ onComplete }) => {
   );
 };
 
-const QuestionComponent = ({ question, value, onChange, error }) => {
+const QuestionComponent = ({ question, value, onChange, error, isLast, onNext }) => {
   const Icon = question.icon
   const { getStyles } = useTheme();
   const styles = getStyles();
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && !isLast) {
+      e.preventDefault();
+      onNext();
+    }
+  };
 
   return (
     <div className="space-y-4">
@@ -60,6 +67,7 @@ const QuestionComponent = ({ question, value, onChange, error }) => {
         name={question.name}
         value={value || ''}
         onChange={onChange}
+        onKeyDown={handleKeyDown}
         pattern={question.pattern}
         className={`w-full p-3 bg-white bg-opacity-20 rounded-lg backdrop-blur-md ${styles.text} placeholder-white placeholder-opacity-70 outline-none focus:ring-2 focus:ring-white ${
           error ? 'ring-2 ring-red-400' : ''
@@ -183,6 +191,16 @@ export default function LeadGeneration() {
     }));
   };
 
+  const handleNext = () => {
+    const currentQuestion = questions[step];
+    const error = validateField(currentQuestion.name, formData[currentQuestion.name]);
+    if (!error) {
+      setStep(step + 1);
+    } else {
+      setErrors(prev => ({ ...prev, [currentQuestion.name]: error }));
+    }
+  };
+
   return (
     <ThemedSection>
       <div className="w-full max-w-5xl mx-auto py-8">
@@ -271,6 +289,8 @@ export default function LeadGeneration() {
                         value={formData[questions[step].name]}
                         onChange={handleInputChange}
                         error={errors[questions[step].name]}
+                        isLast={step === questions.length - 1}
+                        onNext={handleNext}
                       />
                     </motion.div>
 
@@ -294,15 +314,7 @@ export default function LeadGeneration() {
                       {step < questions.length - 1 ? (
                         <ThemedButton
                           type="button"
-                          onClick={() => {
-                            const currentQuestion = questions[step];
-                            const error = validateField(currentQuestion.name, formData[currentQuestion.name]);
-                            if (!error) {
-                              setStep(step + 1);
-                            } else {
-                              setErrors(prev => ({ ...prev, [currentQuestion.name]: error }));
-                            }
-                          }}
+                          onClick={handleNext}
                           className="flex items-center space-x-2 ml-auto"
                           disabled={isSubmitting}
                         >
