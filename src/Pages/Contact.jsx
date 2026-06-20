@@ -50,7 +50,7 @@ const ContactPage = () => {
             </div>
             <div className="flex items-center gap-3">
               <Phone className="h-4 w-4 text-emerald-700" />
-              <a href="tel:+918001234567" className="hover:text-emerald-800">+91 800-123-4567</a>
+              <a href="tel:+918839143395" className="hover:text-emerald-800">+91 800-123-4567</a>
             </div>
           </div>
         </motion.div>
