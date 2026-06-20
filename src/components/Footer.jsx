@@ -6,42 +6,41 @@ const DISCORD_URL = 'https://discord.gg/easibill';
 
 const linkGroups = [
   {
-    title: 'Billing Software',
+    title: 'Pharmacy Tools',
     links: [
-      ['Invoicing', 'Fast GST-ready bills for counter sales and repeat patients.'],
-      ['Inventory Management', 'Know what moved, what is low, and what needs reordering.'],
-      ['Financial Reports', 'Daily sales, repeat revenue, and refill recovery visibility.'],
-      ['Point of Sale', 'Simple counter workflow for independent pharmacy teams.'],
-      ['GST Compliance', 'Clean records for pharmacy billing and reporting.'],
+      { label: 'Refill Reminders', description: 'Automatic WhatsApp follow-ups for chronic-care patients.', href: '/#features' },
+      { label: 'Patient Records', description: 'Medicine, interval, and contact stored per patient.', href: '/#features' },
+      { label: 'Daily Queue', description: 'Who is due, overdue, or recently refilled — every morning.', href: '/#features' },
+      { label: 'Broadcast Campaigns', description: 'Health camp and loyalty messages for targeted patient groups.', href: '/#features' },
+      { label: 'Retention Analytics', description: 'Reminders sent, recovered refills, and inactive patients tracked.', href: '/#features' },
     ],
   },
   {
-    title: 'Industries',
+    title: 'Getting Started',
     links: [
-      ['Retail Stores', 'For local stores that need quick billing and follow-up.'],
-      ['Restaurants', 'Simple sales records and customer communication workflows.'],
-      ['Service Providers', 'Billing and reminders for appointment-led businesses.'],
-      ['E-commerce', 'Customer updates and repeat purchase messaging.'],
-      ['Wholesalers', 'Bulk order records and account follow-up.'],
+      { label: '14-Day Free Trial', description: 'Full access, no card required, set up in under 5 minutes.', href: 'https://easibill.vercel.app/login', external: true },
+      { label: 'Book a Demo', description: 'Live walkthrough with a pharmacy retention specialist.', href: '/lead' },
+      { label: 'Onboarding Guide', description: 'Step-by-step setup from first patient to first reminder.', href: '#', disabled: true },
+      { label: 'Pricing', description: 'Starter at Rs. 299/month. Pro at Rs. 999/month.', href: '/#pricing' },
     ],
   },
   {
     title: 'Resources',
     links: [
-      ['Help Center', 'Setup guides for reminders, billing, and patient records.'],
-      ['Blog', 'Practical growth notes for Indian pharmacy owners.'],
-      ['Tutorials', 'Short walkthroughs for staff onboarding.'],
-      ['Webinars', 'Live sessions on refill automation and retention.'],
+      { label: 'Help Center', description: 'Setup guides for reminders, billing, and patient records.', href: '#', disabled: true },
+      { label: 'Blog', description: 'Practical growth notes for Indian pharmacy owners.', href: '#', disabled: true },
+      { label: 'Tutorials', description: 'Short walkthroughs for staff onboarding.', href: '#', disabled: true },
+      { label: 'Webinars', description: 'Live sessions on refill automation and retention.', href: '#', disabled: true },
     ],
   },
   {
     title: 'Company',
     links: [
-      ['About Us', 'Building practical software for busy Indian counters.'],
-      ['Careers', 'Join the team shaping pharmacy retention tools.'],
-      ['Contact', 'Talk to us about sales, support, or partnerships.'],
-      ['Privacy Policy', 'How we handle pharmacy and patient data.'],
-      ['Terms of Service', 'Terms for using Easibill products.'],
+      { label: 'About Us', description: 'Building practical software for busy Indian counters.', href: '#', disabled: true },
+      { label: 'Careers', description: 'Join the team shaping pharmacy retention tools.', href: '#careers' },
+      { label: 'Contact', description: 'Talk to us about sales, support, or partnerships.', href: '/contact' },
+      { label: 'Privacy Policy', description: 'How we handle pharmacy and patient data.', href: '#', disabled: true },
+      { label: 'Terms of Service', description: 'Terms for using Easibill products.', href: '#', disabled: true },
     ],
   },
 ];
@@ -136,14 +135,15 @@ const Footer = () => {
               <div key={group.title} className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm">
                 <h3 className="font-semibold text-slate-950">{group.title}</h3>
                 <ul className="mt-4 space-y-4">
-                  {group.links.map(([label, description]) => (
+                  {group.links.map(({ label, description, href, external, disabled }) => (
                     <li key={label}>
                       <a
-                        href={label === 'Careers' ? '#careers' : '/'}
-                        onClick={(event) => {
-                          if (label !== 'Careers') goTo(event, '/');
-                        }}
-                        className="block"
+                        href={href}
+                        target={external ? '_blank' : undefined}
+                        rel={external ? 'noopener noreferrer' : undefined}
+                        aria-disabled={disabled || undefined}
+                        onClick={disabled ? (e) => e.preventDefault() : undefined}
+                        className={`block${disabled ? ' pointer-events-none opacity-50' : ''}`}
                       >
                         <span className="text-sm font-semibold text-slate-800 hover:text-emerald-800">{label}</span>
                         <span className="mt-1 block text-xs leading-5 text-slate-500">{description}</span>
