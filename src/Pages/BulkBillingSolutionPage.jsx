@@ -162,7 +162,7 @@ const BulkBillingSolutionPage = () => {
                     <p className="text-sm font-semibold">Recipients</p>
                     <p className="text-xs text-slate-400">142 diabetes patients</p>
                   </div>
-                  <button className="inline-flex items-center gap-2 rounded-full bg-emerald-400 px-4 py-2 text-xs font-semibold text-emerald-950 transition hover:bg-emerald-300">
+                  <button type="button" className="inline-flex items-center gap-2 rounded-full bg-emerald-400 px-4 py-2 text-xs font-semibold text-emerald-950 transition hover:bg-emerald-300">
                     <Send className="h-3.5 w-3.5" />
                     Schedule
                   </button>
@@ -199,7 +199,7 @@ const BulkBillingSolutionPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.25 }}
                   transition={{ duration: 0.55, delay: index * 0.07 }}
-                  className="group rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-950/5"
+                  className="group rounded-[1.75rem] border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-950/5"
                 >
                   <div className="mb-4 inline-flex rounded-2xl bg-emerald-50 p-3 text-emerald-700 transition group-hover:bg-slate-950 group-hover:text-emerald-300">
                     <Icon className="h-5 w-5" />

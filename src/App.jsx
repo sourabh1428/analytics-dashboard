@@ -22,9 +22,9 @@ const EasibillCTA = lazy(() => import("./components/easibill/EasibillCTA"));
 // Pages
 const ContactPage = lazyImport(() => import("./Pages/Contact"));
 const LeadGeneration = lazyImport(() => import("./components/LeadGeneration"));
-const FeaturesPage = lazy(() => import("./Pages/FeaturesPage"));
-const TestimonialsPage = lazy(() => import("./Pages/TestimonialsPage"));
-const BulkBillingSolutionPage = lazy(() => import("./Pages/BulkBillingSolutionPage"));
+const FeaturesPage = lazyImport(() => import("./Pages/FeaturesPage"));
+const TestimonialsPage = lazyImport(() => import("./Pages/TestimonialsPage"));
+const BulkBillingSolutionPage = lazyImport(() => import("./Pages/BulkBillingSolutionPage"));
 
 const App = () => {
   const containerRef = useRef(null);
