@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, lazy, Suspense } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/NavBar";
 import Footer from "./components/Footer";
 import ScrollToTopButton from "./components/ScrollToTopButton";
@@ -22,6 +22,9 @@ const EasibillCTA = lazy(() => import("./components/easibill/EasibillCTA"));
 // Pages
 const ContactPage = lazyImport(() => import("./Pages/Contact"));
 const LeadGeneration = lazyImport(() => import("./components/LeadGeneration"));
+const FeaturesPage = lazy(() => import("./Pages/FeaturesPage"));
+const TestimonialsPage = lazy(() => import("./Pages/TestimonialsPage"));
+const BulkBillingSolutionPage = lazy(() => import("./Pages/BulkBillingSolutionPage"));
 
 const App = () => {
   const containerRef = useRef(null);
@@ -142,6 +145,35 @@ const App = () => {
               <PageLayout><LeadGeneration /></PageLayout>
             </Suspense>
           } />
+
+          {/* Standalone pages */}
+          <Route path="/features" element={
+            <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><LoadingSpinner /></div>}>
+              <PageLayout><FeaturesPage /></PageLayout>
+            </Suspense>
+          } />
+          <Route path="/testimonials" element={
+            <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><LoadingSpinner /></div>}>
+              <PageLayout><TestimonialsPage /></PageLayout>
+            </Suspense>
+          } />
+          <Route path="/easibill-customisable-bulk-billing-solution" element={
+            <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><LoadingSpinner /></div>}>
+              <PageLayout><BulkBillingSolutionPage /></PageLayout>
+            </Suspense>
+          } />
+
+          {/* Redirect aliases */}
+          <Route path="/feature" element={<Navigate to="/features" replace />} />
+          <Route path="/our-features" element={<Navigate to="/features" replace />} />
+          <Route path="/product-features" element={<Navigate to="/features" replace />} />
+          <Route path="/testimonial" element={<Navigate to="/testimonials" replace />} />
+          <Route path="/reviews" element={<Navigate to="/testimonials" replace />} />
+          <Route path="/customers" element={<Navigate to="/testimonials" replace />} />
+          <Route path="/bulk-billing" element={<Navigate to="/easibill-customisable-bulk-billing-solution" replace />} />
+          <Route path="/bulk-billing-solution" element={<Navigate to="/easibill-customisable-bulk-billing-solution" replace />} />
+          <Route path="/customisable-billing" element={<Navigate to="/easibill-customisable-bulk-billing-solution" replace />} />
+          <Route path="/easibill-bulk-billing" element={<Navigate to="/easibill-customisable-bulk-billing-solution" replace />} />
         </Routes>
       </div>
     </AppThemeProvider>
