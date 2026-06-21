@@ -97,7 +97,7 @@ const FeaturesPage = () => {
             {comparison.map((row, index) => (
               <div
                 key={row.label}
-                className={`grid grid-cols-4 gap-px bg-slate-200 ${index === comparison.length - 1 ? '' : ''}`}
+                className="grid grid-cols-4 gap-px bg-slate-200"
               >
                 <div className="bg-white px-5 py-4 text-sm font-medium text-slate-700">{row.label}</div>
                 <div className="bg-white px-5 py-4 text-sm text-slate-500">{row.manual}</div>
