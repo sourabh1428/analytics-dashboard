@@ -55,8 +55,8 @@ export function validateSeoShape(input: unknown): ShapeValidationResult {
     errors.push("Meta description must be 160 characters or fewer.");
   }
 
-  if (typeof candidate.content === "string" && wordCount(candidate.content) < 1000) {
-    errors.push("Content must be at least 1000 words.");
+  if (typeof candidate.content === "string" && wordCount(candidate.content) < 800) {
+    errors.push("Content must be at least 800 words.");
   }
 
   if (errors.length > 0) {

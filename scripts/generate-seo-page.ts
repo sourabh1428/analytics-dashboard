@@ -52,11 +52,12 @@ Rules:
 - metaTitle: 60 characters or fewer, include the keyword
 - metaDescription: 160 characters or fewer, include a clear benefit and EasiBill
 - h1: clear question or statement the pharmacy owner would recognise as their problem
-- content: markdown, minimum 1000 words. Structure with ## subheadings. Include:
-  1. The real pain this pharmacy owner faces
-  2. Step-by-step practical advice they can act on today (without EasiBill)
-  3. How EasiBill specifically solves this faster — name the actual feature (e.g. "EasiBill's WhatsApp refill reminder")
-  4. A closing CTA linking to https://easibill.vercel.app/login
+- content: markdown. Write a MINIMUM of 1200 words — do not stop early. Structure with ## subheadings. Include:
+  1. The real pain this pharmacy owner faces (300+ words — be specific, give concrete examples)
+  2. Step-by-step practical advice they can act on today without any software (400+ words — numbered steps, real-world detail)
+  3. How EasiBill specifically solves this faster — name the actual feature (e.g. "EasiBill's WhatsApp refill reminder") (300+ words)
+  4. A closing CTA section linking to https://easibill.vercel.app/login (100+ words)
+- Write all four sections completely before outputting the JSON. Do not truncate.
 - Do not invent features EasiBill does not have (see the feature list above)
 - Do not include HTML
 - Do not wrap the JSON in markdown fences`;

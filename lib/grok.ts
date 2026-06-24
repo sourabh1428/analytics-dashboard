@@ -131,6 +131,18 @@ export async function generateSeoPage(prompt: string, existingSlugs: string[]): 
         }),
       });
 
+      if (response.status === 429) {
+        // Rate limit: parse the retry-after delay from the error body and wait
+        const body = await response.text();
+        const seconds = parseFloat(body.match(/try again in (\d+(?:\.\d+)?)s/i)?.[1] ?? "15");
+        const waitMs = Math.ceil(seconds * 1_000) + 2_000;
+        console.error(`Groq rate limit hit — waiting ${waitMs}ms before retry`);
+        await sleep(waitMs);
+        // Don't count this as a content attempt — loop again without incrementing
+        attempt -= 1;
+        continue;
+      }
+
       if (!response.ok) {
         throw new Error(`Groq API failed with ${response.status}: ${await response.text()}`);
       }
