@@ -2,33 +2,30 @@ import { validateSeoContent, type ValidationResult } from "@/scripts/validate-co
 import type { SeoContent } from "@/lib/content";
 
 type GroqResponse = {
-  choices?: Array<{
-    message?: {
-      content?: string;
-    };
-  }>;
+  choices?: Array<{ message?: { content?: string } }>;
 };
 
-// Groq uses the OpenAI-compatible chat completions endpoint
+type Metadata = {
+  slug: string;
+  keyword: string;
+  metaTitle: string;
+  metaDescription: string;
+  h1: string;
+};
+
 const GROQ_API_URL = process.env.GROQ_API_URL ?? "https://api.groq.com/openai/v1/chat/completions";
 const GROQ_MODEL = process.env.GROQ_MODEL ?? "llama-3.3-70b-versatile";
+const MAX_CONTENT_TOKENS = 4_096;
 const MAX_ATTEMPTS = 3;
 const RETRY_BASE_DELAY_MS = 1_000;
-// llama-3.3-70b-versatile supports up to 32k output tokens; 4096 is enough for 1000+ word articles
-const MAX_TOKENS = 4_096;
-
-if (process.env.NODE_ENV === "production" && !process.env.GROQ_API_URL) {
-  console.warn("[groq] GROQ_API_URL not set — using hardcoded fallback. Set GROQ_API_URL env var to suppress this warning.");
-}
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 /**
- * Manual O(n) scanner that escapes control characters inside JSON string values.
- * Regex-based approaches fail on long content fields (catastrophic backtracking)
- * and miss control chars outside \n/\r/\t. This handles all 0x00-0x1f chars.
+ * O(n) scanner that escapes control characters inside JSON string values.
+ * Handles all 0x00-0x1f chars. Used for metadata-only JSON (small).
  */
 function sanitizeJsonControlChars(raw: string): string {
   let out = "";
@@ -38,25 +35,20 @@ function sanitizeJsonControlChars(raw: string): string {
     if (ch === '"') {
       out += '"';
       i++;
-      // Scan inside the JSON string value
       while (i < raw.length) {
         const c = raw[i];
         if (c === "\\") {
-          // Valid escape sequence — copy both chars unchanged
           out += c;
           i++;
           if (i < raw.length) { out += raw[i]; i++; }
         } else if (c === '"') {
-          // End of string
           out += '"';
           i++;
           break;
         } else if (c.charCodeAt(0) < 0x20) {
-          // Control character — replace with JSON escape sequence
           if (c === "\n") out += "\\n";
           else if (c === "\r") out += "\\r";
           else if (c === "\t") out += "\\t";
-          // All other control chars (0x00-0x08, 0x0b, 0x0c, 0x0e-0x1f) are stripped
           i++;
         } else {
           out += c;
@@ -71,97 +63,143 @@ function sanitizeJsonControlChars(raw: string): string {
   return out;
 }
 
-function extractJson(raw: string): unknown {
-  // Sanitize control chars first, then attempt parse
-  const sanitized = sanitizeJsonControlChars(raw.trim());
+/** Low-level single Groq call. Returns the raw text response. Handles 429. */
+async function callGroq(
+  apiKey: string,
+  systemPrompt: string,
+  userPrompt: string,
+  maxTokens: number,
+): Promise<string> {
+  let attempts = 0;
 
+  while (true) {
+    attempts++;
+    const response = await fetch(GROQ_API_URL, {
+      method: "POST",
+      signal: AbortSignal.timeout(90_000),
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: GROQ_MODEL,
+        max_tokens: maxTokens,
+        temperature: 0.7,
+        messages: [
+          { role: "system", content: systemPrompt },
+          { role: "user", content: userPrompt },
+        ],
+      }),
+    });
+
+    if (response.status === 429) {
+      const body = await response.text();
+      const seconds = parseFloat(body.match(/try again in (\d+(?:\.\d+)?)s/i)?.[1] ?? "15");
+      const waitMs = Math.ceil(seconds * 1_000) + 2_000;
+      console.error(`Groq rate limit — waiting ${waitMs}ms`);
+      await sleep(waitMs);
+      continue;
+    }
+
+    if (!response.ok) {
+      throw new Error(`Groq API ${response.status}: ${await response.text()}`);
+    }
+
+    const json = (await response.json()) as GroqResponse;
+    const text = json.choices?.[0]?.message?.content;
+    if (!text) throw new Error("Groq returned empty content");
+    return text;
+  }
+}
+
+/** Parse the 5-field metadata JSON. Small JSON — no control char issues expected. */
+function parseMetadata(raw: string): Metadata {
+  const sanitized = sanitizeJsonControlChars(raw.trim());
+  let data: unknown;
   try {
-    return JSON.parse(sanitized);
+    data = JSON.parse(sanitized);
   } catch {
-    // Model may have wrapped output in markdown fences — strip and retry
     const fenced = sanitized.match(/```(?:json)?\s*([\s\S]*?)```/i);
     const candidate = fenced?.[1] ?? sanitized.slice(sanitized.indexOf("{"), sanitized.lastIndexOf("}") + 1);
-    return JSON.parse(sanitizeJsonControlChars(candidate));
-  }
-}
-
-function parseGroqResponse(response: GroqResponse): unknown {
-  const text = response.choices?.[0]?.message?.content;
-
-  if (!text) {
-    throw new Error("Groq response did not include text output.");
+    data = JSON.parse(sanitizeJsonControlChars(candidate));
   }
 
-  return extractJson(text);
+  const d = data as Record<string, unknown>;
+  for (const f of ["slug", "keyword", "metaTitle", "metaDescription", "h1"] as const) {
+    if (typeof d[f] !== "string" || !(d[f] as string).trim()) {
+      throw new Error(`Metadata missing field: ${f}`);
+    }
+  }
+
+  const meta: Metadata = {
+    slug: (d.slug as string).trim(),
+    keyword: (d.keyword as string).trim(),
+    metaTitle: (d.metaTitle as string).trim(),
+    metaDescription: (d.metaDescription as string).trim(),
+    h1: (d.h1 as string).trim(),
+  };
+
+  if (meta.metaTitle.length > 60) throw new Error("metaTitle exceeds 60 chars");
+  if (meta.metaDescription.length > 160) throw new Error("metaDescription exceeds 160 chars");
+
+  return meta;
 }
 
-export async function generateSeoPage(prompt: string, existingSlugs: string[]): Promise<SeoContent> {
+export async function generateSeoPage(
+  metadataPrompt: string,
+  buildContentPrompt: (meta: Metadata) => string,
+  existingSlugs: string[],
+): Promise<SeoContent> {
   const apiKey = process.env.GROQ_API_KEY;
-
-  if (!apiKey) {
-    throw new Error("Missing GROQ_API_KEY environment variable.");
-  }
+  if (!apiKey) throw new Error("Missing GROQ_API_KEY environment variable.");
 
   let lastError: unknown;
 
-  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     try {
-      const response = await fetch(GROQ_API_URL, {
-        method: "POST",
-        signal: AbortSignal.timeout(60_000),
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: GROQ_MODEL,
-          max_tokens: MAX_TOKENS,
-          messages: [
-            {
-              role: "system",
-              content:
-                "You generate production-ready programmatic SEO pages for EasiBill. Return only valid JSON with no markdown fences. All newlines inside JSON string values must be escaped as \\n.",
-            },
-            {
-              role: "user",
-              content: prompt,
-            },
-          ],
-          temperature: 0.7,
-        }),
-      });
+      // --- Call 1: metadata only (tiny JSON, reliable) ---
+      const metaRaw = await callGroq(
+        apiKey,
+        "You generate SEO page metadata for EasiBill. Return ONLY a JSON object with exactly 5 fields: slug, keyword, metaTitle, metaDescription, h1. No markdown fences. No extra fields.",
+        metadataPrompt,
+        512,
+      );
+      const meta = parseMetadata(metaRaw);
 
-      if (response.status === 429) {
-        // Rate limit: parse the retry-after delay from the error body and wait
-        const body = await response.text();
-        const seconds = parseFloat(body.match(/try again in (\d+(?:\.\d+)?)s/i)?.[1] ?? "15");
-        const waitMs = Math.ceil(seconds * 1_000) + 2_000;
-        console.error(`Groq rate limit hit — waiting ${waitMs}ms before retry`);
-        await sleep(waitMs);
-        // Don't count this as a content attempt — loop again without incrementing
-        attempt -= 1;
-        continue;
+      if (existingSlugs.includes(meta.slug)) {
+        throw new Error(`Duplicate slug generated: ${meta.slug}`);
       }
 
-      if (!response.ok) {
-        throw new Error(`Groq API failed with ${response.status}: ${await response.text()}`);
-      }
+      // --- Call 2: article as plain text (no JSON, no escaping issues) ---
+      const contentRaw = await callGroq(
+        apiKey,
+        "You are a pharmacy business advisor writing SEO articles for Indian pharmacy owners. Write clear, practical, detailed markdown. Do not wrap output in JSON or code fences — return plain markdown text only.",
+        buildContentPrompt(meta),
+        MAX_CONTENT_TOKENS,
+      );
 
-      const parsed = parseGroqResponse((await response.json()) as GroqResponse);
-      const validation: ValidationResult = validateSeoContent(parsed, existingSlugs);
+      // content is plain markdown — use it directly, trim leading/trailing whitespace
+      const content = contentRaw.trim();
 
+      const candidate: SeoContent = {
+        slug: meta.slug,
+        keyword: meta.keyword,
+        metaTitle: meta.metaTitle,
+        metaDescription: meta.metaDescription,
+        h1: meta.h1,
+        content,
+      };
+
+      const validation: ValidationResult = validateSeoContent(candidate, existingSlugs);
       if (!validation.ok) {
-        throw new Error(`Invalid Groq content: ${validation.errors.join("; ")}`);
+        throw new Error(`Validation failed: ${validation.errors.join("; ")}`);
       }
 
       return validation.data;
     } catch (error) {
       lastError = error;
       console.error(`Groq generation attempt ${attempt} failed:`, error);
-
-      if (attempt < MAX_ATTEMPTS) {
-        await sleep(RETRY_BASE_DELAY_MS * attempt);
-      }
+      if (attempt < MAX_ATTEMPTS) await sleep(RETRY_BASE_DELAY_MS * attempt);
     }
   }
 

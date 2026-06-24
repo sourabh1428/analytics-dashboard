@@ -5,70 +5,109 @@ import { getAllSlugs } from "@/lib/content";
 
 const contentDir = path.join(process.cwd(), "content", "generated");
 
-function buildPrompt(existingSlugs: string[]) {
-  return `You are writing a programmatic SEO article for EasiBill (https://easibill.vercel.app).
+const EASIBILL_BRIEF = `
+## EasiBill — What It Is
+EasiBill is a SaaS platform for independent pharmacies in India. Core features:
+- WhatsApp + SMS refill reminders: automatically sends reminders to chronic-care patients (diabetes, hypertension, thyroid) when prescriptions are due
+- Bulk GST-compliant billing: generate and send invoices to multiple patients in one click
+- Expiry tracking: flags near-expiry stock before it becomes dead inventory
+- Purchase order management: raise POs to distributors, track delivery and payment status
+- Sales and financial reporting: daily/weekly/monthly revenue by drug category
+- Multi-store support: one owner manages multiple pharmacy branches from one dashboard
+- Works on mobile — designed for pharmacy owners on the floor, not at a desk
 
-## What EasiBill is
-EasiBill is a SaaS platform for independent pharmacies in India. Its core product is automated patient refill management:
-- Sends WhatsApp and SMS reminders to chronic-care patients when their prescriptions are due for refill
-- Tracks which patients haven't returned and flags them so pharmacy staff can follow up
-- Bulk billing: generate and send GST-compliant invoices to multiple patients in one click
-- Purchase order management: raise POs to distributors, track delivery and payment
-- Expiry tracking: flag near-expiry stock before it becomes dead inventory
-- Sales and financial reporting: daily, weekly, monthly revenue breakdowns by drug category
-- Multi-store support: one owner can manage multiple pharmacy branches from one dashboard
-- Works on mobile — designed for pharmacy owners who are on the floor, not at a desk
+## Target Customer
+Independent pharmacy owners in India, especially Tier 2 and Tier 3 cities. Age 35–60. Non-technical. They lose revenue when chronic patients don't return for refills. They waste money on expired stock. They spend evenings doing manual billing that software can automate.
 
-## Target customer
-Independent pharmacy owners in India, especially Tier 2 and Tier 3 cities. Age 35–60. Non-technical. Time-pressured. They lose revenue when chronic patients (diabetes, hypertension, thyroid) don't come back for refills. EasiBill solves this by automating the follow-up they used to do manually by phone.
+## Pharmacy GST Facts (use these — do not invent different numbers)
+- Most medicines (OTC, generic, branded): 12% GST
+- Essential medicines on exemption list: 0% GST (e.g., insulin, oral rehydration salts, contraceptives)
+- Nutraceuticals, supplements, vitamins: typically 12% or 18% GST
+- Medical devices and equipment: 12% GST
+- HSN code for medicaments (general): 3004
+- GSTIN is mandatory for pharmacies with turnover above ₹40 lakhs
+- Pharmacies can use Composition Scheme if turnover is below ₹1.5 crore (but cannot issue tax invoice)
+- Monthly GST filing: GSTR-1 by 11th of following month, GSTR-3B by 20th
 
-## Brand voice
-Practical, direct, grounded in the pharmacy owner's daily reality. Never over-promise. Avoid corporate jargon. Write as if you are a trusted pharmacy business advisor explaining something to a shop owner in plain language.
-
-## CTA details
+## CTA
 Trial: https://easibill.vercel.app/login
 Contact: hello@easibill.io
+`;
+
+function buildMetadataPrompt(existingSlugs: string[]): string {
+  return `${EASIBILL_BRIEF}
 
 ---
 
-Now write one new SEO article using the keyword topic below.
+Pick ONE commercially valuable keyword that an Indian pharmacy owner would search when facing a real billing, inventory, or patient management problem. Choose from topics like: GST invoicing for pharmacy, refill reminders for chronic patients, expiry stock tracking, purchase order management for medical store, bulk billing, WhatsApp billing reminders, medicine inventory management, GSTR-1 filing for pharmacy, or similar.
 
-Existing slugs (do not reuse any of these):
-${existingSlugs.length > 0 ? existingSlugs.join("\n") : "No existing generated pages yet."}
+Existing slugs — do NOT reuse any of these:
+${existingSlugs.length > 0 ? existingSlugs.join("\n") : "No existing pages yet."}
 
-Return exactly this JSON shape with no extra keys:
+Return ONLY this JSON with no extra text:
 {
-  "slug": "",
-  "keyword": "",
-  "metaTitle": "",
-  "metaDescription": "",
-  "h1": "",
-  "content": ""
+  "slug": "unique-lowercase-kebab-3-to-6-words",
+  "keyword": "the exact keyword phrase the pharmacy owner would search",
+  "metaTitle": "Under 60 characters. Include keyword. Brand: EasiBill.",
+  "metaDescription": "Under 160 characters. State the benefit clearly. Mention EasiBill.",
+  "h1": "A question or statement the pharmacy owner would instantly recognise as their problem."
+}`;
 }
 
+function buildContentPrompt(meta: { slug: string; keyword: string; h1: string }): string {
+  return `${EASIBILL_BRIEF}
+
+---
+
+Write a complete SEO article for Indian pharmacy owners. Topic: "${meta.h1}"
+Target keyword: "${meta.keyword}"
+
+## Required structure (write ALL sections completely):
+
+### Section 1 — The Problem (at least 300 words)
+Open with a specific, realistic scenario: a pharmacy owner in a Tier 2 city dealing with the exact pain this keyword targets. Use concrete numbers and daily-life details. Do not be vague. Explain why this problem costs them money or time.
+
+### Section 2 — How Pharmacy Owners Handle This Today (at least 350 words)
+Step-by-step practical advice they can act on TODAY without any software. Numbered steps. Real-world detail — mention specific tools like Excel, paper registers, WhatsApp groups, phone calls. Acknowledge the limitations of manual methods. Include at least one specific GST or pharmacy regulation fact relevant to this topic.
+
+### Section 3 — How EasiBill Solves This (at least 300 words)
+Name the specific EasiBill feature that addresses this pain. Explain exactly how it works — what the pharmacy owner does, what the software does automatically, what they see on screen. Quantify the time or money saved where possible. Be specific, not vague ("saves hours" is vague; "replaces a 45-minute nightly Excel session" is specific).
+
+### Section 4 — Frequently Asked Questions (at least 5 questions)
+Write exactly 5 Q&A pairs. Each question must be something a real Indian pharmacy owner would type into Google. Each answer must be 3–5 sentences, specific, and useful. Format exactly like this:
+
+**Q: [question]**
+[answer]
+
+**Q: [question]**
+[answer]
+
+(continue for all 5)
+
+### Section 5 — Get Started (at least 100 words)
+A closing CTA section. Remind them what EasiBill automates. Include the trial link https://easibill.vercel.app/login and contact hello@easibill.io. Write a genuine reason to act today.
+
+---
+
 Rules:
-- Pick ONE commercially valuable keyword that an Indian pharmacy owner would search when they have a real problem: GST invoicing, refill reminders, expiry tracking, purchase order management, patient follow-up, bulk billing, inventory management, drug licence compliance, pharmacy reporting, WhatsApp billing, or similar.
-- slug: unique lowercase kebab-case, 3–6 words, matches the keyword
-- metaTitle: 60 characters or fewer, include the keyword
-- metaDescription: 160 characters or fewer, include a clear benefit and EasiBill
-- h1: clear question or statement the pharmacy owner would recognise as their problem
-- content: markdown. Write a MINIMUM of 1200 words — do not stop early. Structure with ## subheadings. Include:
-  1. The real pain this pharmacy owner faces (300+ words — be specific, give concrete examples)
-  2. Step-by-step practical advice they can act on today without any software (400+ words — numbered steps, real-world detail)
-  3. How EasiBill specifically solves this faster — name the actual feature (e.g. "EasiBill's WhatsApp refill reminder") (300+ words)
-  4. A closing CTA section linking to https://easibill.vercel.app/login (100+ words)
-- Write all four sections completely before outputting the JSON. Do not truncate.
-- Do not invent features EasiBill does not have (see the feature list above)
-- Do not include HTML
-- Do not wrap the JSON in markdown fences`;
+- Total minimum: 1,200 words across all sections
+- Use ## for section headings
+- Write in plain markdown — no HTML
+- Do not return JSON or code fences — return ONLY the markdown article
+- Do not invent GST rates, HSN codes, or features that EasiBill does not have
+- Write as a trusted pharmacy business advisor, not a marketer`;
 }
 
 async function savePage() {
   await fs.mkdir(contentDir, { recursive: true });
 
   const existingSlugs = await getAllSlugs();
-  const prompt = buildPrompt(existingSlugs);
-  const page = await generateSeoPage(prompt, existingSlugs);
+
+  const page = await generateSeoPage(
+    buildMetadataPrompt(existingSlugs),
+    buildContentPrompt,
+    existingSlugs,
+  );
 
   const filePath = path.join(contentDir, `${page.slug}.json`);
 
@@ -78,11 +117,10 @@ async function savePage() {
     if ((error as NodeJS.ErrnoException).code === "EEXIST") {
       throw new Error(`Generated duplicate file: ${filePath}`);
     }
-
     throw error;
   }
 
-  console.log(`Created generated SEO page: ${page.slug}`);
+  console.log(`Created SEO page: ${page.slug} (${page.keyword})`);
 }
 
 savePage().catch((error) => {

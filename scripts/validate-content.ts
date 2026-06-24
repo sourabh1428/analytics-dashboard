@@ -22,6 +22,11 @@ function wordCount(content: string) {
   return content.trim().split(/\s+/).filter(Boolean).length;
 }
 
+function faqCount(content: string) {
+  // Count bold Q: patterns — **Q:** or **Q.** or **Question:** etc.
+  return (content.match(/\*\*Q[^*]{0,30}[?:*]/gi) ?? []).length;
+}
+
 export function validateUniqueSlug(slug: string, existingSlugs: string[]) {
   return !existingSlugs.includes(slug);
 }
@@ -57,6 +62,10 @@ export function validateSeoShape(input: unknown): ShapeValidationResult {
 
   if (typeof candidate.content === "string" && wordCount(candidate.content) < 800) {
     errors.push("Content must be at least 800 words.");
+  }
+
+  if (typeof candidate.content === "string" && faqCount(candidate.content) < 5) {
+    errors.push("Content must include at least 5 FAQ Q&A pairs (formatted as **Q: ...**).");
   }
 
   if (errors.length > 0) {

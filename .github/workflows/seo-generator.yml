@@ -2,7 +2,8 @@ name: SEO Generator
 
 on:
   schedule:
-    - cron: "0 */12 * * *"
+    # Mon / Wed / Fri at 06:30 UTC (12:00 IST). SEO doc: max 3 pages/week, quality > quantity.
+    - cron: "30 6 * * 1,3,5"
   workflow_dispatch:
 
 permissions:
