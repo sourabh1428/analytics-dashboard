@@ -62,30 +62,30 @@ function buildContentPrompt(meta: { slug: string; keyword: string; h1: string })
 Write a complete SEO article for Indian pharmacy owners. Topic: "${meta.h1}"
 Target keyword: "${meta.keyword}"
 
-## Required structure (write ALL sections completely):
+## Required structure — use EXACTLY these heading names (no numbering):
 
-### Section 1 — The Problem (at least 300 words)
-Open with a specific, realistic scenario: a pharmacy owner in a Tier 2 city dealing with the exact pain this keyword targets. Use concrete numbers and daily-life details. Do not be vague. Explain why this problem costs them money or time.
+### ## The Problem (at least 300 words)
+Open with a specific, realistic scenario: a pharmacy owner in a Tier 2 city dealing with the exact pain this keyword targets. Use concrete numbers and daily-life details. Explain why this problem costs them money or time.
 
-### Section 2 — How Pharmacy Owners Handle This Today (at least 350 words)
-Step-by-step practical advice they can act on TODAY without any software. Numbered steps. Real-world detail — mention specific tools like Excel, paper registers, WhatsApp groups, phone calls. Acknowledge the limitations of manual methods. Include at least one specific GST or pharmacy regulation fact relevant to this topic.
+### ## How Pharmacy Owners Manage This Today (at least 350 words)
+Step-by-step practical advice they can act on TODAY without any software. Use a numbered list. Real-world tools: Excel, paper registers, WhatsApp groups, phone calls. Acknowledge the limitations. Include at least one real GST/pharmacy regulation fact.
 
-### Section 3 — How EasiBill Solves This (at least 300 words)
-Name the specific EasiBill feature that addresses this pain. Explain exactly how it works — what the pharmacy owner does, what the software does automatically, what they see on screen. Quantify the time or money saved where possible. Be specific, not vague ("saves hours" is vague; "replaces a 45-minute nightly Excel session" is specific).
+### ## How EasiBill Solves This (at least 300 words)
+Name the specific EasiBill feature that addresses this pain. Explain exactly how it works. Quantify time or money saved. Be specific ("replaces a 45-minute nightly Excel session" not "saves time").
 
-### Section 4 — Frequently Asked Questions (at least 5 questions)
-Write exactly 5 Q&A pairs. Each question must be something a real Indian pharmacy owner would type into Google. Each answer must be 3–5 sentences, specific, and useful. Format exactly like this:
-
-**Q: [question]**
-[answer]
+### ## Frequently Asked Questions (at least 5 questions)
+Write exactly 5 Q&A pairs. Each question must be something a real Indian pharmacy owner would Google. Each answer: 3–5 sentences, specific, useful. Format EXACTLY like this — do not deviate:
 
 **Q: [question]**
 [answer]
 
-(continue for all 5)
+**Q: [question]**
+[answer]
 
-### Section 5 — Get Started (at least 100 words)
-A closing CTA section. Remind them what EasiBill automates. Include the trial link https://easibill.vercel.app/login and contact hello@easibill.io. Write a genuine reason to act today.
+(continue for all 5 pairs)
+
+### ## Get Started with EasiBill (at least 100 words)
+A closing CTA section. Include the trial link https://easibill.vercel.app/login and contact hello@easibill.io.
 
 ---
 

@@ -1,46 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import * as Accordion from "@radix-ui/react-accordion";
+import { ChevronDown } from "lucide-react";
 
 export type FaqPair = { q: string; a: string };
 
 export function FaqAccordion({ pairs }: { pairs: FaqPair[] }) {
-  const [open, setOpen] = useState<number | null>(0);
-
   return (
-    <div className="divide-y divide-zinc-100 overflow-hidden rounded-2xl border border-zinc-200 shadow-sm">
-      {pairs.map((pair, i) => {
-        const isOpen = open === i;
-        return (
-          <div key={i} className={`transition-colors ${isOpen ? "bg-emerald-50/60" : "bg-white hover:bg-zinc-50"}`}>
-            <button
-              type="button"
-              onClick={() => setOpen(isOpen ? null : i)}
-              className="flex w-full items-start gap-4 px-6 py-5 text-left"
-              aria-expanded={isOpen}
-            >
-              <span
-                className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-xs font-bold transition-all ${
-                  isOpen
-                    ? "border-emerald-500 bg-emerald-500 text-white"
-                    : "border-zinc-300 bg-white text-zinc-500"
-                }`}
-              >
-                {isOpen ? "−" : "+"}
+    <Accordion.Root
+      type="single"
+      defaultValue="faq-0"
+      collapsible
+      className="divide-y divide-zinc-100 overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm"
+    >
+      {pairs.map((pair, i) => (
+        <Accordion.Item key={i} value={`faq-${i}`} className="group">
+          <Accordion.Header>
+            <Accordion.Trigger className="flex w-full items-start gap-4 px-6 py-5 text-left transition-colors hover:bg-zinc-50 data-[state=open]:bg-emerald-50/50">
+              <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-xs font-bold text-emerald-700">
+                {i + 1}
               </span>
               <span className="flex-1 text-sm font-semibold leading-6 text-zinc-900">{pair.q}</span>
-            </button>
-
-            <div
-              className={`overflow-hidden transition-all duration-300 ${
-                isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-              }`}
-            >
-              <p className="px-6 pb-6 pl-16 text-sm leading-7 text-zinc-600">{pair.a}</p>
-            </div>
-          </div>
-        );
-      })}
-    </div>
+              <ChevronDown className="mt-1 h-4 w-4 shrink-0 text-zinc-400 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+            </Accordion.Trigger>
+          </Accordion.Header>
+          <Accordion.Content className="overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+            <p className="px-6 pb-6 pl-16 leading-7 text-zinc-600">{pair.a}</p>
+          </Accordion.Content>
+        </Accordion.Item>
+      ))}
+    </Accordion.Root>
   );
 }
