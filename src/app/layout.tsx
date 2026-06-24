@@ -36,6 +36,18 @@ export default function RootLayout({
           <Analytics />
           <SpeedInsights />
         </div>
+        <Script id="assistloop-widget" strategy="afterInteractive">
+          {`
+            (function() {
+              var script = document.createElement('script');
+              script.src = 'https://assistloop.ai/assistloop-widget.js';
+              script.onload = function() {
+                AssistLoopWidget.init({ agentId: "fe2f60b9-35f6-4337-b517-75e80e069174" });
+              };
+              document.head.appendChild(script);
+            })();
+          `}
+        </Script>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-H54PC2W756"
           strategy="afterInteractive"
