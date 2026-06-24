@@ -25,27 +25,63 @@ function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-// Escape literal control characters that appear inside JSON string values.
-// Groq models sometimes emit raw newlines/tabs inside JSON strings, which is invalid JSON.
-function sanitizeJsonStrings(raw: string): string {
-  return raw.replace(/"((?:[^"\\]|\\.)*)"/g, (_match, inner: string) => {
-    const fixed = inner
-      .replace(/\n/g, "\\n")
-      .replace(/\r/g, "\\r")
-      .replace(/\t/g, "\\t");
-    return `"${fixed}"`;
-  });
+/**
+ * Manual O(n) scanner that escapes control characters inside JSON string values.
+ * Regex-based approaches fail on long content fields (catastrophic backtracking)
+ * and miss control chars outside \n/\r/\t. This handles all 0x00-0x1f chars.
+ */
+function sanitizeJsonControlChars(raw: string): string {
+  let out = "";
+  let i = 0;
+  while (i < raw.length) {
+    const ch = raw[i];
+    if (ch === '"') {
+      out += '"';
+      i++;
+      // Scan inside the JSON string value
+      while (i < raw.length) {
+        const c = raw[i];
+        if (c === "\\") {
+          // Valid escape sequence — copy both chars unchanged
+          out += c;
+          i++;
+          if (i < raw.length) { out += raw[i]; i++; }
+        } else if (c === '"') {
+          // End of string
+          out += '"';
+          i++;
+          break;
+        } else if (c.charCodeAt(0) < 0x20) {
+          // Control character — replace with JSON escape sequence
+          if (c === "\n") out += "\\n";
+          else if (c === "\r") out += "\\r";
+          else if (c === "\t") out += "\\t";
+          // All other control chars (0x00-0x08, 0x0b, 0x0c, 0x0e-0x1f) are stripped
+          i++;
+        } else {
+          out += c;
+          i++;
+        }
+      }
+    } else {
+      out += ch;
+      i++;
+    }
+  }
+  return out;
 }
 
 function extractJson(raw: string): unknown {
-  const trimmed = sanitizeJsonStrings(raw.trim());
+  // Sanitize control chars first, then attempt parse
+  const sanitized = sanitizeJsonControlChars(raw.trim());
 
   try {
-    return JSON.parse(trimmed);
+    return JSON.parse(sanitized);
   } catch {
-    const fenced = trimmed.match(/```(?:json)?\s*([\s\S]*?)```/i);
-    const candidate = fenced?.[1] ?? trimmed.slice(trimmed.indexOf("{"), trimmed.lastIndexOf("}") + 1);
-    return JSON.parse(sanitizeJsonStrings(candidate));
+    // Model may have wrapped output in markdown fences — strip and retry
+    const fenced = sanitized.match(/```(?:json)?\s*([\s\S]*?)```/i);
+    const candidate = fenced?.[1] ?? sanitized.slice(sanitized.indexOf("{"), sanitized.lastIndexOf("}") + 1);
+    return JSON.parse(sanitizeJsonControlChars(candidate));
   }
 }
 
