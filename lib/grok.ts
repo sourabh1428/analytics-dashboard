@@ -1,8 +1,7 @@
 import { validateSeoContent, type ValidationResult } from "@/scripts/validate-content";
 import type { SeoContent } from "@/lib/content";
 
-type GrokResponse = {
-  output_text?: string;
+type GroqResponse = {
   choices?: Array<{
     message?: {
       content?: string;
@@ -10,13 +9,14 @@ type GrokResponse = {
   }>;
 };
 
-const GROK_API_URL = process.env.GROK_API_URL ?? "https://api.x.ai/v1/responses";
-const GROK_MODEL = process.env.GROK_MODEL ?? "grok-4.3";
+// Groq uses the OpenAI-compatible chat completions endpoint
+const GROQ_API_URL = process.env.GROQ_API_URL ?? "https://api.groq.com/openai/v1/chat/completions";
+const GROQ_MODEL = process.env.GROQ_MODEL ?? "llama-3.3-70b-versatile";
 const MAX_ATTEMPTS = 3;
 const RETRY_BASE_DELAY_MS = 1_000;
 
-if (process.env.NODE_ENV === "production" && !process.env.GROK_API_URL) {
-  console.warn("[grok] GROK_API_URL not set — using hardcoded fallback. Set GROK_API_URL env var to suppress this warning.");
+if (process.env.NODE_ENV === "production" && !process.env.GROQ_API_URL) {
+  console.warn("[groq] GROQ_API_URL not set — using hardcoded fallback. Set GROQ_API_URL env var to suppress this warning.");
 }
 
 function sleep(ms: number) {
@@ -35,28 +35,28 @@ function extractJson(raw: string): unknown {
   }
 }
 
-function parseGrokResponse(response: GrokResponse): unknown {
-  const text = response.output_text ?? response.choices?.[0]?.message?.content;
+function parseGroqResponse(response: GroqResponse): unknown {
+  const text = response.choices?.[0]?.message?.content;
 
   if (!text) {
-    throw new Error("Grok response did not include text output.");
+    throw new Error("Groq response did not include text output.");
   }
 
   return extractJson(text);
 }
 
 export async function generateSeoPage(prompt: string, existingSlugs: string[]): Promise<SeoContent> {
-  const apiKey = process.env.GROK_API_KEY;
+  const apiKey = process.env.GROQ_API_KEY;
 
   if (!apiKey) {
-    throw new Error("Missing GROK_API_KEY environment variable.");
+    throw new Error("Missing GROQ_API_KEY environment variable.");
   }
 
   let lastError: unknown;
 
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
     try {
-      const response = await fetch(GROK_API_URL, {
+      const response = await fetch(GROQ_API_URL, {
         method: "POST",
         signal: AbortSignal.timeout(30_000),
         headers: {
@@ -64,8 +64,8 @@ export async function generateSeoPage(prompt: string, existingSlugs: string[]): 
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: GROK_MODEL,
-          input: [
+          model: GROQ_MODEL,
+          messages: [
             {
               role: "system",
               content:
@@ -81,20 +81,20 @@ export async function generateSeoPage(prompt: string, existingSlugs: string[]): 
       });
 
       if (!response.ok) {
-        throw new Error(`Grok API failed with ${response.status}: ${await response.text()}`);
+        throw new Error(`Groq API failed with ${response.status}: ${await response.text()}`);
       }
 
-      const parsed = parseGrokResponse((await response.json()) as GrokResponse);
+      const parsed = parseGroqResponse((await response.json()) as GroqResponse);
       const validation: ValidationResult = validateSeoContent(parsed, existingSlugs);
 
       if (!validation.ok) {
-        throw new Error(`Invalid Grok content: ${validation.errors.join("; ")}`);
+        throw new Error(`Invalid Groq content: ${validation.errors.join("; ")}`);
       }
 
       return validation.data;
     } catch (error) {
       lastError = error;
-      console.error(`Grok generation attempt ${attempt} failed:`, error);
+      console.error(`Groq generation attempt ${attempt} failed:`, error);
 
       if (attempt < MAX_ATTEMPTS) {
         await sleep(RETRY_BASE_DELAY_MS * attempt);
@@ -102,5 +102,5 @@ export async function generateSeoPage(prompt: string, existingSlugs: string[]): 
     }
   }
 
-  throw lastError instanceof Error ? lastError : new Error("Grok generation failed.");
+  throw lastError instanceof Error ? lastError : new Error("Groq generation failed.");
 }
