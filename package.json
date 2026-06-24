@@ -4,14 +4,17 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "build:analyze": "ANALYZE=true vite build",
-    "build:modern": "vite build --mode modern",
-    "build:prod": "vite build --mode production",
-    "postbuild": "node src/utils/buildOptimizer.js",
+    "dev": "next dev",
+    "build": "next build",
+    "build:analyze": "ANALYZE=true next build",
+    "build:modern": "next build",
+    "build:prod": "next build",
+    "test": "tsx --test tests/*.test.ts",
+    "seo:generate": "tsx scripts/generate-seo-page.ts",
+    "seo:sitemap": "tsx scripts/update-sitemap.ts",
+    "seo:validate": "tsx scripts/validate-content.ts",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "next start"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.3",
@@ -26,11 +29,13 @@
     "lazysizes": "^5.3.2",
     "lucide-react": "^0.469.0",
     "mixpanel-browser": "^2.80.0",
+    "next": "^15.3.4",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.3.0",
     "react-dom": "^18.3.1",
     "react-helmet-async": "^2.0.5",
     "react-intersection-observer": "^9.14.1",
+    "react-markdown": "^10.1.0",
     "react-router": "^7.1.3",
     "react-router-dom": "^7.1.5",
     "recharts": "^2.15.0",
@@ -57,6 +62,8 @@
     "sharp": "^0.33.2",
     "tailwindcss": "^3.4.17",
     "terser": "^5.24.0",
+    "tsx": "^4.20.3",
+    "typescript": "5.8.2",
     "vite": "^6.0.5",
     "vite-plugin-compression2": "^1.3.3"
   }

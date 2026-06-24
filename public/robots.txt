@@ -1,4 +1,4 @@
-# Easibill Website Robot Rules
+# EasiBill Website Robot Rules
 User-agent: *
 Allow: /
 Disallow: /admin/
@@ -7,14 +7,26 @@ Disallow: /api/
 Disallow: /temp/
 Disallow: /draft/
 
-# Allow AI Bots with specific rules
+# Allow Google to crawl all content
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Allow Bing to crawl all content
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Allow AI crawlers
 User-agent: GPTBot
 Allow: /
 Disallow: /private/
 
-User-agent: Googlebot
+User-agent: anthropic-ai
 Allow: /
-Crawl-delay: 1
+
+User-agent: PerplexityBot
+Allow: /
 
 # Sitemap
 Sitemap: https://easibill.site/sitemap.xml
