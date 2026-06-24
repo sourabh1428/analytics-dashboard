@@ -6,12 +6,37 @@ import { getAllSlugs } from "@/lib/content";
 const contentDir = path.join(process.cwd(), "content", "generated");
 
 function buildPrompt(existingSlugs: string[]) {
-  return `Create one new programmatic SEO article for EasiBill, a SaaS for independent pharmacies in India.
+  return `You are writing a programmatic SEO article for EasiBill (https://easibill.vercel.app).
 
-Existing slugs to avoid:
+## What EasiBill is
+EasiBill is a SaaS platform for independent pharmacies in India. Its core product is automated patient refill management:
+- Sends WhatsApp and SMS reminders to chronic-care patients when their prescriptions are due for refill
+- Tracks which patients haven't returned and flags them so pharmacy staff can follow up
+- Bulk billing: generate and send GST-compliant invoices to multiple patients in one click
+- Purchase order management: raise POs to distributors, track delivery and payment
+- Expiry tracking: flag near-expiry stock before it becomes dead inventory
+- Sales and financial reporting: daily, weekly, monthly revenue breakdowns by drug category
+- Multi-store support: one owner can manage multiple pharmacy branches from one dashboard
+- Works on mobile — designed for pharmacy owners who are on the floor, not at a desk
+
+## Target customer
+Independent pharmacy owners in India, especially Tier 2 and Tier 3 cities. Age 35–60. Non-technical. Time-pressured. They lose revenue when chronic patients (diabetes, hypertension, thyroid) don't come back for refills. EasiBill solves this by automating the follow-up they used to do manually by phone.
+
+## Brand voice
+Practical, direct, grounded in the pharmacy owner's daily reality. Never over-promise. Avoid corporate jargon. Write as if you are a trusted pharmacy business advisor explaining something to a shop owner in plain language.
+
+## CTA details
+Trial: https://easibill.vercel.app/login
+Contact: hello@easibill.io
+
+---
+
+Now write one new SEO article using the keyword topic below.
+
+Existing slugs (do not reuse any of these):
 ${existingSlugs.length > 0 ? existingSlugs.join("\n") : "No existing generated pages yet."}
 
-Return exactly this JSON shape:
+Return exactly this JSON shape with no extra keys:
 {
   "slug": "",
   "keyword": "",
@@ -22,15 +47,19 @@ Return exactly this JSON shape:
 }
 
 Rules:
-- Pick a commercially useful pharmacy billing, GST invoicing, inventory, expiry, purchase, reporting, or compliance keyword.
-- Use a unique lowercase kebab-case slug.
-- metaTitle must be 60 characters or fewer.
-- metaDescription must be 160 characters or fewer.
-- content must be markdown and at least 1000 words.
-- Write practical advice for Indian pharmacy owners.
-- Mention EasiBill naturally as the solution.
-- Do not include HTML.
-- Do not include markdown fences around the JSON.`;
+- Pick ONE commercially valuable keyword that an Indian pharmacy owner would search when they have a real problem: GST invoicing, refill reminders, expiry tracking, purchase order management, patient follow-up, bulk billing, inventory management, drug licence compliance, pharmacy reporting, WhatsApp billing, or similar.
+- slug: unique lowercase kebab-case, 3–6 words, matches the keyword
+- metaTitle: 60 characters or fewer, include the keyword
+- metaDescription: 160 characters or fewer, include a clear benefit and EasiBill
+- h1: clear question or statement the pharmacy owner would recognise as their problem
+- content: markdown, minimum 1000 words. Structure with ## subheadings. Include:
+  1. The real pain this pharmacy owner faces
+  2. Step-by-step practical advice they can act on today (without EasiBill)
+  3. How EasiBill specifically solves this faster — name the actual feature (e.g. "EasiBill's WhatsApp refill reminder")
+  4. A closing CTA linking to https://easibill.vercel.app/login
+- Do not invent features EasiBill does not have (see the feature list above)
+- Do not include HTML
+- Do not wrap the JSON in markdown fences`;
 }
 
 async function savePage() {
