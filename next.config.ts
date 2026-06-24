@@ -3,6 +3,12 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   pageExtensions: ["ts", "tsx"],
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "images.pexels.com" },
+    ],
+  },
   eslint: {
     // Scope linting to the Next.js app code only. Legacy Vite-era src/components/*.jsx
     // files are not part of the App Router render tree and have pre-existing violations.
