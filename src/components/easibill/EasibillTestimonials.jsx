@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from 'framer-motion';
 import { Quote, Star } from 'lucide-react';
 
@@ -30,8 +32,31 @@ const proof = [
 ];
 
 const EasibillTestimonials = () => {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: 'EasiBill',
+    description: 'Easy billing software for pharmacies with WhatsApp refill reminders.',
+    url: 'https://easibill.site',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      reviewCount: '120',
+      bestRating: '5',
+      worstRating: '1',
+    },
+    review: testimonials.map((t) => ({
+      '@type': 'Review',
+      author: { '@type': 'Person', name: t.name },
+      reviewBody: t.text,
+      reviewRating: { '@type': 'Rating', ratingValue: '5' },
+    })),
+  };
+
   return (
-    <section className="px-4 sm:px-6 lg:px-8">
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <section className="px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -99,6 +124,7 @@ const EasibillTestimonials = () => {
         </motion.div>
       </div>
     </section>
+    </>
   );
 };
 

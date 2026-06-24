@@ -1,5 +1,7 @@
-import { ArrowRight, BriefcaseBusiness, Mail, MapPin, MessageCircle, Phone, Users } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+"use client";
+
+import { ArrowRight, BriefcaseBusiness, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 const DASHBOARD_LOGIN_URL = 'https://easibill.vercel.app/login';
 const DISCORD_URL = 'https://discord.gg/easibill';
@@ -59,12 +61,12 @@ const jobs = [
 ];
 
 const Footer = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const currentYear = new Date().getFullYear();
 
   const goTo = (event, href) => {
     event.preventDefault();
-    navigate(href);
+    router.push(href);
   };
 
   return (
@@ -74,7 +76,7 @@ const Footer = () => {
           <div>
             <button
               type="button"
-              onClick={() => navigate('/')}
+              onClick={() => router.push('/')}
               className="flex items-center gap-3 text-left focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
             >
               <img src="/logo.png" alt="Easibill Logo" className="h-12 w-12 rounded-full" width="48" height="48" />
@@ -186,7 +188,7 @@ const Footer = () => {
         <div className="mt-8 flex flex-col gap-3 border-t border-slate-100 pt-6 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
           <div>
             <p>Copyright {currentYear} Easibill. All rights reserved.</p>
-            <p className="mt-1">Easibill - Best Billing Service & Simple Billing Software</p>
+            <p className="mt-1">Easibill - Best Billing Service &amp; Simple Billing Software</p>
           </div>
           <div className="flex gap-3">
             <a href="/privacy" onClick={(event) => goTo(event, '/privacy')} className="hover:text-emerald-800">Privacy Policy</a>

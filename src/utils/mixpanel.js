@@ -14,7 +14,7 @@ export const getConsentState = () =>
 export const initMixpanel = () => {
   if (initialized) return;
   mixpanel.init(TOKEN, {
-    debug: import.meta.env.DEV,
+    debug: process.env.NODE_ENV === 'development',
     track_pageview: false,
     persistence: 'localStorage',
   });

@@ -1,0 +1,83 @@
+name: SEO Generator
+
+on:
+  schedule:
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: seo-generator
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check GROK_API_KEY is configured
+        env:
+          GROK_API_KEY: ${{ secrets.GROK_API_KEY }}
+        run: |
+          if [ -z "$GROK_API_KEY" ]; then
+            echo "::error::GROK_API_KEY secret is not configured. Add it in Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+
+      - name: Generate SEO page
+        id: generate
+        continue-on-error: true
+        env:
+          GROK_API_KEY: ${{ secrets.GROK_API_KEY }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://easibill.com' }}
+        run: npm run seo:generate
+
+      - name: Skip when generation fails
+        if: steps.generate.outcome != 'success'
+        run: |
+          echo "SEO generation failed. Skipping validation, sitemap update, commit, and push."
+          exit 0
+
+      - name: Validate generated content
+        if: steps.generate.outcome == 'success'
+        run: npm run seo:validate
+
+      - name: Update sitemap
+        if: steps.generate.outcome == 'success'
+        env:
+          SITE_URL: ${{ vars.SITE_URL || 'https://easibill.com' }}
+        run: npm run seo:sitemap
+
+      - name: Show changes
+        if: steps.generate.outcome == 'success'
+        run: git status --short
+
+      - name: Commit and push changes
+        if: steps.generate.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/generated public/sitemap.xml
+
+          if git diff --cached --quiet; then
+            echo "No SEO changes to commit."
+            exit 0
+          fi
+
+          git commit -m "chore: generate seo page"
+          git push

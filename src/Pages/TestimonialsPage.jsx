@@ -1,3 +1,5 @@
+"use client";
+
 import { Suspense, lazy } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Quote, Star } from 'lucide-react';

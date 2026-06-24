@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from 'framer-motion';
 import { ArrowRight, BriefcaseBusiness, Mail, MessageCircle, Phone, Send, Users } from 'lucide-react';
 

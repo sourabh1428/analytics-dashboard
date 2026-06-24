@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, Headphones, MessageCircle } from 'lucide-react';
 import { track } from '../../utils/mixpanel';

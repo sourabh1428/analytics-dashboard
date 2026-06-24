@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from 'framer-motion';
 import { AlertTriangle, ClipboardList, IndianRupee, MessageSquareX, UsersRound } from 'lucide-react';
 

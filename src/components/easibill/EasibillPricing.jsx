@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from 'framer-motion';
 import { Check, ShieldCheck, Sparkles } from 'lucide-react';
 import { track } from '../../utils/mixpanel';

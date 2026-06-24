@@ -1,7 +1,9 @@
+"use client";
+
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { usePathname, useRouter } from 'next/navigation';
 import { track } from '../utils/mixpanel';
 
 const navLinks = [
@@ -15,8 +17,8 @@ const navLinks = [
 const DASHBOARD_LOGIN_URL = 'https://easibill.vercel.app/login';
 
 const NavBar = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
+  const router = useRouter();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -29,16 +31,16 @@ const NavBar = () => {
 
   useEffect(() => {
     setIsOpen(false);
-  }, [location.pathname]);
+  }, [pathname]);
 
   const goTo = (path) => {
-    navigate(path);
+    router.push(path);
     setIsOpen(false);
   };
 
   const goToSection = (section) => {
-    if (location.pathname !== '/') {
-      navigate('/');
+    if (pathname !== '/') {
+      router.push('/');
       window.setTimeout(() => {
         document.getElementById(section)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 80);
@@ -50,7 +52,7 @@ const NavBar = () => {
 
   const linkClass = (link) =>
     `rounded-full px-3 py-2 text-sm font-medium transition ${
-      (link.path && location.pathname === link.path) || (link.section === 'product' && location.pathname === '/')
+      (link.path && pathname === link.path) || (link.section === 'product' && pathname === '/')
         ? 'bg-slate-950 text-white'
         : 'text-slate-600 hover:bg-slate-100 hover:text-slate-950'
     }`;
@@ -96,7 +98,7 @@ const NavBar = () => {
           <div className="hidden items-center gap-2 md:flex">
             <button
               type="button"
-              onClick={() => { track('demo_requested', { source: 'navbar', method: 'button_click' }); navigate('/lead'); }}
+              onClick={() => { track('demo_requested', { source: 'navbar', method: 'button_click' }); router.push('/lead'); }}
               className="rounded-full px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 hover:text-slate-950"
             >
               Book demo
@@ -148,7 +150,7 @@ const NavBar = () => {
               <div className="mt-2 grid gap-2 border-t border-slate-100 pt-3">
                 <button
                   type="button"
-                  onClick={() => { track('demo_requested', { source: 'navbar', method: 'button_click' }); navigate('/lead'); }}
+                  onClick={() => { track('demo_requested', { source: 'navbar', method: 'button_click' }); router.push('/lead'); }}
                   className="rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700"
                 >
                   Book demo

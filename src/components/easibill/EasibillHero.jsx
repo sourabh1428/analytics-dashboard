@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
@@ -47,10 +49,10 @@ const EasibillHero = () => {
             Refill reminders built for Indian pharmacies
           </div>
           <h1 className="max-w-5xl text-balance text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl lg:text-7xl">
-            Bring every chronic-care patient back on time.
+            Easy Billing + WhatsApp Reminders — the Pharmacy Software That Retains Patients.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-            Easibill turns each medicine sale into an automatic WhatsApp refill journey, so pharmacy owners retain recurring patients without chasing lists, chats, or spreadsheets.
+            EasiBill is the pharmacy billing software that turns every medicine sale into an automatic WhatsApp refill reminder — so medical stores retain chronic-care patients without chasing lists, chats, or spreadsheets.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">

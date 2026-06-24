@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from 'framer-motion';
 import { BellRing, ChartNoAxesCombined, DatabaseZap, ListChecks, MessageSquareText, Tags } from 'lucide-react';
 
