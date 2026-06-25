@@ -12,9 +12,18 @@ export default {
     ],
 	theme: {
     	extend: {
+    		fontFamily: {
+    			display: ['Inter', 'system-ui', 'sans-serif'],
+    			sans: ['Inter', 'system-ui', 'sans-serif'],
+    		},
     		colors: {
     			background: 'hsl(var(--background))',
-    			foreground: 'hsl(var(--foreground))'
+    			foreground: 'hsl(var(--foreground))',
+    			brand: {
+    				green: '#10B981',
+    				dark: '#0F172A',
+    				surface: '#F8FFF8',
+    			},
     		},
     		borderColor: {
     			border: 'hsl(var(--border))'
