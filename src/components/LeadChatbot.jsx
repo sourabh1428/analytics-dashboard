@@ -99,7 +99,7 @@ export default function LeadChatbot() {
         sessionStorage.setItem(SESSION_KEY, '1');
         setTimeout(() => setIsOpen(false), 3000);
       } catch {
-        addBotMessage("Oops, something went wrong. Please try again or email us at hello@easibill.io.");
+        addBotMessage("Oops, something went wrong. Please try again or email us at support@easibill.com.");
       } finally {
         setIsSubmitting(false);
       }

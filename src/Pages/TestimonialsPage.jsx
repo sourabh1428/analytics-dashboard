@@ -72,7 +72,7 @@ const TestimonialsPage = () => {
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-indigo-700">Real pharmacies</p>
               <h1 className="mt-4 text-balance text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
-                Built around how Indian pharmacy counters really work.
+                Built around how pharmacy counters really work.
               </h1>
             </div>
             <div className="space-y-5">

@@ -31,7 +31,7 @@ Independent pharmacy owners in India, especially Tier 2 and Tier 3 cities. Age 3
 
 ## CTA
 Trial: https://easibill.vercel.app/login
-Contact: hello@easibill.io
+Contact: support@easibill.com
 `;
 
 function buildMetadataPrompt(existingSlugs: string[]): string {
@@ -85,7 +85,7 @@ Write exactly 5 Q&A pairs. Each question must be something a real Indian pharmac
 (continue for all 5 pairs)
 
 ### ## Get Started with EasiBill (at least 100 words)
-A closing CTA section. Include the trial link https://easibill.vercel.app/login and contact hello@easibill.io.
+A closing CTA section. Include the trial link https://easibill.vercel.app/login and contact support@easibill.com.
 
 ---
 

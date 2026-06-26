@@ -70,16 +70,16 @@ export default function HowItWorks() {
             >
               <div className="relative mb-6">
                 <div className="h-20 w-20 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center">
-                  <step.icon className="h-8 w-8 text-emerald-500" aria-hidden="true" />
+                  <step.icon className="h-8 w-8 text-blue-500" aria-hidden="true" />
                 </div>
-                <span className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-emerald-500 text-white text-xs font-bold flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-blue-500 text-white text-xs font-bold flex items-center justify-center">
                   {i + 1}
                 </span>
               </div>
 
               <h3 className="text-xl font-bold text-slate-900 mb-3">{step.title}</h3>
               <p className="text-gray-500 text-sm leading-relaxed mb-3">{step.description}</p>
-              <p className="text-xs text-emerald-600 font-medium">{step.detail}</p>
+              <p className="text-xs text-blue-600 font-medium">{step.detail}</p>
             </motion.div>
           ))}
         </div>
@@ -93,7 +93,7 @@ export default function HowItWorks() {
         >
           <a
             href="/lead"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-500 text-white font-semibold hover:bg-emerald-600 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 text-base"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-blue-500 text-white font-semibold hover:bg-blue-600 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 text-base"
           >
             Start free — no card needed
           </a>

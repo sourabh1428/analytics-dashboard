@@ -3,90 +3,117 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, Headphones, MessageCircle } from 'lucide-react';
 import { track } from '../../utils/mixpanel';
+import { fadeUpBlur, springCard, stagger, VIEWPORT } from '../../utils/animations';
 
-const trial = ['Connect your pharmacy profile', 'Add or import patients', 'Send your first reminders', 'Review refill performance'];
+const trial = [
+  'Connect your pharmacy profile',
+  'Add or import patients',
+  'Send your first reminders',
+  'Review refill performance',
+];
 
 const DASHBOARD_LOGIN_URL = 'https://easibill.vercel.app/login';
 
 const EasibillCTA = () => {
   return (
     <section className="px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] bg-slate-950 text-white shadow-2xl shadow-slate-950/25">
-        <div className="relative isolate p-7 sm:p-10 lg:p-14">
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_0%,rgba(16,185,129,0.35),transparent_34%),radial-gradient(circle_at_85%_15%,rgba(56,189,248,0.28),transparent_30%)]" />
-          <motion.div
-            aria-hidden="true"
-            className="absolute bottom-0 right-0 -z-10 h-72 w-72 rounded-full bg-emerald-400/20 blur-3xl"
-            animate={{ scale: [1, 1.16, 1], opacity: [0.45, 0.7, 0.45] }}
-            transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-          />
-
+      {/* Dark section scales in from slightly small */}
+      <motion.div
+        className="mx-auto max-w-7xl overflow-hidden rounded-2xl bg-slate-950 text-white shadow-xl"
+        initial={{ opacity: 0, scale: 0.97, y: 24 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={VIEWPORT}
+        transition={{ type: 'spring', stiffness: 75, damping: 18 }}
+      >
+        <div className="p-7 sm:p-10 lg:p-14">
           <div className="grid gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-center">
+
+            {/* Left copy — blur reveal */}
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.7 }}
+              variants={fadeUpBlur}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
             >
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-emerald-300">Start small, recover fast</p>
-              <h2 className="mt-4 max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl">
-                Stop letting refill revenue depend on memory.
+              <h2 className="max-w-2xl text-4xl font-bold tracking-[-0.02em] sm:text-5xl">
+                Stop losing patients
+                <br />
+                <span className="text-blue-400">to memory.</span>
               </h2>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
-                Launch Easibill with one store, one staff workflow, and one simple goal: bring chronic-care patients back before they buy elsewhere.
+              <p className="mt-5 max-w-xl text-lg leading-8 text-slate-300">
+                Launch EasiBill with one store, one staff workflow, and one simple goal — bring chronic-care patients back before they buy elsewhere.
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <motion.div
+                className="mt-8 flex flex-col gap-3 sm:flex-row"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.45 }}
+              >
                 <motion.a
                   href={DASHBOARD_LOGIN_URL}
                   onClick={() => track('trial_started', { source: 'cta_section' })}
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-slate-950 transition hover:bg-emerald-100 focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2 focus:ring-offset-slate-950"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-slate-950 transition-colors hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-2 focus:ring-offset-slate-950"
                 >
                   Start free trial
-                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </motion.a>
                 <motion.a
-                  href="mailto:hello@easibill.io"
-                  whileHover={{ y: -2 }}
+                  href="mailto:support@easibill.com"
+                  whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2 focus:ring-offset-slate-950"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-white/8 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-2 focus:ring-offset-slate-950"
                 >
                   <Headphones className="h-4 w-4" />
                   Talk to the team
                 </motion.a>
-              </div>
+              </motion.div>
             </motion.div>
 
+            {/* Right — trial card, list stagger */}
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.35 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="rounded-[2rem] border border-white/10 bg-white/[0.07] p-5 backdrop-blur"
+              initial={{ opacity: 0, x: 28, scale: 0.97 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ type: 'spring', stiffness: 80, damping: 20, delay: 0.15 }}
+              className="rounded-2xl border border-white/10 bg-white/[0.06] p-5"
             >
               <div className="mb-5 flex items-center gap-3">
-                <div className="rounded-2xl bg-emerald-300 p-3 text-emerald-950">
+                <div className="rounded-xl bg-blue-500 p-3 text-white">
                   <MessageCircle className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold">Your first 14 days</h3>
-                  <p className="text-sm text-slate-300">A guided setup path, not an empty dashboard.</p>
+                  <h3 className="text-lg font-bold">Your first 14 days</h3>
+                  <p className="text-sm text-slate-400">A guided setup path, not an empty dashboard.</p>
                 </div>
               </div>
-              <div className="space-y-3">
-                {trial.map((item, index) => (
-                  <div key={item} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.05] p-4 text-slate-100">
-                    <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-emerald-300" />
-                    <span>{item}</span>
-                    <span className="ml-auto rounded-full bg-white/10 px-2 py-1 text-xs text-slate-300">0{index + 1}</span>
-                  </div>
+              <motion.div
+                className="space-y-2"
+                variants={stagger(0.25, 0.08)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+              >
+                {trial.map((item) => (
+                  <motion.div
+                    key={item}
+                    variants={{
+                      hidden: { opacity: 0, x: 12 },
+                      show: { opacity: 1, x: 0, transition: { type: 'spring', stiffness: 120, damping: 20 } },
+                    }}
+                    className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.05] p-3.5 text-slate-100"
+                  >
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-blue-400" />
+                    <span className="text-sm">{item}</span>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

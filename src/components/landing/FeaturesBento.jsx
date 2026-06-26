@@ -10,15 +10,15 @@ const FEATURES = [
     title: 'Bills land in WhatsApp in under 3 seconds',
     description: "No printer. No paper. No hunting for the customer's email. Tap once — the bill is in their chat.",
     size: 'large',
-    accent: 'emerald',
+    accent: 'blue',
     visual: (
       <div className="mt-6 bg-gray-50 rounded-xl p-4 text-sm space-y-2">
         <div className="flex items-start gap-3">
-          <div className="h-8 w-8 rounded-full bg-emerald-100 flex items-center justify-center text-xs font-bold text-emerald-700 shrink-0">R</div>
+          <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center text-xs font-bold text-blue-700 shrink-0">R</div>
           <div className="bg-white rounded-2xl rounded-tl-sm px-4 py-2.5 shadow-sm border border-gray-100 max-w-xs">
             <p className="font-medium text-slate-900 text-xs">EasiBill — Verma Medical</p>
-            <p className="text-gray-500 text-xs mt-0.5">Invoice #0814 · ₹300 · GST included</p>
-            <p className="text-emerald-600 text-xs mt-1">📄 View & download bill</p>
+            <p className="text-gray-500 text-xs mt-0.5">Invoice #0814 · $12.50 · tax included</p>
+            <p className="text-blue-600 text-xs mt-1">📄 View & download bill</p>
           </div>
         </div>
         <p className="text-[10px] text-gray-400 ml-11">Delivered 2.3s ago</p>
@@ -36,9 +36,9 @@ const FEATURES = [
   },
   {
     icon: FileText,
-    tag: 'GST-Ready Invoices',
-    title: 'Every bill is GST-compliant. No CA needed.',
-    description: 'GSTIN, HSN codes, tax breakdowns — all handled. Export a clean report for your CA in one click.',
+    tag: 'Tax-Ready Invoices',
+    title: 'Every bill is tax-compliant. No accountant needed.',
+    description: 'Tax IDs, product codes, tax breakdowns — all handled. Export a clean report for your accountant in one click.',
     size: 'small',
     accent: 'purple',
     visual: null,
@@ -73,7 +73,6 @@ const FEATURES = [
 ]
 
 const ACCENT_CLASSES = {
-  emerald: 'bg-emerald-50 text-emerald-700 border-emerald-100',
   blue: 'bg-blue-50 text-blue-700 border-blue-100',
   purple: 'bg-purple-50 text-purple-700 border-purple-100',
   orange: 'bg-orange-50 text-orange-700 border-orange-100',
@@ -82,8 +81,7 @@ const ACCENT_CLASSES = {
 }
 
 const ICON_ACCENT_CLASSES = {
-  emerald: 'text-emerald-500',
-  blue: 'text-blue-500',
+  blue: 'text-blue-600',
   purple: 'text-purple-500',
   orange: 'text-orange-500',
   teal: 'text-teal-500',
@@ -110,7 +108,7 @@ export default function FeaturesBento() {
             className="text-4xl font-bold text-slate-900 mb-4"
           >
             Everything your pharmacy needs.{' '}
-            <span className="text-emerald-500">Nothing it doesn't.</span>
+            <span className="text-blue-600">Nothing it doesn't.</span>
           </h2>
           <p className="text-gray-500 text-lg">
             Six features that replace manual billing, dead stock, and lost customers — all in one app.

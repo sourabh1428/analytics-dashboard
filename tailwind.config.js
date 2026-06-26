@@ -13,14 +13,15 @@ export default {
 	theme: {
     	extend: {
     		fontFamily: {
-    			display: ['Inter', 'system-ui', 'sans-serif'],
-    			sans: ['Inter', 'system-ui', 'sans-serif'],
+    			display: ['var(--font-plus-jakarta)', 'system-ui', 'sans-serif'],
+    			sans: ['var(--font-plus-jakarta)', 'system-ui', 'sans-serif'],
     		},
     		colors: {
     			background: 'hsl(var(--background))',
     			foreground: 'hsl(var(--foreground))',
     			brand: {
-    				green: '#10B981',
+    				blue: '#2563EB',
+    				teal: '#06B6D4',
     				dark: '#0F172A',
     				surface: '#F8FFF8',
     			},
@@ -53,7 +54,10 @@ export default {
     		animation: {
     			'accordion-down': 'accordion-down 0.2s ease-out',
     			'accordion-up': 'accordion-up 0.2s ease-out',
-    			'spin': 'spin 30s linear infinite'
+    			'spin': 'spin 30s linear infinite',
+    			'marquee': 'marquee 35s linear infinite',
+    			'marquee-reverse': 'marquee-reverse 35s linear infinite',
+    			'float-slow': 'float-slow 4s ease-in-out infinite',
     		}
     	}
     },

@@ -1,186 +1,264 @@
 "use client";
 
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import {
   ArrowRight,
   Bell,
   CheckCircle2,
-  Clock3,
   MessageCircle,
-  ShieldCheck,
-  Sparkles,
   TrendingUp,
+  Zap,
 } from 'lucide-react';
 import { track } from '../../utils/mixpanel';
 
-const reminders = [
-  { name: 'Anita R.', medicine: 'Metformin 500mg', status: 'Reminder sent', time: '9:00 AM' },
-  { name: 'Harish K.', medicine: 'Telmisartan 40mg', status: 'Due tomorrow', time: '28 days' },
-  { name: 'Meena S.', medicine: 'Thyroxine 50mcg', status: 'Refilled', time: 'Today' },
-];
-
-const metrics = [
-  { value: '35+', label: 'patients retained monthly' },
-  { value: '5 min', label: 'setup for a pharmacy' },
-  { value: '0', label: 'missed refills with tracking on' },
-];
-
 const DASHBOARD_LOGIN_URL = 'https://easibill.vercel.app/login';
 
-const EasibillHero = () => {
+const reminders = [
+  { name: 'Anita R.', medicine: 'Metformin 500mg', status: 'Reminder sent', dot: 'bg-emerald-400' },
+  { name: 'Harish K.', medicine: 'Telmisartan 40mg', status: 'Due tomorrow', dot: 'bg-amber-400' },
+  { name: 'Meena S.', medicine: 'Thyroxine 50mcg', status: 'Refilled', dot: 'bg-slate-400' },
+];
+
+function WordReveal({ text, baseDelay = 0, className = '' }) {
   return (
-    <section className="relative isolate overflow-hidden px-4 pb-16 pt-28 sm:px-6 lg:px-8 lg:pb-24 lg:pt-36">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.22),transparent_34%),radial-gradient(circle_at_80%_10%,rgba(56,189,248,0.18),transparent_30%)]" />
+    <>
+      {text.split(' ').map((word, i) => (
+        <motion.span
+          key={i}
+          className={`inline-block ${className}`}
+          initial={{ opacity: 0, y: 32, filter: 'blur(6px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{ duration: 0.6, delay: baseDelay + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {word}&nbsp;
+        </motion.span>
+      ))}
+    </>
+  );
+}
+
+const EasibillHero = () => {
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
+  const dashY = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const dashOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0.4]);
+
+  return (
+    <section
+      ref={heroRef}
+      className="relative min-h-[100svh] overflow-hidden px-4 pb-20 pt-28 sm:px-6 lg:px-8 lg:pb-24 lg:pt-36"
+    >
+      {/* Emerald glow — top center */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/3 rounded-full bg-emerald-500/[0.08] blur-3xl"
+      />
+      {/* Secondary glow — bottom right */}
       <motion.div
         aria-hidden="true"
-        className="absolute left-1/2 top-16 -z-10 h-80 w-80 -translate-x-1/2 rounded-full bg-emerald-300/30 blur-3xl"
-        animate={{ scale: [1, 1.12, 1], opacity: [0.45, 0.7, 0.45] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        className="pointer-events-none absolute -bottom-32 right-0 -z-10 h-96 w-96 rounded-full bg-emerald-400/[0.06] blur-3xl"
+        animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.9, 0.5] }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
       />
-      <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.02fr_0.98fr]">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="max-w-3xl"
-        >
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-200/80 bg-white/75 px-3 py-1.5 text-sm font-medium text-emerald-800 shadow-sm shadow-emerald-900/5 backdrop-blur">
-            <Sparkles className="h-4 w-4" />
-            Refill reminders built for Indian pharmacies
-          </div>
-          <h1 className="max-w-5xl text-balance text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl lg:text-7xl">
-            Easy Billing + WhatsApp Reminders — the Pharmacy Software That Retains Patients.
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-            EasiBill is the pharmacy billing software that turns every medicine sale into an automatic WhatsApp refill reminder — so medical stores retain chronic-care patients without chasing lists, chats, or spreadsheets.
-          </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <motion.a
+      <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-[1.15fr_0.85fr]">
+
+        {/* ── Left: copy ── */}
+        <div className="max-w-3xl">
+          {/* Eyebrow */}
+          <motion.p
+            className="mb-6 text-sm font-medium tracking-wide text-emerald-400/80"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.08 }}
+          >
+            Trusted by 2,400+ pharmacies across India
+          </motion.p>
+
+          {/* Headline */}
+          <h1 className="text-[2.8rem] font-bold leading-[1.08] tracking-[-0.03em] text-white sm:text-6xl lg:text-7xl">
+            <WordReveal text="Billing that" baseDelay={0.15} />
+            <br className="hidden sm:block" />
+            <motion.span
+              className="relative inline-block text-emerald-400"
+              initial={{ opacity: 0, y: 32, filter: 'blur(6px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              transition={{ duration: 0.6, delay: 0.32, ease: [0.22, 1, 0.36, 1] }}
+            >
+              runs itself.
+              {/* Underline sweep */}
+              <motion.span
+                aria-hidden="true"
+                className="absolute -bottom-1 left-0 right-0 h-[3px] rounded-full bg-emerald-400/50"
+                initial={{ scaleX: 0, originX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.5, delay: 0.72, ease: [0.22, 1, 0.36, 1] }}
+              />
+            </motion.span>
+            {' '}
+            <WordReveal text="Patients who come back." baseDelay={0.4} />
+          </h1>
+
+          {/* Sub */}
+          <motion.p
+            className="mt-6 max-w-lg text-lg leading-8 text-white/50"
+            initial={{ opacity: 0, y: 16, filter: 'blur(6px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ duration: 0.55, delay: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            GST bills on WhatsApp in 3 seconds. Automatic refill reminders.
+            Zero paperwork. Built for independent pharmacies.
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            className="mt-8 flex flex-col gap-3 sm:flex-row"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.85 }}
+          >
+            <a
               href={DASHBOARD_LOGIN_URL}
               onClick={() => track('trial_started', { source: 'hero' })}
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-6 py-3.5 text-sm font-semibold text-white shadow-xl shadow-emerald-900/20 transition hover:bg-emerald-950 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-7 py-3.5 text-sm font-semibold text-black shadow-xl shadow-emerald-500/25 transition-all hover:bg-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 focus:ring-offset-[#080d0a]"
             >
-              Start 14-day trial
-              <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-            </motion.a>
-            <motion.a
+              <Zap className="h-4 w-4" />
+              Start free — 14 days
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </a>
+            <a
               href="/lead"
               onClick={() => track('demo_requested', { source: 'hero', method: 'button_click' })}
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-6 py-3.5 text-sm font-semibold text-slate-800 shadow-sm backdrop-blur transition hover:border-emerald-300 hover:text-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/[0.12] bg-white/[0.05] px-7 py-3.5 text-sm font-semibold text-white/80 backdrop-blur transition hover:border-white/20 hover:bg-white/[0.08] hover:text-white focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-[#080d0a]"
             >
               Book pharmacy demo
-            </motion.a>
-          </div>
+            </a>
+          </motion.div>
 
-          <div className="mt-8 grid max-w-2xl grid-cols-1 gap-3 text-sm text-slate-700 sm:grid-cols-3">
-            {metrics.map((metric) => (
-              <div key={metric.label} className="rounded-2xl border border-white/80 bg-white/70 p-4 shadow-sm backdrop-blur">
-                <div className="text-2xl font-semibold text-slate-950">{metric.value}</div>
-                <div className="mt-1 leading-5">{metric.label}</div>
-              </div>
+          {/* Trust chips */}
+          <motion.div
+            className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/35"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4, delay: 1.05 }}
+          >
+            {['No setup fee', 'Works with Marg & Ecogreen', 'No credit card needed'].map((item) => (
+              <span key={item} className="flex items-center gap-1.5">
+                <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400/70" />
+                {item}
+              </span>
             ))}
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
 
+        {/* ── Right: dashboard (white card on dark bg = premium contrast) ── */}
         <motion.div
-          initial={{ opacity: 0, y: 30, scale: 0.98 }}
+          style={{ y: dashY, opacity: dashOpacity }}
+          initial={{ opacity: 0, y: 40, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.15 }}
+          transition={{ type: 'spring', stiffness: 75, damping: 18, delay: 0.22 }}
           className="relative"
         >
-          <div className="absolute -inset-5 -z-10 rounded-[2rem] bg-gradient-to-br from-emerald-300/40 via-cyan-200/30 to-indigo-300/30 blur-2xl" />
-          <div className="overflow-hidden rounded-[1.75rem] border border-white/80 bg-white/85 shadow-2xl shadow-emerald-950/15 backdrop-blur">
-            <div className="flex items-center justify-between border-b border-slate-200/70 px-5 py-4">
+          {/* Glow halo behind card */}
+          <div
+            aria-hidden="true"
+            className="absolute -inset-6 -z-10 rounded-3xl bg-emerald-400/[0.07] blur-2xl"
+          />
+
+          <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0d1b10] shadow-2xl shadow-black/50">
+            {/* Card header */}
+            <div className="flex items-center justify-between border-b border-white/[0.07] px-5 py-4">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">Today</p>
-                <h2 className="text-lg font-semibold text-slate-950">Refill command center</h2>
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-400/70">Today · Refill queue</p>
+                <h2 className="mt-0.5 text-sm font-semibold text-white">Verma Medical Store</h2>
               </div>
-              <div className="flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1.5 text-sm font-medium text-emerald-800">
-                <span className="h-2 w-2 rounded-full bg-emerald-500" />
+              <div className="flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/[0.1] px-3 py-1.5 text-xs font-semibold text-emerald-400">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                 Live
               </div>
             </div>
 
-            <div className="grid gap-5 p-5 lg:grid-cols-[1.1fr_0.9fr]">
-              <div className="space-y-3">
+            <div className="grid gap-3 p-4 sm:grid-cols-[1.1fr_0.9fr]">
+              {/* Reminder rows */}
+              <div className="space-y-2">
                 {reminders.map((item, index) => (
                   <motion.div
                     key={item.name}
-                    initial={{ opacity: 0, x: -14 }}
+                    initial={{ opacity: 0, x: -12 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.35 + index * 0.12 }}
-                    className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
+                    transition={{ type: 'spring', stiffness: 110, damping: 20, delay: 0.55 + index * 0.1 }}
+                    className="flex items-center justify-between gap-3 rounded-xl border border-white/[0.06] bg-white/[0.04] px-3.5 py-3"
                   >
-                    <div className="flex items-start justify-between gap-4">
+                    <div className="min-w-0 flex items-center gap-2.5">
+                      <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${item.dot}`} />
                       <div>
-                        <p className="font-semibold text-slate-950">{item.name}</p>
-                        <p className="mt-1 text-sm text-slate-500">{item.medicine}</p>
+                        <p className="truncate text-sm font-semibold text-white">{item.name}</p>
+                        <p className="truncate text-xs text-white/40">{item.medicine}</p>
                       </div>
-                      <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600">{item.time}</span>
                     </div>
-                    <div className="mt-4 flex items-center gap-2 text-sm font-medium text-emerald-700">
-                      <CheckCircle2 className="h-4 w-4" />
-                      {item.status}
-                    </div>
+                    <span className="shrink-0 text-[10px] font-medium text-white/40">{item.status}</span>
                   </motion.div>
                 ))}
               </div>
 
-              <div className="space-y-4">
-                <div className="rounded-3xl bg-slate-950 p-4 text-white shadow-xl">
-                  <div className="mb-5 flex items-center gap-2 text-sm text-emerald-200">
-                    <MessageCircle className="h-4 w-4" />
-                    WhatsApp preview
+              {/* Right panels */}
+              <div className="space-y-2.5">
+                {/* WhatsApp bubble */}
+                <motion.div
+                  className="rounded-xl border border-emerald-500/20 bg-emerald-500/[0.08] p-3"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.7 }}
+                >
+                  <div className="mb-2 flex items-center gap-1.5 text-[10px] font-semibold text-emerald-400">
+                    <MessageCircle className="h-3 w-3" />
+                    WhatsApp
                   </div>
-                  <div className="rounded-2xl bg-emerald-50 p-4 text-sm leading-6 text-emerald-950">
-                    Namaste Anita ji, your diabetes medicine is due for refill today. Reply YES and Easibill Pharmacy will keep it ready.
-                  </div>
-                  <div className="mt-4 flex justify-end">
-                    <span className="rounded-full bg-emerald-400 px-3 py-1 text-xs font-semibold text-emerald-950">Queued for 9:00 AM</span>
-                  </div>
-                </div>
+                  <p className="text-[10px] leading-4 text-white/60">
+                    Namaste Anita ji, your Metformin is due for refill today. Reply YES to confirm.
+                  </p>
+                  <p className="mt-2 text-right text-[9px] text-emerald-400/70">Queued 9:00 AM ✓</p>
+                </motion.div>
 
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="rounded-2xl border border-slate-200 bg-white p-4">
-                    <Bell className="mb-3 h-5 w-5 text-emerald-600" />
-                    <p className="text-2xl font-semibold text-slate-950">128</p>
-                    <p className="text-sm text-slate-500">due this week</p>
-                  </div>
-                  <div className="rounded-2xl border border-slate-200 bg-white p-4">
-                    <TrendingUp className="mb-3 h-5 w-5 text-cyan-600" />
-                    <p className="text-2xl font-semibold text-slate-950">↑ 35%</p>
-                    <p className="text-sm text-slate-500">avg. return rate lift</p>
-                  </div>
-                </div>
-
-                <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-900">
-                  <div className="mb-2 flex items-center gap-2 font-semibold">
-                    <ShieldCheck className="h-4 w-4" />
-                    Pharmacy-owned data
-                  </div>
-                  <p>Messages go from your workflow with retries, delivery status, and patient history intact.</p>
+                {/* Stats */}
+                <div className="grid grid-cols-2 gap-2">
+                  {[
+                    { Icon: Bell, value: '128', label: 'due this week' },
+                    { Icon: TrendingUp, value: '+35%', label: 'return rate' },
+                  ].map(({ Icon, value, label }, i) => (
+                    <motion.div
+                      key={label}
+                      className="rounded-xl border border-white/[0.06] bg-white/[0.04] p-3"
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ type: 'spring', stiffness: 110, damping: 20, delay: 0.82 + i * 0.08 }}
+                    >
+                      <Icon className="mb-2 h-3.5 w-3.5 text-emerald-400/60" />
+                      <p className="text-lg font-bold text-white">{value}</p>
+                      <p className="text-[9px] text-white/35 leading-3">{label}</p>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
 
+          {/* Floating badge */}
           <motion.div
-            className="absolute -bottom-6 -left-3 hidden rounded-2xl border border-white/80 bg-white/90 p-4 shadow-xl backdrop-blur sm:block"
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute -bottom-5 -left-5 hidden rounded-xl border border-white/[0.08] bg-[#0d1b10]/90 p-3.5 shadow-xl backdrop-blur-sm sm:block"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.1, duration: 0.5 }}
+            style={{ animation: 'float-slow 5s ease-in-out infinite' }}
           >
             <div className="flex items-center gap-3">
-              <div className="rounded-full bg-cyan-100 p-2 text-cyan-700">
-                <Clock3 className="h-5 w-5" />
+              <div className="rounded-lg bg-emerald-500/10 p-2 text-emerald-400">
+                <MessageCircle className="h-4 w-4" />
               </div>
               <div>
-                <p className="text-sm font-semibold text-slate-950">No missed follow-ups</p>
-                <p className="text-xs text-slate-500">Every refill date is tracked</p>
+                <p className="text-xs font-semibold text-white">Bill sent via WhatsApp</p>
+                <p className="text-[10px] text-white/40">Delivered 2.3s · ₹300 · GST</p>
               </div>
             </div>
           </motion.div>

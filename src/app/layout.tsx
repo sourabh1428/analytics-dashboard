@@ -1,12 +1,21 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { ScrollProgressBar } from "@/components/ScrollProgressBar";
 import NavBar from "@/src/components/NavBar";
 import Footer from "@/src/components/Footer";
 import ConsentBanner from "@/src/components/ConsentBanner";
+import LeadNudge from "@/src/components/LeadNudge";
 import "./globals.css";
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-plus-jakarta",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.SITE_URL ?? "https://easibill.com"),
@@ -15,7 +24,12 @@ export const metadata: Metadata = {
     template: "%s | EasiBill",
   },
   description:
-    "EasiBill is the easiest billing software for Indian pharmacies. Send bills on WhatsApp, retain patients with automated refill reminders, and manage your medical store with zero hassle.",
+    "EasiBill is the easiest billing software for independent pharmacies. Send bills on WhatsApp, retain patients with automated refill reminders, and manage your medical store with zero hassle.",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({
@@ -24,15 +38,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={plusJakartaSans.variable}>
       <body suppressHydrationWarning>
-        <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-[#eafaf3] via-[#f4fdf8] to-[#eef9f4] text-slate-950">
-          <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(ellipse_90%_45%_at_5%_15%,rgba(16,185,129,0.10),transparent),radial-gradient(ellipse_60%_35%_at_95%_55%,rgba(56,189,248,0.09),transparent),radial-gradient(ellipse_75%_40%_at_50%_85%,rgba(16,185,129,0.07),transparent)]" />
+        <div className="relative min-h-screen overflow-x-hidden bg-[#080d0a] text-[#f1f5f1]">
           <ScrollProgressBar />
           <NavBar />
           <main className="relative">{children}</main>
           <Footer />
           <ConsentBanner />
+          <LeadNudge />
           <Analytics />
           <SpeedInsights />
         </div>
@@ -42,7 +56,7 @@ export default function RootLayout({
               var script = document.createElement('script');
               script.src = 'https://assistloop.ai/assistloop-widget.js';
               script.onload = function() {
-                AssistLoopWidget.init({ agentId: "fe2f60b9-35f6-4337-b517-75e80e069174" });
+                AssistLoopWidget.init({ agentId: "fe2f60b9-35f6-4337-b517-75e80e069174", position: "bottom-left" });
               };
               document.head.appendChild(script);
             })();

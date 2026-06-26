@@ -18,15 +18,15 @@ const PAIN_POINTS = [
   },
   {
     icon: FileWarning,
-    stat: '₹12,000',
+    stat: '$500+',
     title: 'Average annual expired stock loss',
     description: 'Medicines expire silently. By the time you notice, the loss is already done.',
   },
   {
     icon: TrendingDown,
     stat: '2 days',
-    title: 'Lost per year to GST filing',
-    description: 'Manually compiling HSN codes, tax rates, and invoice numbers for your CA is a full weekend every month.',
+    title: 'Lost per year to tax compliance',
+    description: 'Manually compiling tax codes, rates, and invoice numbers for your accountant is a full weekend every month.',
   },
 ]
 

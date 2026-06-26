@@ -2,12 +2,13 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { useGeo } from '@/src/hooks/useGeo'
 
 const STATS = [
   { value: 2400, suffix: '+', label: 'Pharmacies using EasiBill' },
   { value: 18, suffix: 'M+', label: 'Bills sent via WhatsApp' },
   { value: 34, suffix: '%', label: 'Average increase in repeat customers' },
-  { value: 0, prefix: '₹', suffix: '', label: 'Setup cost' },
+  { value: 0, prefix: '$', suffix: '', label: 'Setup cost' },
 ]
 
 function AnimatedNumber({ value, prefix = '', suffix = '' }) {
@@ -30,24 +31,34 @@ function AnimatedNumber({ value, prefix = '', suffix = '' }) {
 
   return (
     <span ref={ref} className="tabular-nums">
-      {prefix}{display.toLocaleString('en-IN')}{suffix}
+      {prefix}{display.toLocaleString('en-US')}{suffix}
     </span>
   )
 }
 
 export default function TrustBar() {
+  const geo = useGeo()
+
+  const label = geo
+    ? `Trusted by independent pharmacies in ${geo.flag} ${geo.countryName} and worldwide`
+    : 'Trusted by independent pharmacies worldwide'
+
   return (
     <section
       aria-labelledby="trust-heading"
       className="bg-slate-900 py-16 px-6"
     >
       <div className="max-w-7xl mx-auto">
-        <p
+        <motion.p
           id="trust-heading"
+          key={label}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
           className="text-center text-sm font-semibold text-gray-400 uppercase tracking-widest mb-10"
         >
-          Trusted by independent pharmacies across India
-        </p>
+          {label}
+        </motion.p>
         <dl className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {STATS.map((stat, i) => (
             <motion.div

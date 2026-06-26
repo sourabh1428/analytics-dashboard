@@ -9,19 +9,19 @@ export function CTASection() {
         className="pointer-events-none absolute inset-0 opacity-5"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 25% 50%, #10b981 0%, transparent 60%), radial-gradient(circle at 75% 50%, #059669 0%, transparent 60%)",
+            "radial-gradient(circle at 25% 50%, #2563EB 0%, transparent 60%), radial-gradient(circle at 75% 50%, #1d4ed8 0%, transparent 60%)",
         }}
       />
 
       <div className="relative mx-auto max-w-3xl text-center">
-        <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-4 py-1.5 text-sm font-semibold text-emerald-400 ring-1 ring-emerald-500/20">
-          Built for Indian pharmacies
+        <span className="inline-flex items-center rounded-full bg-blue-500/10 px-4 py-1.5 text-sm font-semibold text-blue-400 ring-1 ring-blue-500/20">
+          Built for independent pharmacies
         </span>
 
         <h2 className="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl">
           Stop doing billing manually.
           <br />
-          <span className="text-emerald-400">Let EasiBill handle it.</span>
+          <span className="text-blue-400">Let EasiBill handle it.</span>
         </h2>
 
         <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-zinc-400">
@@ -32,14 +32,14 @@ export function CTASection() {
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
             href="https://easibill.vercel.app/login"
-            className="inline-flex min-h-12 items-center justify-center rounded-xl bg-emerald-500 px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-emerald-400"
+            className="inline-flex min-h-12 items-center justify-center rounded-xl bg-blue-600 px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-blue-500"
             target="_blank"
             rel="noopener noreferrer"
           >
             Start free trial →
           </Link>
           <a
-            href="mailto:hello@easibill.io"
+            href="mailto:support@easibill.com"
             className="inline-flex min-h-12 items-center justify-center rounded-xl border border-zinc-700 px-6 py-3 text-sm font-semibold text-zinc-300 transition hover:border-zinc-500 hover:text-white"
           >
             Talk to us

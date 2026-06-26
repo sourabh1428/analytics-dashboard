@@ -15,7 +15,7 @@ const comparison = [
   { label: 'Monthly staff effort', manual: 'Hours of chats', crm: 'Training needed', easibill: 'Daily 2-min review' },
   { label: 'Patient tracking',     manual: 'Memory / notebook', crm: 'Spreadsheet import', easibill: 'Built-in, automatic' },
   { label: 'Reminder automation',  manual: 'None',           crm: 'Complex setup',  easibill: 'On by default' },
-  { label: 'Monthly cost',         manual: '₹0',             crm: '₹800–2,500/user', easibill: 'From ₹299' },
+  { label: 'Monthly cost',         manual: '$0',             crm: '$20–80/user', easibill: 'From $9' },
 ];
 
 const FeaturesPage = () => {
