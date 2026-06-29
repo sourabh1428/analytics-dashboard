@@ -38,19 +38,23 @@ export default function LeadNudge() {
   useEffect(() => {
     if (wasDismissedRecently()) return
 
-    // Show when user reaches the pricing section
-    const pricingEl = document.getElementById('pricing')
-    if (pricingEl) {
-      const obs = new IntersectionObserver(([e]) => {
-        if (e.isIntersecting) { setVisible(true); obs.disconnect() }
-      }, { rootMargin: '-120px' })
-      obs.observe(pricingEl)
-      return () => obs.disconnect()
-    }
+    let fired = false
+    const show = () => { if (!fired) { fired = true; setVisible(true) } }
 
-    // Fallback: show after 20s if no pricing section found
-    const timer = setTimeout(() => setVisible(true), 20_000)
-    return () => clearTimeout(timer)
+    // Trigger when user has scrolled 55% down the page
+    const onScroll = () => {
+      const scrolled = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)
+      if (scrolled >= 0.55) { show(); window.removeEventListener('scroll', onScroll) }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+
+    // Hard fallback: show after 25s regardless
+    const timer = setTimeout(show, 25_000)
+
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      clearTimeout(timer)
+    }
   }, [])
 
   const dismiss = () => {

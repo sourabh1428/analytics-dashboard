@@ -5,4 +5,5 @@ posthog.init(process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN!, {
   defaults: '2026-05-30',
   capture_pageview: false,
   capture_pageleave: true,
+  disable_toolbar: true,
 })
