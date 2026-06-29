@@ -57,6 +57,31 @@ export default function RootLayout({
               script.src = 'https://assistloop.ai/assistloop-widget.js';
               script.onload = function() {
                 AssistLoopWidget.init({ agentId: "fe2f60b9-35f6-4337-b517-75e80e069174", position: "bottom-right" });
+                // Force right-side position via CSS override and MutationObserver
+                var style = document.createElement('style');
+                style.textContent = [
+                  'iframe[src*="assistloop"], div[id*="assistloop"], div[class*="assistloop"] {',
+                  '  left: auto !important;',
+                  '  right: 20px !important;',
+                  '}'
+                ].join('');
+                document.head.appendChild(style);
+                // Watch for the widget element being added to DOM and reposition it
+                var observer = new MutationObserver(function(mutations) {
+                  mutations.forEach(function(m) {
+                    m.addedNodes.forEach(function(node) {
+                      if (node.nodeType === 1) {
+                        var el = node;
+                        var id = (el.id || '') + (el.className || '');
+                        if (id.toLowerCase().indexOf('assist') !== -1 || el.querySelector && el.querySelector('[id*="assist"],[class*="assist"]')) {
+                          el.style.left = 'auto';
+                          el.style.right = '20px';
+                        }
+                      }
+                    });
+                  });
+                });
+                observer.observe(document.body, { childList: true, subtree: true });
               };
               document.head.appendChild(script);
             })();
