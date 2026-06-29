@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, Headphones, MessageCircle } from 'lucide-react';
@@ -12,7 +12,7 @@ const trial = [
   'Review refill performance',
 ];
 
-const DASHBOARD_LOGIN_URL = 'https://easibill.vercel.app/login';
+const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
 
 const EasibillCTA = () => {
   return (
@@ -38,7 +38,7 @@ const EasibillCTA = () => {
               <h2 className="max-w-2xl text-4xl font-bold tracking-[-0.02em] sm:text-5xl">
                 Stop losing patients
                 <br />
-                <span className="text-blue-400">to memory.</span>
+                <span className="text-violet-400">to memory.</span>
               </h2>
               <p className="mt-5 max-w-xl text-lg leading-8 text-slate-300">
                 Launch EasiBill with one store, one staff workflow, and one simple goal — bring chronic-care patients back before they buy elsewhere.
@@ -55,7 +55,7 @@ const EasibillCTA = () => {
                   onClick={() => track('trial_started', { source: 'cta_section' })}
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-slate-950 transition-colors hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-2 focus:ring-offset-slate-950"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-slate-950 transition-colors hover:bg-violet-50 focus:outline-none focus:ring-2 focus:ring-violet-300 focus:ring-offset-2 focus:ring-offset-slate-950"
                 >
                   Start free trial
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -64,7 +64,7 @@ const EasibillCTA = () => {
                   href="mailto:support@easibill.com"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-white/8 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-2 focus:ring-offset-slate-950"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-white/8 focus:outline-none focus:ring-2 focus:ring-violet-300 focus:ring-offset-2 focus:ring-offset-slate-950"
                 >
                   <Headphones className="h-4 w-4" />
                   Talk to the team
@@ -81,7 +81,7 @@ const EasibillCTA = () => {
               className="rounded-2xl border border-white/10 bg-white/[0.06] p-5"
             >
               <div className="mb-5 flex items-center gap-3">
-                <div className="rounded-xl bg-blue-500 p-3 text-white">
+                <div className="rounded-xl bg-violet-500 p-3 text-white">
                   <MessageCircle className="h-5 w-5" />
                 </div>
                 <div>
@@ -105,7 +105,7 @@ const EasibillCTA = () => {
                     }}
                     className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.05] p-3.5 text-slate-100"
                   >
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-blue-400" />
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-violet-400" />
                     <span className="text-sm">{item}</span>
                   </motion.div>
                 ))}

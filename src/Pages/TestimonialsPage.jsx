@@ -7,7 +7,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 
 const EasibillCTA = lazy(() => import('../components/easibill/EasibillCTA'));
 
-const DASHBOARD_LOGIN_URL = 'https://easibill.vercel.app/login';
+const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
 
 const testimonials = [
   {

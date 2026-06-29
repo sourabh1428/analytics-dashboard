@@ -1,91 +1,63 @@
-'use client'
+﻿'use client'
 
 import { motion } from 'framer-motion'
 import { Check, ArrowRight } from 'lucide-react'
-import { useGeo } from '@/src/hooks/useGeo'
 
 const PLANS = [
   {
     name: 'Starter',
-    price: '$0',
-    period: 'forever',
-    tagline: 'For pharmacies just getting started with digital billing.',
-    cta: 'Start free today',
-    ctaHref: '/contact',
+    price: '₹299',
+    period: '/month',
+    tagline: 'For pharmacies sending reminders manually today and running out of time.',
+    cta: 'Start 14-day free trial',
+    ctaHref: 'https://dashboard.easibill.com/',
     popular: false,
+    badge: null,
     features: [
-      '1 store',
-      'Up to 200 bills per month',
-      'Digital billing via WhatsApp',
-      'Basic inventory tracking',
-      'Tax-compliant invoices',
+      'Unlimited patients',
+      'Automated WhatsApp refill reminders',
+      'Your own WhatsApp number (no API needed)',
+      'Patient records — medicine, interval, history',
+      'Daily queue — due, overdue, recently refilled',
+      'Medicine catalog with default intervals',
+      'CSV patient import',
+      'Hindi + English message templates',
       'Email support',
     ],
+    note: '14-day free trial. No card required.',
   },
   {
-    name: 'Growth',
-    price: '$9',
+    name: 'Pro',
+    price: '₹999',
     period: '/month',
-    tagline: 'For pharmacies ready to grow their customer base.',
+    tagline: 'For pharmacies ready to run campaigns and measure retention.',
     cta: 'Start 14-day free trial',
-    ctaHref: '/contact',
+    ctaHref: 'https://dashboard.easibill.com/',
     popular: true,
+    badge: 'Most popular',
     features: [
-      '1 store',
-      'Unlimited bills',
-      'Digital billing via WhatsApp',
-      'Refill reminders (automated)',
-      'Full inventory + expiry alerts',
-      'Tax reports — export for accountant',
-      'Customer analytics dashboard',
-      'Priority support',
+      'Everything in Starter',
+      'Official WhatsApp Business number (WABA — no ban risk)',
+      'Broadcast campaigns with patient segmentation',
+      'Advanced retention analytics',
+      'All 5 languages — Hindi, English, Marathi, Telugu, Kannada',
+      'Custom message templates',
+      'Wallet credits for campaigns (1 credit = 1 message)',
+      'Per-message delivery receipts (Sent → Delivered → Read)',
+      'Priority WhatsApp support',
     ],
-  },
-  {
-    name: 'Scale',
-    price: '$29',
-    period: '/month',
-    tagline: 'For pharmacy chains and high-volume medical stores.',
-    cta: 'Talk to us',
-    ctaHref: '/contact',
-    popular: false,
-    features: [
-      'Up to 5 stores',
-      'Unlimited bills across all stores',
-      'Everything in Growth',
-      'Multi-store dashboard',
-      'Centralized inventory view',
-      'Staff accounts per store',
-      'Dedicated onboarding support',
-      'SLA-backed uptime guarantee',
-    ],
+    note: 'Wallet top-up from ₹200. Credits never expire.',
   },
 ]
 
-const DEFAULT_PRICES = [0, 9, 29]
-
-function formatPrice(sym, amount) {
-  if (amount === 0) return `${sym}0`
-  return `${sym}${amount.toLocaleString('en-US')}`
-}
-
 export default function PricingSection() {
-  const geo = useGeo()
-  const sym = geo?.currencySymbol ?? '$'
-  const rawPrices = geo?.prices ?? DEFAULT_PRICES
-
-  const plans = PLANS.map((plan, i) => ({
-    ...plan,
-    price: formatPrice(sym, rawPrices[i]),
-  }))
-
   return (
     <section
       id="pricing"
       aria-labelledby="pricing-heading"
       className="py-24 px-6 bg-gray-50"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -100,12 +72,12 @@ export default function PricingSection() {
             Simple pricing. No hidden fees.
           </h2>
           <p className="text-gray-500 text-lg">
-            Start free. Upgrade when your pharmacy is ready. Cancel any time.
+            14-day free trial on both plans. No credit card required. Cancel any time.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 items-start">
-          {plans.map((plan, i) => (
+        <div className="grid md:grid-cols-2 gap-6 items-start max-w-3xl mx-auto">
+          {PLANS.map((plan, i) => (
             <motion.article
               key={plan.name}
               initial={{ opacity: 0, y: 24 }}
@@ -114,14 +86,14 @@ export default function PricingSection() {
               viewport={{ once: true, margin: '-80px' }}
               className={`relative rounded-2xl p-7 flex flex-col gap-6 transition-all duration-200 ${
                 plan.popular
-                  ? 'bg-slate-900 border border-blue-500/30 shadow-xl shadow-blue-500/10'
+                  ? 'bg-[#0D0B1E] border border-violet-500/30 shadow-xl shadow-violet-500/10'
                   : 'bg-white border border-gray-100 shadow-sm'
               }`}
             >
-              {plan.popular && (
+              {plan.badge && (
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                  <span className="px-4 py-1 rounded-full bg-blue-600 text-white text-xs font-bold uppercase tracking-wide">
-                    Most popular
+                  <span className="px-4 py-1 rounded-full bg-violet-600 text-white text-xs font-bold uppercase tracking-wide">
+                    {plan.badge}
                   </span>
                 </div>
               )}
@@ -148,7 +120,7 @@ export default function PricingSection() {
                 {plan.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-2.5 text-sm">
                     <Check
-                      className={`h-4 w-4 shrink-0 mt-0.5 ${plan.popular ? 'text-blue-400' : 'text-blue-600'}`}
+                      className={`h-4 w-4 shrink-0 mt-0.5 ${plan.popular ? 'text-violet-400' : 'text-violet-600'}`}
                       aria-hidden="true"
                     />
                     <span className={plan.popular ? 'text-gray-300' : 'text-gray-600'}>
@@ -158,11 +130,17 @@ export default function PricingSection() {
                 ))}
               </ul>
 
+              {plan.note && (
+                <p className={`text-xs ${plan.popular ? 'text-gray-500' : 'text-gray-400'}`}>
+                  {plan.note}
+                </p>
+              )}
+
               <a
                 href={plan.ctaHref}
-                className={`inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 min-h-[44px] ${
+                className={`inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-violet-600 focus-visible:ring-offset-2 min-h-[44px] ${
                   plan.popular
-                    ? 'bg-blue-600 text-white hover:bg-blue-500'
+                    ? 'bg-violet-600 text-white hover:bg-violet-500'
                     : 'bg-gray-100 text-slate-900 hover:bg-gray-200'
                 }`}
               >
@@ -180,8 +158,7 @@ export default function PricingSection() {
           viewport={{ once: true, margin: '-80px' }}
           className="text-center text-sm text-gray-400 mt-8"
         >
-          All plans include free data migration from your existing software. No technical setup required.
-          {geo && ` Prices shown in ${geo.currencyCode} (${geo.flag} ${geo.countryName}).`}
+          Prices in INR. EasiBill works alongside your existing billing software (Marg, Vyapar, Ecogreen) — no replacement needed.
         </motion.p>
       </div>
     </section>

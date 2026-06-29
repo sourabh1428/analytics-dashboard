@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -91,11 +91,11 @@ export default function LeadNudge() {
           aria-modal="true"
           aria-label="Quick inquiry form"
         >
-          <div className="rounded-[1.75rem] bg-slate-950 p-5 text-white shadow-2xl shadow-black/40 ring-1 ring-white/10">
+          <div className="rounded-[1.75rem] bg-[#0D0B1E] p-5 text-white shadow-2xl shadow-violet-950/60 ring-1 ring-violet-500/20">
             {/* Header */}
             <div className="mb-4 flex items-start justify-between gap-3">
               <div className="flex items-center gap-3">
-                <div className="rounded-xl bg-blue-500 p-2.5 text-white">
+                <div className="rounded-xl bg-violet-500 p-2.5 text-white">
                   <Send className="h-4 w-4" />
                 </div>
                 <div>
@@ -117,7 +117,7 @@ export default function LeadNudge() {
 
             {done ? (
               <div className="flex flex-col items-center gap-2 py-5 text-center">
-                <CheckCircle2 className="h-8 w-8 text-blue-400" />
+                <CheckCircle2 className="h-8 w-8 text-violet-400" />
                 <p className="text-sm font-semibold text-white">Got it — we will be in touch shortly.</p>
                 <p className="text-xs text-slate-400">Expect a reply within 1 business day.</p>
               </div>
@@ -128,7 +128,7 @@ export default function LeadNudge() {
                   value={form.name}
                   onChange={handleChange}
                   required
-                  className="rounded-xl border border-white/10 bg-white/10 px-3.5 py-2.5 text-sm outline-none placeholder:text-slate-400 focus:border-blue-400"
+                  className="rounded-xl border border-white/10 bg-white/10 px-3.5 py-2.5 text-sm outline-none placeholder:text-slate-400 focus:border-violet-400"
                   placeholder="Your name"
                 />
                 <div className="grid grid-cols-2 gap-2">
@@ -137,7 +137,7 @@ export default function LeadNudge() {
                     type="email"
                     value={form.email}
                     onChange={handleChange}
-                    className="rounded-xl border border-white/10 bg-white/10 px-3.5 py-2.5 text-sm outline-none placeholder:text-slate-400 focus:border-blue-400"
+                    className="rounded-xl border border-white/10 bg-white/10 px-3.5 py-2.5 text-sm outline-none placeholder:text-slate-400 focus:border-violet-400"
                     placeholder="Email"
                   />
                   <input
@@ -145,7 +145,7 @@ export default function LeadNudge() {
                     type="tel"
                     value={form.mobile}
                     onChange={handleChange}
-                    className="rounded-xl border border-white/10 bg-white/10 px-3.5 py-2.5 text-sm outline-none placeholder:text-slate-400 focus:border-blue-400"
+                    className="rounded-xl border border-white/10 bg-white/10 px-3.5 py-2.5 text-sm outline-none placeholder:text-slate-400 focus:border-violet-400"
                     placeholder="Phone"
                   />
                 </div>
@@ -154,7 +154,7 @@ export default function LeadNudge() {
                   name="company"
                   value={form.company}
                   onChange={handleChange}
-                  className="rounded-xl border border-white/10 bg-white/10 px-3.5 py-2.5 text-sm outline-none placeholder:text-slate-400 focus:border-blue-400"
+                  className="rounded-xl border border-white/10 bg-white/10 px-3.5 py-2.5 text-sm outline-none placeholder:text-slate-400 focus:border-violet-400"
                   placeholder="Pharmacy / company name"
                 />
                 <textarea
@@ -162,14 +162,14 @@ export default function LeadNudge() {
                   value={form.message}
                   onChange={handleChange}
                   rows={2}
-                  className="rounded-xl border border-white/10 bg-white/10 px-3.5 py-2.5 text-sm outline-none placeholder:text-slate-400 focus:border-blue-400 resize-none"
+                  className="rounded-xl border border-white/10 bg-white/10 px-3.5 py-2.5 text-sm outline-none placeholder:text-slate-400 focus:border-violet-400 resize-none"
                   placeholder="What do you want help with?"
                 />
                 {error && <p className="text-center text-xs text-red-400">{error}</p>}
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="mt-1 rounded-full bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500 disabled:opacity-60"
+                  className="mt-1 rounded-full bg-violet-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-violet-500 disabled:opacity-60"
                 >
                   {submitting ? 'Submitting…' : 'Submit inquiry'}
                 </button>

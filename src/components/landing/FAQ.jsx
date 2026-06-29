@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -6,28 +6,28 @@ import { Plus, Minus } from 'lucide-react'
 
 const FAQS = [
   {
-    question: 'Do I need internet to use EasiBill?',
-    answer: 'EasiBill works offline for billing and inventory. Bills are queued and sent on WhatsApp as soon as your phone reconnects. Your data syncs automatically — you never lose a bill.',
+    question: 'Do I need WhatsApp Business API to use EasiBill?',
+    answer: 'No. The Starter plan connects to your existing WhatsApp Business number by scanning a QR code — no API registration, no waiting period, no extra cost. Just scan once and you are live in 2 minutes. The Pro plan uses an official WhatsApp Business API number (via Gupshup) for pharmacies who need broadcast campaigns at scale.',
   },
   {
-    question: 'Can I migrate from my current billing software?',
-    answer: 'Yes. We provide free data migration support for all plans. Our team will import your customer list, medicine stock, and billing history from any existing system or Excel-based setup. Takes 1–2 business days.',
+    question: 'Does EasiBill replace my billing software (Marg, Vyapar, Ecogreen)?',
+    answer: 'No — and intentionally so. EasiBill works alongside your existing billing software. It is a patient retention CRM, not a billing or inventory system. You continue using Marg or Vyapar for GST invoicing. EasiBill handles patient records, refill reminders, and WhatsApp campaigns.',
   },
   {
-    question: 'Is my customer data safe? Where is it stored?',
-    answer: 'All data is encrypted (AES-256) and stored on secure cloud infrastructure compliant with international data protection standards. You own your data — you can export everything at any time, in any plan.',
+    question: 'What happens if my WhatsApp disconnects?',
+    answer: 'EasiBill automatically reconnects with retry — sessions persist through server restarts and network drops, so you never need to re-scan the QR code. If a reminder fails to send, it appears on the dashboard immediately so you can retry manually or follow up by phone.',
   },
   {
-    question: 'How does WhatsApp billing work? Do I need WhatsApp Business API?',
-    answer: 'The Starter and Growth plans use your existing WhatsApp Business number on your phone — no API needed. The Scale plan optionally supports WhatsApp Business API for high-volume stores (100+ bills per day) with automated sending.',
+    question: 'Is my patient data safe?',
+    answer: 'All patient data is encrypted and stored on secure cloud infrastructure. Data is scoped per pharmacy — no other pharmacy can access your records. You can export everything at any time.',
   },
   {
-    question: 'Are tax reports compatible with my country\'s requirements?',
-    answer: 'EasiBill generates itemized invoices with all the fields your accountant needs — item names, quantities, tax breakdowns, and invoice numbers. Export a clean report in one click. We support multiple tax formats globally.',
+    question: 'How long does setup take?',
+    answer: 'Most pharmacies go from sign-up to first reminder in under 30 minutes. Step 1: scan the WhatsApp QR code (2 min). Step 2: add or import your top 20–30 patients (8–10 min). Step 3: enable reminders. Everything else is automatic.',
   },
   {
     question: 'What happens if I want to cancel?',
-    answer: 'Cancel any time from your account settings. No cancellation fees, no lock-in. If you cancel a paid plan, you drop to the Starter (free) plan and keep your data. You can export everything before you leave.',
+    answer: 'Cancel any time from your account settings. No cancellation fee, no lock-in. Your patient data is preserved and you can export it before you leave.',
   },
 ]
 
@@ -43,11 +43,11 @@ function FAQItem({ item, index }) {
         aria-expanded={open}
         aria-controls={id}
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between py-5 text-left gap-4 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 rounded-sm"
+        className="w-full flex items-center justify-between py-5 text-left gap-4 focus-visible:ring-2 focus-visible:ring-violet-600 focus-visible:ring-offset-2 rounded-sm"
       >
         <span className="font-semibold text-slate-900 text-base">{item.question}</span>
         {open
-          ? <Minus className="h-5 w-5 text-blue-600 shrink-0" aria-hidden="true" />
+          ? <Minus className="h-5 w-5 text-violet-600 shrink-0" aria-hidden="true" />
           : <Plus className="h-5 w-5 text-gray-400 shrink-0" aria-hidden="true" />
         }
       </button>

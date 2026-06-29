@@ -20,10 +20,10 @@ export default {
     			background: 'hsl(var(--background))',
     			foreground: 'hsl(var(--foreground))',
     			brand: {
-    				blue: '#2563EB',
-    				teal: '#06B6D4',
-    				dark: '#0F172A',
-    				surface: '#F8FFF8',
+    				primary: '#7C3AED',
+    				primaryDark: '#6D28D9',
+    				dark: '#09090B',
+    				surface: '#FAFAFA',
     			},
     		},
     		borderColor: {

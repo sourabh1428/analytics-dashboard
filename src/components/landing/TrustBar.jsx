@@ -46,7 +46,7 @@ export default function TrustBar() {
   return (
     <section
       aria-labelledby="trust-heading"
-      className="bg-slate-900 py-16 px-6"
+      className="bg-[#0D0B1E] py-16 px-6"
     >
       <div className="max-w-7xl mx-auto">
         <motion.p

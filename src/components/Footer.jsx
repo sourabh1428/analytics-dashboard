@@ -1,26 +1,25 @@
 ﻿"use client";
 
-import { ArrowRight, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
+import { ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
-const DASHBOARD_LOGIN_URL = 'https://easibill.vercel.app/login';
-const DISCORD_URL = 'https://discord.gg/easibill';
+const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
 
 const linkGroups = [
   {
     title: 'Pharmacy Tools',
     links: [
-      { label: 'Refill Reminders', description: 'Automatic WhatsApp follow-ups for chronic-care patients.', href: '/#features' },
-      { label: 'Patient Records', description: 'Medicine, interval, and contact stored per patient.', href: '/#features' },
-      { label: 'Daily Queue', description: 'Who is due, overdue, or recently refilled — every morning.', href: '/#features' },
-      { label: 'Broadcast Campaigns', description: 'Health camp and loyalty messages for targeted patient groups.', href: '/#features' },
-      { label: 'Retention Analytics', description: 'Reminders sent, recovered refills, and inactive patients tracked.', href: '/#features' },
+      { label: 'Refill Reminders', description: 'Automatic WhatsApp follow-ups for chronic-care patients.', href: '/features/refill-reminders' },
+      { label: 'Patient Records', description: 'Medicine, interval, and contact stored per patient.', href: '/features/patient-records' },
+      { label: 'Daily Queue', description: 'Who is due, overdue, or recently refilled — every morning.', href: '/features/daily-queue' },
+      { label: 'Broadcast Campaigns', description: 'Health camp and loyalty messages for targeted patient groups.', href: '/features/broadcast-campaigns' },
+      { label: 'Retention Analytics', description: 'Reminders sent, recovered refills, and inactive patients tracked.', href: '/features/retention-analytics' },
     ],
   },
   {
     title: 'Getting Started',
     links: [
-      { label: '14-Day Free Trial', description: 'Full access, no card required, set up in under 5 minutes.', href: 'https://easibill.vercel.app/login', external: true },
+      { label: '14-Day Free Trial', description: 'Full access, no card required, set up in under 5 minutes.', href: 'https://dashboard.easibill.com/', external: true },
       { label: 'Book a Demo', description: 'Live walkthrough with a pharmacy retention specialist.', href: '/contact' },
       { label: 'Onboarding Guide', description: 'Step-by-step setup from first patient to first reminder.', href: '/onboarding' },
       { label: 'Pricing', description: 'Starter free forever. Growth from $9/month.', href: '/#pricing' },
@@ -31,6 +30,7 @@ const linkGroups = [
     links: [
       { label: 'Help Center', description: 'Setup guides for reminders, billing, and patient records.', href: '/help' },
       { label: 'Blog', description: 'Practical growth notes for independent pharmacy owners.', href: '/blog' },
+      { label: 'Pharmacy Guides', description: 'Deep-dive articles on GST invoicing, refill systems, and more.', href: '/sitemap-page' },
       { label: 'Tutorials', description: 'Short walkthroughs for staff onboarding.', href: '/tutorials' },
       { label: 'Webinars', description: 'Live sessions on refill automation and retention.', href: '/webinars' },
     ],
@@ -111,10 +111,6 @@ const Footer = () => {
             <div className="mt-6 flex flex-wrap gap-3">
               <a href={DASHBOARD_LOGIN_URL} className="inline-flex items-center justify-center rounded-full bg-violet-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-violet-400">
                 Open Easibill app
-              </a>
-              <a href={DISCORD_URL} className="inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.05] px-5 py-3 text-sm font-semibold text-white/70 transition hover:border-white/20 hover:text-white">
-                <MessageCircle className="h-4 w-4" />
-                Join Discord
               </a>
             </div>
           </div>

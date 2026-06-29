@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -63,8 +63,8 @@ const THEMES: Record<string, SectionTheme> = {
   handle:   { icon: "📋", iconBg: "bg-amber-50",   accent: "border-amber-400",   badge: "bg-amber-50 text-amber-700" },
   today:    { icon: "📋", iconBg: "bg-amber-50",   accent: "border-amber-400",   badge: "bg-amber-50 text-amber-700" },
   manual:   { icon: "📋", iconBg: "bg-amber-50",   accent: "border-amber-400",   badge: "bg-amber-50 text-amber-700" },
-  easibill: { icon: "🚀", iconBg: "bg-blue-50", accent: "border-blue-500", badge: "bg-blue-50 text-blue-700" },
-  solv:     { icon: "🚀", iconBg: "bg-blue-50", accent: "border-blue-500", badge: "bg-blue-50 text-blue-700" },
+  easibill: { icon: "🚀", iconBg: "bg-violet-50", accent: "border-violet-500", badge: "bg-violet-50 text-violet-700" },
+  solv:     { icon: "🚀", iconBg: "bg-violet-50", accent: "border-violet-500", badge: "bg-violet-50 text-violet-700" },
   start:    { icon: "🎯", iconBg: "bg-indigo-50",  accent: "border-indigo-400",  badge: "bg-indigo-50 text-indigo-700" },
   get:      { icon: "🎯", iconBg: "bg-indigo-50",  accent: "border-indigo-400",  badge: "bg-indigo-50 text-indigo-700" },
 };
@@ -130,7 +130,7 @@ export function Article({ page, relatedPages }: ArticleProps) {
         <div className="absolute bottom-0 left-0 right-0 px-6 pb-10 sm:px-12">
           <div className="mx-auto max-w-4xl">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-white">
+              <span className="rounded-full bg-violet-600 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-white">
                 {page.keyword}
               </span>
               <span className="text-xs text-zinc-400">{mins} min read</span>
@@ -149,7 +149,7 @@ export function Article({ page, relatedPages }: ArticleProps) {
       <div className="border-b border-zinc-200 bg-white shadow-sm">
         <div className="mx-auto grid max-w-4xl grid-cols-2 sm:grid-cols-4">
           {[
-            { stat: "12%",  sub: "GST on most medicines",    color: "text-blue-600"    },
+            { stat: "12%",  sub: "GST on most medicines",    color: "text-violet-600"    },
             { stat: "0%",   sub: "GST on essential drugs",   color: "text-green-600"   },
             { stat: "11th", sub: "GSTR-1 filing deadline",   color: "text-amber-600"   },
             { stat: "₹40L", sub: "GSTIN mandatory above",    color: "text-red-500"     },
@@ -207,7 +207,7 @@ export function Article({ page, relatedPages }: ArticleProps) {
 
                   {/* Body — prose typography now works with @tailwindcss/typography */}
                   <div className="px-6 py-5">
-                    <div className="prose prose-sm prose-zinc max-w-none prose-headings:font-semibold prose-headings:text-zinc-800 prose-strong:font-semibold prose-strong:text-zinc-900 prose-a:text-blue-700 prose-a:no-underline hover:prose-a:underline prose-li:text-zinc-700 prose-ol:pl-5 prose-ul:pl-5 prose-p:leading-7 prose-p:text-zinc-700">
+                    <div className="prose prose-sm prose-zinc max-w-none prose-headings:font-semibold prose-headings:text-zinc-800 prose-strong:font-semibold prose-strong:text-zinc-900 prose-a:text-violet-700 prose-a:no-underline hover:prose-a:underline prose-li:text-zinc-700 prose-ol:pl-5 prose-ul:pl-5 prose-p:leading-7 prose-p:text-zinc-700">
                       <ReactMarkdown remarkPlugins={[remarkGfm]} skipHtml>
                         {section.body}
                       </ReactMarkdown>
@@ -222,34 +222,34 @@ export function Article({ page, relatedPages }: ArticleProps) {
           <aside className="w-full space-y-5 lg:w-64 lg:shrink-0">
 
             {/* CTA card */}
-            <div className="sticky top-6 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-800 p-6 text-white shadow-xl">
+            <div className="sticky top-6 rounded-2xl bg-gradient-to-br from-violet-600 to-violet-800 p-6 text-white shadow-xl">
               <div className="text-3xl">💊</div>
               <h3 className="mt-3 text-base font-bold leading-snug">
                 Automate your pharmacy billing
               </h3>
-              <ul className="mt-3 space-y-2 text-sm text-blue-100">
+              <ul className="mt-3 space-y-2 text-sm text-violet-100">
                 {["WhatsApp refill reminders", "Bulk GST invoicing", "Expiry tracking", "Multi-store support"].map((f) => (
                   <li key={f} className="flex items-start gap-2">
-                    <span className="mt-0.5 text-blue-300">✓</span>
+                    <span className="mt-0.5 text-violet-300">✓</span>
                     {f}
                   </li>
                 ))}
               </ul>
               <Link
-                href="https://easibill.vercel.app/login"
+                href="https://dashboard.easibill.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-5 flex items-center justify-center rounded-xl bg-white px-4 py-3 text-sm font-bold text-blue-700 shadow transition hover:bg-blue-50"
+                className="mt-5 flex items-center justify-center rounded-xl bg-white px-4 py-3 text-sm font-bold text-violet-700 shadow transition hover:bg-violet-50"
               >
                 Start free trial →
               </Link>
-              <p className="mt-2 text-center text-xs text-blue-200">No credit card required</p>
+              <p className="mt-2 text-center text-xs text-violet-200">No credit card required</p>
             </div>
 
             {/* Jump-to-FAQ */}
             <a
               href="#faq"
-              className="flex items-center gap-3 rounded-xl border border-zinc-200 bg-white px-4 py-4 text-sm font-semibold text-zinc-700 shadow-sm transition hover:border-blue-300 hover:text-blue-700"
+              className="flex items-center gap-3 rounded-xl border border-zinc-200 bg-white px-4 py-4 text-sm font-semibold text-zinc-700 shadow-sm transition hover:border-violet-300 hover:text-violet-700"
             >
               <span className="text-xl">💬</span>
               <span>Jump to FAQ</span>
@@ -267,7 +267,7 @@ export function Article({ page, relatedPages }: ArticleProps) {
                     <li key={rp.slug}>
                       <Link
                         href={`/${rp.slug}`}
-                        className="text-sm font-semibold text-zinc-900 transition hover:text-blue-700"
+                        className="text-sm font-semibold text-zinc-900 transition hover:text-violet-700"
                       >
                         {rp.metaTitle}
                       </Link>
@@ -283,7 +283,7 @@ export function Article({ page, relatedPages }: ArticleProps) {
               <p className="text-xs text-zinc-500">Questions? Reach us directly.</p>
               <a
                 href="mailto:support@easibill.com"
-                className="mt-1 inline-flex items-center gap-1 text-sm font-semibold text-blue-700 hover:underline"
+                className="mt-1 inline-flex items-center gap-1 text-sm font-semibold text-violet-700 hover:underline"
               >
                 support@easibill.com →
               </a>

@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 export function CTASection() {
   return (
@@ -9,19 +9,19 @@ export function CTASection() {
         className="pointer-events-none absolute inset-0 opacity-5"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 25% 50%, #2563EB 0%, transparent 60%), radial-gradient(circle at 75% 50%, #1d4ed8 0%, transparent 60%)",
+            "radial-gradient(circle at 25% 50%, #7C3AED 0%, transparent 60%), radial-gradient(circle at 75% 50%, #6D28D9 0%, transparent 60%)",
         }}
       />
 
       <div className="relative mx-auto max-w-3xl text-center">
-        <span className="inline-flex items-center rounded-full bg-blue-500/10 px-4 py-1.5 text-sm font-semibold text-blue-400 ring-1 ring-blue-500/20">
+        <span className="inline-flex items-center rounded-full bg-violet-500/10 px-4 py-1.5 text-sm font-semibold text-violet-400 ring-1 ring-violet-500/20">
           Built for independent pharmacies
         </span>
 
         <h2 className="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl">
           Stop doing billing manually.
           <br />
-          <span className="text-blue-400">Let EasiBill handle it.</span>
+          <span className="text-violet-400">Let EasiBill handle it.</span>
         </h2>
 
         <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-zinc-400">
@@ -31,8 +31,8 @@ export function CTASection() {
 
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
-            href="https://easibill.vercel.app/login"
-            className="inline-flex min-h-12 items-center justify-center rounded-xl bg-blue-600 px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-blue-500"
+            href="https://dashboard.easibill.com/"
+            className="inline-flex min-h-12 items-center justify-center rounded-xl bg-violet-600 px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-violet-500"
             target="_blank"
             rel="noopener noreferrer"
           >

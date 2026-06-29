@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Suspense, lazy } from 'react';
 import { motion } from 'framer-motion';
@@ -17,7 +17,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 
 const EasibillCTA = lazy(() => import('../components/easibill/EasibillCTA'));
 
-const DASHBOARD_LOGIN_URL = 'https://easibill.vercel.app/login';
+const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
 
 const capabilities = [
   {
@@ -57,7 +57,7 @@ const BulkBillingSolutionPage = () => {
             transition={{ duration: 0.7 }}
             className="mx-auto max-w-3xl text-center"
           >
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-200/80 bg-white/75 px-3 py-1.5 text-sm font-medium text-blue-800 shadow-sm backdrop-blur">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-violet-200/80 bg-white/75 px-3 py-1.5 text-sm font-medium text-violet-800 shadow-sm backdrop-blur">
               <Megaphone className="h-4 w-4" />
               Broadcast + Segmentation — Pro plan
             </div>
@@ -72,7 +72,7 @@ const BulkBillingSolutionPage = () => {
                 href={DASHBOARD_LOGIN_URL}
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-xl shadow-blue-600/25 transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-violet-600 px-6 py-3.5 text-sm font-semibold text-white shadow-xl shadow-violet-600/25 transition hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2"
               >
                 Start 14-day trial
                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
@@ -81,7 +81,7 @@ const BulkBillingSolutionPage = () => {
                 href="/contact"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-6 py-3.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-blue-300 hover:text-blue-800"
+                className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-6 py-3.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-violet-300 hover:text-violet-800"
               >
                 Book pharmacy demo
               </motion.a>
@@ -100,7 +100,7 @@ const BulkBillingSolutionPage = () => {
               viewport={{ once: true, amount: 0.35 }}
               transition={{ duration: 0.7 }}
             >
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-blue-700">What it is</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-violet-700">What it is</p>
               <h2 className="mt-4 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
                 One message. The right patients. Zero manual work.
               </h2>
@@ -115,7 +115,7 @@ const BulkBillingSolutionPage = () => {
                   'Tracks delivery so you know who actually received it',
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-4 text-sm font-medium text-slate-700 shadow-sm">
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-blue-600" />
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-violet-600" />
                     {item}
                   </div>
                 ))}
@@ -131,7 +131,7 @@ const BulkBillingSolutionPage = () => {
               className="overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 text-white shadow-2xl shadow-slate-950/20"
             >
               <div className="border-b border-white/10 p-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-300">Broadcast composer</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-violet-300">Broadcast composer</p>
                 <h3 className="mt-1 text-lg font-semibold">New campaign</h3>
               </div>
               <div className="space-y-4 p-5">
@@ -143,7 +143,7 @@ const BulkBillingSolutionPage = () => {
                         key={seg}
                         className={`rounded-full px-3 py-1 text-xs font-medium ${
                           i === 0
-                            ? 'bg-blue-500 text-white'
+                            ? 'bg-violet-500 text-white'
                             : 'border border-white/10 bg-white/10 text-slate-300'
                         }`}
                       >
@@ -154,7 +154,7 @@ const BulkBillingSolutionPage = () => {
                 </div>
                 <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-4">
                   <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Message preview</p>
-                  <div className="rounded-xl bg-blue-50 p-4 text-sm leading-6 text-blue-900">
+                  <div className="rounded-xl bg-violet-50 p-4 text-sm leading-6 text-violet-900">
                     Namaste {'{'}{'{'} Name {'}'}{'}'},<br />
                     Kumar Medicos is running a free diabetes check-up camp this Sunday. Please visit us before 12 PM.
                   </div>
@@ -164,7 +164,7 @@ const BulkBillingSolutionPage = () => {
                     <p className="text-sm font-semibold">Recipients</p>
                     <p className="text-xs text-slate-400">142 diabetes patients</p>
                   </div>
-                  <button type="button" className="inline-flex items-center gap-2 rounded-full bg-blue-500 px-4 py-2 text-xs font-semibold text-white transition hover:bg-blue-400">
+                  <button type="button" className="inline-flex items-center gap-2 rounded-full bg-violet-500 px-4 py-2 text-xs font-semibold text-white transition hover:bg-violet-400">
                     <Send className="h-3.5 w-3.5" />
                     Schedule
                   </button>
@@ -185,7 +185,7 @@ const BulkBillingSolutionPage = () => {
             transition={{ duration: 0.7 }}
             className="mx-auto max-w-3xl text-center"
           >
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-blue-600">Capabilities</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-violet-600">Capabilities</p>
             <h2 className="mt-4 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
               Built for campaigns that actually get responses.
             </h2>
@@ -201,9 +201,9 @@ const BulkBillingSolutionPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.25 }}
                   transition={{ duration: 0.55, delay: index * 0.07 }}
-                  className="group rounded-[1.75rem] border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-950/5"
+                  className="group rounded-[1.75rem] border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-violet-200 hover:shadow-xl hover:shadow-violet-950/5"
                 >
-                  <div className="mb-4 inline-flex rounded-2xl bg-blue-50 p-3 text-blue-700 transition group-hover:bg-slate-950 group-hover:text-blue-300">
+                  <div className="mb-4 inline-flex rounded-2xl bg-violet-50 p-3 text-violet-700 transition group-hover:bg-slate-950 group-hover:text-violet-300">
                     <Icon className="h-5 w-5" />
                   </div>
                   <h3 className="text-lg font-semibold text-slate-950">{cap.title}</h3>
@@ -223,9 +223,9 @@ const BulkBillingSolutionPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.35 }}
             transition={{ duration: 0.7 }}
-            className="overflow-hidden rounded-[2.25rem] border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-sky-50 p-5 shadow-xl shadow-blue-950/5 sm:p-8 lg:p-10"
+            className="overflow-hidden rounded-[2.25rem] border border-violet-100 bg-gradient-to-br from-violet-50 via-white to-sky-50 p-5 shadow-xl shadow-violet-950/5 sm:p-8 lg:p-10"
           >
-            <p className="mb-8 text-center text-sm font-semibold uppercase tracking-[0.22em] text-blue-700">The difference</p>
+            <p className="mb-8 text-center text-sm font-semibold uppercase tracking-[0.22em] text-violet-700">The difference</p>
             <div className="grid gap-5 md:grid-cols-2">
               <div className="rounded-[1.75rem] border border-rose-100 bg-white p-6 shadow-sm">
                 <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-rose-50 px-3 py-1.5 text-sm font-semibold text-rose-700">
@@ -247,8 +247,8 @@ const BulkBillingSolutionPage = () => {
                   ))}
                 </ul>
               </div>
-              <div className="rounded-[1.75rem] border border-blue-200 bg-white p-6 shadow-sm">
-                <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1.5 text-sm font-semibold text-blue-700">
+              <div className="rounded-[1.75rem] border border-violet-200 bg-white p-6 shadow-sm">
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-violet-50 px-3 py-1.5 text-sm font-semibold text-violet-700">
                   <CheckCircle2 className="h-4 w-4" />
                   After Easibill
                 </div>
@@ -261,7 +261,7 @@ const BulkBillingSolutionPage = () => {
                     'Campaign history saved automatically',
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3 text-sm">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-blue-600" />
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-violet-600" />
                       {item}
                     </li>
                   ))}
@@ -283,13 +283,13 @@ const BulkBillingSolutionPage = () => {
             className="flex flex-col items-start justify-between gap-6 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:flex-row md:items-center"
           >
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-blue-700">Pro plan</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-violet-700">Pro plan</p>
               <h3 className="mt-2 text-2xl font-semibold text-slate-950">Bulk broadcasts from $9/month</h3>
               <p className="mt-2 text-slate-600">Broadcast messaging, segmentation, templates, and advanced analytics — all included in Pro.</p>
             </div>
             <a
               href="/#pricing"
-              className="inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+              className="inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-violet-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-violet-700"
             >
               See all pricing
               <ArrowRight className="h-4 w-4" />

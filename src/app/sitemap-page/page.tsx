@@ -18,9 +18,19 @@ const groups = [
     ],
   },
   {
+    title: "Pharmacy Tools",
+    links: [
+      { label: "Refill Reminders", href: "/features/refill-reminders" },
+      { label: "Patient Records", href: "/features/patient-records" },
+      { label: "Daily Queue", href: "/features/daily-queue" },
+      { label: "Broadcast Campaigns", href: "/features/broadcast-campaigns" },
+      { label: "Retention Analytics", href: "/features/retention-analytics" },
+    ],
+  },
+  {
     title: "Getting Started",
     links: [
-      { label: "14-Day Free Trial", href: "https://easibill.vercel.app/login", external: true },
+      { label: "14-Day Free Trial", href: "https://dashboard.easibill.com/", external: true },
       { label: "Book a Demo", href: "/contact" },
       { label: "Onboarding Guide", href: "/onboarding" },
     ],
@@ -29,9 +39,20 @@ const groups = [
     title: "Resources",
     links: [
       { label: "Help Center", href: "/help" },
-      { label: "Blog", href: "/blog" },
+      { label: "Blog (200+ articles)", href: "/blog" },
       { label: "Tutorials", href: "/tutorials" },
       { label: "Webinars", href: "/webinars" },
+    ],
+  },
+  {
+    title: "Pharmacy Guides",
+    links: [
+      { label: "Pharmacy Refill Reminder System", href: "/pharmacy-refill-reminder-system" },
+      { label: "Pharmacy WhatsApp Refill Reminders", href: "/pharmacy-whatsapp-refill-reminders" },
+      { label: "Pharmacy Billing & Inventory", href: "/pharmacy-billing-and-inventory-management" },
+      { label: "GST Invoicing Made Easy", href: "/pharmacy-gst-invoicing-made-easy" },
+      { label: "Inventory Management Simplified", href: "/pharmacy-inventory-management-simplified" },
+      { label: "Refill Reminder Systems", href: "/pharmacy-refill-reminder-systems" },
     ],
   },
   {

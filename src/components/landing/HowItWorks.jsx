@@ -1,29 +1,29 @@
-'use client'
+﻿'use client'
 
 import { motion } from 'framer-motion'
-import { Smartphone, Package, Send } from 'lucide-react'
+import { Smartphone, Users, Bell } from 'lucide-react'
 
 const STEPS = [
   {
     number: '01',
     icon: Smartphone,
-    title: 'Connect your WhatsApp Business number',
-    description: 'Link your existing WhatsApp Business number in one click. Takes 5 minutes. No technical setup needed.',
-    detail: 'Works with any Android phone or WhatsApp Business API account.',
+    title: 'Connect your WhatsApp number',
+    description: 'Scan a QR code once in the dashboard. Your existing WhatsApp Business number is now linked. Takes 2 minutes. No API registration needed.',
+    detail: 'Works with your current WhatsApp Business app — no new number required.',
   },
   {
     number: '02',
-    icon: Package,
-    title: 'Scan medicines or import your stock',
-    description: 'Scan barcodes with your phone camera, or bulk-import from your existing Marg/Gofrugal data. One-time setup.',
-    detail: 'Free migration support included for all plans.',
+    icon: Users,
+    title: 'Add your patients and their medicines',
+    description: 'Add each patient with their name, WhatsApp number, medicine, and refill interval. Or upload a CSV to import your existing patient list in bulk.',
+    detail: 'Most pharmacies import their top 30 chronic-care patients in under 10 minutes.',
   },
   {
     number: '03',
-    icon: Send,
-    title: "Bill customers — they get it instantly",
-    description: "Select medicines, enter quantity, tap send. The GST bill lands in your customer's WhatsApp before they leave your counter.",
-    detail: 'Refill reminders send automatically from here on.',
+    icon: Bell,
+    title: 'Reminders fire automatically — forever',
+    description: 'EasiBill calculates each patient\'s refill date and sends a WhatsApp message at 9 AM on that day. You do nothing. The patient comes back.',
+    detail: 'Average pharmacy recovers 28–35% of missed refills in the first month.',
   },
 ]
 
@@ -70,16 +70,16 @@ export default function HowItWorks() {
             >
               <div className="relative mb-6">
                 <div className="h-20 w-20 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center">
-                  <step.icon className="h-8 w-8 text-blue-500" aria-hidden="true" />
+                  <step.icon className="h-8 w-8 text-violet-500" aria-hidden="true" />
                 </div>
-                <span className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-blue-500 text-white text-xs font-bold flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-violet-500 text-white text-xs font-bold flex items-center justify-center">
                   {i + 1}
                 </span>
               </div>
 
               <h3 className="text-xl font-bold text-slate-900 mb-3">{step.title}</h3>
               <p className="text-gray-500 text-sm leading-relaxed mb-3">{step.description}</p>
-              <p className="text-xs text-blue-600 font-medium">{step.detail}</p>
+              <p className="text-xs text-violet-600 font-medium">{step.detail}</p>
             </motion.div>
           ))}
         </div>
@@ -92,8 +92,8 @@ export default function HowItWorks() {
           className="text-center mt-14"
         >
           <a
-            href="/lead"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-blue-500 text-white font-semibold hover:bg-blue-600 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 text-base"
+            href="https://dashboard.easibill.com/"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-violet-500 text-white font-semibold hover:bg-violet-600 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 text-base"
           >
             Start free — no card needed
           </a>

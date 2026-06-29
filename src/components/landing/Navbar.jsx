@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -29,7 +29,7 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" className="flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded-md">
+        <a href="/" className="flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 rounded-md">
           <img src="/logo.png" alt="EasiBill" className="h-8 w-auto" loading="eager" />
           <span className="font-bold text-slate-900 text-lg tracking-tight">EasiBill</span>
         </a>
@@ -39,7 +39,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-gray-600 hover:text-slate-900 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded-sm"
+              className="text-sm text-gray-600 hover:text-slate-900 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 rounded-sm"
             >
               {link.label}
             </a>
@@ -48,14 +48,14 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-3">
           <a
-            href="/lead"
-            className="text-sm text-gray-600 hover:text-slate-900 transition-colors duration-150 font-medium focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded-sm"
+            href="https://dashboard.easibill.com/"
+            className="text-sm text-gray-600 hover:text-slate-900 transition-colors duration-150 font-medium focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 rounded-sm"
           >
             Sign in
           </a>
           <a
-            href="/lead"
-            className="inline-flex items-center px-4 py-2 rounded-xl bg-blue-500 text-white text-sm font-semibold hover:bg-blue-600 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+            href="https://dashboard.easibill.com/"
+            className="inline-flex items-center px-4 py-2 rounded-xl bg-violet-500 text-white text-sm font-semibold hover:bg-violet-600 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2"
           >
             Start free
           </a>
@@ -66,7 +66,7 @@ export default function Navbar() {
           aria-expanded={mobileOpen}
           aria-controls="mobile-menu"
           onClick={() => setMobileOpen((v) => !v)}
-          className="md:hidden p-2 rounded-lg text-gray-600 hover:text-slate-900 hover:bg-gray-100 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500"
+          className="md:hidden p-2 rounded-lg text-gray-600 hover:text-slate-900 hover:bg-gray-100 transition-colors focus-visible:ring-2 focus-visible:ring-violet-500"
         >
           {mobileOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
         </button>
@@ -94,8 +94,8 @@ export default function Navbar() {
                 </a>
               ))}
               <a
-                href="/lead"
-                className="mt-2 inline-flex items-center justify-center px-4 py-3 rounded-xl bg-blue-500 text-white text-sm font-semibold hover:bg-blue-600 transition-colors min-h-[44px]"
+                href="https://dashboard.easibill.com/"
+                className="mt-2 inline-flex items-center justify-center px-4 py-3 rounded-xl bg-violet-500 text-white text-sm font-semibold hover:bg-violet-600 transition-colors min-h-[44px]"
               >
                 Start free — no card needed
               </a>

@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { motion } from 'framer-motion'
 import { ArrowRight, CheckCircle, MessageCircle, LayoutDashboard, Users, Package, BarChart3 } from 'lucide-react'
@@ -50,7 +50,7 @@ function AppMockup() {
               <div
                 key={item.label}
                 className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium ${
-                  item.active ? 'bg-blue-50 text-blue-700' : 'text-gray-500'
+                  item.active ? 'bg-violet-50 text-violet-700' : 'text-gray-500'
                 }`}
               >
                 <item.icon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
@@ -78,14 +78,14 @@ function AppMockup() {
               <h3 className="text-sm font-semibold text-slate-900">New Bill</h3>
               <p className="text-xs text-gray-400 mt-0.5">Invoice #2406-0047</p>
             </div>
-            <span className="px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 text-[10px] font-semibold">
+            <span className="px-2.5 py-1 rounded-full bg-violet-50 text-violet-700 text-[10px] font-semibold">
               Tax-ready ✓
             </span>
           </div>
 
           {/* Patient */}
           <div className="flex items-center gap-3 mb-4 p-3 bg-gray-50 rounded-xl border border-gray-100">
-            <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center text-xs font-bold text-blue-700 shrink-0">
+            <div className="h-8 w-8 rounded-full bg-violet-100 flex items-center justify-center text-xs font-bold text-violet-700 shrink-0">
               RK
             </div>
             <div>
@@ -120,7 +120,7 @@ function AppMockup() {
           </div>
 
           <button
-            className="w-full py-2.5 rounded-xl bg-blue-600 text-white text-xs font-semibold flex items-center justify-center gap-2 cursor-default"
+            className="w-full py-2.5 rounded-xl bg-violet-600 text-white text-xs font-semibold flex items-center justify-center gap-2 cursor-default"
             tabIndex={-1}
             aria-hidden="true"
           >
@@ -136,25 +136,25 @@ function AppMockup() {
           </p>
 
           <div className="bg-white rounded-2xl rounded-tl-none p-3 shadow-sm border border-gray-100">
-            <p className="text-[10px] font-bold text-blue-600 mb-1">EasiBill — Verma Medical</p>
+            <p className="text-[10px] font-bold text-violet-600 mb-1">EasiBill — Verma Medical</p>
             <p className="text-[10px] text-gray-600 leading-relaxed">
               Invoice #2406-0047<br />$12.00 · tax included
             </p>
-            <div className="mt-2 pt-2 border-t border-gray-100 flex items-center gap-1 text-blue-600">
+            <div className="mt-2 pt-2 border-t border-gray-100 flex items-center gap-1 text-violet-600">
               <span className="text-[10px]" aria-hidden="true">📄</span>
               <p className="text-[10px] font-medium">View &amp; download bill</p>
             </div>
           </div>
 
           <div className="flex items-center gap-1.5">
-            <span className="text-[10px] text-blue-500" aria-hidden="true">✓✓</span>
+            <span className="text-[10px] text-violet-500" aria-hidden="true">✓✓</span>
             <p className="text-[10px] text-gray-500">Delivered · 2.3 seconds</p>
           </div>
 
           <div className="mt-auto rounded-xl bg-white border border-gray-100 p-3">
             <p className="text-[10px] font-semibold text-slate-900 mb-1">Next: Refill reminder</p>
             <p className="text-[10px] text-gray-400">Metformin due in 28 days</p>
-            <p className="text-[10px] text-blue-600 font-medium mt-1">Auto-scheduled ✓</p>
+            <p className="text-[10px] text-violet-600 font-medium mt-1">Auto-scheduled ✓</p>
           </div>
         </aside>
       </div>
@@ -183,10 +183,10 @@ export default function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35 }}
-          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-8"
+          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-50 border border-violet-100 mb-8"
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-blue-600" aria-hidden="true" />
-          <span className="text-xs font-semibold text-blue-700 uppercase tracking-wide">
+          <span className="h-1.5 w-1.5 rounded-full bg-violet-600" aria-hidden="true" />
+          <span className="text-xs font-semibold text-violet-700 uppercase tracking-wide">
             #1 billing app for independent pharmacies
           </span>
         </motion.div>
@@ -198,8 +198,8 @@ export default function Hero() {
           transition={{ duration: 0.45, delay: 0.08 }}
           className="text-5xl sm:text-[3.5rem] font-bold text-slate-900 leading-[1.06] tracking-tight mb-5"
         >
-          Your pharmacy runs on hard work.{' '}
-          <span className="text-blue-600">Let billing run itself.</span>
+          Your pharmacy loses 20–40% of patients every year.{' '}
+          <span className="text-violet-600">EasiBill stops that.</span>
         </motion.h1>
 
         <motion.p
@@ -208,7 +208,7 @@ export default function Hero() {
           transition={{ duration: 0.45, delay: 0.16 }}
           className="text-lg text-gray-500 leading-relaxed mb-9"
         >
-          EasiBill sends digital bills on WhatsApp, reminds customers when to refill, and keeps your inventory clean — so you can focus on your patients.
+          EasiBill is a WhatsApp-first CRM for independent pharmacies. Log a purchase and EasiBill automatically sends a refill reminder on the right day — from your own WhatsApp number, without you touching anything.
         </motion.p>
 
         <motion.div
@@ -218,8 +218,8 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-9"
         >
           <a
-            href="/lead"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 text-base min-h-[48px]"
+            href="https://dashboard.easibill.com/"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-violet-600 text-white font-semibold hover:bg-violet-700 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-violet-600 focus-visible:ring-offset-2 text-base min-h-[48px]"
           >
             Start free — no card needed
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -241,7 +241,7 @@ export default function Hero() {
         >
           {proofPoints.map((point) => (
             <li key={point} className="flex items-center gap-1.5 text-sm text-gray-500">
-              <CheckCircle className="h-4 w-4 text-blue-600 shrink-0" aria-hidden="true" />
+              <CheckCircle className="h-4 w-4 text-violet-600 shrink-0" aria-hidden="true" />
               {point}
             </li>
           ))}

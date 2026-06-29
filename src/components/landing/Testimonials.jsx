@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { motion } from 'framer-motion'
 import { Star } from 'lucide-react'
@@ -34,13 +34,13 @@ const TESTIMONIALS = [
 ]
 
 const AVATAR_COLORS = {
-  blue: 'bg-blue-100 text-blue-700',
+  blue: 'bg-violet-100 text-violet-700',
   indigo: 'bg-indigo-100 text-indigo-700',
   sky: 'bg-sky-100 text-sky-700',
 }
 
 const SINCE_COLORS = {
-  blue: 'text-blue-600',
+  blue: 'text-violet-600',
   indigo: 'text-indigo-600',
   sky: 'text-sky-600',
 }

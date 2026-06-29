@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
@@ -6,7 +6,7 @@ import { ArrowRight, CheckCircle2, Mail, MessageCircle, Phone, Send } from 'luci
 import { track } from '../utils/mixpanel';
 
 const WORKER_URL = 'https://landingpage-lead.sppathak1428.workers.dev/';
-const DASHBOARD_LOGIN_URL = 'https://easibill.vercel.app/login';
+const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
 const DISCORD_URL = 'https://discord.gg/easibill';
 
 const ContactPage = () => {
@@ -46,14 +46,14 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="bg-[#f8faf8] px-4 pb-20 pt-32 text-slate-950 sm:px-6 lg:px-8">
+    <div className="bg-[#FAF9FF] px-4 pb-20 pt-32 text-slate-950 sm:px-6 lg:px-8">
       <section className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
         >
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-blue-600">Talk to Easibill</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-violet-600">Talk to Easibill</p>
           <h1 className="mt-4 text-5xl font-semibold tracking-tight sm:text-6xl">
             Bring your pharmacy refill workflow. We will make it automatic.
           </h1>
@@ -64,7 +64,7 @@ const ContactPage = () => {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
               href={DASHBOARD_LOGIN_URL}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-xl shadow-blue-600/25 transition hover:bg-blue-700"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-violet-600 px-6 py-3.5 text-sm font-semibold text-white shadow-xl shadow-violet-600/25 transition hover:bg-violet-700"
             >
               Open Easibill app
               <ArrowRight className="h-4 w-4" />
@@ -80,12 +80,12 @@ const ContactPage = () => {
 
           <div className="mt-10 grid gap-3 text-sm">
             <div className="flex items-center gap-3">
-              <Mail className="h-4 w-4 text-blue-600" />
-              <a href="mailto:support@easibill.com" className="hover:text-blue-700">support@easibill.com</a>
+              <Mail className="h-4 w-4 text-violet-600" />
+              <a href="mailto:support@easibill.com" className="hover:text-violet-700">support@easibill.com</a>
             </div>
             <div className="flex items-center gap-3">
-              <Phone className="h-4 w-4 text-blue-600" />
-              <a href="mailto:support@easibill.com" className="hover:text-blue-700">support@easibill.com</a>
+              <Phone className="h-4 w-4 text-violet-600" />
+              <a href="mailto:support@easibill.com" className="hover:text-violet-700">support@easibill.com</a>
             </div>
           </div>
         </motion.div>
@@ -96,9 +96,9 @@ const ContactPage = () => {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-2xl shadow-slate-950/8"
         >
-          <div className="rounded-[1.5rem] bg-slate-950 p-6 text-white">
+          <div className="rounded-[1.5rem] bg-[#0D0B1E] p-6 text-white">
             <div className="mb-5 flex items-center gap-3">
-              <div className="rounded-2xl bg-blue-500 p-3 text-white">
+              <div className="rounded-2xl bg-violet-500 p-3 text-white">
                 <Send className="h-5 w-5" />
               </div>
               <div>
@@ -109,7 +109,7 @@ const ContactPage = () => {
 
             {done ? (
               <div className="flex flex-col items-center gap-3 py-8 text-center">
-                <CheckCircle2 className="h-10 w-10 text-blue-400" />
+                <CheckCircle2 className="h-10 w-10 text-violet-400" />
                 <p className="text-lg font-semibold text-white">Got it — we will be in touch shortly.</p>
                 <p className="text-sm text-slate-400">Expect a reply within 1 business day.</p>
               </div>
@@ -120,7 +120,7 @@ const ContactPage = () => {
                   value={form.name}
                   onChange={handleChange}
                   required
-                  className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:border-blue-400"
+                  className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:border-violet-400"
                   placeholder="Your name"
                 />
                 <div className="grid grid-cols-2 gap-3">
@@ -129,7 +129,7 @@ const ContactPage = () => {
                     type="email"
                     value={form.email}
                     onChange={handleChange}
-                    className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:border-blue-400"
+                    className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:border-violet-400"
                     placeholder="Email address"
                   />
                   <input
@@ -137,7 +137,7 @@ const ContactPage = () => {
                     type="tel"
                     value={form.mobile}
                     onChange={handleChange}
-                    className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:border-blue-400"
+                    className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:border-violet-400"
                     placeholder="Phone number"
                   />
                 </div>
@@ -146,21 +146,21 @@ const ContactPage = () => {
                   name="company"
                   value={form.company}
                   onChange={handleChange}
-                  className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:border-blue-400"
+                  className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:border-violet-400"
                   placeholder="Pharmacy / company name"
                 />
                 <textarea
                   name="message"
                   value={form.message}
                   onChange={handleChange}
-                  className="min-h-28 rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:border-blue-400"
+                  className="min-h-28 rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:border-violet-400"
                   placeholder="What do you want help with?"
                 />
                 {error && <p className="text-center text-sm text-red-400">{error}</p>}
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-blue-50 disabled:opacity-60"
+                  className="rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-violet-50 disabled:opacity-60"
                 >
                   {submitting ? 'Submitting…' : 'Submit inquiry'}
                 </button>

@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import { track } from '../../utils/mixpanel';
 
-const DASHBOARD_LOGIN_URL = 'https://easibill.vercel.app/login';
+const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
 
 const reminders = [
   { name: 'Anita R.', medicine: 'Metformin 500mg', status: 'Reminder sent', dot: 'bg-emerald-400' },

@@ -1,73 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { helpArticles, helpCategories } from "@/src/data/helpArticles";
 
 export const metadata: Metadata = {
   title: "Help Center – EasiBill",
   description: "Setup guides, FAQs, and troubleshooting for EasiBill pharmacy billing, WhatsApp reminders, and patient records.",
   alternates: { canonical: "https://easibill.com/help" },
 };
-
-const categories = [
-  {
-    title: "Getting Started",
-    icon: "🚀",
-    articles: [
-      { title: "Create your EasiBill account", time: "2 min" },
-      { title: "Import patients from a CSV or Excel file", time: "4 min" },
-      { title: "Connect your WhatsApp Business number", time: "5 min" },
-      { title: "Send your first refill reminder", time: "3 min" },
-    ],
-  },
-  {
-    title: "Patient Records",
-    icon: "👤",
-    articles: [
-      { title: "Add a patient manually", time: "2 min" },
-      { title: "Set refill intervals per medicine", time: "3 min" },
-      { title: "Edit or archive a patient", time: "2 min" },
-      { title: "Search and filter patient records", time: "2 min" },
-    ],
-  },
-  {
-    title: "Refill Reminders",
-    icon: "💊",
-    articles: [
-      { title: "How the daily reminder queue works", time: "3 min" },
-      { title: "Customise reminder message templates", time: "4 min" },
-      { title: "Handle overdue patients", time: "3 min" },
-      { title: "Mark a patient as refilled", time: "1 min" },
-    ],
-  },
-  {
-    title: "Broadcast Campaigns",
-    icon: "📢",
-    articles: [
-      { title: "Create a health camp announcement", time: "4 min" },
-      { title: "Segment patients by medicine or last visit", time: "5 min" },
-      { title: "Schedule a broadcast for later", time: "3 min" },
-      { title: "View campaign delivery stats", time: "2 min" },
-    ],
-  },
-  {
-    title: "Analytics",
-    icon: "📊",
-    articles: [
-      { title: "Reading your retention dashboard", time: "4 min" },
-      { title: "Track recovered refills over time", time: "3 min" },
-      { title: "Export reports as CSV", time: "2 min" },
-    ],
-  },
-  {
-    title: "Billing & Account",
-    icon: "💳",
-    articles: [
-      { title: "Upgrade from Starter to Growth", time: "2 min" },
-      { title: "Update your payment method", time: "2 min" },
-      { title: "Download invoices", time: "1 min" },
-      { title: "Cancel or pause your subscription", time: "3 min" },
-    ],
-  },
-];
 
 const faqs = [
   {
@@ -88,7 +27,7 @@ const faqs = [
   },
   {
     q: "Can multiple staff members use one account?",
-    a: "Yes. Growth plan accounts support up to 5 users with role-based access. Enterprise plans support unlimited users.",
+    a: "Yes. Pro plan accounts support up to 5 users with role-based access.",
   },
 ];
 
@@ -111,20 +50,31 @@ export default function HelpPage() {
       </div>
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {categories.map((cat) => (
-          <div key={cat.title} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-6">
-            <div className="text-2xl">{cat.icon}</div>
-            <h2 className="mt-3 font-semibold text-white">{cat.title}</h2>
-            <ul className="mt-4 space-y-3">
-              {cat.articles.map((a) => (
-                <li key={a.title} className="flex items-start justify-between gap-2">
-                  <span className="text-sm text-white/60 hover:text-violet-400 cursor-pointer">{a.title}</span>
-                  <span className="shrink-0 text-xs text-white/30">{a.time}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        {helpCategories.map((cat) => {
+          const articles = cat.slugs.map((slug) =>
+            helpArticles.find((a) => a.slug === slug)
+          ).filter(Boolean);
+
+          return (
+            <div key={cat.title} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-6">
+              <div className="text-2xl">{cat.icon}</div>
+              <h2 className="mt-3 font-semibold text-white">{cat.title}</h2>
+              <ul className="mt-4 space-y-3">
+                {articles.map((a) => a && (
+                  <li key={a.slug} className="flex items-start justify-between gap-2">
+                    <Link
+                      href={`/help/${a.slug}`}
+                      className="text-sm text-white/60 hover:text-violet-400 transition-colors"
+                    >
+                      {a.title}
+                    </Link>
+                    <span className="shrink-0 text-xs text-white/30">{a.time}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
       </div>
 
       <h2 className="mt-16 text-2xl font-bold text-white">Frequently asked questions</h2>

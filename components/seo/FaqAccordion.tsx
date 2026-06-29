@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronDown } from "lucide-react";
@@ -16,8 +16,8 @@ export function FaqAccordion({ pairs }: { pairs: FaqPair[] }) {
       {pairs.map((pair, i) => (
         <Accordion.Item key={i} value={`faq-${i}`} className="group">
           <Accordion.Header>
-            <Accordion.Trigger className="flex w-full items-start gap-4 px-6 py-5 text-left transition-colors hover:bg-zinc-50 data-[state=open]:bg-blue-50/50">
-              <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-blue-700">
+            <Accordion.Trigger className="flex w-full items-start gap-4 px-6 py-5 text-left transition-colors hover:bg-zinc-50 data-[state=open]:bg-violet-50/50">
+              <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-violet-100 text-xs font-bold text-violet-700">
                 {i + 1}
               </span>
               <span className="flex-1 text-sm font-semibold leading-6 text-zinc-900">{pair.q}</span>

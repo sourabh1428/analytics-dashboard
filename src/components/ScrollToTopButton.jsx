@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -24,7 +24,7 @@ const ScrollToTopButton = () => {
     <AnimatePresence>
       {showScrollToTop && (
         <motion.button
-          className="fixed bottom-8 right-8 p-3 bg-blue-600 text-white rounded-full shadow-lg z-50 hover:shadow-xl hover:bg-blue-700"
+          className="fixed bottom-8 right-8 p-3 bg-violet-600 text-white rounded-full shadow-lg z-50 hover:shadow-xl hover:bg-violet-700"
           onClick={scrollToTop}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

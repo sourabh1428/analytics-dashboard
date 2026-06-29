@@ -8,7 +8,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 const EasibillFeatures = lazy(() => import('../components/easibill/EasibillFeatures'));
 const EasibillCTA = lazy(() => import('../components/easibill/EasibillCTA'));
 
-const DASHBOARD_LOGIN_URL = 'https://easibill.vercel.app/login';
+const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
 
 const comparison = [
   { label: 'Setup time',           manual: 'None',           crm: '2–4 weeks',     easibill: '< 5 minutes' },

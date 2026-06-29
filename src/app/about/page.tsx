@@ -82,7 +82,7 @@ export default function AboutPage() {
           Talk to us
         </Link>
         <a
-          href="https://easibill.vercel.app/login"
+          href="https://dashboard.easibill.com/"
           className="inline-flex items-center rounded-full border border-white/[0.1] bg-white/[0.05] px-6 py-3 text-sm font-semibold text-white/70 transition hover:border-white/20 hover:text-white"
         >
           Try EasiBill free
