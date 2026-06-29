@@ -81,4 +81,5 @@ jobs:
           fi
 
           git commit -m "chore: generate seo page"
+          git pull --rebase origin main
           git push
