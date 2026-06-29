@@ -67,7 +67,7 @@ const NavBar = () => {
           <button
             type="button"
             onClick={() => goTo('/')}
-            className="flex items-center gap-3 py-3 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-600 focus-visible:ring-offset-2 rounded-xl"
+            className="flex items-center gap-3 py-3 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 rounded-xl"
             aria-label="Go to Easibill home"
           >
             <img src="/logo.png" alt="Easibill Logo" className="h-9 w-9 rounded-xl" width="36" height="36" />
@@ -83,7 +83,7 @@ const NavBar = () => {
                 onClick={() => link.section ? goToSection(link.section) : goTo(link.path)}
                 className={`rounded-lg px-3.5 py-2 text-sm font-medium transition-colors duration-150 ${
                   isActive(link)
-                    ? 'bg-violet-50 text-violet-600'
+                    ? 'bg-amber-50 text-amber-500'
                     : 'text-gray-600 hover:bg-gray-100 hover:text-slate-900'
                 }`}
               >
@@ -104,7 +104,7 @@ const NavBar = () => {
             <button
               type="button"
               onClick={() => { track('trial_started', { source: 'navbar' }); window.location.assign(DASHBOARD_LOGIN_URL); }}
-              className="rounded-lg bg-violet-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-violet-600/25 transition hover:bg-violet-700"
+              className="rounded-lg bg-amber-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-amber-500/25 transition hover:bg-amber-600"
               data-conversion-button="get-started"
             >
               Start free
@@ -158,7 +158,7 @@ const NavBar = () => {
                 <button
                   type="button"
                   onClick={() => { track('trial_started', { source: 'navbar' }); window.location.assign(DASHBOARD_LOGIN_URL); }}
-                  className="rounded-xl bg-violet-600 px-4 py-3 text-sm font-semibold text-white"
+                  className="rounded-xl bg-amber-500 px-4 py-3 text-sm font-semibold text-white"
                 >
                   Start free trial
                 </button>

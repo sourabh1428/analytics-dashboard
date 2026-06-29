@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { motion } from "framer-motion"
 import { Card } from "../ui/card"
@@ -15,8 +15,8 @@ export function PredictiveInsights() {
         >
           <Card className="bg-black/40 border-gray-800 backdrop-blur-sm p-6">
             <div className="flex items-center space-x-4 mb-4">
-              <div className="h-12 w-12 rounded-full bg-purple-500/20 flex items-center justify-center">
-                <div className="h-8 w-8 rounded-full bg-purple-500" />
+              <div className="h-12 w-12 rounded-full bg-amber-500/20 flex items-center justify-center">
+                <div className="h-8 w-8 rounded-full bg-amber-500" />
               </div>
               <div className="space-y-2 flex-1">
                 <div className="h-2 bg-gray-700 rounded w-3/4" />

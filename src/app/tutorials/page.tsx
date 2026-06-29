@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -69,13 +69,13 @@ const tutorials = [
 const levelColors: Record<string, string> = {
   Beginner: "text-green-400 bg-green-400/10",
   Intermediate: "text-amber-400 bg-amber-400/10",
-  Advanced: "text-violet-400 bg-violet-400/10",
+  Advanced: "text-amber-400 bg-amber-400/10",
 };
 
 export default function TutorialsPage() {
   return (
     <div className="mx-auto max-w-5xl px-6 py-20">
-      <p className="text-sm font-semibold uppercase tracking-widest text-violet-400">Tutorials</p>
+      <p className="text-sm font-semibold uppercase tracking-widest text-amber-400">Tutorials</p>
       <h1 className="mt-3 text-4xl font-bold tracking-tight text-white">Learn EasiBill in short bursts</h1>
       <p className="mt-4 text-white/60">
         Each tutorial is under 6 minutes. Watch on your phone between patients or let your staff learn at the counter.
@@ -87,7 +87,7 @@ export default function TutorialsPage() {
             key={t.id}
             className="group flex gap-5 rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5 transition hover:border-white/[0.12] hover:bg-white/[0.05]"
           >
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-violet-500/10 text-violet-400 text-xl font-bold">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400 text-xl font-bold">
               ▶
             </div>
             <div className="flex-1 min-w-0">
@@ -97,7 +97,7 @@ export default function TutorialsPage() {
                 </span>
                 <span className="text-xs text-white/30">{t.duration}</span>
               </div>
-              <h2 className="mt-2 text-sm font-semibold text-white group-hover:text-violet-300 transition">{t.title}</h2>
+              <h2 className="mt-2 text-sm font-semibold text-white group-hover:text-amber-300 transition">{t.title}</h2>
               <p className="mt-1 text-xs leading-5 text-white/50">{t.description}</p>
             </div>
           </div>
@@ -111,7 +111,7 @@ export default function TutorialsPage() {
         </p>
         <Link
           href="/contact"
-          className="mt-5 inline-flex rounded-full bg-violet-500 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-violet-400"
+          className="mt-5 inline-flex rounded-full bg-amber-500 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-amber-400"
         >
           Book a demo
         </Link>

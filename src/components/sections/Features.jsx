@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { Card } from "@/components/ui/card"
 import { motion } from "framer-motion"
@@ -44,7 +44,7 @@ export function Features() {
               viewport={{ once: true }}
             >
               <Card className="bg-black/40 border-gray-800 p-6 backdrop-blur-sm hover:bg-black/60 transition-colors">
-                <feature.icon className="h-12 w-12 text-purple-500 mb-4" />
+                <feature.icon className="h-12 w-12 text-amber-500 mb-4" />
                 <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
                 <p className="text-gray-400">{feature.description}</p>
               </Card>

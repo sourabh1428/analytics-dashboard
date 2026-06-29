@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 import { Users, DollarSign, Send } from 'lucide-react';
 
@@ -32,7 +32,7 @@ const SegmentationPersonalization = () => {
               <h3 className="font-semibold">{segment.name}</h3>
             </div>
             <motion.button
-  className="w-full bg-purple-500 text-white py-2 px-4 rounded-md flex items-center justify-center"
+  className="w-full bg-amber-500 text-white py-2 px-4 rounded-md flex items-center justify-center"
   whileHover={{ scale: 1.05 }}
   whileTap={{ scale: 0.95 }}
 >

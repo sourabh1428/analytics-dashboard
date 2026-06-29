@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { Radio, ArrowRight, Users, Target, MessageSquare, TrendingUp, Calendar, Send } from "lucide-react";
 
@@ -135,7 +135,7 @@ export default function BroadcastCampaignsPage() {
               <div key={u.title} className={`rounded-2xl p-6 border ${
                 u.accent === "green" ? "border-green-100 bg-green-50" :
                 u.accent === "blue" ? "border-blue-100 bg-blue-50" :
-                u.accent === "purple" ? "border-purple-100 bg-purple-50" :
+                u.accent === "purple" ? "border-amber-100 bg-amber-50" :
                 "border-amber-100 bg-amber-50"
               }`}>
                 <h3 className="font-semibold text-slate-900 mb-2">{u.title}</h3>

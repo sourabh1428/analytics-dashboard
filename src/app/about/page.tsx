@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -36,7 +36,7 @@ const stats = [
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-4xl px-6 py-20">
-      <p className="text-sm font-semibold uppercase tracking-widest text-violet-400">Our story</p>
+      <p className="text-sm font-semibold uppercase tracking-widest text-amber-400">Our story</p>
       <h1 className="mt-3 text-4xl font-bold tracking-tight text-white">
         Built for the pharmacy at the corner of every neighbourhood
       </h1>
@@ -50,7 +50,7 @@ export default function AboutPage() {
       <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((s) => (
           <div key={s.label} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-6">
-            <p className="text-3xl font-bold text-violet-400">{s.value}</p>
+            <p className="text-3xl font-bold text-amber-400">{s.value}</p>
             <p className="mt-1 text-sm text-white/50">{s.label}</p>
           </div>
         ))}
@@ -77,7 +77,7 @@ export default function AboutPage() {
       <div className="mt-12 flex flex-wrap gap-4">
         <Link
           href="/contact"
-          className="inline-flex items-center rounded-full bg-violet-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-violet-400"
+          className="inline-flex items-center rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-amber-400"
         >
           Talk to us
         </Link>

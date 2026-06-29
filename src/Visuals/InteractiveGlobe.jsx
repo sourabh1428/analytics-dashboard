@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useMemo, useCallback } from "react"
+﻿import React, { useRef, useEffect, useMemo, useCallback } from "react"
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion"
 
 const GridLines = React.memo(() => (
@@ -29,7 +29,7 @@ const SurfaceDetails = React.memo(() => (
       return (
         <motion.div
           key={`detail-${i}`}
-          className="absolute rounded-full bg-purple-400/20"
+          className="absolute rounded-full bg-amber-400/20"
           style={{
             width: `${width}px`,
             height: `${height}px`,
@@ -62,7 +62,7 @@ const OrbitingElements = React.memo(() => (
         }}
       >
         <motion.div
-          className="absolute w-4 h-4 bg-purple-400 rounded-full"
+          className="absolute w-4 h-4 bg-amber-400 rounded-full"
           animate={{
             rotate: 360,
           }}

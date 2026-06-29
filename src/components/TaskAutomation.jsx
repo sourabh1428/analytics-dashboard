@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -84,7 +84,7 @@ const Badge = ({ children, variant = "default" }) => {
     warning: "bg-amber-500/20 text-amber-400",
     danger: "bg-red-500/20 text-red-400",
     info: "bg-blue-500/20 text-blue-400",
-    purple: "bg-purple-500/20 text-purple-400"
+    purple: "bg-amber-500/20 text-amber-400"
   };
 
   return (
@@ -98,8 +98,8 @@ const Badge = ({ children, variant = "default" }) => {
 const Switch = ({ enabled, onChange }) => (
   <button
     onClick={onChange}
-    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 ${
-      enabled ? 'bg-purple-600' : 'bg-gray-700'
+    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 ${
+      enabled ? 'bg-amber-500' : 'bg-gray-700'
     }`}
   >
     <span className="sr-only">Toggle automation</span>
@@ -117,7 +117,7 @@ const ProgressBar = ({ value, className, status = "active" }) => (
     <motion.div
       className={`h-full rounded-full ${
         status === "active" 
-          ? "bg-gradient-to-r from-purple-600 to-indigo-600" 
+          ? "bg-gradient-to-r bg-amber-500" 
           : "bg-gray-600"
       }`}
       initial={{ width: 0 }}
@@ -143,12 +143,12 @@ const TaskCard = ({ task, onToggle }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 hover:border-purple-500/30 rounded-xl overflow-hidden transition-all duration-300"
+      className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 hover:border-amber-500/30 rounded-xl overflow-hidden transition-all duration-300"
     >
       <div className="p-5">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br bg-amber-500 flex items-center justify-center">
               <Icon className="text-white w-4 h-4" />
             </div>
             <h3 className="font-semibold text-white">{task.title}</h3>
@@ -217,7 +217,7 @@ const TaskCard = ({ task, onToggle }) => {
                 <div className="flex items-center justify-between">
                   <span className="text-gray-400 text-sm">Modified By</span>
                   <span className="text-gray-300 text-sm flex items-center">
-                    <span className="w-4 h-4 rounded-full bg-purple-500 flex items-center justify-center text-white text-xs mr-1">A</span>
+                    <span className="w-4 h-4 rounded-full bg-amber-500 flex items-center justify-center text-white text-xs mr-1">A</span>
                     Admin
                   </span>
                 </div>
@@ -225,7 +225,7 @@ const TaskCard = ({ task, onToggle }) => {
                   onClick={() => navigate('/lead')}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="mt-2 px-4 py-2 w-full rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white text-sm font-medium transition-all duration-300 flex items-center justify-center"
+                  className="mt-2 px-4 py-2 w-full rounded-lg bg-gradient-to-r bg-amber-500 hover:from-amber-600 hover:to-amber-600 text-white text-sm font-medium transition-all duration-300 flex items-center justify-center"
                 >
                   <span>Edit Automation</span>
                   <ArrowRight className="ml-1 w-4 h-4" />
@@ -247,7 +247,7 @@ const SearchInput = ({ placeholder = "Search..." }) => (
     </div>
     <input
       type="search"
-      className="block w-full px-10 py-2 bg-gray-800 border border-gray-700 rounded-lg text-sm text-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+      className="block w-full px-10 py-2 bg-gray-800 border border-gray-700 rounded-lg text-sm text-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
       placeholder={placeholder}
     />
     <div className="absolute inset-y-0 right-0 flex items-center pr-3">
@@ -283,7 +283,7 @@ export function TaskAutomation() {
             >
               <div>
                 <motion.h2 
-                  className="text-4xl font-bold mb-6 bg-gradient-to-r from-white via-purple-300 to-purple-500 text-transparent bg-clip-text"
+                  className="text-4xl font-bold mb-6 bg-gradient-to-r from-white via-amber-300 to-amber-500 text-transparent bg-clip-text"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
@@ -324,8 +324,8 @@ export function TaskAutomation() {
                   </div>
                   
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0 mt-1">
-                      <CheckCircle className="w-4 h-4 text-purple-400" />
+                    <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+                      <CheckCircle className="w-4 h-4 text-amber-400" />
                     </div>
                     <div>
                       <h4 className="text-white font-medium text-lg">Improve Consistency</h4>
@@ -337,7 +337,7 @@ export function TaskAutomation() {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="mt-6 px-6 py-3 w-full rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium transition-all duration-300 flex items-center justify-center"
+                  className="mt-6 px-6 py-3 w-full rounded-lg bg-gradient-to-r bg-amber-500 hover:from-amber-600 hover:to-amber-600 text-white font-medium transition-all duration-300 flex items-center justify-center"
                   onClick={handleLead}
                 >
                   <span>Create New Automation</span>
@@ -431,11 +431,11 @@ export function TaskAutomation() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                     whileHover={{ scale: 1.02 }}
-                    className="bg-gray-700/30 border border-dashed border-gray-600 hover:border-purple-500/30 rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer transition-all duration-300"
+                    className="bg-gray-700/30 border border-dashed border-gray-600 hover:border-amber-500/30 rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer transition-all duration-300"
                     onClick={handleLead}
                   >
                     <div className="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center mb-4">
-                      <Plus className="w-6 h-6 text-purple-400" />
+                      <Plus className="w-6 h-6 text-amber-400" />
                     </div>
                     <h3 className="text-gray-300 font-medium text-lg mb-2">Create New Automation</h3>
                     <p className="text-gray-500 text-center">Build custom workflows to automate your marketing tasks</p>

@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, useSpring, useMotionValue, AnimatePresence } from "framer-motion";
+﻿import { motion, useScroll, useTransform, useSpring, useMotionValue, AnimatePresence } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 
 const EnhancedAnimations = () => {
@@ -68,7 +68,7 @@ const EnhancedAnimations = () => {
         {Array.from({ length: 3 }).map((_, i) => (
           <motion.div
             key={`beam-${i}`}
-            className="absolute w-px h-screen bg-gradient-to-b from-purple-500/20 via-blue-500/10 to-transparent"
+            className="absolute w-px h-screen bg-gradient-to-b from-amber-500/20 via-blue-500/10 to-transparent"
             style={{
               left: `${33 * (i + 1)}%`,
               transformOrigin: 'top',

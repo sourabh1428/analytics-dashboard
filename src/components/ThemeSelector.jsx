@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { useTheme, THEMES } from '../context/ThemeContext';
 import { Palette } from 'lucide-react';
 
 // Theme option component - shows a preview of the theme
 const ThemeOption = ({ theme, active, onClick }) => {
   const themeColors = {
-    [THEMES.DEFAULT]: ['bg-black', 'bg-gray-900', 'bg-purple-900/20'],
+    [THEMES.DEFAULT]: ['bg-black', 'bg-gray-900', 'bg-zinc-900/20'],
     [THEMES.DARK]: ['bg-black', 'bg-gray-950', 'bg-gray-900'],
-    [THEMES.PURPLE]: ['bg-purple-950', 'bg-purple-900', 'bg-indigo-900'],
-    [THEMES.GRADIENT]: ['bg-gray-900', 'bg-purple-900/30', 'bg-black'],
+    [THEMES.PURPLE]: ['bg-zinc-950', 'bg-zinc-900', 'bg-zinc-900'],
+    [THEMES.GRADIENT]: ['bg-gray-900', 'bg-zinc-900/30', 'bg-black'],
   };
   
   const colors = themeColors[theme] || themeColors[THEMES.DEFAULT];

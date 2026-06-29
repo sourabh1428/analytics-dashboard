@@ -1,8 +1,9 @@
-﻿'use client'
+'use client'
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Plus, Minus } from 'lucide-react'
+import { fadeUp, scaleIn, stagger, wordVariant, viewport } from '@/src/lib/motion'
 
 const FAQS = [
   {
@@ -37,18 +38,23 @@ function FAQItem({ item, index }) {
   const buttonId = `faq-button-${index}`
 
   return (
-    <div className="border-b border-gray-100 last:border-0">
+    <motion.div
+      variants={fadeUp}
+      className="border-b border-zinc-800 last:border-0"
+    >
       <button
         id={buttonId}
         aria-expanded={open}
         aria-controls={id}
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between py-5 text-left gap-4 focus-visible:ring-2 focus-visible:ring-violet-600 focus-visible:ring-offset-2 rounded-sm"
+        className="w-full flex items-center justify-between py-5 text-left gap-4 focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900 rounded-sm group"
       >
-        <span className="font-semibold text-slate-900 text-base">{item.question}</span>
+        <span className="font-semibold text-zinc-200 text-base group-hover:text-white transition-colors duration-150">
+          {item.question}
+        </span>
         {open
-          ? <Minus className="h-5 w-5 text-violet-600 shrink-0" aria-hidden="true" />
-          : <Plus className="h-5 w-5 text-gray-400 shrink-0" aria-hidden="true" />
+          ? <Minus className="h-5 w-5 text-amber-400 shrink-0" aria-hidden="true" />
+          : <Plus className="h-5 w-5 text-zinc-600 shrink-0 group-hover:text-zinc-400 transition-colors duration-150" aria-hidden="true" />
         }
       </button>
       <AnimatePresence initial={false}>
@@ -60,49 +66,59 @@ function FAQItem({ item, index }) {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: 'easeOut' }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <p className="pb-5 text-gray-500 text-sm leading-relaxed">{item.answer}</p>
+            <p className="pb-5 text-zinc-500 text-sm leading-relaxed">{item.answer}</p>
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   )
 }
+
+const H2_WORDS = ['Questions', 'pharmacists', 'ask', 'before', 'switching']
 
 export default function FAQ() {
   return (
     <section
       id="faq"
       aria-labelledby="faq-heading"
-      className="py-24 px-6 bg-white"
+      className="py-24 px-6 bg-[#09090B]"
     >
       <div className="max-w-3xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-          viewport={{ once: true, margin: '-80px' }}
+          initial="hidden"
+          whileInView="visible"
+          variants={stagger}
+          viewport={viewport}
           className="text-center mb-14"
         >
-          <h2
+          <motion.h2
             id="faq-heading"
-            className="text-4xl font-bold text-slate-900 mb-4"
+            variants={stagger}
+            className="text-4xl font-bold text-white mb-4 leading-tight"
           >
-            Questions pharmacists ask before switching
-          </h2>
-          <p className="text-gray-500 text-lg">
+            {H2_WORDS.map((word, i) => (
+              <motion.span key={i} variants={wordVariant} className="inline-block mr-[0.22em]">
+                {word}
+              </motion.span>
+            ))}
+          </motion.h2>
+          <motion.p variants={fadeUp} className="text-zinc-400 text-lg">
             Honest answers. No marketing fluff.
-          </p>
+          </motion.p>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-          viewport={{ once: true, margin: '-80px' }}
-          className="bg-white rounded-2xl border border-gray-100 shadow-sm px-8"
+          initial="hidden"
+          whileInView="visible"
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.07, delayChildren: 0.05 } },
+          }}
+          viewport={viewport}
+          className="bg-[#18181B] rounded-2xl border border-zinc-800 px-8"
         >
           {FAQS.map((item, i) => (
             <FAQItem key={item.question} item={item} index={i} />

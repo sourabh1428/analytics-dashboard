@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
@@ -37,7 +37,7 @@ export function Hero() {
             transition={{ delay: 0.4 }}
           >
             <Button 
-              className="bg-purple-600 hover:bg-purple-700"
+              className="bg-amber-500 hover:bg-amber-600"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               as={motion.button}

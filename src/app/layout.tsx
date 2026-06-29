@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { IBM_Plex_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { ScrollProgressBar } from "@/components/ScrollProgressBar";
@@ -10,10 +10,10 @@ import ConsentBanner from "@/src/components/ConsentBanner";
 import LeadNudge from "@/src/components/LeadNudge";
 import "./globals.css";
 
-const plusJakartaSans = Plus_Jakarta_Sans({
+const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-plus-jakarta",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-ibm-plex",
   display: "swap",
 });
 
@@ -38,9 +38,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={plusJakartaSans.variable}>
+    <html lang="en" suppressHydrationWarning className={ibmPlexSans.variable}>
       <body suppressHydrationWarning>
-        <div className="relative min-h-screen overflow-x-hidden bg-[#080d0a] text-[#f1f5f1]">
+        <div className="relative min-h-screen overflow-x-hidden bg-[#09090B] text-[#FAFAFA]">
           <ScrollProgressBar />
           <NavBar />
           <main className="relative">{children}</main>

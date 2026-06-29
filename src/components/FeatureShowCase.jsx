@@ -1,4 +1,4 @@
-import React from 'react'
+﻿import React from 'react'
 import { motion } from 'framer-motion'
 import { 
   ReceiptText, 
@@ -24,13 +24,13 @@ const FeatureShowcase = () => {
       icon: <Zap className="w-6 h-6" />,
       title: "Fast Invoicing",
       description: "Generate invoices in seconds. Save templates and send digital copies instantly to customers.",
-      color: "from-purple-500 to-indigo-700"
+      color: "from-amber-500 to-amber-600"
     },
     {
       icon: <BarChart4 className="w-6 h-6" />,
       title: "Business Analytics",
       description: "Track sales, inventory, and customer data with powerful reporting tools and visual dashboards.",
-      color: "from-blue-500 to-indigo-700"
+      color: "from-blue-500 to-amber-600"
     },
     {
       icon: <Smartphone className="w-6 h-6" />,
@@ -60,7 +60,7 @@ const FeatureShowcase = () => {
       icon: <Users className="w-6 h-6" />,
       title: "Customer Management",
       description: "Maintain customer profiles, purchase history, and communication records in one place.",
-      color: "from-violet-500 to-purple-700"
+      color: "from-amber-500 to-amber-600"
     },
     {
       icon: <DollarSign className="w-6 h-6" />,
@@ -99,8 +99,8 @@ const FeatureShowcase = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <span className="inline-block px-4 py-1 mb-4 rounded-full bg-purple-900/30 border border-purple-500/20 backdrop-blur-sm">
-              <p className="text-sm font-medium text-purple-400">Powerful Features</p>
+            <span className="inline-block px-4 py-1 mb-4 rounded-full bg-zinc-900/30 border border-amber-500/20 backdrop-blur-sm">
+              <p className="text-sm font-medium text-amber-400">Powerful Features</p>
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Everything You Need to Run Your Business
@@ -151,7 +151,7 @@ const FeatureShowcase = () => {
         >
           <a 
             href="/features" 
-            className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium rounded-lg hover:from-purple-700 hover:to-indigo-700 shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
+            className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r bg-amber-500 text-white font-medium rounded-lg hover:from-amber-600 hover:to-amber-600 shadow-lg hover:shadow-amber-500/25 transition-all duration-300"
             data-conversion-button="explore-features"
           >
             Explore All Features

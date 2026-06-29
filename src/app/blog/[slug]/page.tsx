@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Clock, Tag, ArrowRight } from "lucide-react";
@@ -126,12 +126,12 @@ export default async function BlogPostPage({ params }: PageProps) {
 
       {/* CTA */}
       <div className="max-w-3xl mx-auto px-6 pb-16">
-        <div className="rounded-2xl bg-violet-600 p-8 text-center">
+        <div className="rounded-2xl bg-amber-500 p-8 text-center">
           <h2 className="text-2xl font-bold text-white mb-3">Put this into practice with EasiBill</h2>
-          <p className="text-violet-200 mb-6">Free to start. No card required. Set up in under 5 minutes.</p>
+          <p className="text-amber-200 mb-6">Free to start. No card required. Set up in under 5 minutes.</p>
           <Link
             href="https://dashboard.easibill.com/"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-violet-700 font-semibold hover:bg-violet-50 transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-amber-600 font-semibold hover:bg-amber-50 transition-colors"
           >
             Start free trial <ArrowRight className="h-4 w-4" />
           </Link>
@@ -144,7 +144,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           <h2 className="text-lg font-bold text-slate-900 mb-6">Related articles</h2>
           <div className="grid sm:grid-cols-3 gap-4">
             {related.map((r) => (
-              <Link key={r.slug} href={`/blog/${r.slug}`} className="block rounded-xl border border-gray-100 p-4 hover:border-violet-200 hover:bg-violet-50/30 transition-colors">
+              <Link key={r.slug} href={`/blog/${r.slug}`} className="block rounded-xl border border-gray-100 p-4 hover:border-amber-200 hover:bg-amber-50/30 transition-colors">
                 <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${CATEGORY_COLORS[r.category] ?? "text-gray-500 bg-gray-100"}`}>
                   {r.category}
                 </span>

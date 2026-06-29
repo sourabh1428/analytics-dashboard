@@ -64,12 +64,12 @@ const Footer = () => {
             <button
               type="button"
               onClick={() => router.push('/')}
-              className="flex items-center gap-3 text-left focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 focus:ring-offset-[#080d0a]"
+              className="flex items-center gap-3 text-left focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-[#080d0a]"
             >
               <img src="/logo.png" alt="Easibill Logo" className="h-12 w-12 rounded-full" width="48" height="48" />
               <span>
                 <span className="block text-2xl font-semibold tracking-tight text-white">Easibill</span>
-                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-violet-400/70">Pharmacy retention OS</span>
+                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-400/70">Pharmacy retention OS</span>
               </span>
             </button>
             <p className="mt-5 max-w-md leading-7">
@@ -85,7 +85,7 @@ const Footer = () => {
                   className="min-w-0 flex-1 bg-transparent px-4 py-3 text-sm text-white outline-none placeholder:text-white/30"
                   aria-label="Email Address"
                 />
-                <button className="bg-violet-500 px-4 text-white transition hover:bg-violet-400" aria-label="Subscribe">
+                <button className="bg-amber-500 px-4 text-white transition hover:bg-amber-400" aria-label="Subscribe">
                   <ArrowRight className="h-4 w-4" />
                 </button>
               </div>
@@ -95,21 +95,21 @@ const Footer = () => {
             <div className="mt-6 grid gap-3 text-sm">
               <h3 className="font-semibold text-white">Contact Us</h3>
               <div className="flex items-center gap-3">
-                <Mail className="h-4 w-4 text-violet-400/60" />
+                <Mail className="h-4 w-4 text-amber-400/60" />
                 <a href="mailto:support@easibill.com" className="hover:text-white">support@easibill.com</a>
               </div>
               <div className="flex items-center gap-3">
-                <Phone className="h-4 w-4 text-violet-400/60" />
+                <Phone className="h-4 w-4 text-amber-400/60" />
                 <a href="tel:+918839143395" className="hover:text-white">+91 8839143395</a>
               </div>
               <div className="flex items-center gap-3">
-                <MapPin className="h-4 w-4 text-violet-400/60" />
+                <MapPin className="h-4 w-4 text-amber-400/60" />
                 <span>Serving pharmacies worldwide</span>
               </div>
             </div>
 
             <div className="mt-6 flex flex-wrap gap-3">
-              <a href={DASHBOARD_LOGIN_URL} className="inline-flex items-center justify-center rounded-full bg-violet-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-violet-400">
+              <a href={DASHBOARD_LOGIN_URL} className="inline-flex items-center justify-center rounded-full bg-amber-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-amber-400">
                 Open Easibill app
               </a>
             </div>
@@ -130,7 +130,7 @@ const Footer = () => {
                         onClick={disabled ? (e) => e.preventDefault() : undefined}
                         className={`block${disabled ? ' pointer-events-none opacity-40' : ''}`}
                       >
-                        <span className="text-sm font-semibold text-white/70 hover:text-violet-400">{label}</span>
+                        <span className="text-sm font-semibold text-white/70 hover:text-amber-400">{label}</span>
                         <span className="mt-1 block text-xs leading-5 text-white/30">{description}</span>
                       </a>
                     </li>

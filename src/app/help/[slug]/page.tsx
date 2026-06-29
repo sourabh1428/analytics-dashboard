@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Clock, CheckCircle, ArrowRight, Lightbulb } from "lucide-react";
@@ -40,7 +40,7 @@ export default async function HelpArticlePage({ params }: PageProps) {
       <div className="max-w-4xl mx-auto px-6 py-20">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-sm text-white/40 mb-8">
-          <Link href="/help" className="hover:text-violet-400 transition-colors">Help Center</Link>
+          <Link href="/help" className="hover:text-amber-400 transition-colors">Help Center</Link>
           <span>/</span>
           <span className="text-white/60">{article.category}</span>
           <span>/</span>
@@ -51,21 +51,21 @@ export default async function HelpArticlePage({ params }: PageProps) {
           {/* Main content */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <span className="text-xs font-semibold uppercase tracking-widest text-violet-400">{article.category}</span>
+              <span className="text-xs font-semibold uppercase tracking-widest text-amber-400">{article.category}</span>
               <span className="flex items-center gap-1 text-xs text-white/30">
                 <Clock className="h-3 w-3" /> {article.time} read
               </span>
             </div>
 
             <h1 className="text-3xl font-bold text-white mb-4">{article.title}</h1>
-            <p className="text-white/60 text-base leading-relaxed mb-10 border-l-2 border-violet-500/40 pl-4">{article.intro}</p>
+            <p className="text-white/60 text-base leading-relaxed mb-10 border-l-2 border-amber-500/40 pl-4">{article.intro}</p>
 
             {/* Steps */}
             <div className="space-y-6">
               {article.steps.map((step, i) => (
                 <div key={i} className="flex gap-4">
                   <div className="flex flex-col items-center">
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-violet-500/20 border border-violet-500/30 text-sm font-bold text-violet-400">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amber-500/20 border border-amber-500/30 text-sm font-bold text-amber-400">
                       {i + 1}
                     </div>
                     {i < article.steps.length - 1 && (
@@ -96,7 +96,7 @@ export default async function HelpArticlePage({ params }: PageProps) {
               <CheckCircle className="h-5 w-5 text-green-400 shrink-0" />
               <p className="text-sm text-white/70">
                 Still need help?{" "}
-                <Link href="/contact" className="text-violet-400 hover:text-violet-300 underline underline-offset-2">
+                <Link href="/contact" className="text-amber-400 hover:text-amber-300 underline underline-offset-2">
                   Contact our support team
                 </Link>{" "}
                 — we typically respond within 2 hours.
@@ -112,12 +112,12 @@ export default async function HelpArticlePage({ params }: PageProps) {
                     <Link
                       key={r.slug}
                       href={`/help/${r.slug}`}
-                      className="flex items-center justify-between rounded-xl border border-white/[0.07] bg-white/[0.03] px-4 py-3 hover:border-violet-500/30 hover:bg-violet-500/5 transition-colors group"
+                      className="flex items-center justify-between rounded-xl border border-white/[0.07] bg-white/[0.03] px-4 py-3 hover:border-amber-500/30 hover:bg-amber-500/5 transition-colors group"
                     >
                       <span className="text-sm text-white/70 group-hover:text-white transition-colors">{r.title}</span>
                       <span className="flex items-center gap-1 text-xs text-white/30 shrink-0">
                         <Clock className="h-3 w-3" /> {r.time}
-                        <ArrowRight className="h-3 w-3 ml-1 text-violet-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <ArrowRight className="h-3 w-3 ml-1 text-amber-400 opacity-0 group-hover:opacity-100 transition-opacity" />
                       </span>
                     </Link>
                   ))}
@@ -129,12 +129,12 @@ export default async function HelpArticlePage({ params }: PageProps) {
           {/* Sidebar — category articles */}
           <aside className="hidden lg:block">
             <div className="sticky top-24">
-              <Link href="/help" className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-violet-400 transition-colors mb-6">
+              <Link href="/help" className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-amber-400 transition-colors mb-6">
                 <ArrowLeft className="h-4 w-4" /> All categories
               </Link>
 
               <div className="rounded-xl border border-white/[0.07] bg-white/[0.03] p-4">
-                <p className="text-xs font-semibold uppercase tracking-widest text-violet-400 mb-3">{article.category}</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-3">{article.category}</p>
                 <ul className="space-y-1">
                   {categoryArticles.map((a) => a && (
                     <li key={a.slug}>
@@ -150,12 +150,12 @@ export default async function HelpArticlePage({ params }: PageProps) {
                 </ul>
               </div>
 
-              <div className="mt-6 rounded-xl border border-violet-500/20 bg-violet-500/5 p-4 text-center">
+              <div className="mt-6 rounded-xl border border-amber-500/20 bg-amber-500/5 p-4 text-center">
                 <p className="text-sm font-semibold text-white mb-1">Need more help?</p>
                 <p className="text-xs text-white/50 mb-3">Support team replies within 2 hours</p>
                 <a
                   href="mailto:support@easibill.com"
-                  className="inline-flex items-center justify-center w-full px-4 py-2 rounded-lg bg-violet-500 text-sm font-semibold text-white hover:bg-violet-400 transition-colors"
+                  className="inline-flex items-center justify-center w-full px-4 py-2 rounded-lg bg-amber-500 text-sm font-semibold text-white hover:bg-amber-400 transition-colors"
                 >
                   Email support
                 </a>

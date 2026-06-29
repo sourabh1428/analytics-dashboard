@@ -1,4 +1,4 @@
-import React from 'react'
+﻿import React from 'react'
 import { motion } from 'framer-motion'
 import { Button } from "@/components/ui/button"
 import { Check } from 'lucide-react'
@@ -52,7 +52,7 @@ const Pricing = () => {
     <ZoomInEffect>
     <section className="container mx-auto px-6 py-20 bg-transparent text-white">
       <motion.h2
-        className="text-5xl font-bold text-center mb-12 text-4xl font-bold bg-gradient-to-r from-purple-600 to-black text-transparent bg-clip-text"
+        className="text-5xl font-bold text-center mb-12 text-4xl font-bold bg-gradient-to-r from-amber-500 to-black text-transparent bg-clip-text"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -63,7 +63,7 @@ const Pricing = () => {
         {plans.map((plan, index) => (
           <motion.div
             key={index}
-            className={`bg-gray-900 p-6 rounded-lg ${plan.popular ? 'border-2 border-purple-600' : ''}`}
+            className={`bg-gray-900 p-6 rounded-lg ${plan.popular ? 'border-2 border-amber-500' : ''}`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
@@ -76,13 +76,13 @@ const Pricing = () => {
             <ul className="space-y-4 mb-6">
               {plan.features.map((feature, i) => (
                 <li key={i} className="flex items-center gap-2">
-                  <Check className="text-purple-600" />
+                  <Check className="text-amber-500" />
                   <span>{feature}</span>
                 </li>
               ))}
             </ul>
             <Button 
-              className={plan.popular ? 'w-full bg-purple-600 hover: bg-purple-700 ':' w-full bg-white-600'} 
+              className={plan.popular ? 'w-full bg-amber-500 hover: bg-amber-600 ':' w-full bg-white-600'} 
               variant={plan.popular ? 'default' : 'outline'}
               onClick={()=>navigate('lead')}
             >

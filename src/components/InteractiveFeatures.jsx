@@ -1,4 +1,4 @@
-import React from 'react'
+﻿import React from 'react'
 import { motion } from 'framer-motion'
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -43,7 +43,7 @@ const InteractiveFeatures = () => {
                     size="icon"
                     className="w-12 h-12"
                   >
-                    <feature.icon className="w-6 h-6 text-purple-500" />
+                    <feature.icon className="w-6 h-6 text-amber-500" />
                   </Button>
                 </motion.div>
                 <p className="mt-2 text-sm text-center text-gray-700">{feature.name}</p>

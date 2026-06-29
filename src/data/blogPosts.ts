@@ -1,4 +1,4 @@
-export type BlogPost = {
+﻿export type BlogPost = {
   slug: string;
   category: string;
   title: string;
@@ -211,7 +211,7 @@ export const blogPosts: BlogPost[] = [
 ];
 
 export const CATEGORY_COLORS: Record<string, string> = {
-  Retention: "text-violet-400 bg-violet-400/10",
+  Retention: "text-amber-400 bg-amber-400/10",
   WhatsApp: "text-green-400 bg-green-400/10",
   "How-to": "text-blue-400 bg-blue-400/10",
   Growth: "text-amber-400 bg-amber-400/10",

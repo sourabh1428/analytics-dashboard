@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
@@ -47,7 +47,7 @@ export function Pricing() {
               className="relative"
             >
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-3 py-1 bg-purple-600 text-white text-sm rounded-full">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-3 py-1 bg-amber-500 text-white text-sm rounded-full">
                   Popular
                 </div>
               )}
@@ -67,13 +67,13 @@ export function Pricing() {
                       transition={{ delay: (i * 0.2) + (j * 0.1) }}
                       viewport={{ once: true }}
                     >
-                      <Check className="h-5 w-5 text-purple-500 mr-2" />
+                      <Check className="h-5 w-5 text-amber-500 mr-2" />
                       {feature}
                     </motion.li>
                   ))}
                 </ul>
                 <Button 
-                  className={plan.popular ? "w-full bg-purple-600 hover:bg-purple-700" : "w-full"}
+                  className={plan.popular ? "w-full bg-amber-500 hover:bg-amber-600" : "w-full"}
                   variant={plan.popular ? "default" : "outline"}
                 >
                   Try for free

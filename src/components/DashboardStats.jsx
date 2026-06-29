@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TrendingUp, Users, DollarSign, Activity, Info, ArrowUpRight, ArrowDownRight, MoreHorizontal } from 'lucide-react';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
@@ -124,8 +124,8 @@ const DashboardStats = () => {
       increase: '+8.2%',
       trend: 'up',
       icon: Users,
-      color: 'from-purple-500 to-purple-600',
-      shadowColor: 'shadow-purple-500/20',
+      color: 'from-amber-500 to-amber-500',
+      shadowColor: 'shadow-amber-500/20',
       chartData: [55, 30, 60, 40, 75, 45, 70],
     },
     {
@@ -195,7 +195,7 @@ const DashboardStats = () => {
           </div>
           <div className="flex items-center mt-4 md:mt-0 space-x-2 bg-gray-900/50 p-1 rounded-lg">
             <div className="relative inline-block">
-              <select className="appearance-none bg-transparent text-gray-300 py-2 pl-3 pr-8 rounded-md border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+              <select className="appearance-none bg-transparent text-gray-300 py-2 pl-3 pr-8 rounded-md border border-gray-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent">
                 <option>Last 7 days</option>
                 <option>Last 30 days</option>
                 <option>Last 90 days</option>
@@ -302,7 +302,7 @@ const DashboardStats = () => {
                     onClick={() => setActiveTab(tab.id)}
                     className={`px-3 py-1 text-sm rounded-md transition-colors ${
                       activeTab === tab.id 
-                        ? 'bg-purple-600 text-white' 
+                        ? 'bg-amber-500 text-white' 
                         : 'text-gray-400 hover:text-white'
                     }`}
                   >

@@ -1,4 +1,4 @@
-import React from 'react'
+﻿import React from 'react'
 import { motion } from 'framer-motion'
 import { Card, CardContent } from "@/components/ui/card"
 
@@ -29,7 +29,7 @@ const MacroAnimations = () => {
             <Card>
               <CardContent className="p-4">
                 <motion.div
-                  className="w-full h-24 bg-gradient-to-r from-purple-500 to-pink-500 rounded-md"
+                  className="w-full h-24 bg-gradient-to-r from-amber-500 to-pink-500 rounded-md"
                   animate={{
                     scale: [1, 1.1, 1],
                     rotate: [0, 180, 360],

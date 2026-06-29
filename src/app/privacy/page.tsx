@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacy Policy – EasiBill",
@@ -56,7 +56,7 @@ const sections = [
 export default function PrivacyPage() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-20">
-      <p className="text-sm font-semibold uppercase tracking-widest text-violet-400">Legal</p>
+      <p className="text-sm font-semibold uppercase tracking-widest text-amber-400">Legal</p>
       <h1 className="mt-3 text-4xl font-bold tracking-tight text-white">Privacy Policy</h1>
       <p className="mt-3 text-white/50">Last updated: June 2026</p>
       <p className="mt-6 leading-7 text-white/70">

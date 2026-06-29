@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -146,7 +146,7 @@ export default function Leads() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 to-black-500 flex items-center justify-center p-4 sm:p-10">
+    <div className="min-h-screen bg-gradient-to-br from-amber-500 to-black-500 flex items-center justify-center p-4 sm:p-10">
       <div className="w-full max-w-md">
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
@@ -215,7 +215,7 @@ export default function Leads() {
                             setErrors(prev => ({ ...prev, [currentQuestion.name]: error }));
                           }
                         }}
-                        className="px-4 py-2 bg-white rounded-lg text-purple-600 flex items-center space-x-2 ml-auto hover:bg-opacity-90 transition-all duration-200"
+                        className="px-4 py-2 bg-white rounded-lg text-amber-500 flex items-center space-x-2 ml-auto hover:bg-opacity-90 transition-all duration-200"
                         disabled={isSubmitting}
                       >
                         <span>Next</span>
@@ -226,7 +226,7 @@ export default function Leads() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         type="submit"
-                        className="px-4 py-2 bg-white rounded-lg text-purple-600 flex items-center space-x-2 ml-auto hover:bg-opacity-90 transition-all duration-200 disabled:opacity-50"
+                        className="px-4 py-2 bg-white rounded-lg text-amber-500 flex items-center space-x-2 ml-auto hover:bg-opacity-90 transition-all duration-200 disabled:opacity-50"
                         disabled={isSubmitting}
                       >
                         <span>{isSubmitting ? 'Submitting...' : 'Submit'}</span>

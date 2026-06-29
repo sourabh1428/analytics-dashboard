@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
@@ -20,7 +20,7 @@ export function CTA() {
           <p className="text-gray-400">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi.
           </p>
-          <Button className="bg-purple-600 hover:bg-purple-700">
+          <Button className="bg-amber-500 hover:bg-amber-600">
             Start Now
           </Button>
         </motion.div>
@@ -31,8 +31,8 @@ export function CTA() {
           transition={{ delay: 0.2 }}
           className="mt-12 flex justify-center space-x-12"
         >
-          <PieChart className="h-16 w-16 text-purple-500" />
-          <Lightbulb className="h-16 w-16 text-purple-500" />
+          <PieChart className="h-16 w-16 text-amber-500" />
+          <Lightbulb className="h-16 w-16 text-amber-500" />
         </motion.div>
       </div>
     </section>

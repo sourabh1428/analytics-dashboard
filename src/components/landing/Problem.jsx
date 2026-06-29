@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Clock, UserX, FileWarning, TrendingDown } from 'lucide-react'
+import { fadeUp, scaleIn, stagger, wordVariant, viewport } from '@/src/lib/motion'
 
 const PAIN_POINTS = [
   {
@@ -30,50 +31,63 @@ const PAIN_POINTS = [
   },
 ]
 
+const HEADING = ['Manual', 'billing', 'is', 'costing', 'you', 'more', 'than', 'you', 'think']
+
 export default function Problem() {
   return (
     <section
       id="problem"
       aria-labelledby="problem-heading"
-      className="py-24 px-6 bg-gray-50"
+      className="py-24 px-6 bg-[#18181B]"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-          viewport={{ once: true, margin: '-80px' }}
+          initial="hidden"
+          whileInView="visible"
+          variants={stagger}
+          viewport={viewport}
           className="text-center max-w-2xl mx-auto mb-16"
         >
-          <h2
+          <motion.h2
             id="problem-heading"
-            className="text-4xl font-bold text-slate-900 mb-4"
+            variants={stagger}
+            className="text-4xl font-bold text-white mb-4 leading-tight"
           >
-            Manual billing is costing you more than you think
-          </h2>
-          <p className="text-gray-500 text-lg">
+            {HEADING.map((word, i) => (
+              <motion.span key={i} variants={wordVariant} className="inline-block mr-[0.22em]">
+                {word}
+              </motion.span>
+            ))}
+          </motion.h2>
+          <motion.p variants={fadeUp} className="text-zinc-400 text-lg">
             Every pharmacy dealing with paper bills and outdated software is bleeding time, customers, and money.
-          </p>
+          </motion.p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {PAIN_POINTS.map((point, i) => (
+        <motion.div
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
+          }}
+        >
+          {PAIN_POINTS.map((point) => (
             <motion.article
               key={point.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: 'easeOut', delay: i * 0.1 }}
-              viewport={{ once: true, margin: '-80px' }}
-              whileHover={{ y: -4 }}
-              className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 transition-all duration-200"
+              variants={scaleIn}
+              whileHover={{ y: -6, transition: { duration: 0.2 } }}
+              className="bg-[#09090B] rounded-2xl border border-zinc-800 p-6 flex flex-col"
             >
               <point.icon className="h-8 w-8 text-red-400 mb-4" aria-hidden="true" />
-              <p className="text-3xl font-bold text-slate-900 mb-1">{point.stat}</p>
-              <h3 className="font-semibold text-slate-900 mb-2">{point.title}</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">{point.description}</p>
+              <p className="text-3xl font-bold text-white mb-1">{point.stat}</p>
+              <h3 className="font-semibold text-zinc-200 mb-2">{point.title}</h3>
+              <p className="text-sm text-zinc-500 leading-relaxed">{point.description}</p>
             </motion.article>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

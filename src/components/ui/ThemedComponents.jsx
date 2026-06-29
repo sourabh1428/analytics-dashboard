@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '../../context/ThemeContext';
 
@@ -112,7 +112,7 @@ export const ThemedHeading = ({
   
   // Apply gradient styling if requested
   const gradientClass = gradient 
-    ? 'bg-gradient-to-r from-white via-purple-300 to-purple-500 text-transparent bg-clip-text' 
+    ? 'bg-gradient-to-r from-white via-amber-300 to-amber-500 text-transparent bg-clip-text' 
     : styles.text;
   
   const headingClasses = `${sizeClasses} ${gradientClass} ${className}`;

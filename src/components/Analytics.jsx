@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
@@ -35,7 +35,7 @@ const performanceData = [
 ];
 
 const channelsData = [
-  { name: 'Organic Search', value: 38, color: '#8b5cf6' },
+  { name: 'Organic Search', value: 38, color: '#F59E0B' },
   { name: 'Direct', value: 24, color: '#06b6d4' },
   { name: 'Social Media', value: 18, color: '#22c55e' },
   { name: 'Referral', value: 12, color: '#f97316' },
@@ -74,7 +74,7 @@ const Badge = ({ children, variant = "default" }) => {
     warning: "bg-amber-500/20 text-amber-400",
     danger: "bg-red-500/20 text-red-400",
     info: "bg-blue-500/20 text-blue-400",
-    purple: "bg-purple-500/20 text-purple-400"
+    purple: "bg-amber-500/20 text-amber-400"
   };
 
   return (
@@ -87,7 +87,7 @@ const Badge = ({ children, variant = "default" }) => {
 // Metric card component
 const MetricCard = ({ title, value, change, icon: Icon, color = "purple" }) => {
   const colors = {
-    purple: "from-purple-600 to-indigo-600",
+    purple: "bg-amber-500",
     blue: "from-blue-600 to-cyan-600",
     green: "from-green-600 to-emerald-600",
     amber: "from-amber-500 to-orange-600"
@@ -131,7 +131,7 @@ const BarChartComponent = ({ data }) => {
         {data.map((item, index) => (
           <div key={index} className="flex flex-col items-center flex-1">
             <motion.div 
-              className="w-full bg-gradient-to-t from-purple-600 to-indigo-600 rounded-t-sm"
+              className="w-full bg-gradient-to-t bg-amber-500 rounded-t-sm"
               initial={{ height: 0 }}
               animate={{ height: `${(item.visitors / maxValue) * 100}%` }}
               transition={{ 
@@ -180,7 +180,7 @@ const LineChartComponent = ({ data }) => {
             cx={point[0]}
             cy={point[1]}
             r="3"
-            fill="#8b5cf6"
+            fill="#F59E0B"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 1.5 + i * 0.1 }}
@@ -190,7 +190,7 @@ const LineChartComponent = ({ data }) => {
         {/* Gradient definition */}
         <defs>
           <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#8b5cf6" />
+            <stop offset="0%" stopColor="#F59E0B" />
             <stop offset="100%" stopColor="#4f46e5" />
           </linearGradient>
         </defs>
@@ -349,7 +349,7 @@ const InsightCard = ({ insight }) => {
                     ? 'This negative trend may require attention. Consider reviewing your strategy in this area.'
                     : 'This opportunity could lead to significant growth. We recommend prioritizing this area.'}
               </p>
-              <button className="mt-3 text-sm font-medium text-purple-400 hover:text-purple-300 transition-colors flex items-center">
+              <button className="mt-3 text-sm font-medium text-amber-400 hover:text-amber-300 transition-colors flex items-center">
                 View recommended actions
                 <ArrowRight className="ml-1 w-3 h-3" />
               </button>
@@ -382,7 +382,7 @@ export default function Analytics() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-white via-purple-300 to-purple-500 text-transparent bg-clip-text">
+            <h1 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-white via-amber-300 to-amber-500 text-transparent bg-clip-text">
               Marketing Analytics
             </h1>
             <p className="text-gray-400 mt-2">
@@ -404,7 +404,7 @@ export default function Analytics() {
               <Filter className="w-4 h-4" />
               Filters
             </FilterButton>
-            <button className="px-4 py-1.5 bg-purple-600 hover:bg-purple-700 rounded-lg text-white transition-colors flex items-center gap-2">
+            <button className="px-4 py-1.5 bg-amber-500 hover:bg-amber-600 rounded-lg text-white transition-colors flex items-center gap-2">
               <Share2 className="w-4 h-4" />
               Share
             </button>
@@ -464,7 +464,7 @@ export default function Analytics() {
         >
           <div className="flex justify-between items-center mb-5">
             <h2 className="text-xl font-semibold text-white">AI-Powered Insights</h2>
-            <button className="text-sm text-purple-400 hover:text-purple-300 transition-colors flex items-center">
+            <button className="text-sm text-amber-400 hover:text-amber-300 transition-colors flex items-center">
               View all insights
               <ArrowRight className="ml-1 w-4 h-4" />
             </button>
@@ -521,8 +521,8 @@ export default function Analytics() {
                   <tr className="hover:bg-gray-700/30 transition-colors">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
-                        <div className="w-8 h-8 rounded bg-purple-500/20 flex items-center justify-center mr-3">
-                          <Users className="h-4 w-4 text-purple-400" />
+                        <div className="w-8 h-8 rounded bg-amber-500/20 flex items-center justify-center mr-3">
+                          <Users className="h-4 w-4 text-amber-400" />
                         </div>
                         <div>
                           <div className="text-sm font-medium text-white">Summer Sale Promotion</div>

@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { motion } from "framer-motion"
 import { Card } from "../ui/card"
@@ -43,7 +43,7 @@ export function Steps() {
               viewport={{ once: true }}
             >
               <Card className="bg-black/40 border-gray-800 p-6 backdrop-blur-sm relative">
-                <div className="absolute -top-4 -left-4 h-12 w-12 rounded-full bg-purple-600 flex items-center justify-center text-xl font-bold">
+                <div className="absolute -top-4 -left-4 h-12 w-12 rounded-full bg-amber-500 flex items-center justify-center text-xl font-bold">
                   {step.number}
                 </div>
                 <h3 className="text-xl font-semibold mb-2 mt-4">{step.title}</h3>

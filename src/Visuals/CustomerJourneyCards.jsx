@@ -1,4 +1,4 @@
-// CustomerJourney.jsx
+﻿// CustomerJourney.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ShoppingBag, CreditCard, Send, Smartphone, Database, ArrowRight, Box, ChevronRight } from 'lucide-react';
@@ -8,8 +8,8 @@ const steps = [
     icon: ShoppingBag,
     title: 'Customer Purchase',
     description: 'Customer enters the store and buys products',
-    color: 'bg-purple-500',
-    lightColor: 'bg-purple-400/10'
+    color: 'bg-amber-500',
+    lightColor: 'bg-amber-400/10'
   },
   {
     icon: CreditCard,
@@ -50,7 +50,7 @@ const CustomerJourney = () => {
           transition={{ delay: 0.2 }}
         >
           <motion.h2 
-            className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-black-600 mb-4"
+            className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-black-600 mb-4"
           >
             Your Customer Journey
           </motion.h2>
@@ -61,7 +61,7 @@ const CustomerJourney = () => {
 
         <div className="relative">
           {/* Timeline line - hidden on mobile */}
-          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-purple-500/50 via-blue-500/50 to-green-500/50" />
+          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-amber-500/50 via-blue-500/50 to-green-500/50" />
 
           {steps.map((step, index) => (
             <TimelineStep

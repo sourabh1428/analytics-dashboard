@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 import { Zap, Star, BarChart, Target, TrendingUp } from 'lucide-react';
 
@@ -10,7 +10,7 @@ const FloatingIcons = () => {
       {icons.map((Icon, index) => (
         <motion.div
           key={index}
-          className="absolute text-purple-400 opacity-50"
+          className="absolute text-amber-400 opacity-50"
           style={{
             top: `${Math.random() * 100}%`,
             left: `${Math.random() * 100}%`,

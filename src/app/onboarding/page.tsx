@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -85,7 +85,7 @@ const steps = [
 export default function OnboardingPage() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-20">
-      <p className="text-sm font-semibold uppercase tracking-widest text-violet-400">Onboarding Guide</p>
+      <p className="text-sm font-semibold uppercase tracking-widest text-amber-400">Onboarding Guide</p>
       <h1 className="mt-3 text-4xl font-bold tracking-tight text-white">From sign-up to first reminder</h1>
       <p className="mt-4 text-white/60">
         Follow these six steps in order. Most pharmacies complete setup in under 30 minutes.
@@ -95,7 +95,7 @@ export default function OnboardingPage() {
         {steps.map((s) => (
           <div key={s.step} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-6">
             <div className="flex items-start gap-4">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-violet-500/15 text-sm font-bold text-violet-400">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-500/15 text-sm font-bold text-amber-400">
                 {s.step}
               </div>
               <div className="flex-1">
@@ -106,13 +106,13 @@ export default function OnboardingPage() {
                 <ul className="mt-3 space-y-2">
                   {s.details.map((d) => (
                     <li key={d} className="flex gap-2 text-sm text-white/60">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-500/50" />
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500/50" />
                       {d}
                     </li>
                   ))}
                 </ul>
-                <div className="mt-4 rounded-xl bg-violet-500/5 border border-violet-500/10 px-4 py-3">
-                  <p className="text-xs text-violet-300/80"><span className="font-semibold">Tip: </span>{s.tip}</p>
+                <div className="mt-4 rounded-xl bg-amber-500/5 border border-amber-500/10 px-4 py-3">
+                  <p className="text-xs text-amber-300/80"><span className="font-semibold">Tip: </span>{s.tip}</p>
                 </div>
               </div>
             </div>
@@ -128,7 +128,7 @@ export default function OnboardingPage() {
         <div className="mt-5 flex flex-wrap gap-3">
           <Link
             href="/contact"
-            className="inline-flex rounded-full bg-violet-500 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-violet-400"
+            className="inline-flex rounded-full bg-amber-500 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-amber-400"
           >
             Book onboarding call
           </Link>

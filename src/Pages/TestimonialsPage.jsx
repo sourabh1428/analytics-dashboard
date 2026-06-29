@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Suspense, lazy } from 'react';
 import { motion } from 'framer-motion';
@@ -70,7 +70,7 @@ const TestimonialsPage = () => {
             className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-end"
           >
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-indigo-700">Real pharmacies</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-600">Real pharmacies</p>
               <h1 className="mt-4 text-balance text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
                 Built around how pharmacy counters really work.
               </h1>
@@ -134,7 +134,7 @@ const TestimonialsPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
                 transition={{ duration: 0.55, delay: index * 0.07 }}
-                className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-950/5"
+                className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-zinc-950/5"
               >
                 <div className="mb-5 flex items-center justify-between">
                   <div className="flex gap-1 text-amber-400">

@@ -1,4 +1,4 @@
-import React from 'react'
+﻿import React from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 
@@ -44,7 +44,7 @@ const Process = () => {
   return (
     <section id="process" className="container mx-auto px-6 py-20" ref={ref}>
       <motion.h2
-        className="text-5xl font-bold text-center p-4 text-5xl font-bold bg-gradient-to-r from-purple-600 to-black text-transparent bg-clip-text"
+        className="text-5xl font-bold text-center p-4 text-5xl font-bold bg-gradient-to-r from-amber-500 to-black text-transparent bg-clip-text"
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5 }}
@@ -60,7 +60,7 @@ const Process = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
-            <div className="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mb-4">
+            <div className="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center mb-4">
               <span className="text-xl font-bold">{step.number}</span>
             </div>
             <h3 className="text-xl font-bold mb-2">{step.title}</h3>

@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
@@ -20,7 +20,7 @@ export function Automation() {
           <p className="text-gray-400">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi.
           </p>
-          <Button className="bg-purple-600 hover:bg-purple-700">
+          <Button className="bg-amber-500 hover:bg-amber-600">
             Start Now
           </Button>
         </motion.div>
@@ -33,8 +33,8 @@ export function Automation() {
             <div className="space-y-4">
               {[1, 2, 3].map((i) => (
                 <div key={i} className="flex items-center space-x-4 p-4 bg-gray-800/50 rounded-lg">
-                  <div className="h-10 w-10 rounded bg-purple-500/20 flex items-center justify-center">
-                    <div className="h-6 w-6 rounded bg-purple-500" />
+                  <div className="h-10 w-10 rounded bg-amber-500/20 flex items-center justify-center">
+                    <div className="h-6 w-6 rounded bg-amber-500" />
                   </div>
                   <div className="flex-1 space-y-2">
                     <div className="h-2 bg-gray-700 rounded w-3/4" />

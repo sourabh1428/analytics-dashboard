@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 
 /**
  * LoadingSpinner Component
@@ -23,7 +23,7 @@ const LoadingSpinner = ({
 
   // Determine color classes
   const colorVariants = {
-    primary: 'border-purple-500 border-t-indigo-300',
+    primary: 'border-amber-500 border-t-amber-300',
     secondary: 'border-gray-500 border-t-gray-300',
     white: 'border-white/30 border-t-white'
   };

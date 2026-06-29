@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+﻿import { motion, AnimatePresence } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Smartphone, User, Check, X, Send, Sparkles } from "lucide-react";
@@ -110,9 +110,9 @@ const SandBox = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-blue-50 flex items-center justify-center p-4">
       <motion.div
-        className="absolute top-20 left-20 w-48 h-48 bg-purple-200/30 rounded-full blur-xl"
+        className="absolute top-20 left-20 w-48 h-48 bg-amber-200/30 rounded-full blur-xl"
         animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
         transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
       />
@@ -131,11 +131,11 @@ const SandBox = () => {
           <motion.div
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="inline-block p-4 bg-purple-100 rounded-full mb-4"
+            className="inline-block p-4 bg-amber-100 rounded-full mb-4"
           >
-            <Sparkles className="w-8 h-8 text-purple-600" />
+            <Sparkles className="w-8 h-8 text-amber-500" />
           </motion.div>
-          <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600 mb-2">
+          <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-amber-500 to-blue-600 mb-2">
             WhatsApp Sandbox
           </h1>
           <p className="text-gray-600">Send secure test messages via WhatsApp</p>
@@ -204,7 +204,7 @@ const SandBox = () => {
           >
             <Button
               type="submit"
-              className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white"
+              className="w-full bg-gradient-to-r from-amber-500 to-blue-600 hover:from-amber-600 hover:to-blue-700 text-white"
               disabled={loading || success}
             >
               {loading ? (

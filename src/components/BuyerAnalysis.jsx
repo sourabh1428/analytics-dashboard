@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -31,7 +31,7 @@ const buyerPersonas = [
     name: "E-commerce Entrepreneur", 
     score: 72, 
     traits: ["Growth-focused", "Marketing savvy", "Data-driven"],
-    color: "from-purple-500 to-indigo-600"
+    color: "from-amber-500 to-amber-500"
   },
   { 
     id: 3, 
@@ -53,7 +53,7 @@ const buyerPersonas = [
 const metricsData = [
   { id: 1, label: "Engagement Score", value: 78, increment: 12, color: "from-green-500 to-emerald-500" },
   { id: 2, label: "Conversion Rate", value: 4.2, increment: -0.8, color: "from-blue-500 to-cyan-500" },
-  { id: 3, label: "Avg. Purchase Value", value: 128, increment: 24, color: "from-purple-500 to-indigo-600" }
+  { id: 3, label: "Avg. Purchase Value", value: 128, increment: 24, color: "from-amber-500 to-amber-500" }
 ];
 
 // Animated circular progress component
@@ -99,8 +99,8 @@ const CircularProgress = ({ progress, size = 120, strokeWidth = 12, gradient }) 
         {/* Define gradient */}
         <defs>
           <linearGradient id={gradient} x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="currentColor" className="text-purple-500" />
-            <stop offset="100%" stopColor="currentColor" className="text-indigo-500" />
+            <stop offset="0%" stopColor="currentColor" className="text-amber-500" />
+            <stop offset="100%" stopColor="currentColor" className="text-amber-500" />
           </linearGradient>
         </defs>
       </svg>
@@ -156,7 +156,7 @@ const MetricCard = ({ label, value, increment, color }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 hover:border-purple-500/30 rounded-xl p-4 transition-all duration-300"
+      className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 hover:border-amber-500/30 rounded-xl p-4 transition-all duration-300"
     >
       <div className="flex justify-between items-center mb-2">
         <span className="text-gray-400 text-sm">{label}</span>
@@ -186,7 +186,7 @@ const PersonaCard = ({ persona, index, isActive, onClick }) => (
     transition={{ duration: 0.5, delay: index * 0.1 }}
     className={`flex items-center gap-4 p-4 rounded-xl cursor-pointer transition-all duration-300 ${
       isActive 
-        ? 'bg-gray-800/70 border border-purple-500/30' 
+        ? 'bg-gray-800/70 border border-amber-500/30' 
         : 'bg-gray-800/30 border border-gray-700 hover:bg-gray-800/50'
     }`}
     onClick={() => onClick(persona.id)}
@@ -211,7 +211,7 @@ const PersonaCard = ({ persona, index, isActive, onClick }) => (
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
-        className="w-6 h-6 rounded-full bg-purple-500 flex items-center justify-center"
+        className="w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center"
       >
         <CheckCircle2 className="text-white w-4 h-4" />
       </motion.div>
@@ -236,7 +236,7 @@ function BuyerAnalysis() {
       <div className="max-w-7xl mx-auto">
         <div className="mb-16 max-w-3xl">
           <motion.h2 
-            className="text-4xl font-bold mb-6 bg-gradient-to-r from-white via-purple-300 to-purple-500 text-transparent bg-clip-text"
+            className="text-4xl font-bold mb-6 bg-gradient-to-r from-white via-amber-300 to-amber-500 text-transparent bg-clip-text"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -289,7 +289,7 @@ function BuyerAnalysis() {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full py-3 mt-4 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium transition-all duration-300"
+                  className="w-full py-3 mt-4 rounded-xl bg-gradient-to-r bg-amber-500 hover:from-amber-600 hover:to-amber-600 text-white font-medium transition-all duration-300"
                   onClick={() => navigate('/lead')}
                 >
                   Create New Persona
@@ -363,7 +363,7 @@ function BuyerAnalysis() {
                       <div className="space-y-3">
                         <div className="p-4 rounded-xl bg-gray-800/50 border border-gray-700">
                           <div className="flex items-center gap-2 mb-2">
-                            <Target className="text-purple-400 w-4 h-4" />
+                            <Target className="text-amber-400 w-4 h-4" />
                             <h5 className="text-white font-medium">Optimize Marketing Messages</h5>
                           </div>
                           <p className="text-gray-400 text-sm">
@@ -388,7 +388,7 @@ function BuyerAnalysis() {
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium transition-all duration-300 flex items-center"
+                        className="px-4 py-2 rounded-lg bg-gradient-to-r bg-amber-500 hover:from-amber-600 hover:to-amber-600 text-white font-medium transition-all duration-300 flex items-center"
                         onClick={() => navigate('/lead')}
                       >
                         <span>View Full Analysis</span>

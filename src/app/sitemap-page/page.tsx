@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -74,7 +74,7 @@ const groups = [
 export default function SitemapPageRoute() {
   return (
     <div className="mx-auto max-w-4xl px-6 py-20">
-      <p className="text-sm font-semibold uppercase tracking-widest text-violet-400">Sitemap</p>
+      <p className="text-sm font-semibold uppercase tracking-widest text-amber-400">Sitemap</p>
       <h1 className="mt-3 text-4xl font-bold tracking-tight text-white">All pages</h1>
       <p className="mt-4 text-white/60">Every page on easibill.com, organised by section.</p>
 
@@ -90,12 +90,12 @@ export default function SitemapPageRoute() {
                       href={l.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-white/60 hover:text-violet-400"
+                      className="text-sm text-white/60 hover:text-amber-400"
                     >
                       {l.label} ↗
                     </a>
                   ) : (
-                    <Link href={l.href} className="text-sm text-white/60 hover:text-violet-400">
+                    <Link href={l.href} className="text-sm text-white/60 hover:text-amber-400">
                       {l.label}
                     </Link>
                   )}

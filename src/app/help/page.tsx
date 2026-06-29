@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { helpArticles, helpCategories } from "@/src/data/helpArticles";
 
@@ -34,7 +34,7 @@ const faqs = [
 export default function HelpPage() {
   return (
     <div className="mx-auto max-w-5xl px-6 py-20">
-      <p className="text-sm font-semibold uppercase tracking-widest text-violet-400">Help Center</p>
+      <p className="text-sm font-semibold uppercase tracking-widest text-amber-400">Help Center</p>
       <h1 className="mt-3 text-4xl font-bold tracking-tight text-white">How can we help?</h1>
       <p className="mt-4 text-white/60">
         Guides and answers for setting up reminders, billing, and patient records.
@@ -43,7 +43,7 @@ export default function HelpPage() {
       <div className="mt-4 flex gap-3">
         <Link
           href="/contact"
-          className="text-sm font-semibold text-violet-400 hover:text-violet-300"
+          className="text-sm font-semibold text-amber-400 hover:text-amber-300"
         >
           Can't find your answer? Contact support →
         </Link>
@@ -64,7 +64,7 @@ export default function HelpPage() {
                   <li key={a.slug} className="flex items-start justify-between gap-2">
                     <Link
                       href={`/help/${a.slug}`}
-                      className="text-sm text-white/60 hover:text-violet-400 transition-colors"
+                      className="text-sm text-white/60 hover:text-amber-400 transition-colors"
                     >
                       {a.title}
                     </Link>
@@ -87,13 +87,13 @@ export default function HelpPage() {
         ))}
       </div>
 
-      <div className="mt-12 rounded-2xl border border-violet-500/20 bg-violet-500/5 p-8 text-center">
+      <div className="mt-12 rounded-2xl border border-amber-500/20 bg-amber-500/5 p-8 text-center">
         <h3 className="text-lg font-semibold text-white">Still stuck?</h3>
         <p className="mt-2 text-sm text-white/60">Our support team typically responds within 2 hours on business days.</p>
         <div className="mt-6 flex justify-center gap-4">
           <a
             href="mailto:support@easibill.com"
-            className="inline-flex rounded-full bg-violet-500 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-violet-400"
+            className="inline-flex rounded-full bg-amber-500 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-amber-400"
           >
             Email support
           </a>

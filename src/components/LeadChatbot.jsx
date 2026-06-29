@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+﻿import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send } from 'lucide-react';
 
@@ -126,7 +126,7 @@ export default function LeadChatbot() {
             style={{ width: 'min(320px, calc(100vw - 3rem))', maxHeight: '480px' }}
           >
             {/* Header */}
-            <div className="flex items-center gap-3 rounded-t-2xl bg-gradient-to-r from-purple-700 to-indigo-700 px-4 py-3">
+            <div className="flex items-center gap-3 rounded-t-2xl bg-gradient-to-r bg-amber-600 px-4 py-3">
               <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20">
                 <MessageCircle className="h-4 w-4 text-white" />
               </div>
@@ -148,7 +148,7 @@ export default function LeadChatbot() {
               {messages.map((msg, i) => (
                 <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                   {msg.role === 'bot' && (
-                    <div className="mr-2 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-purple-600 mt-1">
+                    <div className="mr-2 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-amber-500 mt-1">
                       <MessageCircle className="h-3 w-3 text-white" />
                     </div>
                   )}
@@ -176,13 +176,13 @@ export default function LeadChatbot() {
                   onKeyDown={handleKeyDown}
                   placeholder="Type your answer..."
                   disabled={isSubmitting}
-                  className="flex-1 rounded-full bg-slate-700 px-4 py-2 text-sm text-white placeholder-slate-400 outline-none focus:ring-2 focus:ring-purple-500 disabled:opacity-50"
+                  className="flex-1 rounded-full bg-slate-700 px-4 py-2 text-sm text-white placeholder-slate-400 outline-none focus:ring-2 focus:ring-amber-500 disabled:opacity-50"
                   autoFocus
                 />
                 <button
                   onClick={handleSend}
                   disabled={isSubmitting || !input.trim()}
-                  className="flex h-9 w-9 items-center justify-center rounded-full bg-purple-600 text-white transition hover:bg-purple-500 disabled:opacity-40"
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-500 text-white transition hover:bg-amber-500 disabled:opacity-40"
                   aria-label="Send"
                 >
                   <Send className="h-4 w-4" />
@@ -205,14 +205,14 @@ export default function LeadChatbot() {
         }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-purple-600 to-indigo-600 shadow-lg shadow-purple-900/40"
+        className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br bg-amber-500 shadow-lg shadow-zinc-900/40"
         aria-label="Open chat"
       >
         <MessageCircle className="h-6 w-6 text-white" />
         {!isOpen && (
           <span className="absolute -right-1 -top-1 flex h-3 w-3">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-purple-400 opacity-75" />
-            <span className="relative inline-flex h-3 w-3 rounded-full bg-purple-500" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75" />
+            <span className="relative inline-flex h-3 w-3 rounded-full bg-amber-500" />
           </span>
         )}
       </motion.button>

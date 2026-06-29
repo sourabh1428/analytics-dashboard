@@ -13,17 +13,21 @@ export default {
 	theme: {
     	extend: {
     		fontFamily: {
-    			display: ['var(--font-plus-jakarta)', 'system-ui', 'sans-serif'],
-    			sans: ['var(--font-plus-jakarta)', 'system-ui', 'sans-serif'],
+    			display: ['var(--font-ibm-plex)', 'IBM Plex Sans', 'system-ui', 'sans-serif'],
+    			sans: ['var(--font-ibm-plex)', 'IBM Plex Sans', 'system-ui', 'sans-serif'],
     		},
     		colors: {
     			background: 'hsl(var(--background))',
     			foreground: 'hsl(var(--foreground))',
     			brand: {
-    				primary: '#7C3AED',
-    				primaryDark: '#6D28D9',
+    				primary: '#F59E0B',
+    				primaryDark: '#D97706',
+    				primaryMuted: '#78350F',
     				dark: '#09090B',
-    				surface: '#FAFAFA',
+    				surface: '#18181B',
+    				surfaceElevated: '#1C1C1F',
+    				border: '#27272A',
+    				borderSubtle: '#3F3F46',
     			},
     		},
     		borderColor: {

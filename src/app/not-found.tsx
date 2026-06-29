@@ -3,10 +3,10 @@
 export default function NotFound() {
   return (
     <main className="mx-auto flex min-h-screen max-w-3xl flex-col justify-center px-6 py-16">
-      <p className="text-sm font-semibold uppercase tracking-wide text-violet-600">404</p>
+      <p className="text-sm font-semibold uppercase tracking-wide text-amber-500">404</p>
       <h1 className="mt-4 text-4xl font-bold tracking-tight text-zinc-950">Page not found</h1>
       <p className="mt-4 text-zinc-700">The EasiBill guide you are looking for does not exist yet.</p>
-      <Link className="mt-8 font-semibold text-violet-600 hover:text-violet-700" href="/">
+      <Link className="mt-8 font-semibold text-amber-500 hover:text-amber-600" href="/">
         Back to EasiBill
       </Link>
     </main>
