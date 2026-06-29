@@ -30,7 +30,7 @@ Independent pharmacy owners in India, especially Tier 2 and Tier 3 cities. Age 3
 - Monthly GST filing: GSTR-1 by 11th of following month, GSTR-3B by 20th
 
 ## CTA
-Trial: https://easibill.vercel.app/login
+Trial: https://dashboard.easibill.com/
 Contact: support@easibill.com
 `;
 
@@ -85,7 +85,7 @@ Write exactly 5 Q&A pairs. Each question must be something a real Indian pharmac
 (continue for all 5 pairs)
 
 ### ## Get Started with EasiBill (at least 100 words)
-A closing CTA section. Include the trial link https://easibill.vercel.app/login and contact support@easibill.com.
+A closing CTA section. Include the trial link https://dashboard.easibill.com/ and contact support@easibill.com.
 
 ---
 
