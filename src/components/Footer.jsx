@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { ArrowRight, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -22,26 +22,26 @@ const linkGroups = [
     links: [
       { label: '14-Day Free Trial', description: 'Full access, no card required, set up in under 5 minutes.', href: 'https://easibill.vercel.app/login', external: true },
       { label: 'Book a Demo', description: 'Live walkthrough with a pharmacy retention specialist.', href: '/contact' },
-      { label: 'Onboarding Guide', description: 'Step-by-step setup from first patient to first reminder.', href: '#', disabled: true },
+      { label: 'Onboarding Guide', description: 'Step-by-step setup from first patient to first reminder.', href: '/onboarding' },
       { label: 'Pricing', description: 'Starter free forever. Growth from $9/month.', href: '/#pricing' },
     ],
   },
   {
     title: 'Resources',
     links: [
-      { label: 'Help Center', description: 'Setup guides for reminders, billing, and patient records.', href: '#', disabled: true },
-      { label: 'Blog', description: 'Practical growth notes for independent pharmacy owners.', href: '#', disabled: true },
-      { label: 'Tutorials', description: 'Short walkthroughs for staff onboarding.', href: '#', disabled: true },
-      { label: 'Webinars', description: 'Live sessions on refill automation and retention.', href: '#', disabled: true },
+      { label: 'Help Center', description: 'Setup guides for reminders, billing, and patient records.', href: '/help' },
+      { label: 'Blog', description: 'Practical growth notes for independent pharmacy owners.', href: '/blog' },
+      { label: 'Tutorials', description: 'Short walkthroughs for staff onboarding.', href: '/tutorials' },
+      { label: 'Webinars', description: 'Live sessions on refill automation and retention.', href: '/webinars' },
     ],
   },
   {
     title: 'Company',
     links: [
-      { label: 'About Us', description: 'Building practical software for busy pharmacy counters worldwide.', href: '#', disabled: true },
+      { label: 'About Us', description: 'Building practical software for busy pharmacy counters worldwide.', href: '/about' },
       { label: 'Contact', description: 'Talk to us about sales, support, or partnerships.', href: '/contact' },
-      { label: 'Privacy Policy', description: 'How we handle pharmacy and patient data.', href: '#', disabled: true },
-      { label: 'Terms of Service', description: 'Terms for using Easibill products.', href: '#', disabled: true },
+      { label: 'Privacy Policy', description: 'How we handle pharmacy and patient data.', href: '/privacy' },
+      { label: 'Terms of Service', description: 'Terms for using Easibill products.', href: '/terms' },
     ],
   },
 ];
@@ -64,12 +64,12 @@ const Footer = () => {
             <button
               type="button"
               onClick={() => router.push('/')}
-              className="flex items-center gap-3 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-[#080d0a]"
+              className="flex items-center gap-3 text-left focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 focus:ring-offset-[#080d0a]"
             >
               <img src="/logo.png" alt="Easibill Logo" className="h-12 w-12 rounded-full" width="48" height="48" />
               <span>
                 <span className="block text-2xl font-semibold tracking-tight text-white">Easibill</span>
-                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-400/70">Pharmacy retention OS</span>
+                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-violet-400/70">Pharmacy retention OS</span>
               </span>
             </button>
             <p className="mt-5 max-w-md leading-7">
@@ -85,7 +85,7 @@ const Footer = () => {
                   className="min-w-0 flex-1 bg-transparent px-4 py-3 text-sm text-white outline-none placeholder:text-white/30"
                   aria-label="Email Address"
                 />
-                <button className="bg-blue-500 px-4 text-white transition hover:bg-blue-400" aria-label="Subscribe">
+                <button className="bg-violet-500 px-4 text-white transition hover:bg-violet-400" aria-label="Subscribe">
                   <ArrowRight className="h-4 w-4" />
                 </button>
               </div>
@@ -95,21 +95,21 @@ const Footer = () => {
             <div className="mt-6 grid gap-3 text-sm">
               <h3 className="font-semibold text-white">Contact Us</h3>
               <div className="flex items-center gap-3">
-                <Mail className="h-4 w-4 text-blue-400/60" />
+                <Mail className="h-4 w-4 text-violet-400/60" />
                 <a href="mailto:support@easibill.com" className="hover:text-white">support@easibill.com</a>
               </div>
               <div className="flex items-center gap-3">
-                <Phone className="h-4 w-4 text-blue-400/60" />
+                <Phone className="h-4 w-4 text-violet-400/60" />
                 <a href="tel:+918839143395" className="hover:text-white">+91 8839143395</a>
               </div>
               <div className="flex items-center gap-3">
-                <MapPin className="h-4 w-4 text-blue-400/60" />
+                <MapPin className="h-4 w-4 text-violet-400/60" />
                 <span>Serving pharmacies worldwide</span>
               </div>
             </div>
 
             <div className="mt-6 flex flex-wrap gap-3">
-              <a href={DASHBOARD_LOGIN_URL} className="inline-flex items-center justify-center rounded-full bg-blue-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-400">
+              <a href={DASHBOARD_LOGIN_URL} className="inline-flex items-center justify-center rounded-full bg-violet-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-violet-400">
                 Open Easibill app
               </a>
               <a href={DISCORD_URL} className="inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.05] px-5 py-3 text-sm font-semibold text-white/70 transition hover:border-white/20 hover:text-white">
@@ -134,7 +134,7 @@ const Footer = () => {
                         onClick={disabled ? (e) => e.preventDefault() : undefined}
                         className={`block${disabled ? ' pointer-events-none opacity-40' : ''}`}
                       >
-                        <span className="text-sm font-semibold text-white/70 hover:text-blue-400">{label}</span>
+                        <span className="text-sm font-semibold text-white/70 hover:text-violet-400">{label}</span>
                         <span className="mt-1 block text-xs leading-5 text-white/30">{description}</span>
                       </a>
                     </li>
@@ -155,7 +155,7 @@ const Footer = () => {
             <span>|</span>
             <a href="/terms" onClick={(event) => goTo(event, '/terms')} className="hover:text-white">Terms of Service</a>
             <span>|</span>
-            <a href="/sitemap" onClick={(event) => goTo(event, '/sitemap')} className="hover:text-white">Sitemap</a>
+            <a href="/sitemap-page" onClick={(event) => goTo(event, '/sitemap-page')} className="hover:text-white">Sitemap</a>
           </div>
         </div>
       </div>
