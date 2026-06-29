@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { CheckCircle2, Send, X } from 'lucide-react'
 import { track } from '../utils/mixpanel'
 import { useGeo } from '../hooks/useGeo'
+import posthog from 'posthog-js'
 
 const WORKER_URL = 'https://landingpage-lead.sppathak1428.workers.dev/'
 const STORAGE_KEY = 'lead_nudge_dismissed'
@@ -68,6 +69,23 @@ export default function LeadNudge() {
         }),
       })
       if (!res.ok) throw new Error()
+      // Identify user in PostHog — links all past + future sessions to this person
+      const distinctId = form.email || form.mobile
+      posthog.identify(distinctId, {
+        email: form.email || undefined,
+        phone: form.mobile || undefined,
+        name: form.name,
+        company: form.company,
+        lead_source: 'nudge',
+        country: geo?.countryCode,
+      })
+      posthog.capture('lead_captured', {
+        source: 'nudge',
+        has_email: !!form.email,
+        has_phone: !!form.mobile,
+        company: form.company,
+        country: geo?.countryCode,
+      })
       track('demo_requested', { source: 'lead_nudge', method: 'form_submit', company: form.company })
       setDone(true)
       markDismissed()

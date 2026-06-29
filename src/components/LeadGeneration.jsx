@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { User, Mail, Building, Phone, ChevronRight, ChevronLeft, Send, Briefcase, CheckCircle2, AlertCircle, MessageCircle, ArrowRight } from 'lucide-react'
 import { useNavigate } from 'react-router'
 import { track } from '../utils/mixpanel'
+import posthog from 'posthog-js'
 
 const questions = [
   { id: 1, label: "Your name", icon: User, type: "text", name: "name", placeholder: "e.g. Ramesh Kumar", required: true },
@@ -75,6 +76,20 @@ export default function LeadGeneration() {
         body: JSON.stringify(formData),
       })
       if (!response.ok) throw new Error('Failed to submit')
+      // Identify user in PostHog — links all past + future sessions to this person
+      posthog.identify(formData.email, {
+        email: formData.email,
+        phone: formData.mobile,
+        name: formData.name,
+        company: formData.companyName,
+        location: formData.location,
+        lead_source: 'demo_form',
+      })
+      posthog.capture('lead_captured', {
+        source: 'demo_form',
+        company: formData.companyName,
+        location: formData.location,
+      })
       track('demo_requested', { source: 'lead_form', method: 'form_submit', shop_name: formData.companyName, location: formData.location })
       setShowThankYou(true)
     } catch {
