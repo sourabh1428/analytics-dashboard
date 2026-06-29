@@ -12,7 +12,7 @@ function PageViewTracker() {
   useEffect(() => {
     if (!pathname || !posthog) return
     let url = window.location.origin + pathname
-    if (searchParams.toString()) url += `?${searchParams.toString()}`
+    if (searchParams?.toString()) url += `?${searchParams.toString()}`
     posthog.capture('$pageview', { $current_url: url })
   }, [pathname, searchParams, posthog])
 
