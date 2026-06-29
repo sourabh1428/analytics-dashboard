@@ -56,7 +56,7 @@ export default function RootLayout({
               var script = document.createElement('script');
               script.src = 'https://assistloop.ai/assistloop-widget.js';
               script.onload = function() {
-                AssistLoopWidget.init({ agentId: "fe2f60b9-35f6-4337-b517-75e80e069174", position: "bottom-left" });
+                AssistLoopWidget.init({ agentId: "fe2f60b9-35f6-4337-b517-75e80e069174", position: "bottom-right" });
               };
               document.head.appendChild(script);
             })();
