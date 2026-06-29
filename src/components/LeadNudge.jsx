@@ -37,7 +37,19 @@ export default function LeadNudge() {
 
   useEffect(() => {
     if (wasDismissedRecently()) return
-    const timer = setTimeout(() => setVisible(true), 15_000)
+
+    // Show when user reaches the pricing section
+    const pricingEl = document.getElementById('pricing')
+    if (pricingEl) {
+      const obs = new IntersectionObserver(([e]) => {
+        if (e.isIntersecting) { setVisible(true); obs.disconnect() }
+      }, { rootMargin: '-120px' })
+      obs.observe(pricingEl)
+      return () => obs.disconnect()
+    }
+
+    // Fallback: show after 20s if no pricing section found
+    const timer = setTimeout(() => setVisible(true), 20_000)
     return () => clearTimeout(timer)
   }, [])
 
