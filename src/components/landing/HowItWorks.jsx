@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion'
 import { Smartphone, Users, Bell } from 'lucide-react'
 import { slideLeft, slideRight, fadeUp, stagger, wordVariant, viewport } from '@/src/lib/motion'
+import { usePostHog } from 'posthog-js/react'
+import { useRef, useEffect } from 'react'
 
 const STEPS = [
   {
@@ -40,9 +42,22 @@ const directionVariants = {
 const H2_WORDS = ['Up', 'and', 'running', 'in', 'under', '10', 'minutes']
 
 export default function HowItWorks() {
+  const posthog = usePostHog()
+  const ref = useRef(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { posthog?.capture('how_it_works_viewed'); obs.disconnect() }
+    }, { rootMargin: '-80px' })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [posthog])
+
   return (
     <section
       id="how-it-works"
+      ref={ref}
       aria-labelledby="how-heading"
       className="py-24 px-6 bg-[#18181B]"
     >
@@ -130,6 +145,7 @@ export default function HowItWorks() {
         >
           <a
             href="https://dashboard.easibill.com/"
+            onClick={() => posthog?.capture('how_it_works_cta_clicked')}
             className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-amber-500 text-zinc-950 font-semibold hover:bg-amber-400 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900 text-base"
           >
             Start free — no card needed

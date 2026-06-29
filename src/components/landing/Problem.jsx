@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion'
 import { Clock, UserX, FileWarning, TrendingDown } from 'lucide-react'
 import { fadeUp, scaleIn, stagger, wordVariant, viewport } from '@/src/lib/motion'
+import { usePostHog } from 'posthog-js/react'
+import { useRef, useEffect } from 'react'
 
 const PAIN_POINTS = [
   {
@@ -34,9 +36,22 @@ const PAIN_POINTS = [
 const HEADING = ['Manual', 'billing', 'is', 'costing', 'you', 'more', 'than', 'you', 'think']
 
 export default function Problem() {
+  const posthog = usePostHog()
+  const ref = useRef(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { posthog?.capture('problem_section_viewed'); obs.disconnect() }
+    }, { rootMargin: '-80px' })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [posthog])
+
   return (
     <section
       id="problem"
+      ref={ref}
       aria-labelledby="problem-heading"
       className="py-24 px-6 bg-[#18181B]"
     >

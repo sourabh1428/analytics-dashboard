@@ -8,6 +8,8 @@ import NavBar from "@/src/components/NavBar";
 import Footer from "@/src/components/Footer";
 import ConsentBanner from "@/src/components/ConsentBanner";
 import LeadNudge from "@/src/components/LeadNudge";
+import PostHogProvider from "@/src/components/PostHogProvider";
+import PostHogPageView from "@/src/components/PostHogPageView";
 import "./globals.css";
 
 const ibmPlexSans = IBM_Plex_Sans({
@@ -40,16 +42,19 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={ibmPlexSans.variable}>
       <body suppressHydrationWarning>
-        <div className="relative min-h-screen overflow-x-hidden bg-[#09090B] text-[#FAFAFA]">
-          <ScrollProgressBar />
-          <NavBar />
-          <main className="relative">{children}</main>
-          <Footer />
-          <ConsentBanner />
-          <LeadNudge />
-          <Analytics />
-          <SpeedInsights />
-        </div>
+        <PostHogProvider>
+          <PostHogPageView />
+          <div className="relative min-h-screen overflow-x-hidden bg-[#09090B] text-[#FAFAFA]">
+            <ScrollProgressBar />
+            <NavBar />
+            <main className="relative">{children}</main>
+            <Footer />
+            <ConsentBanner />
+            <LeadNudge />
+            <Analytics />
+            <SpeedInsights />
+          </div>
+        </PostHogProvider>
         <Script id="assistloop-widget" strategy="afterInteractive">
           {`
             (function() {
@@ -101,5 +106,5 @@ export default function RootLayout({
         </Script>
       </body>
     </html>
-  );
+  )
 }

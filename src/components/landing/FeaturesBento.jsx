@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion'
 import { Bell, Users, LayoutDashboard, Radio, BarChart3, BookOpen } from 'lucide-react'
 import { fadeUp, scaleIn, stagger, wordVariant, viewport } from '@/src/lib/motion'
+import { usePostHog } from 'posthog-js/react'
+import { useRef, useEffect } from 'react'
 
 const FEATURES = [
   {
@@ -91,9 +93,22 @@ const H2_WORDS_1 = ['One', 'WhatsApp', 'message', 'at', 'the', 'right', 'time.']
 const H2_WORDS_2 = ['Everything', 'else', 'is', 'noise.']
 
 export default function FeaturesBento() {
+  const posthog = usePostHog()
+  const ref = useRef(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { posthog?.capture('features_section_viewed'); obs.disconnect() }
+    }, { rootMargin: '-80px' })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [posthog])
+
   return (
     <section
       id="features"
+      ref={ref}
       aria-labelledby="features-heading"
       className="py-24 px-6 bg-[#09090B]"
     >
@@ -142,6 +157,7 @@ export default function FeaturesBento() {
               key={feature.tag}
               variants={scaleIn}
               whileHover={{ y: -6, transition: { duration: 0.2 } }}
+              onHoverStart={() => posthog?.capture('feature_card_hovered', { feature: feature.tag })}
               className={`bg-[#18181B] rounded-2xl border border-zinc-800 p-6 flex flex-col ${
                 feature.size === 'large' ? 'lg:col-span-2' : ''
               }`}

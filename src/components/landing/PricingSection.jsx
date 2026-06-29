@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion'
 import { Check, ArrowRight } from 'lucide-react'
 import { fadeUp, stagger, wordVariant, viewport } from '@/src/lib/motion'
+import { usePostHog } from 'posthog-js/react'
+import { useRef, useEffect } from 'react'
 
 const PLANS = [
   {
@@ -54,9 +56,22 @@ const PLANS = [
 const H2_WORDS = ['Simple', 'pricing.', 'No', 'hidden', 'fees.']
 
 export default function PricingSection() {
+  const posthog = usePostHog()
+  const ref = useRef(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { posthog?.capture('pricing_section_viewed'); obs.disconnect() }
+    }, { rootMargin: '-80px' })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [posthog])
+
   return (
     <section
       id="pricing"
+      ref={ref}
       aria-labelledby="pricing-heading"
       className="py-24 px-6 bg-[#18181B]"
     >
@@ -134,6 +149,7 @@ export default function PricingSection() {
 
               <a
                 href={plan.ctaHref}
+                onClick={() => posthog?.capture('pricing_cta_clicked', { plan: plan.name, popular: plan.popular })}
                 className={`inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900 min-h-[44px] ${
                   plan.popular
                     ? 'bg-amber-500 text-zinc-950 hover:bg-amber-400'

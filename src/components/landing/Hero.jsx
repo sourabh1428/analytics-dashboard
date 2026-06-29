@@ -4,6 +4,7 @@ import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion'
 import { ArrowRight, CheckCircle, MessageCircle, LayoutDashboard, Users, Package, BarChart3 } from 'lucide-react'
 import { useGeo } from '@/src/hooks/useGeo'
 import { stagger, wordVariant, fadeUp, scaleIn, staggerFast, fadeIn, viewport } from '@/src/lib/motion'
+import { usePostHog } from 'posthog-js/react'
 
 const H1_WORDS_1 = ['Your', 'pharmacy', 'loses', '20–40%', 'of', 'patients', 'every', 'year.']
 const H1_WORDS_2 = ['EasiBill', 'stops', 'that.']
@@ -156,6 +157,7 @@ function AppMockup() {
 
 export default function Hero() {
   const geo = useGeo()
+  const posthog = usePostHog()
 
   const proofPoints = [
     geo ? `${geo.flag} Serving pharmacies in ${geo.countryName}` : '2,400+ pharmacies worldwide',
@@ -257,6 +259,7 @@ export default function Hero() {
         >
           <a
             href="https://dashboard.easibill.com/"
+            onClick={() => posthog?.capture('hero_cta_clicked', { cta: 'start_free', location: 'hero' })}
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-amber-500 text-zinc-950 font-semibold hover:bg-amber-400 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900 text-base min-h-[48px]"
           >
             Start free — no card needed
@@ -264,6 +267,7 @@ export default function Hero() {
           </a>
           <a
             href="#how-it-works"
+            onClick={() => posthog?.capture('hero_cta_clicked', { cta: 'how_it_works', location: 'hero' })}
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-zinc-700 text-zinc-200 font-semibold hover:bg-zinc-800 hover:border-zinc-600 transition-colors duration-150 text-base min-h-[48px]"
           >
             See how it works →

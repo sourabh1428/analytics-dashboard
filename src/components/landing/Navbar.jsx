@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import { usePostHog } from 'posthog-js/react'
 
 const NAV_LINKS = [
   { label: 'Features', href: '#features' },
@@ -14,6 +15,7 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const posthog = usePostHog()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16)
@@ -44,6 +46,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
+              onClick={() => posthog?.capture('navbar_link_clicked', { link: link.label })}
               className="text-sm text-zinc-400 hover:text-white transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900 rounded-sm"
             >
               {link.label}
@@ -54,12 +57,14 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-3">
           <a
             href="https://dashboard.easibill.com/"
+            onClick={() => posthog?.capture('navbar_signin_clicked')}
             className="text-sm text-zinc-400 hover:text-white transition-colors duration-150 font-medium focus-visible:ring-2 focus-visible:ring-amber-500 rounded-sm"
           >
             Sign in
           </a>
           <a
             href="https://dashboard.easibill.com/"
+            onClick={() => posthog?.capture('navbar_cta_clicked', { location: 'navbar_desktop' })}
             className="inline-flex items-center px-4 py-2 rounded-xl bg-amber-500 text-zinc-950 text-sm font-semibold hover:bg-amber-400 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900"
           >
             Start free
@@ -103,6 +108,7 @@ export default function Navbar() {
               ))}
               <a
                 href="https://dashboard.easibill.com/"
+                onClick={() => posthog?.capture('navbar_cta_clicked', { location: 'navbar_mobile' })}
                 className="mt-2 inline-flex items-center justify-center px-4 py-3 rounded-xl bg-amber-500 text-zinc-950 text-sm font-semibold hover:bg-amber-400 transition-colors min-h-[44px]"
               >
                 Start free — no card needed

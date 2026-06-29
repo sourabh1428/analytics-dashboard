@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion'
 import { Star } from 'lucide-react'
 import { slideLeft, slideRight, fadeUp, stagger, wordVariant, viewport } from '@/src/lib/motion'
+import { usePostHog } from 'posthog-js/react'
+import { useRef, useEffect } from 'react'
 
 const TESTIMONIALS = [
   {
@@ -37,9 +39,22 @@ const TESTIMONIALS = [
 const H2_WORDS = ['Pharmacists', 'who', 'switched', 'never', 'went', 'back']
 
 export default function Testimonials() {
+  const posthog = usePostHog()
+  const ref = useRef(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { posthog?.capture('testimonials_section_viewed'); obs.disconnect() }
+    }, { rootMargin: '-80px' })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [posthog])
+
   return (
     <section
       id="testimonials"
+      ref={ref}
       aria-labelledby="testimonials-heading"
       className="py-24 px-6 bg-[#09090B]"
     >

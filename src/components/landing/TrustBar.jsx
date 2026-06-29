@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useGeo } from '@/src/hooks/useGeo'
 import { fadeIn, viewport } from '@/src/lib/motion'
+import { usePostHog } from 'posthog-js/react'
 
 const STATS = [
   { value: 2400, suffix: '+', label: 'Pharmacies using EasiBill' },
@@ -49,6 +50,18 @@ function AnimatedNumber({ value, prefix = '', suffix = '' }) {
 }
 
 export default function TrustBar() {
+  const posthog = usePostHog()
+  const sectionRef = useRef(null)
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { posthog?.capture('trustbar_viewed'); obs.disconnect() }
+    }, { rootMargin: '-80px' })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [posthog])
+
   const geo = useGeo()
 
   const label = geo
@@ -57,6 +70,7 @@ export default function TrustBar() {
 
   return (
     <section
+      ref={sectionRef}
       aria-labelledby="trust-heading"
       className="bg-[#09090B] border-y border-zinc-800 py-16 px-6"
     >

@@ -3,11 +3,13 @@
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { stagger, wordVariant, fadeUp, scaleIn, viewport } from '@/src/lib/motion'
+import { usePostHog } from 'posthog-js/react'
 
 const H2_WORDS_1 = ['Stop', 'losing', 'patients']
 const H2_WORDS_2 = ['to', 'forgetfulness.']
 
 export default function FinalCTA() {
+  const posthog = usePostHog()
   return (
     <section
       id="cta"
@@ -66,6 +68,7 @@ export default function FinalCTA() {
           <motion.div variants={scaleIn} className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
               href="https://dashboard.easibill.com/"
+              onClick={() => posthog?.capture('final_cta_clicked')}
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-amber-500 text-zinc-950 font-semibold hover:bg-amber-400 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900 text-base min-h-[52px]"
             >
               Start free — no card needed

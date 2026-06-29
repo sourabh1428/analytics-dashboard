@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Plus, Minus } from 'lucide-react'
 import { fadeUp, scaleIn, stagger, wordVariant, viewport } from '@/src/lib/motion'
+import { usePostHog } from 'posthog-js/react'
+import { useRef, useEffect } from 'react'
 
 const FAQS = [
   {
@@ -32,7 +34,7 @@ const FAQS = [
   },
 ]
 
-function FAQItem({ item, index }) {
+function FAQItem({ item, index, onOpen }) {
   const [open, setOpen] = useState(false)
   const id = `faq-answer-${index}`
   const buttonId = `faq-button-${index}`
@@ -46,7 +48,7 @@ function FAQItem({ item, index }) {
         id={buttonId}
         aria-expanded={open}
         aria-controls={id}
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => { const next = !open; setOpen(next); if (next) onOpen?.(item.question) }}
         className="w-full flex items-center justify-between py-5 text-left gap-4 focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900 rounded-sm group"
       >
         <span className="font-semibold text-zinc-200 text-base group-hover:text-white transition-colors duration-150">
@@ -80,9 +82,22 @@ function FAQItem({ item, index }) {
 const H2_WORDS = ['Questions', 'pharmacists', 'ask', 'before', 'switching']
 
 export default function FAQ() {
+  const posthog = usePostHog()
+  const ref = useRef(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { posthog?.capture('faq_section_viewed'); obs.disconnect() }
+    }, { rootMargin: '-80px' })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [posthog])
+
   return (
     <section
       id="faq"
+      ref={ref}
       aria-labelledby="faq-heading"
       className="py-24 px-6 bg-[#09090B]"
     >
@@ -121,7 +136,12 @@ export default function FAQ() {
           className="bg-[#18181B] rounded-2xl border border-zinc-800 px-8"
         >
           {FAQS.map((item, i) => (
-            <FAQItem key={item.question} item={item} index={i} />
+            <FAQItem
+              key={item.question}
+              item={item}
+              index={i}
+              onOpen={(q) => posthog?.capture('faq_opened', { question: q, index: i })}
+            />
           ))}
         </motion.div>
       </div>
