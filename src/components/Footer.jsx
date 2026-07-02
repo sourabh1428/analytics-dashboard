@@ -1,6 +1,7 @@
-﻿"use client";
+"use client";
 
-import { ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Mail, MapPin, Phone, ExternalLink } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
@@ -57,21 +58,44 @@ const Footer = () => {
   };
 
   return (
-    <footer className="border-t border-white/[0.06] bg-[#080d0a] text-white/50" data-section="footer">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+    <footer className="relative border-t border-amber-500/10 bg-[#080d0a] text-white/50 overflow-hidden" data-section="footer">
+      {/* Background gradient */}
+      <div className="absolute inset-0 pointer-events-none">
+        <motion.div
+          className="absolute -bottom-40 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full opacity-5"
+          style={{
+            background: 'radial-gradient(circle, rgba(245,158,11,0.5) 0%, transparent 70%)',
+          }}
+          animate={{
+            y: [0, 40, 0],
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          aria-hidden="true"
+        />
+      </div>
+
+      <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <button
+            <motion.button
               type="button"
               onClick={() => router.push('/')}
+              whileHover={{ scale: 1.05 }}
               className="flex items-center gap-3 text-left focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-[#080d0a]"
             >
-              <img src="/logo.png" alt="Easibill Logo" className="h-12 w-12 rounded-full" width="48" height="48" />
+              <motion.img
+                src="/logo.png"
+                alt="Easibill Logo"
+                className="h-12 w-12 rounded-full"
+                width="48"
+                height="48"
+                whileHover={{ rotate: 10 }}
+              />
               <span>
                 <span className="block text-2xl font-semibold tracking-tight text-white">Easibill</span>
-                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-400/70">Pharmacy retention OS</span>
+                <span className="text-xs font-semibold uppercase tracking-[0.18em] bg-gradient-to-r from-amber-400 to-amber-300 bg-clip-text text-transparent">Pharmacy retention OS</span>
               </span>
-            </button>
+            </motion.button>
             <p className="mt-5 max-w-md leading-7">
               Simplify your billing process with fast, reliable software, then bring patients back with WhatsApp refill reminders built for independent pharmacies everywhere.
             </p>
