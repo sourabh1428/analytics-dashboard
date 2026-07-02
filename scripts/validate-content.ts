@@ -110,7 +110,7 @@ async function validateAllGeneratedContent() {
   const parsed = await Promise.all(
     files.map(async (file) => {
       const raw = await fs.readFile(path.join(contentDir, file), "utf8");
-      return { file, data: JSON.parse(raw) as unknown };
+      return { file, data: JSON.parse(raw.replace(/^﻿/, "")) as unknown };
     }),
   );
 
