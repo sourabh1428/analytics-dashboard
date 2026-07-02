@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react'
 import { motion } from 'framer-motion'
 import { 
@@ -110,9 +112,7 @@ const FeatureShowcase = () => {
           style={{
             background: 'radial-gradient(circle, rgba(245,158,11,0.5) 0%, transparent 70%)',
           }}
-          animate={{
-            y: [0, 30, 0],
-          }}
+          animate={{ y: [0, 30, 0] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           aria-hidden="true"
         />
