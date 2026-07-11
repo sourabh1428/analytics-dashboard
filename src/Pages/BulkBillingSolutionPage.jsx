@@ -23,26 +23,26 @@ const capabilities = [
   {
     icon: LayoutTemplate,
     title: 'Custom WhatsApp templates',
-    copy: 'Personalise every message with medicine name, refill date, and pharmacy name tokens. Patients get a message that feels written for them.',
+    copy: 'Personalise every message with item name, follow-up date, and business name tokens. Customers get a message that feels written for them.',
   },
   {
     icon: Tags,
     title: 'Segment-based broadcasts',
-    copy: 'Target the right patients — diabetes group, BP patients, senior citizens, or high-value repeat buyers — without blasting everyone.',
+    copy: 'Target the right customers — regular buyers, wellness clients, senior citizens, or high-value repeat buyers — without blasting everyone.',
   },
   {
     icon: BellRing,
     title: 'Scheduled sends',
-    copy: 'Plan health camp announcements, seasonal offers, or loyalty messages in advance. Campaigns go out at the right time automatically.',
+    copy: 'Plan event announcements, seasonal offers, or loyalty messages in advance. Campaigns go out at the right time automatically.',
   },
   {
     icon: TrendingUp,
     title: 'Delivery tracking per campaign',
-    copy: 'See sent, failed, and read receipts for every broadcast. Know exactly which patient received which message.',
+    copy: 'See sent, failed, and read receipts for every broadcast. Know exactly which customer received which message.',
   },
 ];
 
-const segments = ['Diabetes patients', 'BP medication', 'Thyroid care', 'Senior citizens', 'High-value buyers', 'Inactive 30+ days'];
+const segments = ['Regular customers', 'Spa & wellness clients', 'Retail shoppers', 'Senior citizens', 'High-value buyers', 'Inactive 30+ days'];
 
 const BulkBillingSolutionPage = () => {
   return (
@@ -62,10 +62,10 @@ const BulkBillingSolutionPage = () => {
               Broadcast + Segmentation — Pro plan
             </div>
             <h1 className="text-balance text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
-              Customisable bulk billing built for independent pharmacies.
+              Customisable bulk billing built for local businesses.
             </h1>
             <p className="mt-6 text-lg leading-8 text-slate-600">
-              Send the right message to the right patients at the right time. Easibill's bulk messaging is built around pharmacy segments — not generic contact lists.
+              Send the right message to the right customers at the right time. Easibill's bulk messaging is built around customer segments — not generic contact lists.
             </p>
             <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <motion.a
@@ -83,7 +83,7 @@ const BulkBillingSolutionPage = () => {
                 whileTap={{ scale: 0.98 }}
                 className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-6 py-3.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-amber-300 hover:text-zinc-800"
               >
-                Book pharmacy demo
+                Book a demo
               </motion.a>
             </div>
           </motion.div>
@@ -102,15 +102,15 @@ const BulkBillingSolutionPage = () => {
             >
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-600">What it is</p>
               <h2 className="mt-4 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
-                One message. The right patients. Zero manual work.
+                One message. The right customers. Zero manual work.
               </h2>
               <p className="mt-5 text-lg leading-8 text-slate-600">
-                Bulk billing lets you compose a single WhatsApp message and deliver it to a filtered group of patients — by medicine, condition, activity, or custom tag. Unlike a generic blast, every message includes the patient's name and relevant medicine details.
+                Bulk billing lets you compose a single WhatsApp message and deliver it to a filtered group of customers — by item, interest, activity, or custom tag. Unlike a generic blast, every message includes the customer's name and relevant item details.
               </p>
               <div className="mt-8 space-y-3">
                 {[
                   'No tech skills required — compose in the dashboard',
-                  'Segments update automatically as patients are added',
+                  'Segments update automatically as customers are added',
                   'Schedule future campaigns without being online',
                   'Tracks delivery so you know who actually received it',
                 ].map((item) => (
@@ -156,13 +156,13 @@ const BulkBillingSolutionPage = () => {
                   <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Message preview</p>
                   <div className="rounded-xl bg-amber-50 p-4 text-sm leading-6 text-zinc-900">
                     Namaste {'{'}{'{'} Name {'}'}{'}'},<br />
-                    Kumar Medicos is running a free diabetes check-up camp this Sunday. Please visit us before 12 PM.
+                    Kumar Medicos is running a customer appreciation weekend this Sunday. Please visit us before 12 PM.
                   </div>
                 </div>
                 <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.06] p-4">
                   <div>
                     <p className="text-sm font-semibold">Recipients</p>
-                    <p className="text-xs text-slate-400">142 diabetes patients</p>
+                    <p className="text-xs text-slate-400">142 regular customers</p>
                   </div>
                   <button type="button" className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-4 py-2 text-xs font-semibold text-white transition hover:bg-amber-400">
                     <Send className="h-3.5 w-3.5" />
@@ -255,7 +255,7 @@ const BulkBillingSolutionPage = () => {
                 <ul className="space-y-3 text-slate-600">
                   {[
                     'Targeted messages to the right segment only',
-                    'Patients respond because the message is relevant',
+                    'Customers respond because the message is relevant',
                     'Full delivery report — sent, failed, read',
                     'One click to schedule from the dashboard',
                     'Campaign history saved automatically',

@@ -7,8 +7,8 @@ import { fadeUpBlur, springCard, stagger, VIEWPORT } from '../../utils/animation
 const features = [
   {
     icon: DatabaseZap,
-    title: 'Patient refill memory',
-    copy: 'Store patient, phone, medicine, refill interval, last purchase, and next due date — no ERP migration required.',
+    title: 'Customer follow-up memory',
+    copy: 'Store customer, phone, item, follow-up interval, last purchase, and next due date — no ERP migration required.',
   },
   {
     icon: BellRing,
@@ -18,22 +18,22 @@ const features = [
   {
     icon: ListChecks,
     title: 'Daily action queue',
-    copy: 'Know exactly who is due, overdue, or recently refilled before the morning rush starts.',
+    copy: 'Know exactly who is due, overdue, or recently followed up before the morning rush starts.',
   },
   {
     icon: Tags,
     title: 'Tags and segments',
-    copy: 'Group patients by diabetes, BP, thyroid, senior citizen, or high-value repeat buyer.',
+    copy: 'Group customers by regular buyer, high-value customer, seasonal shopper, or senior citizen.',
   },
   {
     icon: MessageSquareText,
     title: 'Broadcast campaigns',
-    copy: 'Send targeted health camps, seasonal offers, and loyalty messages without blasting everyone.',
+    copy: 'Send targeted offers, event invites, and loyalty messages without blasting everyone.',
   },
   {
     icon: ChartNoAxesCombined,
     title: 'Retention analytics',
-    copy: 'Measure reminders sent, refill response, inactive patients, and recovered monthly revenue.',
+    copy: 'Measure reminders sent, follow-up response, inactive customers, and recovered monthly revenue.',
   },
 ];
 
@@ -61,7 +61,7 @@ const EasibillFeatures = () => {
             <span className="text-emerald-400">Simple where staff use it.</span>
           </h2>
           <p className="mt-5 text-lg leading-8 text-white/45">
-            EasiBill avoids bloated CRM behavior and focuses on the retention jobs a pharmacy performs every single day.
+            EasiBill avoids bloated CRM behavior and focuses on the retention jobs a local business performs every single day.
           </p>
         </motion.div>
 
@@ -114,14 +114,14 @@ const EasibillFeatures = () => {
               >
                 <div className="mb-4 flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-bold text-white">Patients needing attention</p>
+                    <p className="text-sm font-bold text-white">Customers needing attention</p>
                     <p className="text-xs text-white/35">Prioritized for staff follow-up</p>
                   </div>
                   <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-bold text-emerald-400">
                     Auto-sorted
                   </span>
                 </div>
-                {['Ramesh P. — insulin refill overdue', 'Nisha V. — BP medicine due today', 'Kiran M. — WhatsApp delivery failed'].map((item, index) => (
+                {['Ramesh P. — reorder follow-up overdue', 'Nisha V. — spa appointment due today', 'Kiran M. — WhatsApp delivery failed'].map((item, index) => (
                   <div key={item} className="flex items-center justify-between border-t border-white/[0.05] py-3">
                     <span className="text-sm text-white/55">{item}</span>
                     <span className="rounded-full border border-white/[0.06] bg-white/[0.04] px-2.5 py-1 text-xs font-semibold text-white/35">

@@ -15,9 +15,9 @@ import { track } from '../../utils/mixpanel';
 const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
 
 const reminders = [
-  { name: 'Anita R.', medicine: 'Metformin 500mg', status: 'Reminder sent', dot: 'bg-emerald-400' },
-  { name: 'Harish K.', medicine: 'Telmisartan 40mg', status: 'Due tomorrow', dot: 'bg-amber-400' },
-  { name: 'Meena S.', medicine: 'Thyroxine 50mcg', status: 'Refilled', dot: 'bg-slate-400' },
+  { name: 'Anita R.', product: 'Metformin 500mg', status: 'Reminder sent', dot: 'bg-emerald-400' },
+  { name: 'Harish K.', product: 'Deep Tissue Massage — 60 min', status: 'Due tomorrow', dot: 'bg-amber-400' },
+  { name: 'Meena S.', product: 'Wireless Earbuds', status: 'Followed up', dot: 'bg-slate-400' },
 ];
 
 function WordReveal({ text, baseDelay = 0, className = '' }) {
@@ -73,7 +73,7 @@ const EasibillHero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.08 }}
           >
-            Trusted by 2,400+ pharmacies across India
+            Trusted by 2,400+ local businesses across India
           </motion.p>
 
           {/* Headline */}
@@ -97,7 +97,7 @@ const EasibillHero = () => {
               />
             </motion.span>
             {' '}
-            <WordReveal text="Patients who come back." baseDelay={0.4} />
+            <WordReveal text="Customers who come back." baseDelay={0.4} />
           </h1>
 
           {/* Sub */}
@@ -107,8 +107,8 @@ const EasibillHero = () => {
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             transition={{ duration: 0.55, delay: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            GST bills on WhatsApp in 3 seconds. Automatic refill reminders.
-            Zero paperwork. Built for independent pharmacies.
+            GST bills on WhatsApp in 3 seconds. Automatic follow-up reminders.
+            Zero paperwork. Built for local businesses.
           </motion.p>
 
           {/* CTAs */}
@@ -132,7 +132,7 @@ const EasibillHero = () => {
               onClick={() => track('demo_requested', { source: 'hero', method: 'button_click' })}
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/[0.12] bg-white/[0.05] px-7 py-3.5 text-sm font-semibold text-white/80 backdrop-blur transition hover:border-white/20 hover:bg-white/[0.08] hover:text-white focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-[#080d0a]"
             >
-              Book pharmacy demo
+              Book business demo
             </a>
           </motion.div>
 
@@ -170,7 +170,7 @@ const EasibillHero = () => {
             {/* Card header */}
             <div className="flex items-center justify-between border-b border-white/[0.07] px-5 py-4">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-400/70">Today · Refill queue</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-400/70">Today · Follow-up queue</p>
                 <h2 className="mt-0.5 text-sm font-semibold text-white">Verma Medical Store</h2>
               </div>
               <div className="flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/[0.1] px-3 py-1.5 text-xs font-semibold text-emerald-400">
@@ -194,7 +194,7 @@ const EasibillHero = () => {
                       <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${item.dot}`} />
                       <div>
                         <p className="truncate text-sm font-semibold text-white">{item.name}</p>
-                        <p className="truncate text-xs text-white/40">{item.medicine}</p>
+                        <p className="truncate text-xs text-white/40">{item.product}</p>
                       </div>
                     </div>
                     <span className="shrink-0 text-[10px] font-medium text-white/40">{item.status}</span>
@@ -216,7 +216,7 @@ const EasibillHero = () => {
                     WhatsApp
                   </div>
                   <p className="text-[10px] leading-4 text-white/60">
-                    Namaste Anita ji, your Metformin is due for refill today. Reply YES to confirm.
+                    Namaste Anita ji, your Metformin is due for a follow-up today. Reply YES to confirm.
                   </p>
                   <p className="mt-2 text-right text-[9px] text-emerald-400/70">Queued 9:00 AM ✓</p>
                 </motion.div>

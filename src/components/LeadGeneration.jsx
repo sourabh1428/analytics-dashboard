@@ -7,18 +7,18 @@ import posthog from 'posthog-js'
 
 const questions = [
   { id: 1, label: "Your name", icon: User, type: "text", name: "name", placeholder: "e.g. Ramesh Kumar", required: true },
-  { id: 2, label: "Email address", icon: Mail, type: "email", name: "email", placeholder: "e.g. ramesh@pharmacy.in", required: true },
+  { id: 2, label: "Email address", icon: Mail, type: "email", name: "email", placeholder: "e.g. ramesh@business.in", required: true },
   { id: 3, label: "Mobile number", icon: Phone, type: "tel", name: "mobile", placeholder: "10-digit mobile", required: true, pattern: "[0-9]{10}" },
-  { id: 4, label: "Pharmacy / shop name", icon: Briefcase, type: "text", name: "companyName", placeholder: "e.g. Sharma Medical Store", required: true },
+  { id: 4, label: "Business / shop name", icon: Briefcase, type: "text", name: "companyName", placeholder: "e.g. Sharma Retail Store", required: true },
   { id: 5, label: "City / location", icon: Building, type: "text", name: "location", placeholder: "e.g. Pune, Maharashtra", required: true },
 ]
 
 const DISCORD_URL = 'https://discord.gg/easibill';
 
 const benefits = [
-  { title: 'Pharmacy-specific setup', body: 'We configure patient records, refill intervals, and WhatsApp templates for your store.' },
-  { title: '14-day refill reminder trial', body: 'Start with your highest-frequency chronic-care patients first.' },
-  { title: 'Community support', body: 'Join our Discord to discuss setup, pharmacy growth, and product updates.' },
+  { title: 'Business-specific setup', body: 'We configure customer records, follow-up intervals, and WhatsApp templates for your store.' },
+  { title: '14-day follow-up reminder trial', body: 'Start with your highest-frequency repeat customers first.' },
+  { title: 'Community support', body: 'Join our Discord to discuss setup, business growth, and product updates.' },
 ]
 
 export default function LeadGeneration() {
@@ -116,13 +116,13 @@ export default function LeadGeneration() {
           className="pt-4"
         >
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-emerald-200/80 bg-white/75 px-3 py-1.5 text-sm font-medium text-emerald-800 shadow-sm backdrop-blur">
-            Book a pharmacy demo
+            Book a business demo
           </div>
           <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
             See Easibill working in your store.
           </h1>
           <p className="mt-5 max-w-lg text-lg leading-8 text-slate-600">
-            Share a few details and we'll walk you through a live refill-reminder setup tailored to your pharmacy.
+            Share a few details and we'll walk you through a live follow-up-reminder setup tailored to your business.
           </p>
 
           <div className="mt-10 space-y-5">
@@ -181,7 +181,7 @@ export default function LeadGeneration() {
             ) : (
               <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                 <div className="mb-8">
-                  <h2 className="text-2xl font-semibold text-slate-950">Tell us about your pharmacy</h2>
+                  <h2 className="text-2xl font-semibold text-slate-950">Tell us about your business</h2>
                   <p className="mt-1 text-sm text-slate-500">Step {step + 1} of {questions.length}</p>
                 </div>
 

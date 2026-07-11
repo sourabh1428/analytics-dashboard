@@ -4,22 +4,22 @@ import { helpArticles, helpCategories } from "@/src/data/helpArticles";
 
 export const metadata: Metadata = {
   title: "Help Center – EasiBill",
-  description: "Setup guides, FAQs, and troubleshooting for EasiBill pharmacy billing, WhatsApp reminders, and patient records.",
+  description: "Setup guides, FAQs, and troubleshooting for EasiBill local business billing, WhatsApp reminders, and customer records.",
   alternates: { canonical: "https://easibill.com/help" },
 };
 
 const faqs = [
   {
-    q: "Do my patients need to install WhatsApp?",
-    a: "Yes — patients need WhatsApp installed on their phone. EasiBill sends messages to the phone number stored in their patient record. If WhatsApp is not installed, the message will not be delivered.",
+    q: "Do my customers need to install WhatsApp?",
+    a: "Yes — customers need WhatsApp installed on their phone. EasiBill sends messages to the phone number stored in their customer record. If WhatsApp is not installed, the message will not be delivered.",
   },
   {
     q: "Can I use EasiBill without a WhatsApp Business account?",
     a: "You need a WhatsApp Business number to send reminders. EasiBill guides you through connecting one during onboarding — the process takes about 10 minutes.",
   },
   {
-    q: "Is patient data stored securely?",
-    a: "All patient records are encrypted at rest (AES-256) and in transit (TLS 1.3). We never share patient data with third parties. See our Privacy Policy for full details.",
+    q: "Is customer data stored securely?",
+    a: "All customer records are encrypted at rest (AES-256) and in transit (TLS 1.3). We never share customer data with third parties. See our Privacy Policy for full details.",
   },
   {
     q: "What happens to my data if I cancel?",
@@ -37,7 +37,7 @@ export default function HelpPage() {
       <p className="text-sm font-semibold uppercase tracking-widest text-amber-400">Help Center</p>
       <h1 className="mt-3 text-4xl font-bold tracking-tight text-white">How can we help?</h1>
       <p className="mt-4 text-white/60">
-        Guides and answers for setting up reminders, billing, and patient records.
+        Guides and answers for setting up reminders, billing, and customer records.
       </p>
 
       <div className="mt-4 flex gap-3">

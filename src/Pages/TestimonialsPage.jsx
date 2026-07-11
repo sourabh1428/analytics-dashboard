@@ -14,17 +14,17 @@ const testimonials = [
     name: 'Rajesh Kumar',
     role: 'Owner, Kumar Medicos',
     location: 'Bengaluru',
-    text: 'We used to remember only the regular diabetes patients. Easibill now shows the full due list every morning, and my staff sends follow-ups without me checking WhatsApp chats.',
+    text: 'We used to remember only the regular customers. Easibill now shows the full due list every morning, and my staff sends follow-ups without me checking WhatsApp chats.',
   },
   {
     name: 'Priya Sharma',
-    role: 'Owner, Shree Pharmacy',
+    role: 'Owner, Shree Wellness Spa',
     location: 'Pune',
-    text: 'The best part is that it does not feel like a CRM. We record the medicine, and the reminder is handled. Patients like the message because it comes at the right time.',
+    text: 'The best part is that it does not feel like a CRM. We record the service, and the reminder is handled. Customers like the message because it comes at the right time.',
   },
   {
     name: 'Amit Patel',
-    role: 'Pharmacy Manager',
+    role: 'Clinic Manager',
     location: 'Indore',
     text: 'We tried manual reminder lists before. They stopped working whenever the counter got busy. Easibill gives us a simple system the team can actually follow.',
   },
@@ -36,20 +36,20 @@ const testimonials = [
   },
   {
     name: 'Ravi Mehta',
-    role: 'Owner, Mehta Pharmacy',
+    role: 'Owner, Mehta General Store',
     location: 'Ahmedabad',
-    text: 'WhatsApp reminders from our own number feel personal. Patients respond much better than a generic blast from an unknown sender.',
+    text: 'WhatsApp reminders from our own number feel personal. Customers respond much better than a generic blast from an unknown sender.',
   },
   {
     name: 'Deepa Nair',
     role: 'Owner, Nair Medicals',
     location: 'Kochi',
-    text: 'We recovered three patients in the first week who had not visited in two months. That alone paid for the whole year.',
+    text: 'We recovered three customers in the first week who had not visited in two months. That alone paid for the whole year.',
   },
 ];
 
 const proof = [
-  ['120+', 'pharmacy owners interviewed'],
+  ['120+', 'local business owners interviewed'],
   ['10k+', 'reminders sent in pilots'],
   ['< 4 hr', 'avg. support response time'],
   ['14 days', 'free trial, no card needed'],
@@ -70,14 +70,14 @@ const TestimonialsPage = () => {
             className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-end"
           >
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-600">Real pharmacies</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-600">Real local businesses</p>
               <h1 className="mt-4 text-balance text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
-                Built around how pharmacy counters really work.
+                Built around how local business counters really work.
               </h1>
             </div>
             <div className="space-y-5">
               <p className="text-lg leading-8 text-slate-600">
-                We interviewed over 120 pharmacy owners before writing a line of code. Every feature in Easibill came from a real counter workflow — not a whiteboard assumption.
+                We interviewed over 120 local business owners before writing a line of code. Every feature in Easibill came from a real counter workflow — not a whiteboard assumption.
               </p>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <motion.a
@@ -95,7 +95,7 @@ const TestimonialsPage = () => {
                   whileTap={{ scale: 0.98 }}
                   className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-6 py-3.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-emerald-300 hover:text-emerald-800"
                 >
-                  Book pharmacy demo
+                  Book a demo
                 </motion.a>
               </div>
             </div>

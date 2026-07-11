@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Webinars – EasiBill",
-  description: "Live and recorded sessions on refill automation, patient retention, and running a profitable independent pharmacy.",
+  description: "Live and recorded sessions on follow-up automation, customer retention, and running a profitable local business.",
   alternates: { canonical: "https://easibill.com/webinars" },
 };
 
@@ -11,22 +11,22 @@ const upcoming = [
   {
     date: "July 9, 2026",
     time: "7:00 PM IST",
-    title: "Refill Automation 101: From Zero to 500 Reminders/Month",
-    description: "A hands-on demo of the EasiBill daily queue. We will import real patient records, configure reminder templates, and show you exactly what patients receive.",
+    title: "Follow-up Automation 101: From Zero to 500 Reminders/Month",
+    description: "A hands-on demo of the EasiBill daily queue. We will import real customer records, configure reminder templates, and show you exactly what customers receive.",
     host: "EasiBill Team",
   },
   {
     date: "July 23, 2026",
     time: "7:00 PM IST",
-    title: "Broadcast Campaigns That Actually Fill Your Health Camp",
-    description: "Learn how to segment chronic-care patients, write a compelling camp announcement, and schedule a broadcast that gets replies — not just read receipts.",
+    title: "Broadcast Campaigns That Actually Fill Your Next Event",
+    description: "Learn how to segment regular customers, write a compelling event announcement, and schedule a broadcast that gets replies — not just read receipts.",
     host: "EasiBill Team",
   },
   {
     date: "August 6, 2026",
     time: "7:00 PM IST",
     title: "Reading Your Retention Analytics: What the Numbers Mean",
-    description: "Walk through the retention dashboard with us — delivered vs responded rates, recovered refills, inactive cohorts, and how to act on each metric.",
+    description: "Walk through the retention dashboard with us — delivered vs responded rates, recovered follow-ups, inactive cohorts, and how to act on each metric.",
     host: "EasiBill Team",
   },
 ];
@@ -40,19 +40,19 @@ const past = [
   },
   {
     date: "May 28, 2026",
-    title: "WhatsApp for Pharmacies: Setup, Compliance, and Best Practices",
+    title: "WhatsApp for Local Businesses: Setup, Compliance, and Best Practices",
     attendees: "248",
     duration: "41 min",
   },
   {
     date: "May 14, 2026",
-    title: "How to Win Back Inactive Patients With 3 Messages",
+    title: "How to Win Back Inactive Customers With 3 Messages",
     attendees: "189",
     duration: "28 min",
   },
   {
     date: "April 30, 2026",
-    title: "Retention Metrics Every Pharmacy Owner Should Track",
+    title: "Retention Metrics Every Local Business Owner Should Track",
     attendees: "215",
     duration: "36 min",
   },
@@ -64,7 +64,7 @@ export default function WebinarsPage() {
       <p className="text-sm font-semibold uppercase tracking-widest text-amber-400">Webinars</p>
       <h1 className="mt-3 text-4xl font-bold tracking-tight text-white">Live sessions, every two weeks</h1>
       <p className="mt-4 text-white/60">
-        Join our team live for walkthroughs, Q&amp;A, and practical tactics for independent pharmacy retention. All sessions are free.
+        Join our team live for walkthroughs, Q&amp;A, and practical tactics for local business retention. All sessions are free.
       </p>
 
       <h2 className="mt-14 text-xl font-semibold text-white">Upcoming sessions</h2>

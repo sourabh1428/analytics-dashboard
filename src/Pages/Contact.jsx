@@ -55,10 +55,10 @@ const ContactPage = () => {
         >
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-500">Talk to Easibill</p>
           <h1 className="mt-4 text-5xl font-semibold tracking-tight sm:text-6xl">
-            Bring your pharmacy refill workflow. We will make it automatic.
+            Bring your business follow-up workflow. We will make it automatic.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-            For sales, onboarding, or a live demo, reach the team directly. We are building with pharmacy owners, not guessing from a template.
+            For sales, onboarding, or a live demo, reach the team directly. We are building with local business owners, not guessing from a template.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -147,7 +147,7 @@ const ContactPage = () => {
                   value={form.company}
                   onChange={handleChange}
                   className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:border-amber-400"
-                  placeholder="Pharmacy / company name"
+                  placeholder="Business / company name"
                 />
                 <textarea
                   name="message"

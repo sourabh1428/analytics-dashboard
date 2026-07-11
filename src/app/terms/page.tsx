@@ -2,18 +2,18 @@
 
 export const metadata: Metadata = {
   title: "Terms of Service – EasiBill",
-  description: "Read the terms and conditions for using EasiBill pharmacy billing and retention software.",
+  description: "Read the terms and conditions for using EasiBill's local business billing, WhatsApp reminder, and customer retention software platform.",
   alternates: { canonical: "https://easibill.com/terms" },
 };
 
 const sections = [
   {
     heading: "1. Acceptance of Terms",
-    body: `By creating an EasiBill account or using any EasiBill service you agree to these Terms of Service. If you are using EasiBill on behalf of a pharmacy or business, you represent that you have authority to bind that entity to these terms.`,
+    body: `By creating an EasiBill account or using any EasiBill service you agree to these Terms of Service. If you are using EasiBill on behalf of a business, you represent that you have authority to bind that entity to these terms.`,
   },
   {
     heading: "2. Description of Service",
-    body: `EasiBill provides cloud-based pharmacy billing software, patient record management, WhatsApp refill reminder automation, broadcast messaging, and retention analytics. Features available to you depend on the subscription plan you have chosen.`,
+    body: `EasiBill provides cloud-based local business billing software, customer record management, WhatsApp follow-up reminder automation, broadcast messaging, and retention analytics. Features available to you depend on the subscription plan you have chosen.`,
   },
   {
     heading: "3. Account Registration",
@@ -25,15 +25,15 @@ const sections = [
   },
   {
     heading: "5. Acceptable Use",
-    body: `You may use EasiBill only for lawful pharmacy operations. You must not: send unsolicited bulk messages unrelated to patient care; use EasiBill to harass or spam patients; attempt to reverse-engineer or scrape the platform; or resell access to EasiBill without written permission. Violation of these terms may result in immediate account suspension.`,
+    body: `You may use EasiBill only for lawful business operations. You must not: send unsolicited bulk messages unrelated to customer care; use EasiBill to harass or spam customers; attempt to reverse-engineer or scrape the platform; or resell access to EasiBill without written permission. Violation of these terms may result in immediate account suspension.`,
   },
   {
-    heading: "6. Patient Data and HIPAA",
-    body: `You retain ownership of all patient data you import into EasiBill. You are responsible for obtaining any consents required by applicable law before storing patient contact or health information. EasiBill acts as a data processor on your behalf. If you require a Business Associate Agreement (BAA) for HIPAA compliance, contact support@easibill.com.`,
+    heading: "6. Customer Data and Compliance",
+    body: `You retain ownership of all customer data you import into EasiBill. You are responsible for obtaining any consents required by applicable law before storing customer contact information. EasiBill acts as a data processor on your behalf. If you require a data processing agreement for regulatory compliance, contact support@easibill.com.`,
   },
   {
     heading: "7. WhatsApp Messaging",
-    body: `EasiBill delivers messages via WhatsApp Business API. You are responsible for ensuring that patients have opted in to receive WhatsApp communications from your pharmacy and that message content complies with Meta's Commerce and Business policies. EasiBill is not liable for messages blocked, filtered, or penalised by Meta.`,
+    body: `EasiBill delivers messages via WhatsApp Business API. You are responsible for ensuring that customers have opted in to receive WhatsApp communications from your business and that message content complies with Meta's Commerce and Business policies. EasiBill is not liable for messages blocked, filtered, or penalised by Meta.`,
   },
   {
     heading: "8. Uptime and Support",
@@ -45,7 +45,7 @@ const sections = [
   },
   {
     heading: "10. Limitation of Liability",
-    body: `To the fullest extent permitted by law, EasiBill's total liability to you for any claim arising from these terms or the service shall not exceed the fees you paid in the 12 months preceding the claim. We are not liable for indirect, incidental, or consequential damages including lost revenue or patient data loss.`,
+    body: `To the fullest extent permitted by law, EasiBill's total liability to you for any claim arising from these terms or the service shall not exceed the fees you paid in the 12 months preceding the claim. We are not liable for indirect, incidental, or consequential damages including lost revenue or customer data loss.`,
   },
   {
     heading: "11. Termination",
@@ -72,7 +72,7 @@ export default function TermsPage() {
       <h1 className="mt-3 text-4xl font-bold tracking-tight text-white">Terms of Service</h1>
       <p className="mt-3 text-white/50">Last updated: June 2026</p>
       <p className="mt-6 leading-7 text-white/70">
-        Please read these Terms of Service carefully before using EasiBill. They govern your access to and use of our pharmacy billing and patient retention platform.
+        Please read these Terms of Service carefully before using EasiBill. They govern your access to and use of our local business billing and customer retention platform.
       </p>
       <div className="mt-10 space-y-8">
         {sections.map((s) => (

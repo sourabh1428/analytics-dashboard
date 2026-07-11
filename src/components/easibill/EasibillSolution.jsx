@@ -9,31 +9,31 @@ const steps = [
     num: '01',
     icon: ReceiptText,
     title: 'Capture the sale',
-    copy: 'Add patient, mobile number, medicine, quantity, and sale date while billing or after closing.',
+    copy: 'Add customer, mobile number, item, quantity, and sale date while billing or after closing.',
   },
   {
     num: '02',
     icon: CalendarClock,
-    title: 'Predict the refill',
-    copy: 'Easibill calculates the next refill date and lets staff adjust it for specific medicines.',
+    title: 'Predict the follow-up',
+    copy: 'Easibill calculates the next follow-up date and lets staff adjust it for specific items.',
   },
   {
     num: '03',
     icon: MessageCircle,
     title: 'Send the WhatsApp',
-    copy: 'A clear reminder goes out at the right time with your pharmacy name and patient context.',
+    copy: 'A clear reminder goes out at the right time with your business name and customer context.',
   },
   {
     num: '04',
     icon: BarChart3,
     title: 'Track the recovery',
-    copy: 'See sent, failed, due, refilled, and inactive patients in one retention dashboard.',
+    copy: 'See sent, failed, due, followed up, and inactive customers in one retention dashboard.',
   },
 ];
 
 const highlights = [
   'No ERP migration',
-  'Works for chronic-care medicines',
+  'Works for regular, repeat-purchase items',
   'Staff-friendly counter workflow',
   'Delivery and retry visibility',
 ];
@@ -58,7 +58,7 @@ const EasibillSolution = () => {
               Every sale becomes a retention workflow.
             </h2>
             <p className="mt-5 text-lg leading-8 text-white/45">
-              Record, schedule, remind, track. That is the whole loop a pharmacy owner needs to recover missed refills.
+              Record, schedule, remind, track. That is the whole loop a business owner needs to recover missed follow-ups.
             </p>
 
             <motion.div

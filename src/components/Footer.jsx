@@ -7,40 +7,40 @@ const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
 
 const linkGroups = [
   {
-    title: 'Pharmacy Tools',
+    title: 'Business Tools',
     links: [
-      { label: 'Refill Reminders', description: 'Automatic WhatsApp follow-ups for chronic-care patients.', href: '/features/refill-reminders' },
-      { label: 'Patient Records', description: 'Medicine, interval, and contact stored per patient.', href: '/features/patient-records' },
-      { label: 'Daily Queue', description: 'Who is due, overdue, or recently refilled — every morning.', href: '/features/daily-queue' },
-      { label: 'Broadcast Campaigns', description: 'Health camp and loyalty messages for targeted patient groups.', href: '/features/broadcast-campaigns' },
-      { label: 'Retention Analytics', description: 'Reminders sent, recovered refills, and inactive patients tracked.', href: '/features/retention-analytics' },
+      { label: 'Follow-up Reminders', description: 'Automatic WhatsApp follow-ups for repeat customers.', href: '/features/follow-up-reminders' },
+      { label: 'Customer Records', description: 'Item, interval, and contact stored per customer.', href: '/features/patient-records' },
+      { label: 'Daily Queue', description: 'Who is due, overdue, or recently followed up — every morning.', href: '/features/daily-queue' },
+      { label: 'Broadcast Campaigns', description: 'Broadcast campaigns and loyalty messages for targeted customer groups.', href: '/features/broadcast-campaigns' },
+      { label: 'Retention Analytics', description: 'Reminders sent, recovered follow-ups, and inactive customers tracked.', href: '/features/retention-analytics' },
     ],
   },
   {
     title: 'Getting Started',
     links: [
       { label: '14-Day Free Trial', description: 'Full access, no card required, set up in under 5 minutes.', href: 'https://dashboard.easibill.com/', external: true },
-      { label: 'Book a Demo', description: 'Live walkthrough with a pharmacy retention specialist.', href: '/contact' },
-      { label: 'Onboarding Guide', description: 'Step-by-step setup from first patient to first reminder.', href: '/onboarding' },
+      { label: 'Book a Demo', description: 'Live walkthrough with a business retention specialist.', href: '/contact' },
+      { label: 'Onboarding Guide', description: 'Step-by-step setup from first customer to first reminder.', href: '/onboarding' },
       { label: 'Pricing', description: 'Starter free forever. Growth from $9/month.', href: '/#pricing' },
     ],
   },
   {
     title: 'Resources',
     links: [
-      { label: 'Help Center', description: 'Setup guides for reminders, billing, and patient records.', href: '/help' },
-      { label: 'Blog', description: 'Practical growth notes for independent pharmacy owners.', href: '/blog' },
-      { label: 'Pharmacy Guides', description: 'Deep-dive articles on GST invoicing, refill systems, and more.', href: '/sitemap-page' },
+      { label: 'Help Center', description: 'Setup guides for reminders, billing, and customer records.', href: '/help' },
+      { label: 'Blog', description: 'Practical growth notes for local business owners.', href: '/blog' },
+      { label: 'Business Guides', description: 'Deep-dive articles on GST invoicing, follow-up systems, and more.', href: '/sitemap-page' },
       { label: 'Tutorials', description: 'Short walkthroughs for staff onboarding.', href: '/tutorials' },
-      { label: 'Webinars', description: 'Live sessions on refill automation and retention.', href: '/webinars' },
+      { label: 'Webinars', description: 'Live sessions on follow-up automation and retention.', href: '/webinars' },
     ],
   },
   {
     title: 'Company',
     links: [
-      { label: 'About Us', description: 'Building practical software for busy pharmacy counters worldwide.', href: '/about' },
+      { label: 'About Us', description: 'Building practical software for busy local businesses worldwide.', href: '/about' },
       { label: 'Contact', description: 'Talk to us about sales, support, or partnerships.', href: '/contact' },
-      { label: 'Privacy Policy', description: 'How we handle pharmacy and patient data.', href: '/privacy' },
+      { label: 'Privacy Policy', description: 'How we handle business and customer data.', href: '/privacy' },
       { label: 'Terms of Service', description: 'Terms for using Easibill products.', href: '/terms' },
     ],
   },
@@ -69,11 +69,11 @@ const Footer = () => {
               <img src="/logo.png" alt="Easibill Logo" className="h-12 w-12 rounded-full" width="48" height="48" />
               <span>
                 <span className="block text-2xl font-semibold tracking-tight text-white">Easibill</span>
-                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-400/70">Pharmacy retention OS</span>
+                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-400/70">Local business retention OS</span>
               </span>
             </button>
             <p className="mt-5 max-w-md leading-7">
-              Simplify your billing process with fast, reliable software, then bring patients back with WhatsApp refill reminders built for independent pharmacies everywhere.
+              Simplify your billing process with fast, reliable software, then bring customers back with WhatsApp follow-up reminders built for local businesses everywhere.
             </p>
 
             <div className="mt-6 rounded-[1.5rem] border border-white/[0.07] bg-white/[0.03] p-4">
@@ -104,7 +104,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-3">
                 <MapPin className="h-4 w-4 text-amber-400/60" />
-                <span>Serving pharmacies worldwide</span>
+                <span>Serving local businesses worldwide</span>
               </div>
             </div>
 

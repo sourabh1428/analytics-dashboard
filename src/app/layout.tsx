@@ -22,11 +22,11 @@ const ibmPlexSans = IBM_Plex_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.SITE_URL ?? "https://easibill.com"),
   title: {
-    default: "EasiBill – Easy Pharmacy Billing & Patient Retention Software",
+    default: "EasiBill – Local Business Billing & Customer Retention",
     template: "%s | EasiBill",
   },
   description:
-    "EasiBill is the easiest billing software for independent pharmacies. Send bills on WhatsApp, retain patients with automated refill reminders, and manage your medical store with zero hassle.",
+    "EasiBill is billing software for local businesses. Send bills on WhatsApp, retain customers with automated reminders, and run your business hassle-free.",
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",

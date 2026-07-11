@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react'
 import { stagger, wordVariant, fadeUp, scaleIn, viewport } from '@/src/lib/motion'
 import { usePostHog } from 'posthog-js/react'
 
-const H2_WORDS_1 = ['Stop', 'losing', 'patients']
+const H2_WORDS_1 = ['Stop', 'losing', 'customers']
 const H2_WORDS_2 = ['to', 'forgetfulness.']
 
 export default function FinalCTA() {
@@ -62,7 +62,7 @@ export default function FinalCTA() {
           </motion.h2>
 
           <motion.p variants={fadeUp} className="text-zinc-400 text-lg mb-8 max-w-xl mx-auto">
-            EasiBill runs the reminders. You run the pharmacy. Free to start — no card needed.
+            EasiBill runs the reminders. You run the business. Free to start — no card needed.
           </motion.p>
 
           <motion.div variants={scaleIn} className="flex flex-col sm:flex-row items-center justify-center gap-3">

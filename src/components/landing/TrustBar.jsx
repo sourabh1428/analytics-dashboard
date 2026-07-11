@@ -7,7 +7,7 @@ import { fadeIn, viewport } from '@/src/lib/motion'
 import { usePostHog } from 'posthog-js/react'
 
 const STATS = [
-  { value: 2400, suffix: '+', label: 'Pharmacies using EasiBill' },
+  { value: 2400, suffix: '+', label: 'Local businesses using EasiBill' },
   { value: 18, suffix: 'M+', label: 'Bills sent via WhatsApp' },
   { value: 34, suffix: '%', label: 'Average increase in repeat customers' },
   { value: 0, prefix: '$', suffix: '', label: 'Setup cost' },
@@ -65,8 +65,8 @@ export default function TrustBar() {
   const geo = useGeo()
 
   const label = geo
-    ? `Trusted by independent pharmacies in ${geo.flag} ${geo.countryName} and worldwide`
-    : 'Trusted by independent pharmacies worldwide'
+    ? `Trusted by local businesses in ${geo.flag} ${geo.countryName} and worldwide`
+    : 'Trusted by local businesses worldwide'
 
   return (
     <section

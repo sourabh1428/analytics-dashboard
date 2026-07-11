@@ -17,9 +17,9 @@ const TESTIMONIALS = [
     enterFrom: slideLeft,
   },
   {
-    quote: "The refill reminders alone brought back 40% of customers who used to just forget. I didn't change anything else — just switched to EasiBill. The numbers spoke for themselves in 3 months.",
+    quote: "The follow-up reminders alone brought back 40% of customers who used to just forget. I didn't change anything else — just switched to EasiBill. The numbers spoke for themselves in 3 months.",
     name: 'Sunita Patel',
-    role: 'Owner, Patel Pharma',
+    role: 'Owner, Patel Wellness Spa',
     location: 'Ahmedabad',
     since: 'Using EasiBill since January 2024',
     initials: 'SP',
@@ -36,7 +36,7 @@ const TESTIMONIALS = [
   },
 ]
 
-const H2_WORDS = ['Pharmacists', 'who', 'switched', 'never', 'went', 'back']
+const H2_WORDS = ['Business', 'owners', 'who', 'switched', 'never', 'went', 'back']
 
 export default function Testimonials() {
   const posthog = usePostHog()

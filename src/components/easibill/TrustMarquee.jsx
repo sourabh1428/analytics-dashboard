@@ -2,30 +2,30 @@
 
 const ROW_ONE = [
   'Kumar Medicos · Bengaluru',
-  'Shree Pharmacy · Pune',
+  'Shree Wellness Spa · Pune',
   'City Medical Store · Delhi',
   'Raj Medicals · Mumbai',
   'Sai Drug House · Hyderabad',
-  'Lakshmi Pharmacy · Chennai',
+  'Lakshmi Medical Store · Chennai',
   'Bhandari Medical · Jaipur',
-  'Apollo Pharmacy · Ahmedabad',
+  'Apollo Clinic · Ahmedabad',
   'Nirmala Medicos · Nagpur',
   'Shah Drug Store · Surat',
   'Guru Nanak Medicals · Ludhiana',
-  'Wellness Pharmacy · Kolkata',
+  'Wellness Spa · Kolkata',
 ];
 
 const ROW_TWO = [
   'Sri Venkateswara Medicals · Vijayawada',
   'Patel Drug House · Vadodara',
-  'New Life Pharmacy · Bhopal',
+  'New Life Clinic · Bhopal',
   'Om Sai Medicals · Indore',
   'Ramdev Drug Store · Kochi',
   'Mother India Medicals · Patna',
-  'Balaji Pharmacy · Coimbatore',
+  'Balaji Medical Store · Coimbatore',
   'Sunrise Medical Store · Lucknow',
   'Siva Sakthi Medicals · Madurai',
-  'Holy Cross Pharmacy · Agra',
+  'Holy Cross Clinic · Agra',
   'Swastik Drug House · Nashik',
   'Durgadevi Medicals · Visakhapatnam',
 ];
@@ -61,10 +61,10 @@ function MarqueeRow({ items, reverse = false, duration = '40s' }) {
   );
 }
 
-export default function PharmacyMarquee() {
+export default function TrustMarquee() {
   return (
     <section
-      aria-label="Trusted pharmacies using EasiBill"
+      aria-label="Trusted local businesses using EasiBill"
       className="relative overflow-hidden bg-slate-950 py-5"
     >
       {/* Subtle top glow line */}
@@ -72,7 +72,7 @@ export default function PharmacyMarquee() {
       <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-slate-700/60 to-transparent" />
 
       <div className="mb-1 text-center text-[10px] font-bold uppercase tracking-[0.28em] text-slate-500">
-        Trusted by pharmacies across India
+        Trusted by local businesses across India
       </div>
 
       <div className="space-y-1 pause-on-hover">

@@ -3,8 +3,8 @@ import Link from "next/link";
 import { blogPosts, CATEGORY_COLORS } from "@/src/data/blogPosts";
 
 export const metadata: Metadata = {
-  title: "Blog – EasiBill Pharmacy Growth",
-  description: "Practical articles on patient retention, WhatsApp billing, and running an independent pharmacy profitably.",
+  title: "Blog – EasiBill Business Growth",
+  description: "Practical articles on customer retention, WhatsApp billing, follow-up automation, and running a local business more profitably every month.",
   alternates: { canonical: "https://easibill.com/blog" },
 };
 
@@ -17,9 +17,9 @@ export default function BlogPage() {
   return (
     <div className="mx-auto max-w-6xl px-6 py-20">
       <p className="text-sm font-semibold uppercase tracking-widest text-amber-400">Blog</p>
-      <h1 className="mt-3 text-4xl font-bold tracking-tight text-white">Pharmacy growth, plainly explained</h1>
+      <h1 className="mt-3 text-4xl font-bold tracking-tight text-white">Business growth, plainly explained</h1>
       <p className="mt-4 text-white/60 max-w-2xl">
-        200+ practical articles for independent pharmacy owners. Retention, WhatsApp billing, compliance, and operations — no fluff.
+        200+ practical articles for local business owners. Retention, WhatsApp billing, compliance, and operations — no fluff.
       </p>
 
       {/* Category pills */}
@@ -62,7 +62,7 @@ export default function BlogPage() {
       {/* Newsletter */}
       <div className="mt-12 rounded-2xl border border-amber-500/20 bg-amber-500/5 p-8">
         <h2 className="text-lg font-semibold text-white">Get articles in your inbox</h2>
-        <p className="mt-2 text-sm text-white/60">One email per week. Practical retention tips for independent pharmacies. Unsubscribe anytime.</p>
+        <p className="mt-2 text-sm text-white/60">One email per week. Practical retention tips for local businesses. Unsubscribe anytime.</p>
         <div className="mt-5 flex max-w-sm overflow-hidden rounded-full border border-white/[0.1] bg-white/[0.04]">
           <input
             type="email"

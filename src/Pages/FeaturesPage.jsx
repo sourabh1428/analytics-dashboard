@@ -13,7 +13,7 @@ const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
 const comparison = [
   { label: 'Setup time',           manual: 'None',           crm: '2–4 weeks',     easibill: '< 5 minutes' },
   { label: 'Monthly staff effort', manual: 'Hours of chats', crm: 'Training needed', easibill: 'Daily 2-min review' },
-  { label: 'Patient tracking',     manual: 'Memory / notebook', crm: 'Spreadsheet import', easibill: 'Built-in, automatic' },
+  { label: 'Customer tracking',    manual: 'Memory / notebook', crm: 'Spreadsheet import', easibill: 'Built-in, automatic' },
   { label: 'Reminder automation',  manual: 'None',           crm: 'Complex setup',  easibill: 'On by default' },
   { label: 'Monthly cost',         manual: '$0',             crm: '$20–80/user', easibill: 'From $9' },
 ];
@@ -32,10 +32,10 @@ const FeaturesPage = () => {
           >
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-cyan-700">Product features</p>
             <h1 className="mt-4 text-balance text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
-              Every tool your pharmacy counter needs. Nothing it doesn't.
+              Every tool your business counter needs. Nothing it doesn't.
             </h1>
             <p className="mt-6 text-lg leading-8 text-slate-600">
-              Easibill is not a CRM. It is a focused retention tool that fits the way a pharmacy counter already works — no migration, no training programme, no bloat.
+              Easibill is not a CRM. It is a focused retention tool that fits the way a business counter already works — no migration, no training programme, no bloat.
             </p>
             <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <motion.a
@@ -53,7 +53,7 @@ const FeaturesPage = () => {
                 whileTap={{ scale: 0.98 }}
                 className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-6 py-3.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-emerald-300 hover:text-emerald-800"
               >
-                Book pharmacy demo
+                Book a demo
               </motion.a>
             </div>
           </motion.div>
@@ -77,7 +77,7 @@ const FeaturesPage = () => {
           >
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-emerald-700">How it compares</p>
             <h2 className="mt-4 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
-              Designed for pharmacies, not generic businesses.
+              Designed for local businesses, not generic CRMs.
             </h2>
           </motion.div>
 
