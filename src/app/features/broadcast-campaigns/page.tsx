@@ -3,8 +3,8 @@ import Link from "next/link";
 import { Radio, ArrowRight, Users, Target, MessageSquare, TrendingUp, Calendar, Send } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Broadcast Campaigns – Health Camp & Loyalty Messages | EasiBill",
-  description: "Send targeted WhatsApp campaigns to customer groups. Promote health camps, loyalty offers, and seasonal messages from your business.",
+  title: "Broadcast Campaigns & Loyalty Messages | EasiBill",
+  description: "Send targeted WhatsApp campaigns to customer groups. Promote seasonal sales, loyalty offers, and event messages from your business.",
   alternates: { canonical: "https://easibill.com/features/broadcast-campaigns" },
 };
 
@@ -24,7 +24,7 @@ export default function BroadcastCampaignsPage() {
                 <span className="text-green-600">with one click</span>
               </h1>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Send targeted WhatsApp messages to specific customer groups — high-value customers, loyalty members, or everyone — for health camps, seasonal offers, and more.
+                Send targeted WhatsApp messages to specific customer groups — high-value customers, loyalty members, or everyone — for seasonal sales, loyalty offers, and more.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="https://dashboard.easibill.com/" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors">
@@ -65,8 +65,8 @@ export default function BroadcastCampaignsPage() {
                         <MessageSquare className="h-3.5 w-3.5 text-white" />
                       </div>
                       <div className="bg-white rounded-2xl rounded-tl-sm px-3 py-2.5 shadow-sm border border-gray-100 text-xs max-w-[80%]">
-                        <p className="font-semibold text-slate-900 mb-0.5">Verma Medical Store</p>
-                        <p className="text-gray-600">Hi {"{name}"}, we're hosting a <strong>Free Diabetes Check-up Camp</strong> on 5th July at our store. Come between 9am–1pm. Bring your recent reports. 🩺</p>
+                        <p className="font-semibold text-slate-900 mb-0.5">Verma Retail Store</p>
+                        <p className="text-gray-600">Hi {"{name}"}, we're hosting a <strong>Weekend Loyalty Sale</strong> on 5th July at our store. Come between 9am–1pm and get exclusive member pricing. 🎉</p>
                         <p className="text-gray-400 mt-1.5">Reply STOP to opt out</p>
                       </div>
                     </div>
@@ -109,7 +109,7 @@ export default function BroadcastCampaignsPage() {
       <section className="py-16 px-6 bg-green-600">
         <div className="max-w-5xl mx-auto grid sm:grid-cols-3 gap-8 text-center">
           {[
-            { value: "4×", label: "more health camp attendance vs printed notices" },
+            { value: "4×", label: "more event turnout vs printed notices" },
             { value: "83%", label: "WhatsApp open rate on broadcast messages" },
             { value: "< 2 min", label: "to create and schedule a campaign" },
           ].map((s) => (
@@ -127,8 +127,8 @@ export default function BroadcastCampaignsPage() {
           <h2 className="text-2xl font-bold text-slate-900 text-center mb-12">What local businesses use campaigns for</h2>
           <div className="grid sm:grid-cols-2 gap-6">
             {[
-              { title: "Health camps & check-up drives", body: "Invite regular customers to free check-up camps. Target by segment — send invitations only to the customers they're relevant to.", accent: "green" },
-              { title: "Seasonal health awareness", body: "Monsoon hygiene reminders, winter vitamin D tips, summer ORS stock alerts — timely messages that make your business feel like a trusted partner.", accent: "blue" },
+              { title: "Special events & drives", body: "Invite regular customers to in-store events or drives. Target by segment — send invitations only to the customers they're relevant to.", accent: "green" },
+              { title: "Seasonal sale announcements", body: "Monsoon clearance sales, festive season offers, end-of-summer stock alerts — timely messages that make your business feel like a trusted partner.", accent: "blue" },
               { title: "Loyalty & thank-you messages", body: "Reward your top customers. Send exclusive offers to customers who've come back 6+ times. Loyalty campaigns cost nothing and bring customers back.", accent: "purple" },
               { title: "New product announcements", body: "Launched a new product or tie-up? Notify customers who buy related items. Far more effective than a window poster.", accent: "amber" },
             ].map((u) => (
@@ -153,7 +153,7 @@ export default function BroadcastCampaignsPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { icon: Target, title: "Customer segmentation", body: "Filter by category, item, purchase frequency, or inactivity period." },
-              { icon: MessageSquare, title: "Message templates", body: "Pre-built templates for health camps, offers, and seasonal events." },
+              { icon: MessageSquare, title: "Message templates", body: "Pre-built templates for sales, offers, and seasonal events." },
               { icon: Calendar, title: "Scheduled delivery", body: "Set a date and time — messages go out automatically." },
               { icon: Users, title: "Opt-out management", body: "Customers who reply STOP are never messaged again." },
               { icon: TrendingUp, title: "Open & response tracking", body: "See how many customers opened, replied, or came in after your campaign." },

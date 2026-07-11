@@ -9,17 +9,17 @@ import { useRef, useEffect } from 'react'
 const FEATURES = [
   {
     icon: Bell,
-    tag: 'Refill Reminders',
-    title: 'Patients get a WhatsApp reminder on exactly the right day — automatically',
-    description: "Log a purchase, set the interval, and EasiBill does the rest. At 9 AM on the refill date, a personalised WhatsApp message goes out from your own number. You don't touch anything.",
+    tag: 'Follow-up Reminders',
+    title: 'Customers get a WhatsApp reminder on exactly the right day — automatically',
+    description: "Log a purchase, set the interval, and EasiBill does the rest. At 9 AM on the follow-up date, a personalised WhatsApp message goes out from your own number. You don't touch anything.",
     size: 'large',
     accent: 'amber',
     visual: (
       <div className="mt-6 bg-zinc-900 rounded-xl p-4 text-sm space-y-3 border border-zinc-800">
         {[
-          { initials: 'RK', name: 'Ramesh Kumar', drug: 'Metformin 500mg', status: 'Sent · 9:02 AM', color: 'text-emerald-400 bg-emerald-500/10' },
-          { initials: 'SG', name: 'Sunita Gupta', drug: 'Amlodipine 5mg', status: 'Due today', color: 'text-amber-400 bg-amber-500/10' },
-          { initials: 'MD', name: 'Mohan Das', drug: 'Atorvastatin 20mg', status: 'Overdue 5d', color: 'text-red-400 bg-red-500/10' },
+          { initials: 'RK', name: 'Ramesh Kumar', drug: 'Loyalty reorder', status: 'Sent · 9:02 AM', color: 'text-emerald-400 bg-emerald-500/10' },
+          { initials: 'SG', name: 'Sunita Gupta', drug: 'Monthly top-up', status: 'Due today', color: 'text-amber-400 bg-amber-500/10' },
+          { initials: 'MD', name: 'Mohan Das', drug: 'Reorder item', status: 'Overdue 5d', color: 'text-red-400 bg-red-500/10' },
         ].map((p) => (
           <div key={p.name} className="flex items-center gap-3">
             <div className="h-7 w-7 rounded-full bg-amber-500/20 flex items-center justify-center text-[10px] font-bold text-amber-400 shrink-0">{p.initials}</div>
@@ -35,9 +35,9 @@ const FEATURES = [
   },
   {
     icon: Users,
-    tag: 'Patient Management',
-    title: 'Every patient, every medicine, every interval — in one place',
-    description: 'Add patients with their WhatsApp number, medicine, and refill cadence. Tag by condition. Import your existing list from CSV. Search in under a second.',
+    tag: 'Customer Records',
+    title: 'Every customer, every item, every interval — in one place',
+    description: 'Add customers with their WhatsApp number, item or service, and follow-up cadence. Tag by segment. Import your existing list from CSV. Search in under a second.',
     size: 'small',
     accent: 'amber',
   },
@@ -45,31 +45,31 @@ const FEATURES = [
     icon: LayoutDashboard,
     tag: 'Daily Queue',
     title: 'Start every morning knowing exactly who needs a call',
-    description: "The daily queue shows who's due today, who's overdue, and who recently refilled — sorted by urgency. Your team works the list, not their memory.",
+    description: "The daily queue shows who's due today, who's overdue, and who recently followed up — sorted by urgency. Your team works the list, not their memory.",
     size: 'small',
     accent: 'orange',
   },
   {
     icon: Radio,
     tag: 'Broadcast Campaigns',
-    title: 'One message to 300 patients in two minutes',
-    description: 'Target by condition, inactivity, or tag. Promote health camps, loyalty offers, and seasonal messages. Personalised per patient. Scheduled delivery.',
+    title: 'One message to 300 customers in two minutes',
+    description: 'Target by segment, inactivity, or tag. Promote seasonal sales, loyalty offers, and event messages. Personalised per customer. Scheduled delivery.',
     size: 'small',
     accent: 'teal',
   },
   {
     icon: BarChart3,
     tag: 'Retention Analytics',
-    title: 'Know exactly which patients you are keeping — and losing',
-    description: 'Refill rate, recovered refills, inactive patients, and revenue impact — all calculated from your actual dispensing data. Monthly and trend views included.',
+    title: 'Know exactly which customers you are keeping — and losing',
+    description: 'Follow-up rate, recovered follow-ups, inactive customers, and revenue impact — all calculated from your actual sales data. Monthly and trend views included.',
     size: 'small',
     accent: 'rose',
   },
   {
     icon: BookOpen,
-    tag: 'Medicine Catalog',
-    title: 'Your most-dispensed medicines, with default intervals pre-set',
-    description: 'Add your commonly dispensed medicines once. Auto-suggest when logging a sale. Set Metformin to 28 days and Vitamin D to 90 days — apply to every patient instantly.',
+    tag: 'Item Catalog',
+    title: 'Your most-sold items, with default intervals pre-set',
+    description: 'Add your commonly sold items once. Auto-suggest when logging a sale. Set a 28-day interval for one item and 90 days for another — apply to every customer instantly.',
     size: 'small',
     accent: 'amber',
   },
@@ -138,7 +138,7 @@ export default function FeaturesBento() {
             ))}
           </motion.h2>
           <motion.p variants={fadeUp} className="text-zinc-400 text-lg">
-            EasiBill does one thing better than any tool in the market: it sends your patients a refill reminder on exactly the right day. The rest supports that mission.
+            EasiBill does one thing better than any tool in the market: it sends your customers a follow-up reminder on exactly the right day. The rest supports that mission.
           </motion.p>
         </motion.div>
 

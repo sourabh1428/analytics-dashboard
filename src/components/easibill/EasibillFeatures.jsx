@@ -23,12 +23,12 @@ const features = [
   {
     icon: Tags,
     title: 'Tags and segments',
-    copy: 'Group customers by diabetes, BP, thyroid, senior citizen, or high-value repeat buyer.',
+    copy: 'Group customers by regular buyer, high-value customer, seasonal shopper, or senior citizen.',
   },
   {
     icon: MessageSquareText,
     title: 'Broadcast campaigns',
-    copy: 'Send targeted health camps, seasonal offers, and loyalty messages without blasting everyone.',
+    copy: 'Send targeted offers, event invites, and loyalty messages without blasting everyone.',
   },
   {
     icon: ChartNoAxesCombined,
@@ -121,7 +121,7 @@ const EasibillFeatures = () => {
                     Auto-sorted
                   </span>
                 </div>
-                {['Ramesh P. — insulin follow-up overdue', 'Nisha V. — BP medicine due today', 'Kiran M. — WhatsApp delivery failed'].map((item, index) => (
+                {['Ramesh P. — reorder follow-up overdue', 'Nisha V. — spa appointment due today', 'Kiran M. — WhatsApp delivery failed'].map((item, index) => (
                   <div key={item} className="flex items-center justify-between border-t border-white/[0.05] py-3">
                     <span className="text-sm text-white/55">{item}</span>
                     <span className="rounded-full border border-white/[0.06] bg-white/[0.04] px-2.5 py-1 text-xs font-semibold text-white/35">

@@ -8,7 +8,7 @@ const losses = [
   {
     icon: UsersRound,
     title: 'Your best customers quietly drift away',
-    copy: 'Chronic-care customers should return every 25–35 days. Most stores only remember the familiar names — and lose the rest.',
+    copy: 'Regular customers with ongoing needs should return every 25–35 days. Most stores only remember the familiar names — and lose the rest.',
   },
   {
     icon: ClipboardList,

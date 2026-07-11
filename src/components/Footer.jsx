@@ -12,7 +12,7 @@ const linkGroups = [
       { label: 'Follow-up Reminders', description: 'Automatic WhatsApp follow-ups for repeat customers.', href: '/features/follow-up-reminders' },
       { label: 'Customer Records', description: 'Item, interval, and contact stored per customer.', href: '/features/patient-records' },
       { label: 'Daily Queue', description: 'Who is due, overdue, or recently followed up — every morning.', href: '/features/daily-queue' },
-      { label: 'Broadcast Campaigns', description: 'Health camp and loyalty messages for targeted customer groups.', href: '/features/broadcast-campaigns' },
+      { label: 'Broadcast Campaigns', description: 'Broadcast campaigns and loyalty messages for targeted customer groups.', href: '/features/broadcast-campaigns' },
       { label: 'Retention Analytics', description: 'Reminders sent, recovered follow-ups, and inactive customers tracked.', href: '/features/retention-analytics' },
     ],
   },

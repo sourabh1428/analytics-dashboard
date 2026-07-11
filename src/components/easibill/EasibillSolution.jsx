@@ -33,7 +33,7 @@ const steps = [
 
 const highlights = [
   'No ERP migration',
-  'Works for chronic-care medicines',
+  'Works for regular, repeat-purchase items',
   'Staff-friendly counter workflow',
   'Delivery and retry visibility',
 ];
