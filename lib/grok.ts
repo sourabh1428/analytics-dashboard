@@ -149,6 +149,7 @@ export async function generateSeoPage(
   metadataPrompt: string,
   buildContentPrompt: (meta: Metadata) => string,
   existingSlugs: string[],
+  contentSystemPrompt: string = "You are a local business advisor writing SEO articles for Indian small business owners. Write clear, practical, detailed markdown. Do not wrap output in JSON or code fences — return plain markdown text only.",
 ): Promise<SeoContent> {
   const apiKey = process.env.GROQ_API_KEY;
   if (!apiKey) throw new Error("Missing GROQ_API_KEY environment variable.");
@@ -173,7 +174,7 @@ export async function generateSeoPage(
       // --- Call 2: article as plain text (no JSON, no escaping issues) ---
       const contentRaw = await callGroq(
         apiKey,
-        "You are a pharmacy business advisor writing SEO articles for Indian pharmacy owners. Write clear, practical, detailed markdown. Do not wrap output in JSON or code fences — return plain markdown text only.",
+        contentSystemPrompt,
         buildContentPrompt(meta),
         MAX_CONTENT_TOKENS,
       );

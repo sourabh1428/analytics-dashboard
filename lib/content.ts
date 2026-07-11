@@ -58,7 +58,7 @@ export async function getContentBySlug(slug: string): Promise<SeoContent | null>
   try {
     const filePath = path.join(generatedContentDir, `${slug}.json`);
     const raw = await fs.readFile(filePath, "utf8");
-    const parsed = JSON.parse(raw) as unknown;
+    const parsed = JSON.parse(raw.replace(/^﻿/, "")) as unknown;
     const validation = validateSeoShape(parsed);
 
     if (!validation.ok) {
