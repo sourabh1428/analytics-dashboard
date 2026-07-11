@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Wand2, Tags, Workflow, Megaphone } from 'lucide-react'
 import { fadeUp, scaleIn, stagger, wordVariant, viewport } from '@/src/lib/motion'
 import { usePostHog } from 'posthog-js/react'
+import TiltCard from './TiltCard'
 
 const AI_FEATURES = [
   {
@@ -104,7 +105,7 @@ export default function AIStudio() {
           }}
         >
           {AI_FEATURES.map((feature) => (
-            <motion.article
+            <TiltCard
               key={feature.tag}
               variants={scaleIn}
               whileHover={{ y: -6, transition: { duration: 0.2 } }}
@@ -119,7 +120,7 @@ export default function AIStudio() {
               </div>
               <h3 className="text-xl font-bold text-zinc-100 mb-2">{feature.title}</h3>
               <p className="text-zinc-500 text-sm leading-relaxed">{feature.description}</p>
-            </motion.article>
+            </TiltCard>
           ))}
         </motion.div>
       </div>

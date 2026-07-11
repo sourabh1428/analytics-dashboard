@@ -5,6 +5,7 @@ import { Bell, Users, LayoutDashboard, Radio, BarChart3, BookOpen } from 'lucide
 import { fadeUp, scaleIn, stagger, wordVariant, viewport } from '@/src/lib/motion'
 import { usePostHog } from 'posthog-js/react'
 import { useRef, useEffect } from 'react'
+import TiltCard from './TiltCard'
 
 const FEATURES = [
   {
@@ -153,7 +154,7 @@ export default function FeaturesBento() {
           }}
         >
           {FEATURES.map((feature) => (
-            <motion.article
+            <TiltCard
               key={feature.tag}
               variants={scaleIn}
               whileHover={{ y: -6, transition: { duration: 0.2 } }}
@@ -174,7 +175,7 @@ export default function FeaturesBento() {
               <h3 className="text-xl font-bold text-zinc-100 mb-2">{feature.title}</h3>
               <p className="text-zinc-500 text-sm leading-relaxed">{feature.description}</p>
               {feature.visual}
-            </motion.article>
+            </TiltCard>
           ))}
         </motion.div>
       </div>

@@ -4,6 +4,7 @@ import { IBM_Plex_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { ScrollProgressBar } from "@/components/ScrollProgressBar";
+import SmoothScroll from "@/src/components/landing/SmoothScroll";
 import NavBar from "@/src/components/NavBar";
 import Footer from "@/src/components/Footer";
 import ConsentBanner from "@/src/components/ConsentBanner";
@@ -44,16 +45,18 @@ export default function RootLayout({
       <body suppressHydrationWarning>
         <PostHogProvider>
           <PostHogPageView />
-          <div className="relative min-h-screen overflow-x-hidden bg-[#09090B] text-[#FAFAFA]">
-            <ScrollProgressBar />
-            <NavBar />
-            <main className="relative">{children}</main>
-            <Footer />
-            <ConsentBanner />
-            <LeadNudge />
-            <Analytics />
-            <SpeedInsights />
-          </div>
+          <SmoothScroll>
+            <div className="relative min-h-screen overflow-x-hidden bg-[#09090B] text-[#FAFAFA]">
+              <ScrollProgressBar />
+              <NavBar />
+              <main className="relative">{children}</main>
+              <Footer />
+              <ConsentBanner />
+              <LeadNudge />
+              <Analytics />
+              <SpeedInsights />
+            </div>
+          </SmoothScroll>
         </PostHogProvider>
         <Script id="assistloop-widget" strategy="afterInteractive">
           {`

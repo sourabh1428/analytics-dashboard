@@ -1,10 +1,15 @@
 'use client'
 
-import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion'
+import { useRef, Suspense } from 'react'
+import dynamic from 'next/dynamic'
+import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion'
 import { ArrowRight, CheckCircle, MessageCircle, LayoutDashboard, Users, Package, BarChart3 } from 'lucide-react'
 import { useGeo } from '@/src/hooks/useGeo'
 import { stagger, wordVariant, fadeUp, scaleIn, staggerFast, fadeIn, viewport } from '@/src/lib/motion'
 import { usePostHog } from 'posthog-js/react'
+
+// Client-only, code-split: WebGL has no business in the server bundle or SSR pass.
+const HeroScene = dynamic(() => import('./HeroScene'), { ssr: false })
 
 const H1_WORDS_1 = ['Your', 'local', 'business', 'loses', '20–40%', 'of', 'customers', 'every', 'year.']
 const H1_WORDS_2 = ['EasiBill', 'stops', 'that.']
@@ -158,6 +163,20 @@ function AppMockup() {
 export default function Hero() {
   const geo = useGeo()
   const posthog = usePostHog()
+  const sectionRef = useRef(null)
+  const sceneScrollRef = useRef(0)
+
+  // Scroll progress across the hero's own height — drives the 3D scene and
+  // the parallax layers below. Read via a ref (not state) so the 3D frame
+  // loop never triggers a React re-render.
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end start'] })
+  useMotionValueEvent(scrollYProgress, 'change', (v) => { sceneScrollRef.current = v })
+
+  const dotGridY = useTransform(scrollYProgress, [0, 1], ['0%', '18%'])
+  const glowY = useTransform(scrollYProgress, [0, 1], ['0%', '35%'])
+  const glowOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.15])
+  const mockupY = useTransform(scrollYProgress, [0, 1], ['0%', '12%'])
+  const copyOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0])
 
   const proofPoints = [
     geo ? `${geo.flag} Serving local businesses in ${geo.countryName}` : '2,400+ local businesses worldwide',
@@ -168,31 +187,42 @@ export default function Hero() {
   return (
     <section
       id="hero"
+      ref={sectionRef}
       aria-labelledby="hero-heading"
       className="relative pt-28 pb-0 overflow-hidden bg-[#09090B]"
     >
-      {/* Dot grid texture */}
-      <div
+      {/* Dot grid texture — drifts slowly on scroll for depth */}
+      <motion.div
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage: 'radial-gradient(circle, #27272A 1px, transparent 1px)',
           backgroundSize: '28px 28px',
+          y: dotGridY,
         }}
         aria-hidden="true"
       />
-      {/* Amber top glow */}
-      <div
+      {/* Amber top glow — recedes as you scroll past */}
+      <motion.div
         className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none"
         style={{
           width: '900px',
           height: '500px',
           background: 'radial-gradient(ellipse at center top, rgba(245,158,11,0.09) 0%, transparent 68%)',
+          y: glowY,
+          opacity: glowOpacity,
         }}
         aria-hidden="true"
       />
 
-      {/* Copy */}
-      <div className="relative max-w-3xl mx-auto px-6 text-center mb-12">
+      {/* 3D ambient scene — sits behind the copy, reacts to scroll */}
+      <div className="absolute inset-0 pointer-events-none opacity-60 mix-blend-screen" aria-hidden="true">
+        <Suspense fallback={null}>
+          <HeroScene scrollRef={sceneScrollRef} />
+        </Suspense>
+      </div>
+
+      {/* Copy — fades out as the scene takes over deeper in the scroll */}
+      <motion.div style={{ opacity: copyOpacity }} className="relative max-w-3xl mx-auto px-6 text-center mb-12">
         {/* Badge */}
         <motion.div
           variants={scaleIn}
@@ -294,24 +324,26 @@ export default function Hero() {
             </motion.li>
           ))}
         </motion.ul>
-      </div>
+      </motion.div>
 
-      {/* App mockup — spring up from below */}
+      {/* App mockup — springs up on load, then drifts on scroll for parallax depth */}
       <motion.div
         initial={{ opacity: 0, y: 64, scale: 0.96 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.9, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
         className="relative max-w-6xl mx-auto px-6"
       >
-        {/* Glow under mockup */}
-        <div
-          className="absolute -inset-x-8 -bottom-8 h-40 pointer-events-none"
-          style={{
-            background: 'radial-gradient(ellipse at center bottom, rgba(245,158,11,0.07) 0%, transparent 70%)',
-          }}
-          aria-hidden="true"
-        />
-        <AppMockup />
+        <motion.div style={{ y: mockupY }} className="relative">
+          {/* Glow under mockup */}
+          <div
+            className="absolute -inset-x-8 -bottom-8 h-40 pointer-events-none"
+            style={{
+              background: 'radial-gradient(ellipse at center bottom, rgba(245,158,11,0.07) 0%, transparent 70%)',
+            }}
+            aria-hidden="true"
+          />
+          <AppMockup />
+        </motion.div>
       </motion.div>
     </section>
   )

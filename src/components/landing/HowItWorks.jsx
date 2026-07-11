@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useScroll, useSpring } from 'framer-motion'
 import { Smartphone, Users, Bell } from 'lucide-react'
 import { slideLeft, slideRight, fadeUp, stagger, wordVariant, viewport } from '@/src/lib/motion'
 import { usePostHog } from 'posthog-js/react'
@@ -54,6 +54,11 @@ export default function HowItWorks() {
     return () => obs.disconnect()
   }, [posthog])
 
+  // Connector line fills in step with actual scroll position through the
+  // section, rather than firing once when it enters the viewport.
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 0.75', 'end 0.35'] })
+  const lineProgress = useSpring(scrollYProgress, { stiffness: 120, damping: 22, restDelta: 0.001 })
+
   return (
     <section
       id="how-it-works"
@@ -86,14 +91,11 @@ export default function HowItWorks() {
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8 relative">
-          {/* Connector line — draws left to right */}
-          <div className="hidden md:block absolute top-10 left-[calc(16.67%+2rem)] right-[calc(16.67%+2rem)] h-px overflow-hidden" aria-hidden="true">
+          {/* Connector line — fills in step with actual scroll position */}
+          <div className="hidden md:block absolute top-10 left-[calc(16.67%+2rem)] right-[calc(16.67%+2rem)] h-px overflow-hidden bg-zinc-700" aria-hidden="true">
             <motion.div
-              className="h-full bg-zinc-700"
-              initial={{ scaleX: 0, originX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              viewport={viewport}
+              className="h-full bg-gradient-to-r from-amber-500 to-amber-300"
+              style={{ scaleX: lineProgress, originX: 0 }}
             />
           </div>
 
