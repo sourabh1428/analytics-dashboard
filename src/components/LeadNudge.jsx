@@ -189,7 +189,7 @@ export default function LeadNudge() {
                   value={form.company}
                   onChange={handleChange}
                   className="rounded-xl border border-white/10 bg-white/10 px-3.5 py-2.5 text-sm outline-none placeholder:text-slate-400 focus:border-amber-400"
-                  placeholder="Pharmacy / company name"
+                  placeholder="Business / company name"
                 />
                 <textarea
                   name="message"

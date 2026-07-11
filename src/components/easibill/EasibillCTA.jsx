@@ -6,10 +6,10 @@ import { track } from '../../utils/mixpanel';
 import { fadeUpBlur, springCard, stagger, VIEWPORT } from '../../utils/animations';
 
 const trial = [
-  'Connect your pharmacy profile',
-  'Add or import patients',
+  'Connect your business profile',
+  'Add or import customers',
   'Send your first reminders',
-  'Review refill performance',
+  'Review follow-up performance',
 ];
 
 const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
@@ -36,12 +36,12 @@ const EasibillCTA = () => {
               viewport={{ once: true }}
             >
               <h2 className="max-w-2xl text-4xl font-bold tracking-[-0.02em] sm:text-5xl">
-                Stop losing patients
+                Stop losing customers
                 <br />
                 <span className="text-amber-400">to memory.</span>
               </h2>
               <p className="mt-5 max-w-xl text-lg leading-8 text-slate-300">
-                Launch EasiBill with one store, one staff workflow, and one simple goal — bring chronic-care patients back before they buy elsewhere.
+                Launch EasiBill with one store, one staff workflow, and one simple goal — bring repeat customers back before they buy elsewhere.
               </p>
               <motion.div
                 className="mt-8 flex flex-col gap-3 sm:flex-row"

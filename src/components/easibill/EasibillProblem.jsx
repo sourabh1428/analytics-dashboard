@@ -23,15 +23,15 @@ const losses = [
 ];
 
 const oldTools = [
-  'Billing software tracks invoices, not patient relationships',
-  'Generic CRMs are too heavy for a pharmacy counter',
-  'Manual WhatsApp has no delivery history or refill logic',
+  'Billing software tracks invoices, not customer relationships',
+  'Generic CRMs are too heavy for a local business counter',
+  'Manual WhatsApp has no delivery history or follow-up logic',
 ];
 
 const counterScenes = [
   'Staff writes "BP uncle refill" in a notebook but cannot find the original bill date.',
-  "Owner forwards yesterday's WhatsApp list — two patients are missed during a busy hour.",
-  'Patient says they bought the same strip nearby because nobody reminded them.',
+  "Owner forwards yesterday's WhatsApp list — two customers are missed during a busy hour.",
+  'Customer says they bought the same item nearby because nobody reminded them.',
 ];
 
 const EasibillProblem = () => {
@@ -51,10 +51,10 @@ const EasibillProblem = () => {
               The hidden leak
             </p>
             <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-              Pharmacy retention is still run from memory.
+              Local business retention is still run from memory.
             </h2>
             <p className="mt-5 text-lg leading-8 text-white/45">
-              Independent pharmacies have the demand. The problem is refill timing, patient context, and follow-up all living in separate places — with no one connecting them.
+              Local businesses have the demand. The problem is reminder timing, customer context, and follow-up all living in separate places — with no one connecting them.
             </p>
           </motion.div>
 

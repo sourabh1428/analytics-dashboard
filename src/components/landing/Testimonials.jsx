@@ -36,7 +36,7 @@ const TESTIMONIALS = [
   },
 ]
 
-const H2_WORDS = ['Pharmacists', 'who', 'switched', 'never', 'went', 'back']
+const H2_WORDS = ['Business', 'owners', 'who', 'switched', 'never', 'went', 'back']
 
 export default function Testimonials() {
   const posthog = usePostHog()

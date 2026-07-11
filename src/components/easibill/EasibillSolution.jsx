@@ -21,7 +21,7 @@ const steps = [
     num: '03',
     icon: MessageCircle,
     title: 'Send the WhatsApp',
-    copy: 'A clear reminder goes out at the right time with your pharmacy name and patient context.',
+    copy: 'A clear reminder goes out at the right time with your business name and customer context.',
   },
   {
     num: '04',
@@ -58,7 +58,7 @@ const EasibillSolution = () => {
               Every sale becomes a retention workflow.
             </h2>
             <p className="mt-5 text-lg leading-8 text-white/45">
-              Record, schedule, remind, track. That is the whole loop a pharmacy owner needs to recover missed refills.
+              Record, schedule, remind, track. That is the whole loop a business owner needs to recover missed follow-ups.
             </p>
 
             <motion.div

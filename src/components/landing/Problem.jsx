@@ -17,7 +17,7 @@ const PAIN_POINTS = [
     icon: UserX,
     stat: '6 in 10',
     title: "Customers who don't return",
-    description: 'Without reminders, patients forget to refill. They buy from the pharmacy closest to them next time — not yours.',
+    description: 'Without reminders, customers forget to follow up. They buy from the business closest to them next time — not yours.',
   },
   {
     icon: FileWarning,
@@ -75,7 +75,7 @@ export default function Problem() {
             ))}
           </motion.h2>
           <motion.p variants={fadeUp} className="text-zinc-400 text-lg">
-            Every pharmacy dealing with paper bills and outdated software is bleeding time, customers, and money.
+            Every local business dealing with paper bills and outdated software is bleeding time, customers, and money.
           </motion.p>
         </motion.div>
 

@@ -6,18 +6,18 @@ import { useGeo } from '@/src/hooks/useGeo'
 import { stagger, wordVariant, fadeUp, scaleIn, staggerFast, fadeIn, viewport } from '@/src/lib/motion'
 import { usePostHog } from 'posthog-js/react'
 
-const H1_WORDS_1 = ['Your', 'pharmacy', 'loses', '20–40%', 'of', 'patients', 'every', 'year.']
+const H1_WORDS_1 = ['Your', 'local', 'business', 'loses', '20–40%', 'of', 'customers', 'every', 'year.']
 const H1_WORDS_2 = ['EasiBill', 'stops', 'that.']
 
 const MEDICINES = [
   { name: 'Metformin 500mg', qty: '× 30', amount: '$6.00' },
-  { name: 'Amlodipine 5mg', qty: '× 15', amount: '$2.50' },
-  { name: 'Pantoprazole 40mg', qty: '× 10', amount: '$3.50' },
+  { name: 'Deep Tissue Massage — 60 min', qty: '× 1', amount: '$65.00' },
+  { name: 'Wireless Earbuds', qty: '× 1', amount: '$29.00' },
 ]
 
 const SIDEBAR_NAV = [
   { icon: LayoutDashboard, label: 'New Bill', active: true },
-  { icon: Users, label: 'Patients', active: false },
+  { icon: Users, label: 'Customers', active: false },
   { icon: Package, label: 'Inventory', active: false },
   { icon: BarChart3, label: 'Analytics', active: false },
 ]
@@ -95,7 +95,7 @@ function AppMockup() {
           <table className="w-full text-xs mb-3">
             <thead>
               <tr className="text-gray-400 border-b border-gray-100">
-                <th className="text-left pb-2 font-medium">Medicine</th>
+                <th className="text-left pb-2 font-medium">Item/Service</th>
                 <th className="text-right pb-2 font-medium">Qty</th>
                 <th className="text-right pb-2 font-medium">Amount</th>
               </tr>
@@ -145,7 +145,7 @@ function AppMockup() {
             <p className="text-[10px] text-gray-500">Delivered · 2.3 seconds</p>
           </div>
           <div className="mt-auto rounded-xl bg-white border border-gray-100 p-3">
-            <p className="text-[10px] font-semibold text-slate-900 mb-1">Next: Refill reminder</p>
+            <p className="text-[10px] font-semibold text-slate-900 mb-1">Next: Follow-up reminder</p>
             <p className="text-[10px] text-gray-400">Metformin due in 28 days</p>
             <p className="text-[10px] text-amber-500 font-medium mt-1">Auto-scheduled ✓</p>
           </div>
@@ -160,7 +160,7 @@ export default function Hero() {
   const posthog = usePostHog()
 
   const proofPoints = [
-    geo ? `${geo.flag} Serving pharmacies in ${geo.countryName}` : '2,400+ pharmacies worldwide',
+    geo ? `${geo.flag} Serving local businesses in ${geo.countryName}` : '2,400+ local businesses worldwide',
     '18M+ bills sent via WhatsApp',
     'Free to start — no card needed',
   ]
@@ -205,7 +205,7 @@ export default function Hero() {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500" />
           </span>
           <span className="text-xs font-semibold text-amber-400 uppercase tracking-wide">
-            #1 billing app for independent pharmacies
+            #1 billing app for local businesses
           </span>
         </motion.div>
 
@@ -246,7 +246,7 @@ export default function Hero() {
           transition={{ delay: 0.5 }}
           className="text-lg text-zinc-400 leading-relaxed mb-9"
         >
-          EasiBill is a WhatsApp-first CRM for independent pharmacies. Log a purchase and EasiBill automatically sends a refill reminder on the right day — from your own WhatsApp number, without you touching anything.
+          EasiBill is a WhatsApp-first CRM for local businesses. Log a purchase and EasiBill automatically sends a follow-up reminder on the right day — from your own WhatsApp number, without you touching anything.
         </motion.p>
 
         {/* CTAs */}

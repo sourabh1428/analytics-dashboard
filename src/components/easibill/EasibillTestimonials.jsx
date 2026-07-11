@@ -15,14 +15,14 @@ const testimonials = [
   },
   {
     name: 'Priya Sharma',
-    role: 'Owner, Shree Pharmacy',
+    role: 'Owner, Shree Wellness Spa',
     location: 'Pune',
-    text: 'It does not feel like a CRM. We record the medicine and the reminder is just handled. Patients actually like getting the message because it comes at exactly the right time.',
+    text: 'It does not feel like a CRM. We record the service and the reminder is just handled. Customers actually like getting the message because it comes at exactly the right time.',
     rating: 5,
   },
   {
     name: 'Amit Patel',
-    role: 'Pharmacy Manager',
+    role: 'Store Manager',
     location: 'Indore',
     text: 'Tried manual reminder lists before — they collapsed when the counter got busy. EasiBill gives staff a simple system they can actually follow without me supervising every step.',
     rating: 4,
@@ -77,7 +77,7 @@ function CountUp({ to, suffix = '', prefix = '', decimals = 0 }) {
 }
 
 const proof = [
-  { display: '2,400+', to: 2400, suffix: '+', label: 'pharmacies active' },
+  { display: '2,400+', to: 2400, suffix: '+', label: 'local businesses active' },
   { display: '18M+', to: 18, suffix: 'M+', label: 'bills sent via WhatsApp' },
   { display: '34%', to: 34, suffix: '%', label: 'avg increase in return customers' },
   { display: '₹0', to: 0, prefix: '₹', label: 'setup cost' },
@@ -126,7 +126,7 @@ const schema = {
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: 'EasiBill',
-  description: 'Easy billing software for pharmacies with WhatsApp refill reminders.',
+  description: 'Easy billing software for local businesses with WhatsApp follow-up reminders.',
   url: 'https://easibill.site',
   aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '120', bestRating: '5', worstRating: '1' },
   review: testimonials.map((t) => ({
@@ -154,11 +154,11 @@ const EasibillTestimonials = () => {
           >
             <h2 className="mx-auto max-w-2xl text-4xl font-bold tracking-tight text-white sm:text-5xl">
               Built for how Indian{' '}
-              <span className="text-emerald-400">pharmacy counters</span>{' '}
+              <span className="text-emerald-400">local businesses</span>{' '}
               actually work.
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-lg text-white/45">
-              Every owner we talked to said the same thing: patients return when the reminder arrives at the right moment — not when someone remembers.
+              Every owner we talked to said the same thing: customers return when the reminder arrives at the right moment — not when someone remembers.
             </p>
           </motion.div>
 

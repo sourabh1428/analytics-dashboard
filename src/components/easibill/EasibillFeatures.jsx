@@ -61,7 +61,7 @@ const EasibillFeatures = () => {
             <span className="text-emerald-400">Simple where staff use it.</span>
           </h2>
           <p className="mt-5 text-lg leading-8 text-white/45">
-            EasiBill avoids bloated CRM behavior and focuses on the retention jobs a pharmacy performs every single day.
+            EasiBill avoids bloated CRM behavior and focuses on the retention jobs a local business performs every single day.
           </p>
         </motion.div>
 

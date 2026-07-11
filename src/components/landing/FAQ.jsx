@@ -10,27 +10,27 @@ import { useRef, useEffect } from 'react'
 const FAQS = [
   {
     question: 'Do I need WhatsApp Business API to use EasiBill?',
-    answer: 'No. The Starter plan connects to your existing WhatsApp Business number by scanning a QR code — no API registration, no waiting period, no extra cost. Just scan once and you are live in 2 minutes. The Pro plan uses an official WhatsApp Business API number (via Gupshup) for pharmacies who need broadcast campaigns at scale.',
+    answer: 'No. The Starter plan connects to your existing WhatsApp Business number by scanning a QR code — no API registration, no waiting period, no extra cost. Just scan once and you are live in 2 minutes. The Pro plan uses an official WhatsApp Business API number (via Gupshup) for local businesses who need broadcast campaigns at scale.',
   },
   {
     question: 'Does EasiBill replace my billing software (Marg, Vyapar, Ecogreen)?',
-    answer: 'No — and intentionally so. EasiBill works alongside your existing billing software. It is a patient retention CRM, not a billing or inventory system. You continue using Marg or Vyapar for GST invoicing. EasiBill handles patient records, refill reminders, and WhatsApp campaigns.',
+    answer: 'No — and intentionally so. EasiBill works alongside your existing billing software. It is a customer retention CRM, not a billing or inventory system. You continue using Marg or Vyapar for GST invoicing. EasiBill handles customer records, follow-up reminders, and WhatsApp campaigns.',
   },
   {
     question: 'What happens if my WhatsApp disconnects?',
     answer: 'EasiBill automatically reconnects with retry — sessions persist through server restarts and network drops, so you never need to re-scan the QR code. If a reminder fails to send, it appears on the dashboard immediately so you can retry manually or follow up by phone.',
   },
   {
-    question: 'Is my patient data safe?',
-    answer: 'All patient data is encrypted and stored on secure cloud infrastructure. Data is scoped per pharmacy — no other pharmacy can access your records. You can export everything at any time.',
+    question: 'Is my customer data safe?',
+    answer: 'All customer data is encrypted and stored on secure cloud infrastructure. Data is scoped per business — no other business can access your records. You can export everything at any time.',
   },
   {
     question: 'How long does setup take?',
-    answer: 'Most pharmacies go from sign-up to first reminder in under 30 minutes. Step 1: scan the WhatsApp QR code (2 min). Step 2: add or import your top 20–30 patients (8–10 min). Step 3: enable reminders. Everything else is automatic.',
+    answer: 'Most local businesses go from sign-up to first reminder in under 30 minutes. Step 1: scan the WhatsApp QR code (2 min). Step 2: add or import your top 20–30 customers (8–10 min). Step 3: enable reminders. Everything else is automatic.',
   },
   {
     question: 'What happens if I want to cancel?',
-    answer: 'Cancel any time from your account settings. No cancellation fee, no lock-in. Your patient data is preserved and you can export it before you leave.',
+    answer: 'Cancel any time from your account settings. No cancellation fee, no lock-in. Your customer data is preserved and you can export it before you leave.',
   },
 ]
 
@@ -79,7 +79,7 @@ function FAQItem({ item, index, onOpen }) {
   )
 }
 
-const H2_WORDS = ['Questions', 'pharmacists', 'ask', 'before', 'switching']
+const H2_WORDS = ['Questions', 'business', 'owners', 'ask', 'before', 'switching']
 
 export default function FAQ() {
   const posthog = usePostHog()

@@ -9,7 +9,7 @@ const STEPS = [
   { field: 'name',        prompt: "Hi! 👋 I'm the Easibill assistant. What's your name?" },
   { field: 'email',       prompt: (name) => `Nice to meet you, ${name}! What's your email address?` },
   { field: 'mobile',      prompt: 'Got it! What\'s your mobile number?' },
-  { field: 'companyName', prompt: 'What\'s your pharmacy or shop name?' },
+  { field: 'companyName', prompt: 'What\'s your business name?' },
   { field: 'location',    prompt: 'Last one — which city or area are you in?' },
 ];
 

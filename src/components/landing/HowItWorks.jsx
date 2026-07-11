@@ -18,17 +18,17 @@ const STEPS = [
   {
     number: '02',
     icon: Users,
-    title: 'Add your patients and their medicines',
-    description: 'Add each patient with their name, WhatsApp number, medicine, and refill interval. Or upload a CSV to import your existing patient list in bulk.',
-    detail: 'Most pharmacies import their top 30 chronic-care patients in under 10 minutes.',
+    title: 'Add your customers and their items',
+    description: 'Add each customer with their name, WhatsApp number, item or service, and follow-up interval. Or upload a CSV to import your existing customer list in bulk.',
+    detail: 'Most local businesses import their top 30 repeat customers in under 10 minutes.',
     direction: 'up',
   },
   {
     number: '03',
     icon: Bell,
     title: 'Reminders fire automatically — forever',
-    description: 'EasiBill calculates each patient\'s refill date and sends a WhatsApp message at 9 AM on that day. You do nothing. The patient comes back.',
-    detail: 'Average pharmacy recovers 28–35% of missed refills in the first month.',
+    description: 'EasiBill calculates each customer\'s follow-up date and sends a WhatsApp message at 9 AM on that day. You do nothing. The customer comes back.',
+    detail: 'Average local business recovers 28–35% of missed follow-ups in the first month.',
     direction: 'right',
   },
 ]

@@ -8,25 +8,25 @@ const plans = [
   {
     name: 'Starter',
     price: 'Rs. 299',
-    description: 'For one-store pharmacies starting refill automation.',
+    description: 'For one-store local businesses starting follow-up automation.',
     cta: 'Start free trial',
-    features: ['Unlimited patient records', 'Automatic refill reminders', '1,000 WhatsApp reminders/month', 'Daily due and overdue list', 'Basic delivery analytics', 'Email support'],
+    features: ['Unlimited customer records', 'Automatic follow-up reminders', '1,000 WhatsApp reminders/month', 'Daily due and overdue list', 'Basic delivery analytics', 'Email support'],
   },
   {
     name: 'Pro',
     price: 'Rs. 999',
-    description: 'For pharmacies growing retention and campaigns.',
+    description: 'For local businesses growing retention and campaigns.',
     cta: 'Choose Pro',
     featured: true,
-    features: ['Everything in Starter', 'Broadcast messaging', 'Patient tags and segments', 'Advanced retention reports', 'Custom reminder intervals', 'Priority phone support'],
+    features: ['Everything in Starter', 'Broadcast messaging', 'Customer tags and segments', 'Advanced retention reports', 'Custom reminder intervals', 'Priority phone support'],
   },
 ];
 
 const faqs = [
-  ['Can I use this with Marg or Ecogreen?', 'Yes. Easibill works as the refill reminder layer beside your billing software. No migration is required.'],
-  ['Do I need technical staff?', 'No. Pharmacy staff can add patients, review due lists, and track reminders from the dashboard.'],
-  ['What happens above 1,000 messages?', 'You can add message credits or move to Pro. High-volume pricing is available for larger pharmacies.'],
-  ['Is patient data safe?', 'Your pharmacy owns its data. Access is restricted, reminders are tracked, and data is not shared across pharmacies.'],
+  ['Can I use this with Marg or Ecogreen?', 'Yes. Easibill works as the follow-up reminder layer beside your billing software. No migration is required.'],
+  ['Do I need technical staff?', 'No. Business staff can add customers, review due lists, and track reminders from the dashboard.'],
+  ['What happens above 1,000 messages?', 'You can add message credits or move to Pro. High-volume pricing is available for larger businesses.'],
+  ['Is customer data safe?', 'Your business owns its data. Access is restricted, reminders are tracked, and data is not shared across businesses.'],
 ];
 
 const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';

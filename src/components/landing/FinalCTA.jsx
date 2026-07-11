@@ -62,7 +62,7 @@ export default function FinalCTA() {
           </motion.h2>
 
           <motion.p variants={fadeUp} className="text-zinc-400 text-lg mb-8 max-w-xl mx-auto">
-            EasiBill runs the reminders. You run the pharmacy. Free to start — no card needed.
+            EasiBill runs the reminders. You run the business. Free to start — no card needed.
           </motion.p>
 
           <motion.div variants={scaleIn} className="flex flex-col sm:flex-row items-center justify-center gap-3">

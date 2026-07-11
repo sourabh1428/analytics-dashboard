@@ -5,12 +5,12 @@ import { ArrowRight, CheckCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { stagger, wordVariant, fadeUp, scaleIn, staggerFast, fadeIn, viewport } from '@/lib/motion';
 
-const H1_WORDS_1 = ['Your', 'pharmacy', 'loses', '20–40%', 'of', 'patients', 'every', 'year.'];
+const H1_WORDS_1 = ['Your', 'local', 'business', 'loses', '20–40%', 'of', 'customers', 'every', 'year.'];
 const H1_WORDS_2 = ['EasiBill', 'stops', 'that.'];
 
 const PROOF = [
   'Free to start — no card needed',
-  '2,400+ pharmacies worldwide',
+  '2,400+ local businesses worldwide',
   '18M+ bills sent via WhatsApp',
 ];
 
@@ -56,7 +56,7 @@ export default function Hero() {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500" />
           </span>
           <span className="text-xs font-semibold text-amber-400 uppercase tracking-wide">
-            WhatsApp-first CRM for independent pharmacies
+            WhatsApp-first CRM for local businesses
           </span>
         </motion.div>
 
@@ -88,7 +88,7 @@ export default function Hero() {
           transition={{ delay: 0.55 }}
           className="text-xl text-zinc-400 leading-relaxed mb-10 max-w-2xl mx-auto"
         >
-          Log a sale. EasiBill sends a refill reminder on the right day via WhatsApp — from your own number, without you touching anything. Patients come back. Revenue holds.
+          Log a sale. EasiBill sends a follow-up reminder on the right day via WhatsApp — from your own number, without you touching anything. Customers come back. Revenue holds.
         </motion.p>
 
         <motion.div
