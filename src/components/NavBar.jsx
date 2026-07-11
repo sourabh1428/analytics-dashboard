@@ -7,10 +7,10 @@ import { usePathname, useRouter } from 'next/navigation';
 import { track } from '../utils/mixpanel';
 
 const navLinks = [
-  { name: 'Product', section: 'product' },
+  { name: 'Product', section: 'hero' },
   { name: 'Features', section: 'features' },
   { name: 'Pricing', section: 'pricing' },
-  { name: 'Customers', section: 'customers' },
+  { name: 'Customers', section: 'testimonials' },
   { name: 'Contact', path: '/contact' },
 ];
 
@@ -46,7 +46,7 @@ const NavBar = () => {
   };
 
   const isActive = (link) =>
-    (link.path && pathname === link.path) || (link.section === 'product' && pathname === '/');
+    (link.path && pathname === link.path) || (link.section === 'hero' && pathname === '/');
 
   return (
     <header
@@ -71,7 +71,7 @@ const NavBar = () => {
             aria-label="Go to Easibill home"
           >
             <img src="/logo.png" alt="Easibill Logo" className="h-9 w-9 rounded-xl" width="36" height="36" />
-            <span className="text-base font-semibold tracking-tight text-slate-900">Easibill</span>
+            <span className={`text-base font-semibold tracking-tight transition-colors duration-300 ${scrolled ? 'text-slate-900' : 'text-white'}`}>Easibill</span>
           </button>
 
           {/* Desktop nav */}
@@ -84,7 +84,9 @@ const NavBar = () => {
                 className={`rounded-lg px-3.5 py-2 text-sm font-medium transition-colors duration-150 ${
                   isActive(link)
                     ? 'bg-amber-50 text-amber-500'
-                    : 'text-gray-600 hover:bg-gray-100 hover:text-slate-900'
+                    : scrolled
+                      ? 'text-gray-600 hover:bg-gray-100 hover:text-slate-900'
+                      : 'text-zinc-300 hover:bg-white/10 hover:text-white'
                 }`}
               >
                 {link.name}
@@ -97,7 +99,11 @@ const NavBar = () => {
             <button
               type="button"
               onClick={() => { track('demo_requested', { source: 'navbar', method: 'button_click' }); router.push('/contact'); }}
-              className="rounded-lg px-4 py-2 text-sm font-medium text-gray-600 transition hover:bg-gray-100 hover:text-slate-900"
+              className={`rounded-lg px-4 py-2 text-sm font-medium transition ${
+                scrolled
+                  ? 'text-gray-600 hover:bg-gray-100 hover:text-slate-900'
+                  : 'text-zinc-300 hover:bg-white/10 hover:text-white'
+              }`}
             >
               Book demo
             </button>
@@ -115,7 +121,11 @@ const NavBar = () => {
           <button
             type="button"
             onClick={() => setIsOpen((v) => !v)}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-gray-600 transition hover:bg-gray-100 hover:text-slate-900 md:hidden"
+            className={`inline-flex h-9 w-9 items-center justify-center rounded-lg transition md:hidden ${
+              scrolled
+                ? 'text-gray-600 hover:bg-gray-100 hover:text-slate-900'
+                : 'text-zinc-300 hover:bg-white/10 hover:text-white'
+            }`}
             aria-controls="mobile-menu"
             aria-expanded={isOpen}
           >
