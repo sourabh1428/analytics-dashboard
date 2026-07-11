@@ -9,11 +9,11 @@ const linkGroups = [
   {
     title: 'Business Tools',
     links: [
-      { label: 'Refill Reminders', description: 'Automatic WhatsApp follow-ups for chronic-care patients.', href: '/features/refill-reminders' },
-      { label: 'Patient Records', description: 'Medicine, interval, and contact stored per patient.', href: '/features/patient-records' },
-      { label: 'Daily Queue', description: 'Who is due, overdue, or recently refilled — every morning.', href: '/features/daily-queue' },
-      { label: 'Broadcast Campaigns', description: 'Health camp and loyalty messages for targeted patient groups.', href: '/features/broadcast-campaigns' },
-      { label: 'Retention Analytics', description: 'Reminders sent, recovered refills, and inactive patients tracked.', href: '/features/retention-analytics' },
+      { label: 'Follow-up Reminders', description: 'Automatic WhatsApp follow-ups for repeat customers.', href: '/features/refill-reminders' },
+      { label: 'Customer Records', description: 'Item, interval, and contact stored per customer.', href: '/features/patient-records' },
+      { label: 'Daily Queue', description: 'Who is due, overdue, or recently followed up — every morning.', href: '/features/daily-queue' },
+      { label: 'Broadcast Campaigns', description: 'Health camp and loyalty messages for targeted customer groups.', href: '/features/broadcast-campaigns' },
+      { label: 'Retention Analytics', description: 'Reminders sent, recovered follow-ups, and inactive customers tracked.', href: '/features/retention-analytics' },
     ],
   },
   {
@@ -21,18 +21,18 @@ const linkGroups = [
     links: [
       { label: '14-Day Free Trial', description: 'Full access, no card required, set up in under 5 minutes.', href: 'https://dashboard.easibill.com/', external: true },
       { label: 'Book a Demo', description: 'Live walkthrough with a business retention specialist.', href: '/contact' },
-      { label: 'Onboarding Guide', description: 'Step-by-step setup from first patient to first reminder.', href: '/onboarding' },
+      { label: 'Onboarding Guide', description: 'Step-by-step setup from first customer to first reminder.', href: '/onboarding' },
       { label: 'Pricing', description: 'Starter free forever. Growth from $9/month.', href: '/#pricing' },
     ],
   },
   {
     title: 'Resources',
     links: [
-      { label: 'Help Center', description: 'Setup guides for reminders, billing, and patient records.', href: '/help' },
+      { label: 'Help Center', description: 'Setup guides for reminders, billing, and customer records.', href: '/help' },
       { label: 'Blog', description: 'Practical growth notes for local business owners.', href: '/blog' },
       { label: 'Business Guides', description: 'Deep-dive articles on GST invoicing, follow-up systems, and more.', href: '/sitemap-page' },
       { label: 'Tutorials', description: 'Short walkthroughs for staff onboarding.', href: '/tutorials' },
-      { label: 'Webinars', description: 'Live sessions on refill automation and retention.', href: '/webinars' },
+      { label: 'Webinars', description: 'Live sessions on follow-up automation and retention.', href: '/webinars' },
     ],
   },
   {

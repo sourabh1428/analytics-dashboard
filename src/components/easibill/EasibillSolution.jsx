@@ -9,13 +9,13 @@ const steps = [
     num: '01',
     icon: ReceiptText,
     title: 'Capture the sale',
-    copy: 'Add patient, mobile number, medicine, quantity, and sale date while billing or after closing.',
+    copy: 'Add customer, mobile number, item, quantity, and sale date while billing or after closing.',
   },
   {
     num: '02',
     icon: CalendarClock,
-    title: 'Predict the refill',
-    copy: 'Easibill calculates the next refill date and lets staff adjust it for specific medicines.',
+    title: 'Predict the follow-up',
+    copy: 'Easibill calculates the next follow-up date and lets staff adjust it for specific items.',
   },
   {
     num: '03',
@@ -27,7 +27,7 @@ const steps = [
     num: '04',
     icon: BarChart3,
     title: 'Track the recovery',
-    copy: 'See sent, failed, due, refilled, and inactive patients in one retention dashboard.',
+    copy: 'See sent, failed, due, followed up, and inactive customers in one retention dashboard.',
   },
 ];
 

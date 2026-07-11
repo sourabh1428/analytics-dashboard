@@ -7,18 +7,18 @@ import { fadeUpBlur, springCard, stagger, VIEWPORT } from '../../utils/animation
 const losses = [
   {
     icon: UsersRound,
-    title: 'Your best patients quietly drift away',
+    title: 'Your best customers quietly drift away',
     copy: 'Chronic-care customers should return every 25–35 days. Most stores only remember the familiar names — and lose the rest.',
   },
   {
     icon: ClipboardList,
     title: 'Manual lists collapse after 30 follow-ups',
-    copy: 'A register, WhatsApp chat, or staff memory cannot scale to hundreds of refill cycles every month without breaking.',
+    copy: 'A register, WhatsApp chat, or staff memory cannot scale to hundreds of follow-up cycles every month without breaking.',
   },
   {
     icon: IndianRupee,
     title: 'The revenue loss compounds silently',
-    copy: 'Each missed refill is not one lost sale. It is a recurring relationship handed to the competitor down the street.',
+    copy: 'Each missed follow-up is not one lost sale. It is a recurring relationship handed to the competitor down the street.',
   },
 ];
 
@@ -29,7 +29,7 @@ const oldTools = [
 ];
 
 const counterScenes = [
-  'Staff writes "BP uncle refill" in a notebook but cannot find the original bill date.',
+  'Staff writes "BP uncle follow-up" in a notebook but cannot find the original bill date.',
   "Owner forwards yesterday's WhatsApp list — two customers are missed during a busy hour.",
   'Customer says they bought the same item nearby because nobody reminded them.',
 ];
@@ -74,7 +74,7 @@ const EasibillProblem = () => {
                   One missed reminder can erase a monthly habit.
                 </h3>
                 <p className="mt-2 text-white/45">
-                  If a diabetes patient buys somewhere else once, your store becomes less automatic the next month too.
+                  If a repeat customer buys somewhere else once, your store becomes less automatic the next month too.
                 </p>
               </div>
             </div>
@@ -123,7 +123,7 @@ const EasibillProblem = () => {
               </div>
               <h3 className="text-xl font-bold text-white">Existing tools stop at the bill.</h3>
               <p className="mt-4 leading-8 text-white/45">
-                Marg, Ecogreen, and Vyapar record the sale. They do not know when the patient should come back, which reminder failed, or who needs a personal follow-up today.
+                Marg, Ecogreen, and Vyapar record the sale. They do not know when the customer should come back, which reminder failed, or who needs a personal follow-up today.
               </p>
             </div>
             <div className="border-t border-white/[0.06] bg-white/[0.02] p-7 sm:p-8 lg:border-l lg:border-t-0">

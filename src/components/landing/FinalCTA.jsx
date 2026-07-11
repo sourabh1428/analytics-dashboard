@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react'
 import { stagger, wordVariant, fadeUp, scaleIn, viewport } from '@/src/lib/motion'
 import { usePostHog } from 'posthog-js/react'
 
-const H2_WORDS_1 = ['Stop', 'losing', 'patients']
+const H2_WORDS_1 = ['Stop', 'losing', 'customers']
 const H2_WORDS_2 = ['to', 'forgetfulness.']
 
 export default function FinalCTA() {

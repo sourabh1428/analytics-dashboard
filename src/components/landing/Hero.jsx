@@ -9,7 +9,7 @@ import { usePostHog } from 'posthog-js/react'
 const H1_WORDS_1 = ['Your', 'local', 'business', 'loses', '20–40%', 'of', 'customers', 'every', 'year.']
 const H1_WORDS_2 = ['EasiBill', 'stops', 'that.']
 
-const MEDICINES = [
+const SAMPLE_ITEMS = [
   { name: 'Metformin 500mg', qty: '× 30', amount: '$6.00' },
   { name: 'Deep Tissue Massage — 60 min', qty: '× 1', amount: '$65.00' },
   { name: 'Wireless Earbuds', qty: '× 1', amount: '$29.00' },
@@ -101,7 +101,7 @@ function AppMockup() {
               </tr>
             </thead>
             <tbody>
-              {MEDICINES.map((m) => (
+              {SAMPLE_ITEMS.map((m) => (
                 <tr key={m.name} className="border-b border-gray-50">
                   <td className="py-2 text-slate-700">{m.name}</td>
                   <td className="py-2 text-right text-gray-400">{m.qty}</td>

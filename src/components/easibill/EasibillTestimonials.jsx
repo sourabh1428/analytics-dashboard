@@ -38,14 +38,14 @@ const testimonials = [
     name: 'Vijay Nair',
     role: 'Owner, VN Medicals',
     location: 'Kochi',
-    text: "The refill reminder recovered three diabetes patients in the first week who had quietly shifted to a nearby shop. That's the kind of ROI I wasn't expecting so fast.",
+    text: "The follow-up reminder recovered three repeat customers in the first week who had quietly shifted to a nearby shop. That's the kind of ROI I wasn't expecting so fast.",
     rating: 5,
   },
   {
     name: 'Meena Agarwal',
     role: 'Co-owner, Agarwal Drug House',
     location: 'Jaipur',
-    text: 'Setup took less than 30 minutes including importing our patient list. The team on WhatsApp walked us through everything. No IT person required at all.',
+    text: 'Setup took less than 30 minutes including importing our customer list. The team on WhatsApp walked us through everything. No IT person required at all.',
     rating: 4,
   },
 ];

@@ -216,7 +216,7 @@ const EasibillHero = () => {
                     WhatsApp
                   </div>
                   <p className="text-[10px] leading-4 text-white/60">
-                    Namaste Anita ji, your Metformin is due for a refill today. Reply YES to confirm.
+                    Namaste Anita ji, your Metformin is due for a follow-up today. Reply YES to confirm.
                   </p>
                   <p className="mt-2 text-right text-[9px] text-emerald-400/70">Queued 9:00 AM ✓</p>
                 </motion.div>

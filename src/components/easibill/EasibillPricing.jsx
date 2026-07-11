@@ -110,7 +110,7 @@ const EasibillPricing = () => {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-white">Payback should be obvious.</h3>
-                <p className="mt-1 text-white/45">Recovering even a handful of repeat refills can cover the monthly plan.</p>
+                <p className="mt-1 text-white/45">Recovering even a handful of repeat follow-ups can cover the monthly plan.</p>
               </div>
             </div>
             <a
