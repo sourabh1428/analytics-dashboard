@@ -10,7 +10,7 @@ const H1_WORDS_1 = ['Your', 'local', 'business', 'loses', '20–40%', 'of', 'cus
 const H1_WORDS_2 = ['EasiBill', 'stops', 'that.']
 
 const SAMPLE_ITEMS = [
-  { name: 'Metformin 500mg', qty: '× 30', amount: '$6.00' },
+  { name: 'Monthly Reorder Pack', qty: '× 1', amount: '$6.00' },
   { name: 'Deep Tissue Massage — 60 min', qty: '× 1', amount: '$65.00' },
   { name: 'Wireless Earbuds', qty: '× 1', amount: '$29.00' },
 ]
@@ -146,7 +146,7 @@ function AppMockup() {
           </div>
           <div className="mt-auto rounded-xl bg-white border border-gray-100 p-3">
             <p className="text-[10px] font-semibold text-slate-900 mb-1">Next: Follow-up reminder</p>
-            <p className="text-[10px] text-gray-400">Metformin due in 28 days</p>
+            <p className="text-[10px] text-gray-400">Reorder due in 28 days</p>
             <p className="text-[10px] text-amber-500 font-medium mt-1">Auto-scheduled ✓</p>
           </div>
         </aside>

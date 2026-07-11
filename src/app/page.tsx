@@ -1,7 +1,9 @@
 import Hero from "@/src/components/landing/Hero";
+import ProductDemo from "@/src/components/landing/ProductDemo";
 import TrustBar from "@/src/components/landing/TrustBar";
 import Problem from "@/src/components/landing/Problem";
 import FeaturesBento from "@/src/components/landing/FeaturesBento";
+import AIStudio from "@/src/components/landing/AIStudio";
 import HowItWorks from "@/src/components/landing/HowItWorks";
 import Testimonials from "@/src/components/landing/Testimonials";
 import PricingSection from "@/src/components/landing/PricingSection";
@@ -13,9 +15,11 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <ProductDemo />
       <TrustBar />
       <Problem />
       <FeaturesBento />
+      <AIStudio />
       <HowItWorks />
       <Testimonials />
       <PricingSection />
