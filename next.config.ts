@@ -19,6 +19,7 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/feature", destination: "/features", permanent: true },
+      { source: "/features/refill-reminders", destination: "/features/follow-up-reminders", permanent: true },
       { source: "/our-features", destination: "/features", permanent: true },
       { source: "/product-features", destination: "/features", permanent: true },
       { source: "/testimonial", destination: "/testimonials", permanent: true },

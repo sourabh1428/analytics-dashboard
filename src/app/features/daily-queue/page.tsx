@@ -3,18 +3,18 @@ import Link from "next/link";
 import { List, ArrowRight, CheckCircle, AlertCircle, Clock, RefreshCw, Bell } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Daily Queue – Who's Due, Overdue, or Recently Refilled | EasiBill",
-  description: "Start every morning knowing exactly which patients are due for a refill today. EasiBill's daily queue organises your workload automatically.",
+  title: "Daily Queue – Who's Due, Overdue, or Recently Followed Up | EasiBill",
+  description: "Start every morning knowing exactly which customers are due for a follow-up today. EasiBill's daily queue organises your workload automatically.",
   alternates: { canonical: "https://easibill.com/features/daily-queue" },
 };
 
 const queue = [
-  { name: "Anjali Mehta", drug: "Metformin 500mg", status: "due-today", phone: "+91 98201 xxxxx", days: 0 },
-  { name: "Ravi Shankar", drug: "Amlodipine 5mg", status: "overdue", phone: "+91 97303 xxxxx", days: -12 },
-  { name: "Kavitha Reddy", drug: "Glimepiride 2mg", status: "due-today", phone: "+91 91234 xxxxx", days: 0 },
-  { name: "Mohan Lal", drug: "Telmisartan 40mg", status: "overdue", phone: "+91 99001 xxxxx", days: -5 },
-  { name: "Sunita Gupta", drug: "Pantoprazole 40mg", status: "recently-refilled", phone: "+91 98765 xxxxx", days: 3 },
-  { name: "Deepak Joshi", drug: "Atorvastatin 20mg", status: "recently-refilled", phone: "+91 93020 xxxxx", days: 2 },
+  { name: "Anjali Mehta", item: "Monthly service", status: "due-today", phone: "+91 98201 xxxxx", days: 0 },
+  { name: "Ravi Shankar", item: "Repeat order", status: "overdue", phone: "+91 97303 xxxxx", days: -12 },
+  { name: "Kavitha Reddy", item: "Quarterly checkup", status: "due-today", phone: "+91 91234 xxxxx", days: 0 },
+  { name: "Mohan Lal", item: "Follow-up visit", status: "overdue", phone: "+91 99001 xxxxx", days: -5 },
+  { name: "Sunita Gupta", item: "Monthly service", status: "recently-followed-up", phone: "+91 98765 xxxxx", days: 3 },
+  { name: "Deepak Joshi", item: "Repeat order", status: "recently-followed-up", phone: "+91 93020 xxxxx", days: 2 },
 ];
 
 export default function DailyQueuePage() {
@@ -31,11 +31,11 @@ export default function DailyQueuePage() {
                 <List className="h-3 w-3" /> Daily Queue
               </span>
               <h1 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight mb-6">
-                Open your pharmacy knowing{" "}
+                Open your business knowing{" "}
                 <span className="text-amber-600">exactly who needs a call</span>
               </h1>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Every morning, EasiBill shows you who is due today, who is overdue, and who just refilled. Your team works the list — no manual checking required.
+                Every morning, EasiBill shows you who is due today, who is overdue, and who just followed up. Your team works the list — no manual checking required.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="https://dashboard.easibill.com/" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-amber-500 text-white font-semibold hover:bg-amber-600 transition-colors">
@@ -56,7 +56,7 @@ export default function DailyQueuePage() {
                   {[
                     { label: "Due today", count: 2, color: "bg-amber-500" },
                     { label: "Overdue", count: 2, color: "bg-red-500" },
-                    { label: "Refilled", count: 2, color: "bg-green-500" },
+                    { label: "Followed up", count: 2, color: "bg-green-500" },
                   ].map((s) => (
                     <div key={s.label} className="bg-white/10 rounded-xl p-2 text-center">
                       <p className={`text-lg font-bold text-white`}>{s.count}</p>
@@ -79,7 +79,7 @@ export default function DailyQueuePage() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-slate-900 truncate">{p.name}</p>
-                      <p className="text-xs text-gray-400 truncate">{p.drug}</p>
+                      <p className="text-xs text-gray-400 truncate">{p.item}</p>
                     </div>
                     <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
                       p.status === "overdue" ? "bg-red-100 text-red-600" :
@@ -88,7 +88,7 @@ export default function DailyQueuePage() {
                     }`}>
                       {p.status === "overdue" ? `${Math.abs(p.days)}d overdue` :
                        p.status === "due-today" ? "Due today" :
-                       `Refilled ${p.days}d ago`}
+                       `Followed up ${p.days}d ago`}
                     </span>
                   </div>
                 ))}
@@ -104,11 +104,11 @@ export default function DailyQueuePage() {
           <h2 className="text-2xl font-bold text-slate-900 text-center mb-12">How the queue is built</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: RefreshCw, title: "Rebuilt nightly", body: "The queue recalculates at midnight based on every patient's interval and last refill date." },
+              { icon: RefreshCw, title: "Rebuilt nightly", body: "The queue recalculates at midnight based on every customer's interval and last follow-up date." },
               { icon: Bell, title: "WhatsApp sends first", body: "Reminders go out automatically. The queue shows who has and hasn't responded." },
-              { icon: AlertCircle, title: "Overdue flagged prominently", body: "Patients who missed their window appear at the top in red so your staff can follow up by phone." },
-              { icon: CheckCircle, title: "Refilled patients archived", body: "Once dispensed, a patient moves to the 'recently refilled' section and off your to-do list." },
-              { icon: Clock, title: "Time-sensitive ordering", body: "Patients are sorted by urgency — most overdue first, due-today next, upcoming after." },
+              { icon: AlertCircle, title: "Overdue flagged prominently", body: "Customers who missed their window appear at the top in red so your staff can follow up by phone." },
+              { icon: CheckCircle, title: "Followed-up customers archived", body: "Once served, a customer moves to the 'recently followed up' section and off your to-do list." },
+              { icon: Clock, title: "Time-sensitive ordering", body: "Customers are sorted by urgency — most overdue first, due-today next, upcoming after." },
               { icon: List, title: "One view for the whole team", body: "Every staff member sees the same queue on any device — no coordination needed." },
             ].map(({ icon: Icon, title, body }) => (
               <div key={title} className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
