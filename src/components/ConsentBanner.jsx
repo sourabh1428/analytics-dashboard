@@ -1,10 +1,19 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { acceptConsent, declineConsent, getConsentState } from '../utils/mixpanel';
 
 const ConsentBanner = () => {
-  const [dismissed, setDismissed] = useState(() => getConsentState() !== null);
+  // Start unmounted-looking (false) so the very first client render matches
+  // the server's HTML exactly — localStorage doesn't exist on the server, so
+  // reading it during the initial render (even lazily) desyncs SSR output
+  // from a returning visitor's client output and breaks hydration. Checking
+  // in an effect defers the read until after hydration completes.
+  const [dismissed, setDismissed] = useState(false);
+
+  useEffect(() => {
+    setDismissed(getConsentState() !== null);
+  }, []);
 
   if (dismissed) return null;
 
