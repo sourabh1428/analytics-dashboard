@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, Suspense } from 'react'
+import { useRef } from 'react'
 import dynamic from 'next/dynamic'
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion'
 import { ArrowRight, CheckCircle, MessageCircle, LayoutDashboard, Users, Package, BarChart3 } from 'lucide-react'
@@ -216,9 +216,7 @@ export default function Hero() {
 
       {/* 3D ambient scene — sits behind the copy, reacts to scroll */}
       <div className="absolute inset-0 pointer-events-none opacity-60 mix-blend-screen" aria-hidden="true">
-        <Suspense fallback={null}>
-          <HeroScene scrollRef={sceneScrollRef} />
-        </Suspense>
+        <HeroScene scrollRef={sceneScrollRef} />
       </div>
 
       {/* Copy — fades out as the scene takes over deeper in the scroll */}

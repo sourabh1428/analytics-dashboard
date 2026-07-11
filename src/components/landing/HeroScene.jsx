@@ -1,58 +1,90 @@
 'use client'
-/* eslint-disable react/no-unknown-property -- react-three-fiber JSX intrinsics (mesh, ambientLight, args, …) aren't real DOM props */
 
-import { useRef } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { Float, MeshDistortMaterial } from '@react-three/drei'
+import { useEffect, useRef } from 'react'
+import * as THREE from 'three'
 
-// scrollRef is a plain mutable ref (not state) so scroll updates never
-// trigger a React re-render — only the WebGL frame loop reads it.
-function DistortedIcosahedron({ scrollRef }) {
-  const meshRef = useRef(null)
-
-  useFrame((state, delta) => {
-    const mesh = meshRef.current
-    if (!mesh) return
-    const scroll = scrollRef.current ?? 0
-    mesh.rotation.x += delta * 0.12
-    mesh.rotation.y += delta * 0.18 + scroll * 0.006
-    mesh.rotation.z = scroll * 0.4
-    mesh.position.y = -scroll * 1.4
-    const targetScale = 1 - scroll * 0.18
-    mesh.scale.setScalar(mesh.scale.x + (targetScale - mesh.scale.x) * 0.08)
-  })
-
-  return (
-    <Float speed={1.4} rotationIntensity={0.5} floatIntensity={0.8}>
-      <mesh ref={meshRef}>
-        <icosahedronGeometry args={[1.6, 4]} />
-        <MeshDistortMaterial
-          color="#F59E0B"
-          emissive="#78350F"
-          emissiveIntensity={0.25}
-          roughness={0.15}
-          metalness={0.4}
-          distort={0.35}
-          speed={1.8}
-          wireframe
-        />
-      </mesh>
-    </Float>
-  )
-}
-
+// Plain Three.js, no React reconciler involved — a single decorative mesh
+// doesn't need @react-three/fiber's declarative scene graph, and this avoids
+// its dependency on React's internal fiber/owner state (which has repeatedly
+// broken across React/Next.js minor versions in that ecosystem).
 export default function HeroScene({ scrollRef }) {
-  return (
-    <Canvas
-      dpr={[1, 1.75]}
-      camera={{ position: [0, 0, 5.2], fov: 42 }}
-      gl={{ antialias: true, alpha: true }}
-      aria-hidden="true"
-    >
-      <ambientLight intensity={0.5} />
-      <pointLight position={[4, 4, 4]} intensity={1.1} color="#F59E0B" />
-      <pointLight position={[-4, -2, -3]} intensity={0.4} color="#8B5CF6" />
-      <DistortedIcosahedron scrollRef={scrollRef} />
-    </Canvas>
-  )
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    const container = containerRef.current
+    if (!container) return
+
+    const scene = new THREE.Scene()
+    const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100)
+    camera.position.set(0, 0, 5.2)
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75))
+    container.appendChild(renderer.domElement)
+
+    const geometry = new THREE.IcosahedronGeometry(1.6, 4)
+    const material = new THREE.MeshStandardMaterial({
+      color: 0xf59e0b,
+      emissive: 0x78350f,
+      emissiveIntensity: 0.25,
+      roughness: 0.15,
+      metalness: 0.4,
+      wireframe: true,
+    })
+    const mesh = new THREE.Mesh(geometry, material)
+    scene.add(mesh)
+
+    const ambient = new THREE.AmbientLight(0xffffff, 0.5)
+    const pointA = new THREE.PointLight(0xf59e0b, 1.1)
+    pointA.position.set(4, 4, 4)
+    const pointB = new THREE.PointLight(0x8b5cf6, 0.4)
+    pointB.position.set(-4, -2, -3)
+    scene.add(ambient, pointA, pointB)
+
+    function resize() {
+      const { clientWidth, clientHeight } = container
+      if (!clientWidth || !clientHeight) return
+      camera.aspect = clientWidth / clientHeight
+      camera.updateProjectionMatrix()
+      renderer.setSize(clientWidth, clientHeight)
+    }
+    resize()
+    const resizeObserver = new ResizeObserver(resize)
+    resizeObserver.observe(container)
+
+    let frameId
+    let scale = 1
+    const clock = new THREE.Clock()
+
+    function tick() {
+      const delta = clock.getDelta()
+      const scroll = scrollRef?.current ?? 0
+
+      mesh.rotation.x += delta * 0.12
+      mesh.rotation.y += delta * 0.18 + scroll * 0.006
+      mesh.rotation.z = scroll * 0.4
+      mesh.position.y = -scroll * 1.4
+
+      const targetScale = 1 - scroll * 0.18
+      scale += (targetScale - scale) * 0.08
+      mesh.scale.setScalar(scale)
+
+      renderer.render(scene, camera)
+      frameId = requestAnimationFrame(tick)
+    }
+    tick()
+
+    return () => {
+      cancelAnimationFrame(frameId)
+      resizeObserver.disconnect()
+      geometry.dispose()
+      material.dispose()
+      renderer.dispose()
+      if (renderer.domElement.parentNode === container) {
+        container.removeChild(renderer.domElement)
+      }
+    }
+  }, [scrollRef])
+
+  return <div ref={containerRef} className="h-full w-full" aria-hidden="true" />
 }

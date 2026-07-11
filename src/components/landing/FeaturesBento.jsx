@@ -1,11 +1,10 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useScroll, useSpring } from 'framer-motion'
 import { Bell, Users, LayoutDashboard, Radio, BarChart3, BookOpen } from 'lucide-react'
-import { fadeUp, scaleIn, stagger, wordVariant, viewport } from '@/src/lib/motion'
+import { fadeUp, stagger, wordVariant, viewport } from '@/src/lib/motion'
 import { usePostHog } from 'posthog-js/react'
 import { useRef, useEffect } from 'react'
-import TiltCard from './TiltCard'
 
 const FEATURES = [
   {
@@ -13,10 +12,10 @@ const FEATURES = [
     tag: 'Follow-up Reminders',
     title: 'Customers get a WhatsApp reminder on exactly the right day — automatically',
     description: "Log a purchase, set the interval, and EasiBill does the rest. At 9 AM on the follow-up date, a personalised WhatsApp message goes out from your own number. You don't touch anything.",
-    size: 'large',
     accent: 'amber',
+    glow: 'rgba(245,158,11,0.14)',
     visual: (
-      <div className="mt-6 bg-zinc-900 rounded-xl p-4 text-sm space-y-3 border border-zinc-800">
+      <div className="bg-zinc-900 rounded-xl p-4 text-sm space-y-3 border border-zinc-800 w-full max-w-sm">
         {[
           { initials: 'RK', name: 'Ramesh Kumar', drug: 'Loyalty reorder', status: 'Sent · 9:02 AM', color: 'text-emerald-400 bg-emerald-500/10' },
           { initials: 'SG', name: 'Sunita Gupta', drug: 'Monthly top-up', status: 'Due today', color: 'text-amber-400 bg-amber-500/10' },
@@ -39,40 +38,40 @@ const FEATURES = [
     tag: 'Customer Records',
     title: 'Every customer, every item, every interval — in one place',
     description: 'Add customers with their WhatsApp number, item or service, and follow-up cadence. Tag by segment. Import your existing list from CSV. Search in under a second.',
-    size: 'small',
     accent: 'amber',
+    glow: 'rgba(245,158,11,0.14)',
   },
   {
     icon: LayoutDashboard,
     tag: 'Daily Queue',
     title: 'Start every morning knowing exactly who needs a call',
     description: "The daily queue shows who's due today, who's overdue, and who recently followed up — sorted by urgency. Your team works the list, not their memory.",
-    size: 'small',
     accent: 'orange',
+    glow: 'rgba(251,146,60,0.14)',
   },
   {
     icon: Radio,
     tag: 'Broadcast Campaigns',
     title: 'One message to 300 customers in two minutes',
     description: 'Target by segment, inactivity, or tag. Promote seasonal sales, loyalty offers, and event messages. Personalised per customer. Scheduled delivery.',
-    size: 'small',
     accent: 'teal',
+    glow: 'rgba(45,212,191,0.14)',
   },
   {
     icon: BarChart3,
     tag: 'Retention Analytics',
     title: 'Know exactly which customers you are keeping — and losing',
     description: 'Follow-up rate, recovered follow-ups, inactive customers, and revenue impact — all calculated from your actual sales data. Monthly and trend views included.',
-    size: 'small',
     accent: 'rose',
+    glow: 'rgba(251,113,133,0.14)',
   },
   {
     icon: BookOpen,
     tag: 'Item Catalog',
     title: 'Your most-sold items, with default intervals pre-set',
     description: 'Add your commonly sold items once. Auto-suggest when logging a sale. Set a 28-day interval for one item and 90 days for another — apply to every customer instantly.',
-    size: 'small',
     accent: 'amber',
+    glow: 'rgba(245,158,11,0.14)',
   },
 ]
 
@@ -84,10 +83,10 @@ const ICON_ACCENT = {
 }
 
 const TAG_ACCENT = {
-  amber: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
-  orange: 'bg-orange-500/10 text-orange-400 border-orange-500/20',
-  teal: 'bg-teal-500/10 text-teal-400 border-teal-500/20',
-  rose: 'bg-rose-500/10 text-rose-400 border-rose-500/20',
+  amber: 'text-amber-400',
+  orange: 'text-orange-400',
+  teal: 'text-teal-400',
+  rose: 'text-rose-400',
 }
 
 const H2_WORDS_1 = ['One', 'WhatsApp', 'message', 'at', 'the', 'right', 'time.']
@@ -106,20 +105,24 @@ export default function FeaturesBento() {
     return () => obs.disconnect()
   }, [posthog])
 
+  // Connector line down the spine — fills with actual scroll position.
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 0.65', 'end 0.4'] })
+  const lineProgress = useSpring(scrollYProgress, { stiffness: 110, damping: 24, restDelta: 0.001 })
+
   return (
     <section
       id="features"
       ref={ref}
       aria-labelledby="features-heading"
-      className="py-24 px-6 bg-[#09090B]"
+      className="relative py-24 px-6 bg-[#09090B] overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <motion.div
           initial="hidden"
           whileInView="visible"
           variants={stagger}
           viewport={viewport}
-          className="text-center max-w-2xl mx-auto mb-16"
+          className="text-center max-w-2xl mx-auto mb-20"
         >
           <motion.h2
             id="features-heading"
@@ -143,41 +146,55 @@ export default function FeaturesBento() {
           </motion.p>
         </motion.div>
 
-        <motion.div
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewport}
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
-          }}
-        >
-          {FEATURES.map((feature) => (
-            <TiltCard
-              key={feature.tag}
-              variants={scaleIn}
-              whileHover={{ y: -6, transition: { duration: 0.2 } }}
-              onHoverStart={() => posthog?.capture('feature_card_hovered', { feature: feature.tag })}
-              className={`bg-[#18181B] rounded-2xl border border-zinc-800 p-6 flex flex-col ${
-                feature.size === 'large' ? 'lg:col-span-2' : ''
-              }`}
-            >
-              <div className="flex items-start justify-between mb-4">
-                <feature.icon
-                  className={`h-7 w-7 ${ICON_ACCENT[feature.accent]}`}
+        <div className="relative">
+          {/* Spine — fills with scroll, not a one-shot reveal */}
+          <div className="hidden sm:block absolute left-1/2 -translate-x-1/2 top-2 bottom-2 w-px bg-zinc-800" aria-hidden="true">
+            <motion.div
+              className="w-full bg-gradient-to-b from-amber-400 to-amber-200 origin-top"
+              style={{ scaleY: lineProgress, height: '100%' }}
+            />
+          </div>
+
+          {FEATURES.map((feature, i) => {
+            const reversed = i % 2 === 1
+            return (
+              <motion.div
+                key={feature.tag}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                viewport={viewport}
+                onViewportEnter={() => posthog?.capture('feature_row_viewed', { feature: feature.tag })}
+                className={`relative flex flex-col sm:flex-row ${reversed ? 'sm:flex-row-reverse' : ''} items-center gap-8 sm:gap-14 py-14`}
+              >
+                <div
+                  className="absolute inset-0 -z-10 pointer-events-none"
+                  style={{ background: `radial-gradient(480px circle at ${reversed ? '80%' : '20%'} 50%, ${feature.glow}, transparent 70%)` }}
                   aria-hidden="true"
                 />
-                <span className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${TAG_ACCENT[feature.accent]}`}>
-                  {feature.tag}
-                </span>
-              </div>
-              <h3 className="text-xl font-bold text-zinc-100 mb-2">{feature.title}</h3>
-              <p className="text-zinc-500 text-sm leading-relaxed">{feature.description}</p>
-              {feature.visual}
-            </TiltCard>
-          ))}
-        </motion.div>
+
+                <div className="flex-1 min-w-0 text-center sm:text-left">
+                  <span className={`inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide mb-4 ${TAG_ACCENT[feature.accent]}`}>
+                    <feature.icon className="h-4 w-4" aria-hidden="true" />
+                    {feature.tag}
+                  </span>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-zinc-100 mb-3 leading-snug">{feature.title}</h3>
+                  <p className="text-zinc-500 text-base leading-relaxed max-w-md sm:max-w-none mx-auto sm:mx-0">{feature.description}</p>
+                </div>
+
+                <div className="flex-1 flex items-center justify-center w-full">
+                  {feature.visual ?? (
+                    <feature.icon
+                      className={`h-28 w-28 sm:h-36 sm:w-36 ${ICON_ACCENT[feature.accent]} opacity-[0.14]`}
+                      strokeWidth={1}
+                      aria-hidden="true"
+                    />
+                  )}
+                </div>
+              </motion.div>
+            )
+          })}
+        </div>
       </div>
     </section>
   )
