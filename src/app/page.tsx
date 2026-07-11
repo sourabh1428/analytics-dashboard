@@ -1,5 +1,4 @@
 import Hero from "@/src/components/landing/Hero";
-import ProductDemo from "@/src/components/landing/ProductDemo";
 import TrustBar from "@/src/components/landing/TrustBar";
 import Problem from "@/src/components/landing/Problem";
 import FeaturesBento from "@/src/components/landing/FeaturesBento";
@@ -15,7 +14,6 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <ProductDemo />
       <TrustBar />
       <Problem />
       <FeaturesBento />
