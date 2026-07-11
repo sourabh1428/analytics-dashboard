@@ -50,7 +50,7 @@ const steps = [
     time: "3 min",
     details: [
       "Go to Settings → Message Templates.",
-      "The default template reads: 'Hi {Name}, this is {BusinessName}. Your {Item} follow-up is due. Reply to confirm or call us.'",
+      "The default template reads: 'Hi {Name}, this is {PharmacyName}. Your {Medicine} follow-up is due. Reply to confirm or call us.'",
       "Edit the text to match your business's tone. Add regional language if your customers prefer it.",
       "Save and preview how it looks on a phone screen.",
     ],

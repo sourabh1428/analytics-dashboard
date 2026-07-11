@@ -45,14 +45,14 @@ const groups = [
     ],
   },
   {
-    title: "Business Guides",
+    title: "Pharmacy Guides",
     links: [
-      { label: "Follow-up Reminder System", href: "/pharmacy-refill-reminder-system" },
-      { label: "WhatsApp Follow-up Reminders", href: "/pharmacy-whatsapp-refill-reminders" },
-      { label: "Business Billing & Inventory", href: "/pharmacy-billing-and-inventory-management" },
+      { label: "Pharmacy Refill Reminder System", href: "/pharmacy-refill-reminder-system" },
+      { label: "Pharmacy WhatsApp Refill Reminders", href: "/pharmacy-whatsapp-refill-reminders" },
+      { label: "Pharmacy Billing & Inventory", href: "/pharmacy-billing-and-inventory-management" },
       { label: "GST Invoicing Made Easy", href: "/pharmacy-gst-invoicing-made-easy" },
       { label: "Inventory Management Simplified", href: "/pharmacy-inventory-management-simplified" },
-      { label: "Follow-up Reminder Systems", href: "/pharmacy-refill-reminder-systems" },
+      { label: "Pharmacy Refill Reminder Systems", href: "/pharmacy-refill-reminder-systems" },
     ],
   },
   {
