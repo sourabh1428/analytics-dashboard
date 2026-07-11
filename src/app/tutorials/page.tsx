@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Tutorials – EasiBill",
-  description: "Short video and text walkthroughs to onboard your business team onto EasiBill in under an hour.",
+  description: "Short video and text walkthroughs covering setup, customer imports, WhatsApp connection, and reminders — onboard your team onto EasiBill in under an hour.",
   alternates: { canonical: "https://easibill.com/tutorials" },
 };
 

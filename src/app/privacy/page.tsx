@@ -2,7 +2,7 @@
 
 export const metadata: Metadata = {
   title: "Privacy Policy – EasiBill",
-  description: "Learn how EasiBill collects, uses, and protects your business and customer data.",
+  description: "Learn how EasiBill collects, uses, and protects your business and customer data, including WhatsApp numbers, purchase history, and billing records.",
   alternates: { canonical: "https://easibill.com/privacy" },
 };
 

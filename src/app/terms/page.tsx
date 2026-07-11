@@ -2,7 +2,7 @@
 
 export const metadata: Metadata = {
   title: "Terms of Service – EasiBill",
-  description: "Read the terms and conditions for using EasiBill local business billing and retention software.",
+  description: "Read the terms and conditions for using EasiBill's local business billing, WhatsApp reminder, and customer retention software platform.",
   alternates: { canonical: "https://easibill.com/terms" },
 };
 

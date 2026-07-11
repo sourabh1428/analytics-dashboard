@@ -4,14 +4,14 @@ import FeaturesPage from "@/src/Pages/FeaturesPage";
 export const metadata: Metadata = {
   title: "EasiBill Features – Easy WhatsApp Billing & Customer Retention",
   description:
-    "Discover EasiBill's billing features for local businesses: automatic WhatsApp follow-up reminders, customer segmentation, daily action queues, retention analytics, and broadcast campaigns.",
+    "Explore EasiBill's features for local businesses: WhatsApp reminders, customer segmentation, daily queues, retention analytics, and broadcast campaigns.",
   alternates: {
     canonical: "https://easibill.com/features",
   },
   openGraph: {
     title: "EasiBill Features – Easy WhatsApp Billing & Customer Retention",
     description:
-      "Discover EasiBill's billing features for local businesses: automatic WhatsApp follow-up reminders, customer segmentation, daily action queues, retention analytics, and broadcast campaigns.",
+      "Explore EasiBill's features for local businesses: WhatsApp reminders, customer segmentation, daily queues, retention analytics, and broadcast campaigns.",
     url: "https://easibill.com/features",
     siteName: "EasiBill",
     type: "website",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "EasiBill Features – Easy WhatsApp Billing & Customer Retention",
     description:
-      "Discover EasiBill's billing features for local businesses: automatic WhatsApp follow-up reminders, customer segmentation, daily action queues, retention analytics, and broadcast campaigns.",
+      "Explore EasiBill's features for local businesses: WhatsApp reminders, customer segmentation, daily queues, retention analytics, and broadcast campaigns.",
   },
 };
 

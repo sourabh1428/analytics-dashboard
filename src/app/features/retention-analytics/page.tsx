@@ -3,7 +3,7 @@ import Link from "next/link";
 import { BarChart3, ArrowRight, TrendingUp, Users, AlertTriangle, Activity, RefreshCw, DollarSign } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Retention Analytics – Track Follow-ups, Recovery & Inactive Customers | EasiBill",
+  title: "Retention Analytics – Follow-ups & Recovery | EasiBill",
   description: "See exactly how many reminders you sent, how many follow-ups you recovered, and which customers have gone inactive. Data every local business owner needs.",
   alternates: { canonical: "https://easibill.com/features/retention-analytics" },
 };

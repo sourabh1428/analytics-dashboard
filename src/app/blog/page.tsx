@@ -4,7 +4,7 @@ import { blogPosts, CATEGORY_COLORS } from "@/src/data/blogPosts";
 
 export const metadata: Metadata = {
   title: "Blog – EasiBill Business Growth",
-  description: "Practical articles on customer retention, WhatsApp billing, and running a local business profitably.",
+  description: "Practical articles on customer retention, WhatsApp billing, follow-up automation, and running a local business more profitably every month.",
   alternates: { canonical: "https://easibill.com/blog" },
 };
 

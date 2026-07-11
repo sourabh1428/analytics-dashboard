@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FileText, ArrowRight, User, Phone, Pill, Calendar, Search, Shield } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Customer Records – Item, Interval & Contact Per Customer | EasiBill",
+  title: "Customer Records – Item, Interval & Contact | EasiBill",
   description: "Store every customer's item, follow-up interval, and WhatsApp number in one place. EasiBill makes customer records simple for local businesses.",
   alternates: { canonical: "https://easibill.com/features/patient-records" },
 };

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { List, ArrowRight, CheckCircle, AlertCircle, Clock, RefreshCw, Bell } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Daily Queue – Who's Due, Overdue, or Recently Followed Up | EasiBill",
+  title: "Daily Queue – Who's Due or Overdue Today | EasiBill",
   description: "Start every morning knowing exactly which customers are due for a follow-up today. EasiBill's daily queue organises your workload automatically.",
   alternates: { canonical: "https://easibill.com/features/daily-queue" },
 };
