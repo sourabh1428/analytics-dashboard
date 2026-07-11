@@ -19,7 +19,7 @@ const TESTIMONIALS = [
   {
     quote: "The follow-up reminders alone brought back 40% of customers who used to just forget. I didn't change anything else — just switched to EasiBill. The numbers spoke for themselves in 3 months.",
     name: 'Sunita Patel',
-    role: 'Owner, Patel Pharma',
+    role: 'Owner, Patel Wellness Spa',
     location: 'Ahmedabad',
     since: 'Using EasiBill since January 2024',
     initials: 'SP',
