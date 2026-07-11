@@ -2,34 +2,34 @@
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About EasiBill – Pharmacy Retention Software",
-  description: "EasiBill was built to help independent pharmacy owners stop losing patients to forgetfulness. Learn our story, mission, and the team behind the product.",
+  title: "About EasiBill – Local Business Retention Software",
+  description: "EasiBill was built to help local business owners stop losing customers to forgetfulness. Learn our story, mission, and the team behind the product.",
   alternates: { canonical: "https://easibill.com/about" },
 };
 
 const values = [
   {
-    title: "Pharmacists first",
-    body: "Every feature is tested against the real daily workflow of a busy pharmacy counter — not a product manager's spreadsheet.",
+    title: "Business owners first",
+    body: "Every feature is tested against the real daily workflow of a busy service counter — not a product manager's spreadsheet.",
   },
   {
     title: "Simple by design",
-    body: "A pharmacy assistant should be able to send reminders without training. If it needs a manual, we redesign it.",
+    body: "A staff member should be able to send reminders without training. If it needs a manual, we redesign it.",
   },
   {
     title: "Privacy by default",
-    body: "Patient data stays yours. We encrypt it, never sell it, and delete it the moment you leave.",
+    body: "Customer data stays yours. We encrypt it, never sell it, and delete it the moment you leave.",
   },
   {
     title: "Built to last",
-    body: "Pharmacies run for decades. We build infrastructure that works reliably at 6 AM every morning, not just on demo day.",
+    body: "Local businesses run for decades. We build infrastructure that works reliably at 6 AM every morning, not just on demo day.",
   },
 ];
 
 const stats = [
-  { value: "2,400+", label: "Pharmacies served" },
+  { value: "2,400+", label: "Local businesses served" },
   { value: "18 M+", label: "Reminders sent" },
-  { value: "94 %", label: "Refill recovery rate" },
+  { value: "94 %", label: "Follow-up recovery rate" },
   { value: "4 countries", label: "India · UAE · Kenya · UK" },
 ];
 
@@ -38,13 +38,13 @@ export default function AboutPage() {
     <div className="mx-auto max-w-4xl px-6 py-20">
       <p className="text-sm font-semibold uppercase tracking-widest text-amber-400">Our story</p>
       <h1 className="mt-3 text-4xl font-bold tracking-tight text-white">
-        Built for the pharmacy at the corner of every neighbourhood
+        Built for the local business at the corner of every neighbourhood
       </h1>
       <p className="mt-6 max-w-2xl leading-7 text-white/70">
-        EasiBill started in 2023 when our founder watched a family member with diabetes miss three consecutive refills because the pharmacy they trusted had no way to follow up. The pharmacist cared — she just had no tool.
+        EasiBill started in 2023 when our founder watched a family member miss three consecutive follow-ups because the local business they trusted had no way to check back in. The owner cared — she just had no tool.
       </p>
       <p className="mt-4 max-w-2xl leading-7 text-white/70">
-        We set out to fix that with the simplest possible stack: WhatsApp (which every patient already uses), a lightweight patient record system, and automated daily queues. No complicated ERP. No six-week onboarding. Just reminders that actually get sent.
+        We set out to fix that with the simplest possible stack: WhatsApp (which every customer already uses), a lightweight customer record system, and automated daily queues. No complicated ERP. No six-week onboarding. Just reminders that actually get sent.
       </p>
 
       <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -68,10 +68,10 @@ export default function AboutPage() {
 
       <h2 className="mt-16 text-2xl font-bold text-white">Where we are headed</h2>
       <p className="mt-4 max-w-2xl leading-7 text-white/70">
-        EasiBill is expanding its reminders engine to support regional languages, adding an integrated billing module, and building a network analytics layer so pharmacy chains can see patient retention across all locations in one view.
+        EasiBill is expanding its reminders engine to support regional languages, adding an integrated billing module, and building a network analytics layer so multi-location businesses can see customer retention across all locations in one view.
       </p>
       <p className="mt-4 max-w-2xl leading-7 text-white/70">
-        We are a small, focused team. If you want to see a feature, tell us — most of our best ideas have come from pharmacists who emailed support@easibill.com at 7 AM before their counter opened.
+        We are a small, focused team. If you want to see a feature, tell us — most of our best ideas have come from business owners who emailed support@easibill.com at 7 AM before their counter opened.
       </p>
 
       <div className="mt-12 flex flex-wrap gap-4">

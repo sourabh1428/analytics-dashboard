@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Sitemap – EasiBill",
-  description: "All pages on easibill.com — pharmacy billing, patient retention, WhatsApp reminders, pricing, help, and more.",
+  description: "All pages on easibill.com — local business billing, customer retention, WhatsApp reminders, pricing, help, and more.",
   alternates: { canonical: "https://easibill.com/sitemap-page" },
 };
 
@@ -18,10 +18,10 @@ const groups = [
     ],
   },
   {
-    title: "Pharmacy Tools",
+    title: "Business Tools",
     links: [
-      { label: "Refill Reminders", href: "/features/refill-reminders" },
-      { label: "Patient Records", href: "/features/patient-records" },
+      { label: "Follow-up Reminders", href: "/features/follow-up-reminders" },
+      { label: "Customer Records", href: "/features/patient-records" },
       { label: "Daily Queue", href: "/features/daily-queue" },
       { label: "Broadcast Campaigns", href: "/features/broadcast-campaigns" },
       { label: "Retention Analytics", href: "/features/retention-analytics" },
@@ -45,14 +45,14 @@ const groups = [
     ],
   },
   {
-    title: "Pharmacy Guides",
+    title: "Business Guides",
     links: [
-      { label: "Pharmacy Refill Reminder System", href: "/pharmacy-refill-reminder-system" },
-      { label: "Pharmacy WhatsApp Refill Reminders", href: "/pharmacy-whatsapp-refill-reminders" },
-      { label: "Pharmacy Billing & Inventory", href: "/pharmacy-billing-and-inventory-management" },
+      { label: "Follow-up Reminder System", href: "/pharmacy-refill-reminder-system" },
+      { label: "WhatsApp Follow-up Reminders", href: "/pharmacy-whatsapp-refill-reminders" },
+      { label: "Business Billing & Inventory", href: "/pharmacy-billing-and-inventory-management" },
       { label: "GST Invoicing Made Easy", href: "/pharmacy-gst-invoicing-made-easy" },
       { label: "Inventory Management Simplified", href: "/pharmacy-inventory-management-simplified" },
-      { label: "Refill Reminder Systems", href: "/pharmacy-refill-reminder-systems" },
+      { label: "Follow-up Reminder Systems", href: "/pharmacy-refill-reminder-systems" },
     ],
   },
   {

@@ -9,7 +9,7 @@ const linkGroups = [
   {
     title: 'Business Tools',
     links: [
-      { label: 'Follow-up Reminders', description: 'Automatic WhatsApp follow-ups for repeat customers.', href: '/features/refill-reminders' },
+      { label: 'Follow-up Reminders', description: 'Automatic WhatsApp follow-ups for repeat customers.', href: '/features/follow-up-reminders' },
       { label: 'Customer Records', description: 'Item, interval, and contact stored per customer.', href: '/features/patient-records' },
       { label: 'Daily Queue', description: 'Who is due, overdue, or recently followed up — every morning.', href: '/features/daily-queue' },
       { label: 'Broadcast Campaigns', description: 'Health camp and loyalty messages for targeted customer groups.', href: '/features/broadcast-campaigns' },

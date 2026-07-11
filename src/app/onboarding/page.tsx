@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Onboarding Guide – EasiBill",
-  description: "Step-by-step setup from your first patient import to your first WhatsApp refill reminder — in under 30 minutes.",
+  description: "Step-by-step setup from your first customer import to your first WhatsApp follow-up reminder — in under 30 minutes.",
   alternates: { canonical: "https://easibill.com/onboarding" },
 };
 
@@ -14,7 +14,7 @@ const steps = [
     time: "2 min",
     details: [
       "Go to dashboard.easibill.com and click Get started free.",
-      "Enter your pharmacy name, your name, email, and phone number.",
+      "Enter your business name, your name, email, and phone number.",
       "Choose your country and time zone — this controls when daily reminders are sent.",
       "Verify your email and you are in.",
     ],
@@ -30,19 +30,19 @@ const steps = [
       "If you do not have WhatsApp Business, download it free from the App Store or Play Store first.",
       "Send a test message to yourself to confirm delivery.",
     ],
-    tip: "Use a dedicated number for the pharmacy, not the owner's personal number. Patients will see this number when they receive reminders.",
+    tip: "Use a dedicated number for the business, not the owner's personal number. Customers will see this number when they receive reminders.",
   },
   {
     step: "03",
-    title: "Import your first patients",
+    title: "Import your first customers",
     time: "8 min",
     details: [
-      "Download the import template from Patients → Import.",
-      "Fill in: Patient Name, Phone (with country code), Medicine Name, Refill Interval (days).",
-      "Start with your top 20–30 chronic-care patients. You can add more later.",
+      "Download the import template from Customers → Import.",
+      "Fill in: Customer Name, Phone (with country code), Item/Service, Follow-up Interval (days).",
+      "Start with your top 20–30 regular customers. You can add more later.",
       "Upload the CSV and review the preview before confirming.",
     ],
-    tip: "If you have patient data in a notebook or billing software, the quickest path is to type the top 20 patients manually — it takes about 8 minutes.",
+    tip: "If you have customer data in a notebook or billing software, the quickest path is to type the top 20 customers manually — it takes about 8 minutes.",
   },
   {
     step: "04",
@@ -50,8 +50,8 @@ const steps = [
     time: "3 min",
     details: [
       "Go to Settings → Message Templates.",
-      "The default template reads: 'Hi {Name}, this is {PharmacyName}. Your {Medicine} refill is due. Reply to confirm or call us.'",
-      "Edit the text to match your pharmacy's tone. Add regional language if your patients prefer it.",
+      "The default template reads: 'Hi {Name}, this is {BusinessName}. Your {Item} follow-up is due. Reply to confirm or call us.'",
+      "Edit the text to match your business's tone. Add regional language if your customers prefer it.",
       "Save and preview how it looks on a phone screen.",
     ],
     tip: "Keep messages under 3 sentences. Longer messages get lower reply rates.",
@@ -61,12 +61,12 @@ const steps = [
     title: "Send your first reminders",
     time: "2 min",
     details: [
-      "Go to Daily Queue — you will see patients whose refill is due today or overdue.",
-      "Click Send reminders to dispatch WhatsApp messages to all due patients.",
-      "Replies from patients appear in the dashboard inbox in real time.",
-      "Mark patients as refilled when they pick up or confirm.",
+      "Go to Daily Queue — you will see customers whose follow-up is due today or overdue.",
+      "Click Send reminders to dispatch WhatsApp messages to all due customers.",
+      "Replies from customers appear in the dashboard inbox in real time.",
+      "Mark customers as followed up when they respond or confirm.",
     ],
-    tip: "Run the queue every morning before 9 AM. Patients are most likely to respond in the first two hours of the day.",
+    tip: "Run the queue every morning before 9 AM. Customers are most likely to respond in the first two hours of the day.",
   },
   {
     step: "06",
@@ -74,9 +74,9 @@ const steps = [
     time: "2 min",
     details: [
       "After 7 days, go to Analytics → Retention.",
-      "You will see reminders sent, delivered, responded, and refills recovered.",
-      "Benchmark: a healthy refill recovery rate is above 60% in the first month.",
-      "Use the inactive patients list to identify anyone who has not responded after 3 reminders.",
+      "You will see reminders sent, delivered, responded, and follow-ups recovered.",
+      "Benchmark: a healthy follow-up recovery rate is above 60% in the first month.",
+      "Use the inactive customers list to identify anyone who has not responded after 3 reminders.",
     ],
     tip: "Share the weekly summary with your billing assistant so the whole team can see the impact.",
   },
@@ -88,7 +88,7 @@ export default function OnboardingPage() {
       <p className="text-sm font-semibold uppercase tracking-widest text-amber-400">Onboarding Guide</p>
       <h1 className="mt-3 text-4xl font-bold tracking-tight text-white">From sign-up to first reminder</h1>
       <p className="mt-4 text-white/60">
-        Follow these six steps in order. Most pharmacies complete setup in under 30 minutes.
+        Follow these six steps in order. Most local businesses complete setup in under 30 minutes.
       </p>
 
       <div className="mt-12 space-y-6">
@@ -123,7 +123,7 @@ export default function OnboardingPage() {
       <div className="mt-12 rounded-2xl border border-white/[0.07] bg-white/[0.03] p-8">
         <h2 className="text-lg font-semibold text-white">Prefer a guided walkthrough?</h2>
         <p className="mt-2 text-sm text-white/60">
-          Book a free 30-minute onboarding call. Our team will screen-share through every step and import your first patients together with you.
+          Book a free 30-minute onboarding call. Our team will screen-share through every step and import your first customers together with you.
         </p>
         <div className="mt-5 flex flex-wrap gap-3">
           <Link
