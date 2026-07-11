@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { CheckCircle2, Send, X } from 'lucide-react'
+import { CheckCircle2, Send, X, User, Mail, Phone, Building2, MessageSquare } from 'lucide-react'
 import { track } from '../utils/mixpanel'
 import { useGeo } from '../hooks/useGeo'
 import posthog from 'posthog-js'
@@ -120,90 +120,118 @@ export default function LeadNudge() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 24, scale: 0.95 }}
           transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-          className="fixed bottom-5 right-5 z-50 w-[min(360px,calc(100vw-2.5rem))]"
+          className="fixed bottom-5 right-5 z-50 w-[min(400px,calc(100vw-2.5rem))]"
           role="dialog"
           aria-modal="true"
           aria-label="Quick inquiry form"
         >
-          <div className="rounded-[1.75rem] bg-[#0D0B1E] p-5 text-white shadow-2xl shadow-zinc-950/60 ring-1 ring-amber-500/20">
+          <div className="relative overflow-hidden rounded-[1.75rem] bg-[#18181B] p-6 text-white shadow-2xl shadow-black/50 ring-1 ring-zinc-800">
+            <div
+              className="absolute -top-24 -right-16 h-56 w-56 pointer-events-none"
+              style={{ background: 'radial-gradient(circle, rgba(245,158,11,0.12) 0%, transparent 70%)' }}
+              aria-hidden="true"
+            />
+
             {/* Header */}
-            <div className="mb-4 flex items-start justify-between gap-3">
+            <div className="relative mb-5 flex items-start justify-between gap-3">
               <div className="flex items-center gap-3">
-                <div className="rounded-xl bg-amber-500 p-2.5 text-white">
-                  <Send className="h-4 w-4" />
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-amber-500 text-zinc-950 shadow-lg shadow-amber-500/25">
+                  <Send className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold leading-tight text-white">
-                  {geo ? `${geo.flag} EasiBill for ${geo.countryName}` : 'Send your details'}
-                </p>
-                  <p className="text-xs text-slate-400">We will reply with the best next step.</p>
+                  <p className="text-base font-bold leading-tight text-white">
+                    {geo ? `${geo.flag} EasiBill for ${geo.countryName}` : "Let's get you set up"}
+                  </p>
+                  <p className="text-xs text-zinc-400 mt-0.5">We reply with the best next step — usually same day.</p>
                 </div>
               </div>
               <button
                 type="button"
                 onClick={dismiss}
                 aria-label="Close"
-                className="rounded-lg p-1 text-slate-400 transition hover:bg-white/10 hover:text-white"
+                className="shrink-0 rounded-lg p-1.5 text-zinc-500 transition hover:bg-white/5 hover:text-white"
               >
                 <X className="h-4 w-4" />
               </button>
             </div>
 
             {done ? (
-              <div className="flex flex-col items-center gap-2 py-5 text-center">
-                <CheckCircle2 className="h-8 w-8 text-amber-400" />
+              <div className="relative flex flex-col items-center gap-3 py-6 text-center">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-amber-500/10 border border-amber-500/20">
+                  <CheckCircle2 className="h-7 w-7 text-amber-400" />
+                </div>
                 <p className="text-sm font-semibold text-white">Got it — we will be in touch shortly.</p>
-                <p className="text-xs text-slate-400">Expect a reply within 1 business day.</p>
+                <p className="text-xs text-zinc-400">Expect a reply within 1 business day.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="grid gap-2">
-                <input
-                  name="name"
-                  value={form.name}
-                  onChange={handleChange}
-                  required
-                  className="rounded-xl border border-white/10 bg-white/10 px-3.5 py-2.5 text-sm outline-none placeholder:text-slate-400 focus:border-amber-400"
-                  placeholder="Your name"
-                />
-                <div className="grid grid-cols-2 gap-2">
+              <form onSubmit={handleSubmit} className="relative grid gap-3">
+                <div className="relative">
+                  <User className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" aria-hidden="true" />
                   <input
-                    name="email"
-                    type="email"
-                    value={form.email}
+                    name="name"
+                    value={form.name}
                     onChange={handleChange}
-                    className="rounded-xl border border-white/10 bg-white/10 px-3.5 py-2.5 text-sm outline-none placeholder:text-slate-400 focus:border-amber-400"
-                    placeholder="Email"
-                  />
-                  <input
-                    name="mobile"
-                    type="tel"
-                    value={form.mobile}
-                    onChange={handleChange}
-                    className="rounded-xl border border-white/10 bg-white/10 px-3.5 py-2.5 text-sm outline-none placeholder:text-slate-400 focus:border-amber-400"
-                    placeholder="Phone"
+                    required
+                    className="w-full rounded-xl border border-zinc-800 bg-zinc-900 pl-10 pr-3.5 py-2.5 text-sm outline-none placeholder:text-zinc-500 transition-colors focus:border-amber-500 focus:ring-1 focus:ring-amber-500/40"
+                    placeholder="Your name"
                   />
                 </div>
-                <p className="text-[10px] text-slate-500 -mt-1">At least one required.</p>
-                <input
-                  name="company"
-                  value={form.company}
-                  onChange={handleChange}
-                  className="rounded-xl border border-white/10 bg-white/10 px-3.5 py-2.5 text-sm outline-none placeholder:text-slate-400 focus:border-amber-400"
-                  placeholder="Business / company name"
-                />
-                <textarea
-                  name="message"
-                  value={form.message}
-                  onChange={handleChange}
-                  rows={2}
-                  className="rounded-xl border border-white/10 bg-white/10 px-3.5 py-2.5 text-sm outline-none placeholder:text-slate-400 focus:border-amber-400 resize-none"
-                  placeholder="What do you want help with?"
-                />
+
+                <div className="grid grid-cols-2 gap-2.5">
+                  <div className="relative">
+                    <Mail className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" aria-hidden="true" />
+                    <input
+                      name="email"
+                      type="email"
+                      value={form.email}
+                      onChange={handleChange}
+                      className="w-full rounded-xl border border-zinc-800 bg-zinc-900 pl-10 pr-3 py-2.5 text-sm outline-none placeholder:text-zinc-500 transition-colors focus:border-amber-500 focus:ring-1 focus:ring-amber-500/40"
+                      placeholder="Email"
+                    />
+                  </div>
+                  <div className="relative">
+                    <Phone className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" aria-hidden="true" />
+                    <input
+                      name="mobile"
+                      type="tel"
+                      value={form.mobile}
+                      onChange={handleChange}
+                      className="w-full rounded-xl border border-zinc-800 bg-zinc-900 pl-10 pr-3 py-2.5 text-sm outline-none placeholder:text-zinc-500 transition-colors focus:border-amber-500 focus:ring-1 focus:ring-amber-500/40"
+                      placeholder="Phone"
+                    />
+                  </div>
+                </div>
+                <p className="-mt-1.5 text-[11px] text-zinc-500">At least one of email or phone is required.</p>
+
+                <div className="relative">
+                  <Building2 className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" aria-hidden="true" />
+                  <input
+                    name="company"
+                    value={form.company}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border border-zinc-800 bg-zinc-900 pl-10 pr-3.5 py-2.5 text-sm outline-none placeholder:text-zinc-500 transition-colors focus:border-amber-500 focus:ring-1 focus:ring-amber-500/40"
+                    placeholder="Business / company name"
+                  />
+                </div>
+
+                <div className="relative">
+                  <MessageSquare className="pointer-events-none absolute left-3.5 top-3 h-4 w-4 text-zinc-500" aria-hidden="true" />
+                  <textarea
+                    name="message"
+                    value={form.message}
+                    onChange={handleChange}
+                    rows={2}
+                    className="w-full rounded-xl border border-zinc-800 bg-zinc-900 pl-10 pr-3.5 py-2.5 text-sm outline-none placeholder:text-zinc-500 transition-colors focus:border-amber-500 focus:ring-1 focus:ring-amber-500/40 resize-none"
+                    placeholder="What do you want help with?"
+                  />
+                </div>
+
                 {error && <p className="text-center text-xs text-red-400">{error}</p>}
+
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="mt-1 rounded-full bg-amber-500 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-amber-500 disabled:opacity-60"
+                  className="mt-1 inline-flex items-center justify-center gap-2 rounded-xl bg-amber-500 px-4 py-3 text-sm font-semibold text-zinc-950 transition-colors hover:bg-amber-400 disabled:opacity-60 disabled:cursor-not-allowed min-h-[44px]"
                 >
                   {submitting ? 'Submitting…' : 'Submit inquiry'}
                 </button>
