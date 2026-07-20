@@ -79,7 +79,7 @@ export default function HowItWorks() {
     <section id="setup">
       <div className="mx-auto max-w-[1360px] px-4 py-[88px] sm:px-8">
         <div className="flex items-baseline justify-between border-b border-ink pb-[18px] font-mono text-xs tracking-[0.14em] text-mutedink">
-          <span>05 — SETUP</span>
+          <span>06 — SETUP</span>
           <span className="hidden sm:inline">NO IT TEAM. NO TRAINING DAYS.</span>
         </div>
 

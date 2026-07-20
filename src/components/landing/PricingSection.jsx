@@ -54,7 +54,7 @@ export default function PricingSection() {
     <section id="rates" className="border-t border-ink">
       <div className="mx-auto max-w-[1360px] px-4 py-[88px] sm:px-8">
         <div className="flex items-baseline justify-between border-b border-ink pb-[18px] font-mono text-xs tracking-[0.14em] text-mutedink">
-          <span>07 — THE RATE CARD</span>
+          <span>08 — THE RATE CARD</span>
           <span className="hidden sm:inline">14-DAY TRIAL · NO CARD · CANCEL ANYTIME</span>
         </div>
 

@@ -4,6 +4,7 @@ import Problem from "@/src/components/landing/Problem";
 import DayInTheLife from "@/src/components/landing/DayInTheLife";
 import FeaturesBento from "@/src/components/landing/FeaturesBento";
 import AIStudio from "@/src/components/landing/AIStudio";
+import Automation from "@/src/components/landing/Automation";
 import HowItWorks from "@/src/components/landing/HowItWorks";
 import Testimonials from "@/src/components/landing/Testimonials";
 import PricingSection from "@/src/components/landing/PricingSection";
@@ -21,6 +22,7 @@ export default function HomePage() {
       <DayInTheLife />
       <FeaturesBento />
       <AIStudio />
+      <Automation />
       <HowItWorks />
       <Testimonials />
       <PricingSection />

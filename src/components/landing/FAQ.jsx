@@ -59,7 +59,7 @@ export default function FAQ() {
     <section id="faq" className="border-t border-ink">
       <div className="mx-auto grid max-w-[1360px] grid-cols-1 gap-16 px-4 py-[88px] sm:px-8 lg:grid-cols-[380px_1fr]">
         <div>
-          <div className="border-b border-ink pb-[18px] font-mono text-xs tracking-[0.14em] text-mutedink">08 — QUESTIONS</div>
+          <div className="border-b border-ink pb-[18px] font-mono text-xs tracking-[0.14em] text-mutedink">09 — QUESTIONS</div>
           <Lines
             as="h2"
             className="my-4 mt-8 font-display text-[clamp(32px,3vw,46px)] font-extrabold uppercase leading-[.98] tracking-[-0.01em] [font-stretch:70%]"

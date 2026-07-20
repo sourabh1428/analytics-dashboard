@@ -54,7 +54,7 @@ export default function Testimonials() {
     <section id="proof" className="border-t border-ink bg-paper-alt">
       <div className="mx-auto max-w-[1360px] px-4 py-[88px] sm:px-8">
         <div className="flex items-baseline justify-between border-b border-ink pb-[18px] font-mono text-xs tracking-[0.14em] text-mutedink">
-          <span>06 — PROOF</span>
+          <span>07 — PROOF</span>
           <span className="hidden sm:inline">REAL OWNERS. REAL COUNTERS.</span>
         </div>
 
