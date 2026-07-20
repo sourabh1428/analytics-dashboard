@@ -146,7 +146,7 @@ export default function Hero() {
 
   return (
     <header id="top" className="border-b border-ink">
-      <div ref={trackRef} className="relative h-[150vh] sm:h-[400vh]">
+      <div ref={trackRef} className="relative h-[240vh] sm:h-[400vh]">
         <div
           ref={stageRef}
           className="sticky top-16 h-[calc(100vh-64px)] overflow-clip bg-paper"
