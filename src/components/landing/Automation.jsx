@@ -1,14 +1,21 @@
 'use client'
 
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { usePostHog } from 'posthog-js/react'
-import { lerp, seg, useScrollReveal } from '@/src/lib/scrollScrub'
+import { gsap, ScrollTrigger, prefersReducedMotion } from '@/src/lib/scrollScrub'
 import { Lines, Reveal } from './reveal'
 
 // Trigger → journey → exit, one scroll beat. The wire/node vocabulary here
 // deliberately echoes Hero's timeline rail and FeaturesBento's wire+packet —
 // same "machine" grammar, not a new one — so this reads as a deeper look at
 // the "Automation Builder" teased in AIStudio (A/03), not a bolted-on section.
+//
+// Unlike the rest of the site's sections (which share the generic
+// fade+translateY seg/lerp beat from scrollScrub.js), this one is
+// choreographed directly with GSAP timelines — a punch-scale on each rail
+// node as the packet passes it, a stamp-in number chip for the triggers, and
+// template cards that "drop into" their own offset shadow — so it reads as
+// a distinct, higher-effort moment rather than another generic reveal.
 const TRIGGERS = [
   { n: '01', label: 'N days before reorder is due' },
   { n: '02', label: 'N days since last purchase' },
@@ -38,6 +45,7 @@ const STEPS = ['TRIGGER', 'MESSAGE SENT', 'READ?', 'FOLLOW-UP', 'EXIT']
 
 export default function Automation() {
   const posthog = usePostHog()
+  const sectionRef = useRef(null)
   const flowRef = useRef(null)
   const wireFillRef = useRef(null)
   const packetRef = useRef(null)
@@ -55,58 +63,81 @@ export default function Automation() {
   templateRefs.current = []
   const addTemplate = (el) => { if (el) templateRefs.current.push(el) }
 
-  // One-shot beat: the wire draws left-to-right as the flow enters, a
-  // packet chip travels along it, and each step label lights up as the
-  // packet passes its node — a single mechanical pass, not a long scrub.
-  useScrollReveal({
-    ref: flowRef,
-    threshold: 0.2,
-    duration: 1300,
-    onUpdate: (t) => {
-      const s = seg(t, 0, 1)
-      if (wireFillRef.current) wireFillRef.current.style.transform = `scaleX(${s})`
-      if (packetRef.current) {
-        packetRef.current.style.left = `${lerp(0, 100, s)}%`
-        packetRef.current.style.opacity = t > 0.02 && t < 0.98 ? '1' : '0'
-      }
-      stepRefs.current.forEach((el, i) => {
-        const on = s >= (i + 0.5) / STEPS.length
-        el.style.opacity = on ? '1' : '.4'
-        const dot = el.firstElementChild
-        if (dot) dot.style.background = on ? '#146C3C' : 'transparent'
-      })
-      if (t >= 1) posthog?.capture('automation_flow_viewed')
-    },
-  })
+  useEffect(() => {
+    if (prefersReducedMotion()) {
+      gsap.set(wireFillRef.current, { scaleX: 1 })
+      gsap.set(packetRef.current, { opacity: 0 })
+      gsap.set(stepRefs.current, { opacity: 1 })
+      stepRefs.current.forEach((el) => { const dot = el.firstElementChild; if (dot) dot.style.background = '#146C3C' })
+      gsap.set(triggerRefs.current, { opacity: 1, x: 0, scaleX: 1 })
+      gsap.set(templateRefs.current, { opacity: 1, x: 0, y: 0 })
+      return undefined
+    }
 
-  useScrollReveal({
-    ref: triggerListRef,
-    threshold: 0.2,
-    duration: 900,
-    onUpdate: (t) => {
-      triggerRefs.current.forEach((el, i) => {
-        const s = seg(t, i * 0.14, i * 0.14 + 0.55)
-        el.style.opacity = String(s)
-        el.style.transform = `translateY(${lerp(14, 0, s)}px)`
-      })
-    },
-  })
+    const ctx = gsap.context(() => {
+      const dots = stepRefs.current.map((el) => el.firstElementChild).filter(Boolean)
 
-  useScrollReveal({
-    ref: templateGridRef,
-    threshold: 0.15,
-    duration: 900,
-    onUpdate: (t) => {
-      templateRefs.current.forEach((el, i) => {
-        const s = seg(t, i * 0.16, i * 0.16 + 0.55)
-        el.style.opacity = String(s)
-        el.style.transform = `translateY(${lerp(18, 0, s)}px)`
+      // The flow: wire draws left-to-right, packet rides it, and each rail
+      // node punches to full scale + flips green the instant the packet
+      // reaches it — a mechanical relay race, not a smooth continuous fade.
+      const flowTl = gsap.timeline({
+        scrollTrigger: { trigger: flowRef.current, start: 'top 78%', once: true },
+        onComplete: () => posthog?.capture('automation_flow_viewed'),
       })
-    },
-  })
+      flowTl
+        .set(dots, { background: 'transparent' })
+        .to(wireFillRef.current, { scaleX: 1, duration: 1.1, ease: 'power2.inOut' }, 0)
+        .fromTo(packetRef.current, { left: '0%', opacity: 1 }, { left: '100%', duration: 1.1, ease: 'power2.inOut' }, 0)
+        .to(packetRef.current, { opacity: 0, duration: 0.15 }, 1.0)
+
+      STEPS.forEach((_, i) => {
+        const at = (i / (STEPS.length - 1)) * 1.1
+        flowTl
+          .to(stepRefs.current[i], { opacity: 1, duration: 0.1, ease: 'none' }, at)
+          .to(dots[i], { background: '#146C3C', duration: 0.01 }, at)
+          .fromTo(dots[i], { scale: 1 }, { scale: 1.7, duration: 0.14, ease: 'power1.out', yoyo: true, repeat: 1 }, at)
+      })
+
+      // Trigger list: each row "stamps" in — the number chip snaps from
+      // zero width (like a die punching down) while the label slides in
+      // behind it, staggered by row.
+      gsap.timeline({ scrollTrigger: { trigger: triggerListRef.current, start: 'top 82%', once: true } })
+        .from(triggerRefs.current.map((el) => el.firstElementChild), {
+          scaleX: 0,
+          transformOrigin: 'left center',
+          duration: 0.28,
+          ease: 'power3.out',
+          stagger: 0.14,
+        })
+        .from(triggerRefs.current.map((el) => el.lastElementChild), {
+          x: -14,
+          opacity: 0,
+          duration: 0.32,
+          ease: 'power2.out',
+          stagger: 0.14,
+        }, '<0.03')
+
+      // Template cards: each one starts sitting exactly on top of its own
+      // offset shadow (translate matches the shadow offset, so it's
+      // invisible against it) then "lifts" into place — a detail specific
+      // to this brand's brutalist 8px/6px offset-shadow language, not a
+      // generic fade.
+      gsap.timeline({ scrollTrigger: { trigger: templateGridRef.current, start: 'top 80%', once: true } })
+        .from(templateRefs.current, {
+          x: 6,
+          y: 6,
+          opacity: 0,
+          duration: 0.5,
+          ease: 'power3.out',
+          stagger: 0.16,
+        })
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
 
   return (
-    <section id="automation" className="border-b border-ink bg-paper-alt">
+    <section id="automation" ref={sectionRef} className="border-b border-ink bg-paper-alt">
       <div className="mx-auto max-w-[1360px] px-4 py-[88px] sm:px-8">
         <div className="flex items-baseline justify-between border-b border-ink pb-[18px] font-mono text-xs tracking-[0.14em] text-mutedink">
           <span>05 — AUTOMATION</span>
@@ -146,8 +177,8 @@ export default function Automation() {
           </div>
           <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-5 sm:gap-x-2">
             {STEPS.map((label, i) => (
-              <div key={label} ref={addStep} className="flex items-center gap-2 opacity-[.4] transition-opacity duration-300">
-                <span className="h-[9px] w-[9px] shrink-0 border border-ink transition-colors duration-300" />
+              <div key={label} ref={addStep} className="flex items-center gap-2 opacity-[.4]" style={{ willChange: 'opacity' }}>
+                <span className="h-[9px] w-[9px] shrink-0 border border-ink" style={{ willChange: 'transform, background' }} />
                 <span className="font-mono text-[10px] tracking-[0.12em]">{label}</span>
               </div>
             ))}
@@ -159,15 +190,15 @@ export default function Automation() {
           <div>
             <div className="mb-5 font-mono text-xs tracking-[0.14em] text-mutedink">A JOURNEY STARTS WHEN —</div>
             <div ref={triggerListRef} className="grid gap-px bg-ink/[.14]">
-              {TRIGGERS.map((trig, i) => (
+              {TRIGGERS.map((trig) => (
                 <div
                   key={trig.n}
                   ref={addTrigger}
                   className="flex items-center gap-4 bg-paper-alt px-1 py-4"
-                  style={{ opacity: 0, willChange: 'transform, opacity' }}
+                  style={{ willChange: 'transform, opacity' }}
                 >
-                  <span className="font-mono text-xs text-rust">{trig.n}</span>
-                  <span className="text-[15px] text-ink-soft">{trig.label}</span>
+                  <span className="font-mono text-xs text-rust" style={{ display: 'inline-block', willChange: 'transform' }}>{trig.n}</span>
+                  <span className="text-[15px] text-ink-soft" style={{ willChange: 'transform, opacity' }}>{trig.label}</span>
                 </div>
               ))}
             </div>
@@ -188,7 +219,7 @@ export default function Automation() {
                   key={tpl.num}
                   ref={addTemplate}
                   className="border border-ink bg-paper-white p-5 shadow-[6px_6px_0_#17150F]"
-                  style={{ opacity: 0, willChange: 'transform, opacity' }}
+                  style={{ willChange: 'transform, opacity' }}
                 >
                   <span className="font-mono text-xs text-green">{tpl.num}</span>
                   <h3 className="mb-2 mt-2 font-display text-lg font-extrabold uppercase leading-[1.05] [font-stretch:74%]">{tpl.name}</h3>

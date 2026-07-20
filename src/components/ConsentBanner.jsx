@@ -18,26 +18,26 @@ const ConsentBanner = () => {
   if (dismissed) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-[100] border-t border-slate-200 bg-white/95 px-4 py-4 pb-[calc(1rem+env(safe-area-inset-bottom))] shadow-xl backdrop-blur-xl sm:px-6">
+    <div className="fixed bottom-0 left-0 right-0 z-[100] border-t border-ink bg-paper px-4 py-4 pb-[calc(1rem+env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgba(23,21,15,.12)] sm:px-6">
       <div className="mx-auto flex max-w-7xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm text-slate-600">
-          We use analytics cookies to understand how visitors interact with this page. No personal data is shared.{' '}
-          <a href="/privacy" className="underline hover:text-emerald-700">Privacy Policy</a>
+        <p className="font-mono text-xs leading-relaxed tracking-[0.02em] text-ink-soft">
+          WE USE ANALYTICS COOKIES TO UNDERSTAND HOW VISITORS INTERACT WITH THIS PAGE. NO PERSONAL DATA IS SHARED.{' '}
+          <a href="/privacy" className="text-green underline hover:text-ink">PRIVACY POLICY</a>
         </p>
         <div className="flex shrink-0 gap-2">
           <button
             type="button"
             onClick={() => { declineConsent(); setDismissed(true); }}
-            className="rounded-full border border-slate-200 px-4 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100"
+            className="border border-ink px-4 py-2.5 font-mono text-xs tracking-[0.08em] text-ink transition-colors hover:bg-ink hover:text-paper"
           >
-            Decline
+            DECLINE
           </button>
           <button
             type="button"
             onClick={() => { acceptConsent(); setDismissed(true); }}
-            className="rounded-full bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-950"
+            className="bg-ink px-4 py-2.5 font-mono text-xs tracking-[0.08em] text-paper transition-colors hover:bg-green"
           >
-            Accept
+            ACCEPT
           </button>
         </div>
       </div>

@@ -41,6 +41,15 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Lenis (src/components/landing/SmoothScroll.jsx) drives scroll itself via
+   rAF every frame. Native `scroll-behavior: smooth` above fights that —
+   each Lenis-driven scrollTop write can restart the browser's own smooth-
+   scroll animation, which can stall scrolling entirely. Force `auto` while
+   Lenis is active (it adds the `lenis` class to <html>). */
+html.lenis {
+  scroll-behavior: auto !important;
+}
+
 body {
   overflow-y: scroll;
   scrollbar-width: thin; /* For Firefox */

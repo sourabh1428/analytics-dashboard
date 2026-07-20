@@ -2,17 +2,18 @@
 
 import { useEffect } from 'react'
 import Lenis from 'lenis'
-import { gsap, ScrollTrigger } from '@/src/lib/scrollScrub'
+import { ScrollTrigger } from '@/src/lib/scrollScrub'
 
 // Buttery inertia scrolling. Lenis physically scrolls the real document (it
-// doesn't hijack into a virtual scroll container). GSAP's ScrollTrigger
-// drives all scroll-linked motion (see src/lib/scrollScrub.js), so it's
-// chained to Lenis's own ticks here rather than the browser's native
-// `scroll` event: gsap.ticker drives Lenis's rAF loop, and Lenis reports
-// each frame back to ScrollTrigger.update. If this wiring stops, scroll
-// appears completely frozen (every native scroll event gets corrected back
-// to Lenis's stale position) or ScrollTrigger-driven animations freeze
-// mid-scroll. Keep it dependency-free.
+// doesn't hijack into a virtual scroll container), driven by its own plain
+// requestAnimationFrame loop — Lenis intercepts native wheel/touch input and
+// replays it through its own animated scroll position, so if this loop ever
+// stops ticking, scroll appears completely frozen (every native scroll event
+// gets corrected back to Lenis's stale position). GSAP's ScrollTrigger (see
+// src/lib/scrollScrub.js) drives all scroll-linked motion, so it's told to
+// resync on every Lenis tick via `lenis.on('scroll', ...)` rather than
+// relying on the browser's native `scroll` event. Keep this loop
+// dependency-free.
 export default function SmoothScroll({ children }) {
   useEffect(() => {
     const lenis = new Lenis({
@@ -23,14 +24,15 @@ export default function SmoothScroll({ children }) {
 
     lenis.on('scroll', ScrollTrigger.update)
 
-    const tick = (time) => {
-      lenis.raf(time * 1000)
+    let rafId
+    function raf(time) {
+      lenis.raf(time)
+      rafId = requestAnimationFrame(raf)
     }
-    gsap.ticker.add(tick)
-    gsap.ticker.lagSmoothing(0)
+    rafId = requestAnimationFrame(raf)
 
     return () => {
-      gsap.ticker.remove(tick)
+      cancelAnimationFrame(rafId)
       lenis.destroy()
     }
   }, [])

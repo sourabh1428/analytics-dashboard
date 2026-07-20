@@ -125,31 +125,25 @@ export default function LeadNudge() {
           aria-modal="true"
           aria-label="Quick inquiry form"
         >
-          <div className="relative overflow-hidden rounded-[1.75rem] bg-[#18181B] p-6 text-white shadow-2xl shadow-black/50 ring-1 ring-zinc-800">
-            <div
-              className="absolute -top-24 -right-16 h-56 w-56 pointer-events-none"
-              style={{ background: 'radial-gradient(circle, rgba(245,158,11,0.12) 0%, transparent 70%)' }}
-              aria-hidden="true"
-            />
-
+          <div className="relative border border-ink bg-ink p-6 text-paper shadow-[8px_8px_0_#146C3C]">
             {/* Header */}
             <div className="relative mb-5 flex items-start justify-between gap-3">
               <div className="flex items-center gap-3">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-amber-500 text-zinc-950 shadow-lg shadow-amber-500/25">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-green-bright bg-green text-paper">
                   <Send className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="text-base font-bold leading-tight text-white">
+                  <p className="font-display text-base font-extrabold uppercase leading-tight text-paper [font-stretch:80%]">
                     {geo ? `${geo.flag} EasiBill for ${geo.countryName}` : "Let's get you set up"}
                   </p>
-                  <p className="text-xs text-zinc-400 mt-0.5">We reply with the best next step — usually same day.</p>
+                  <p className="mt-0.5 font-mono text-[11px] tracking-[0.04em] text-faint">We reply with the best next step — usually same day.</p>
                 </div>
               </div>
               <button
                 type="button"
                 onClick={dismiss}
                 aria-label="Close"
-                className="shrink-0 rounded-lg p-1.5 text-zinc-500 transition hover:bg-white/5 hover:text-white"
+                className="shrink-0 p-1.5 text-faint transition-colors hover:text-paper"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -157,81 +151,81 @@ export default function LeadNudge() {
 
             {done ? (
               <div className="relative flex flex-col items-center gap-3 py-6 text-center">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-amber-500/10 border border-amber-500/20">
-                  <CheckCircle2 className="h-7 w-7 text-amber-400" />
+                <div className="flex h-14 w-14 items-center justify-center border border-green-bright bg-green/20">
+                  <CheckCircle2 className="h-7 w-7 text-green-bright" />
                 </div>
-                <p className="text-sm font-semibold text-white">Got it — we will be in touch shortly.</p>
-                <p className="text-xs text-zinc-400">Expect a reply within 1 business day.</p>
+                <p className="font-mono text-xs uppercase tracking-[0.06em] text-paper">Got it — we will be in touch shortly.</p>
+                <p className="font-mono text-[11px] tracking-[0.04em] text-faint">Expect a reply within 1 business day.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="relative grid gap-3">
                 <div className="relative">
-                  <User className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" aria-hidden="true" />
+                  <User className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-faint" aria-hidden="true" />
                   <input
                     name="name"
                     value={form.name}
                     onChange={handleChange}
                     required
-                    className="w-full rounded-xl border border-zinc-800 bg-zinc-900 pl-10 pr-3.5 py-2.5 text-sm outline-none placeholder:text-zinc-500 transition-colors focus:border-amber-500 focus:ring-1 focus:ring-amber-500/40"
+                    className="w-full border border-ink-soft bg-ink-soft/40 py-2.5 pl-10 pr-3.5 text-sm text-paper outline-none placeholder:text-faint focus:border-green-bright"
                     placeholder="Your name"
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-2.5">
                   <div className="relative">
-                    <Mail className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" aria-hidden="true" />
+                    <Mail className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-faint" aria-hidden="true" />
                     <input
                       name="email"
                       type="email"
                       value={form.email}
                       onChange={handleChange}
-                      className="w-full rounded-xl border border-zinc-800 bg-zinc-900 pl-10 pr-3 py-2.5 text-sm outline-none placeholder:text-zinc-500 transition-colors focus:border-amber-500 focus:ring-1 focus:ring-amber-500/40"
+                      className="w-full border border-ink-soft bg-ink-soft/40 py-2.5 pl-10 pr-3 text-sm text-paper outline-none placeholder:text-faint focus:border-green-bright"
                       placeholder="Email"
                     />
                   </div>
                   <div className="relative">
-                    <Phone className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" aria-hidden="true" />
+                    <Phone className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-faint" aria-hidden="true" />
                     <input
                       name="mobile"
                       type="tel"
                       value={form.mobile}
                       onChange={handleChange}
-                      className="w-full rounded-xl border border-zinc-800 bg-zinc-900 pl-10 pr-3 py-2.5 text-sm outline-none placeholder:text-zinc-500 transition-colors focus:border-amber-500 focus:ring-1 focus:ring-amber-500/40"
+                      className="w-full border border-ink-soft bg-ink-soft/40 py-2.5 pl-10 pr-3 text-sm text-paper outline-none placeholder:text-faint focus:border-green-bright"
                       placeholder="Phone"
                     />
                   </div>
                 </div>
-                <p className="-mt-1.5 text-[11px] text-zinc-500">At least one of email or phone is required.</p>
+                <p className="-mt-1.5 font-mono text-[10.5px] tracking-[0.02em] text-faint">At least one of email or phone is required.</p>
 
                 <div className="relative">
-                  <Building2 className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" aria-hidden="true" />
+                  <Building2 className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-faint" aria-hidden="true" />
                   <input
                     name="company"
                     value={form.company}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-zinc-800 bg-zinc-900 pl-10 pr-3.5 py-2.5 text-sm outline-none placeholder:text-zinc-500 transition-colors focus:border-amber-500 focus:ring-1 focus:ring-amber-500/40"
+                    className="w-full border border-ink-soft bg-ink-soft/40 py-2.5 pl-10 pr-3.5 text-sm text-paper outline-none placeholder:text-faint focus:border-green-bright"
                     placeholder="Business / company name"
                   />
                 </div>
 
                 <div className="relative">
-                  <MessageSquare className="pointer-events-none absolute left-3.5 top-3 h-4 w-4 text-zinc-500" aria-hidden="true" />
+                  <MessageSquare className="pointer-events-none absolute left-3.5 top-3 h-4 w-4 text-faint" aria-hidden="true" />
                   <textarea
                     name="message"
                     value={form.message}
                     onChange={handleChange}
                     rows={2}
-                    className="w-full rounded-xl border border-zinc-800 bg-zinc-900 pl-10 pr-3.5 py-2.5 text-sm outline-none placeholder:text-zinc-500 transition-colors focus:border-amber-500 focus:ring-1 focus:ring-amber-500/40 resize-none"
+                    className="w-full resize-none border border-ink-soft bg-ink-soft/40 py-2.5 pl-10 pr-3.5 text-sm text-paper outline-none placeholder:text-faint focus:border-green-bright"
                     placeholder="What do you want help with?"
                   />
                 </div>
 
-                {error && <p className="text-center text-xs text-red-400">{error}</p>}
+                {error && <p className="text-center font-mono text-xs text-rust">{error}</p>}
 
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="mt-1 inline-flex items-center justify-center gap-2 rounded-xl bg-amber-500 px-4 py-3 text-sm font-semibold text-zinc-950 transition-colors hover:bg-amber-400 disabled:opacity-60 disabled:cursor-not-allowed min-h-[44px]"
+                  className="mt-1 inline-flex min-h-[44px] items-center justify-center gap-2 bg-green px-4 py-3 font-mono text-xs uppercase tracking-[0.08em] text-paper transition-colors hover:bg-green-bright hover:text-ink disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {submitting ? 'Submitting…' : 'Submit inquiry'}
                 </button>

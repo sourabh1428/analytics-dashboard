@@ -17,78 +17,78 @@ const customers = [
 
 export default function CustomerRecordsPage() {
   return (
-    <div className="bg-white">
+    <div className="bg-paper">
       {/* Hero */}
-      <section className="bg-gradient-to-b from-blue-50 to-white py-24 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <section className="border-b border-ink px-6 py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid items-center gap-16 lg:grid-cols-2">
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700 mb-6">
+              <span className="mb-6 inline-flex items-center gap-2 border border-ink px-3 py-1 font-mono text-xs uppercase tracking-[0.1em] text-green">
                 <FileText className="h-3 w-3" /> Customer Records
               </span>
-              <h1 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight mb-6">
+              <h1 className="mb-6 font-display text-4xl font-extrabold uppercase leading-tight tracking-[-0.018em] text-ink md:text-5xl">
                 Every customer's history,{" "}
-                <span className="text-blue-600">always at your fingertips</span>
+                <span className="text-green">always at your fingertips</span>
               </h1>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+              <p className="mb-8 text-lg leading-relaxed text-mutedink">
                 Stop searching through paper registers. EasiBill stores each customer's items, purchases, follow-up intervals, and WhatsApp number — searchable in seconds.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="https://dashboard.easibill.com/" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors">
+              <div className="flex flex-col gap-4 sm:flex-row">
+                <Link href="https://dashboard.easibill.com/" className="inline-flex items-center justify-center gap-2 bg-green px-6 py-3 font-mono text-sm uppercase tracking-[0.08em] text-paper transition-colors hover:bg-ink">
                   Start free <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-gray-200 text-gray-700 font-semibold hover:bg-gray-50 transition-colors">
+                <Link href="/contact" className="inline-flex items-center justify-center gap-2 border border-ink px-6 py-3 font-mono text-sm uppercase tracking-[0.08em] text-ink transition-colors hover:bg-ink hover:text-paper">
                   Book a demo
                 </Link>
               </div>
             </div>
 
             {/* Visual: customer table mockup */}
-            <div className="bg-white rounded-3xl border border-gray-100 shadow-2xl overflow-hidden">
-              <div className="bg-gray-50 px-5 py-3 border-b border-gray-100 flex items-center gap-3">
+            <div className="border border-ink bg-paper-white shadow-[8px_8px_0_#17150F]">
+              <div className="flex items-center gap-3 border-b border-ink bg-paper-alt px-5 py-3">
                 <div className="flex gap-1.5">
-                  <div className="h-3 w-3 rounded-full bg-red-400" />
-                  <div className="h-3 w-3 rounded-full bg-yellow-400" />
-                  <div className="h-3 w-3 rounded-full bg-green-400" />
+                  <div className="h-3 w-3 rounded-full bg-rust" />
+                  <div className="h-3 w-3 rounded-full bg-green" />
+                  <div className="h-3 w-3 rounded-full bg-ink" />
                 </div>
-                <div className="flex-1 bg-white rounded-lg px-3 py-1 flex items-center gap-2 border border-gray-100">
-                  <Search className="h-3 w-3 text-gray-400" />
-                  <span className="text-xs text-gray-400">Search customers…</span>
+                <div className="flex flex-1 items-center gap-2 border border-ink bg-paper-white px-3 py-1">
+                  <Search className="h-3 w-3 text-mutedink" />
+                  <span className="font-mono text-xs text-faint">Search customers…</span>
                 </div>
               </div>
-              <div className="p-4 space-y-3">
+              <div className="space-y-3 p-4">
                 {customers.map((p) => (
-                  <div key={p.name} className="rounded-xl border border-gray-100 p-4 hover:border-blue-100 hover:bg-blue-50/30 transition-colors cursor-pointer">
+                  <div key={p.name} className="cursor-pointer border border-ink/30 p-4 transition-colors hover:border-ink hover:bg-green-pale/30">
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex items-center gap-3">
-                        <div className="h-9 w-9 rounded-full bg-blue-100 flex items-center justify-center text-sm font-bold text-blue-700 shrink-0">
+                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-green-pale font-mono text-sm font-bold text-green">
                           {p.name[0]}
                         </div>
                         <div>
-                          <p className="text-sm font-semibold text-slate-900">{p.name}</p>
-                          <p className="text-xs text-gray-400">{p.age} yrs · {p.phone}</p>
+                          <p className="text-sm font-semibold text-ink">{p.name}</p>
+                          <p className="font-mono text-xs text-faint">{p.age} yrs · {p.phone}</p>
                         </div>
                       </div>
-                      <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
-                        p.status === "overdue" ? "bg-red-100 text-red-600" :
-                        p.status === "upcoming" ? "bg-amber-100 text-amber-600" :
-                        "bg-green-100 text-green-600"
+                      <span className={`border px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.06em] ${
+                        p.status === "overdue" ? "border-rust/50 text-rust" :
+                        p.status === "upcoming" ? "border-ink/40 text-mutedink" :
+                        "border-green/50 text-green"
                       }`}>
                         {p.status === "overdue" ? "Overdue" : p.status === "upcoming" ? "Due soon" : "On track"}
                       </span>
                     </div>
                     <div className="mt-3 grid grid-cols-3 gap-2 text-[10px]">
-                      <div className="bg-gray-50 rounded-lg px-2 py-1.5">
-                        <p className="text-gray-400">Item</p>
-                        <p className="font-medium text-slate-700 truncate">{p.item}</p>
+                      <div className="border border-ink/20 bg-paper-alt px-2 py-1.5">
+                        <p className="font-mono text-faint">Item</p>
+                        <p className="truncate font-medium text-ink-soft">{p.item}</p>
                       </div>
-                      <div className="bg-gray-50 rounded-lg px-2 py-1.5">
-                        <p className="text-gray-400">Interval</p>
-                        <p className="font-medium text-slate-700">{p.interval}</p>
+                      <div className="border border-ink/20 bg-paper-alt px-2 py-1.5">
+                        <p className="font-mono text-faint">Interval</p>
+                        <p className="font-medium text-ink-soft">{p.interval}</p>
                       </div>
-                      <div className="bg-gray-50 rounded-lg px-2 py-1.5">
-                        <p className="text-gray-400">Next due</p>
-                        <p className="font-medium text-slate-700">{p.nextDue}</p>
+                      <div className="border border-ink/20 bg-paper-alt px-2 py-1.5">
+                        <p className="font-mono text-faint">Next due</p>
+                        <p className="font-medium text-ink-soft">{p.nextDue}</p>
                       </div>
                     </div>
                   </div>
@@ -100,10 +100,10 @@ export default function CustomerRecordsPage() {
       </section>
 
       {/* Features */}
-      <section className="py-24 px-6 bg-gray-50">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl font-bold text-slate-900 text-center mb-12">What's stored for each customer</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <section className="border-b border-ink bg-paper-alt px-6 py-24">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="mb-12 text-center font-display text-2xl font-extrabold uppercase tracking-[-0.018em] text-ink">What's stored for each customer</h2>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { icon: User, title: "Name & contact", body: "Full name and WhatsApp number — used for reminders and billing." },
               { icon: Pill, title: "Item & details", body: "Exact item name and specification. Multiple items per customer." },
@@ -112,10 +112,10 @@ export default function CustomerRecordsPage() {
               { icon: Search, title: "Instant search", body: "Find any customer by name or phone number in under a second." },
               { icon: Shield, title: "Data stays private", body: "Customer data is encrypted and never shared with third parties." },
             ].map(({ icon: Icon, title, body }) => (
-              <div key={title} className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
-                <Icon className="h-6 w-6 text-blue-600 mb-4" />
-                <h3 className="font-semibold text-slate-900 mb-2">{title}</h3>
-                <p className="text-sm text-gray-500">{body}</p>
+              <div key={title} className="border border-ink bg-paper-white p-6 shadow-[6px_6px_0_#17150F]">
+                <Icon className="mb-4 h-6 w-6 text-green" />
+                <h3 className="mb-2 font-semibold text-ink">{title}</h3>
+                <p className="text-sm text-mutedink">{body}</p>
               </div>
             ))}
           </div>
@@ -123,10 +123,10 @@ export default function CustomerRecordsPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-6 bg-slate-900 text-center">
-        <h2 className="text-3xl font-bold text-white mb-4">Replace the paper register today</h2>
-        <p className="text-white/60 mb-8 max-w-md mx-auto">Import your existing customer list or start fresh — set up takes under 5 minutes.</p>
-        <Link href="https://dashboard.easibill.com/" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-500 transition-colors">
+      <section className="bg-ink px-6 py-20 text-center">
+        <h2 className="mb-4 font-display text-3xl font-extrabold uppercase tracking-[-0.018em] text-paper">Replace the paper register today</h2>
+        <p className="mx-auto mb-8 max-w-md text-paper/60">Import your existing customer list or start fresh — set up takes under 5 minutes.</p>
+        <Link href="https://dashboard.easibill.com/" className="inline-flex items-center gap-2 bg-green px-8 py-4 font-mono text-sm uppercase tracking-[0.08em] text-paper transition-colors hover:bg-green-bright hover:text-ink">
           Start free — no card needed <ArrowRight className="h-4 w-4" />
         </Link>
       </section>
