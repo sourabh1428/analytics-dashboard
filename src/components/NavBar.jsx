@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 import { track } from '../utils/mixpanel';
@@ -68,10 +69,13 @@ const NavBar = () => {
         <button
           type="button"
           onClick={() => goTo('/')}
-          className="font-display text-xl font-black tracking-[0.01em] text-ink [font-stretch:118%] focus:outline-none"
+          className="flex items-center gap-2 focus:outline-none"
           aria-label="Go to Ferbz home"
         >
-          FERBZ<span className="text-green">*</span>
+          <Image src="/logo.png" alt="" width={28} height={28} className="h-7 w-7" priority />
+          <span className="font-display text-xl font-black tracking-[0.01em] text-ink [font-stretch:118%]">
+            FERBZ<span className="text-green">*</span>
+          </span>
         </button>
 
         {/* Desktop nav */}
