@@ -50,6 +50,16 @@ html.lenis {
   scroll-behavior: auto !important;
 }
 
+/* PostHog's own in-app "Conversations" chat widget is enabled at the
+   PostHog project level (not something this codebase's posthog.init() call
+   controls) and auto-injects a floating chat bubble that duplicates the
+   AssistLoop widget already used for site chat. Hide it here rather than
+   disabling it in the PostHog dashboard, since that setting is shared
+   across every project using this token. */
+#ph-conversations-widget-container {
+  display: none !important;
+}
+
 body {
   overflow-y: scroll;
   scrollbar-width: thin; /* For Firefox */
