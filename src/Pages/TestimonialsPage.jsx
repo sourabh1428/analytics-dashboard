@@ -70,13 +70,13 @@ const TestimonialsPage = () => {
             className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-end"
           >
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-600">Real local businesses</p>
-              <h1 className="mt-4 text-balance text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
+              <p className="font-mono text-sm font-semibold uppercase tracking-[0.22em] text-rust">Real local businesses</p>
+              <h1 className="mt-4 text-balance font-display text-5xl font-extrabold uppercase tracking-[-0.018em] text-ink sm:text-6xl">
                 Built around how local business counters really work.
               </h1>
             </div>
             <div className="space-y-5">
-              <p className="text-lg leading-8 text-slate-600">
+              <p className="text-lg leading-8 text-mutedink">
                 We interviewed over 120 local business owners before writing a line of code. Every feature in Easibill came from a real counter workflow — not a whiteboard assumption.
               </p>
               <div className="flex flex-col gap-3 sm:flex-row">
@@ -84,7 +84,7 @@ const TestimonialsPage = () => {
                   href={DASHBOARD_LOGIN_URL}
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-6 py-3.5 text-sm font-semibold text-white shadow-xl shadow-emerald-900/20 transition hover:bg-emerald-950 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+                  className="group inline-flex items-center justify-center gap-2 bg-green px-6 py-3.5 font-mono text-sm tracking-[0.08em] text-paper transition hover:bg-ink focus:outline-none focus:ring-2 focus:ring-green focus:ring-offset-2"
                 >
                   Start 14-day trial
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
@@ -93,7 +93,7 @@ const TestimonialsPage = () => {
                   href="/lead"
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-6 py-3.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-emerald-300 hover:text-emerald-800"
+                  className="inline-flex items-center justify-center border border-ink bg-paper-white px-6 py-3.5 font-mono text-sm tracking-[0.08em] text-ink transition hover:bg-ink hover:text-paper"
                 >
                   Book a demo
                 </motion.a>
@@ -111,12 +111,12 @@ const TestimonialsPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.35 }}
             transition={{ duration: 0.7 }}
-            className="grid gap-3 rounded-[2rem] border border-slate-200 bg-white p-5 shadow-sm md:grid-cols-4"
+            className="grid gap-3 border border-ink bg-paper-white p-5 shadow-[8px_8px_0_#17150F] md:grid-cols-4"
           >
             {proof.map(([value, label]) => (
-              <div key={label} className="rounded-2xl bg-slate-50 p-5 text-center">
-                <p className="text-3xl font-semibold text-slate-950">{value}</p>
-                <p className="mt-2 text-sm leading-5 text-slate-500">{label}</p>
+              <div key={label} className="border border-ink bg-paper-alt p-5 text-center">
+                <p className="font-display text-3xl font-extrabold text-ink">{value}</p>
+                <p className="mt-2 text-sm leading-5 text-mutedink">{label}</p>
               </div>
             ))}
           </motion.div>
@@ -134,24 +134,24 @@ const TestimonialsPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
                 transition={{ duration: 0.55, delay: index * 0.07 }}
-                className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-zinc-950/5"
+                className="border border-ink bg-paper-white p-6 transition hover:-translate-y-1 hover:shadow-[8px_8px_0_#17150F]"
               >
                 <div className="mb-5 flex items-center justify-between">
-                  <div className="flex gap-1 text-amber-400">
+                  <div className="flex gap-1 text-rust">
                     {[0, 1, 2, 3, 4].map((star) => (
                       <Star key={star} className="h-4 w-4 fill-current" />
                     ))}
                   </div>
-                  <Quote className="h-5 w-5 text-slate-300" />
+                  <Quote className="h-5 w-5 text-faint" />
                 </div>
-                <p className="min-h-28 leading-8 text-slate-700">&quot;{testimonial.text}&quot;</p>
-                <div className="mt-6 flex items-center gap-3 border-t border-slate-100 pt-5">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-emerald-100 to-cyan-100 text-sm font-semibold text-emerald-900">
+                <p className="min-h-28 leading-8 text-ink-soft">&quot;{testimonial.text}&quot;</p>
+                <div className="mt-6 flex items-center gap-3 border-t border-ink/15 pt-5">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-green-pale text-sm font-semibold text-green">
                     {testimonial.name.split(' ').map((part) => part[0]).join('')}
                   </div>
                   <div>
-                    <p className="font-semibold text-slate-950">{testimonial.name}</p>
-                    <p className="text-sm text-slate-500">{testimonial.role}, {testimonial.location}</p>
+                    <p className="font-semibold text-ink">{testimonial.name}</p>
+                    <p className="text-sm text-mutedink">{testimonial.role}, {testimonial.location}</p>
                   </div>
                 </div>
               </motion.article>
@@ -168,21 +168,20 @@ const TestimonialsPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.35 }}
             transition={{ duration: 0.7 }}
-            className="relative overflow-hidden rounded-[2.25rem] bg-slate-950 p-8 text-white shadow-2xl shadow-slate-950/20 sm:p-12"
+            className="relative overflow-hidden bg-ink p-8 text-paper shadow-[8px_8px_0_#17150F] sm:p-12"
           >
-            <div className="absolute inset-0 -z-0 bg-[radial-gradient(circle_at_20%_0%,rgba(16,185,129,0.3),transparent_40%),radial-gradient(circle_at_85%_100%,rgba(56,189,248,0.2),transparent_40%)]" />
             <div className="relative z-10 mx-auto max-w-3xl text-center">
-              <Quote className="mx-auto mb-6 h-10 w-10 text-emerald-300" />
+              <Quote className="mx-auto mb-6 h-10 w-10 text-green-bright" />
               <p className="text-2xl font-semibold leading-9 sm:text-3xl sm:leading-10">
                 &quot;{featured.text}&quot;
               </p>
               <div className="mt-8 flex items-center justify-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-emerald-300 to-cyan-300 text-sm font-semibold text-emerald-950">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-pale text-sm font-semibold text-green">
                   {featured.name.split(' ').map((part) => part[0]).join('')}
                 </div>
                 <div className="text-left">
                   <p className="font-semibold">{featured.name}</p>
-                  <p className="text-sm text-slate-400">{featured.role}, {featured.location}</p>
+                  <p className="text-sm text-faint">{featured.role}, {featured.location}</p>
                 </div>
               </div>
             </div>

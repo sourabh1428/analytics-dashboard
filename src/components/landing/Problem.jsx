@@ -1,43 +1,40 @@
 'use client'
 
-import { motion, useScroll, useSpring } from 'framer-motion'
-import { Clock, UserX, FileWarning, TrendingDown } from 'lucide-react'
-import { fadeUp, stagger, wordVariant, viewport } from '@/src/lib/motion'
 import { usePostHog } from 'posthog-js/react'
-import { useRef, useEffect } from 'react'
+import { useEffect, useRef } from 'react'
+import { lerp, seg, useScrollReveal } from '@/src/lib/scrollScrub'
+import { Lines, Reveal } from './reveal'
 
-const PAIN_POINTS = [
+const STATS = [
   {
-    icon: Clock,
-    stat: '8 min',
-    title: 'Average time for a manual bill',
-    description: 'Hand-written or desktop software bills slow your queue. Customers leave before they get to the counter.',
+    stat: '8 MIN',
+    label: 'PER MANUAL BILL',
+    copy: 'Hand-written bills slow your queue. Customers leave before they reach the counter.',
   },
   {
-    icon: UserX,
-    stat: '6 in 10',
-    title: "Customers who don't return",
-    description: 'Without reminders, customers forget to follow up. They buy from the business closest to them next time — not yours.',
+    stat: '6 / 10',
+    label: 'CUSTOMERS NEVER RETURN',
+    copy: 'Without reminders they forget — and buy from whoever is closest next time.',
   },
   {
-    icon: FileWarning,
-    stat: '$500+',
-    title: 'Average annual expired-stock loss',
-    description: 'Perishable or seasonal stock expires quietly. By the time you notice, the loss is already done.',
+    stat: '₹40K+',
+    label: 'ANNUAL EXPIRED-STOCK LOSS',
+    copy: 'Perishable stock expires quietly. By the time you notice, the loss is done.',
   },
   {
-    icon: TrendingDown,
-    stat: '2 days',
-    title: 'Lost per year to tax compliance',
-    description: 'Manually compiling tax codes, rates, and invoice numbers for your accountant is a full weekend every month.',
+    stat: '2 DAYS',
+    label: 'LOST MONTHLY TO TAX WORK',
+    copy: 'Compiling tax codes and invoice numbers for your accountant eats a full weekend.',
   },
 ]
-
-const HEADING = ['Manual', 'billing', 'is', 'costing', 'you', 'more', 'than', 'you', 'think']
 
 export default function Problem() {
   const posthog = usePostHog()
   const ref = useRef(null)
+  const numRefs = useRef([])
+  numRefs.current = []
+  const addNum = (el) => { if (el) numRefs.current.push(el) }
+
   useEffect(() => {
     const el = ref.current
     if (!el) return
@@ -48,84 +45,55 @@ export default function Problem() {
     return () => obs.disconnect()
   }, [posthog])
 
-  // Vertical line fills with actual scroll progress through the list.
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 0.7', 'end 0.5'] })
-  const lineProgress = useSpring(scrollYProgress, { stiffness: 120, damping: 24, restDelta: 0.001 })
+  // Distinct beat from the generic Reveal fade: the big stat numbers scale
+  // and gain weight in as the row crosses into view, staggered per column,
+  // layered on top of the Reveal fade+rise already on each card.
+  useScrollReveal({
+    ref,
+    threshold: 0.2,
+    duration: 900,
+    onUpdate: (t) => {
+      numRefs.current.forEach((el, i) => {
+        const s = seg(t, i * 0.1, i * 0.1 + 0.55)
+        el.style.opacity = String(s)
+        el.style.transform = `scale(${lerp(0.82, 1, s)})`
+      })
+    },
+  })
 
   return (
-    <section
-      id="problem"
-      ref={ref}
-      aria-labelledby="problem-heading"
-      className="relative py-24 px-6 bg-[#18181B] overflow-hidden"
-    >
-      <div
-        className="absolute top-1/3 left-1/4 -translate-x-1/2 pointer-events-none"
-        style={{
-          width: '600px',
-          height: '600px',
-          background: 'radial-gradient(circle, rgba(248,113,113,0.06) 0%, transparent 70%)',
-        }}
-        aria-hidden="true"
-      />
+    <section id="problem" ref={ref} className="bg-ink text-paper">
+      <div className="mx-auto max-w-[1360px] px-4 py-[88px] sm:px-8">
+        <div className="flex items-baseline justify-between border-b border-paper/25 pb-[18px] font-mono text-xs tracking-[0.14em] text-faint">
+          <span>01 — THE LEAK</span>
+          <span className="hidden sm:inline">WHAT MANUAL BILLING ACTUALLY COSTS</span>
+        </div>
 
-      <div className="relative max-w-4xl mx-auto">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          variants={stagger}
-          viewport={viewport}
-          className="text-center max-w-2xl mx-auto mb-20"
-        >
-          <motion.h2
-            id="problem-heading"
-            variants={stagger}
-            className="text-4xl font-bold text-white mb-4 leading-tight"
-          >
-            {HEADING.map((word, i) => (
-              <motion.span key={i} variants={wordVariant} className="inline-block mr-[0.22em]">
-                {word}
-              </motion.span>
-            ))}
-          </motion.h2>
-          <motion.p variants={fadeUp} className="text-zinc-400 text-lg">
-            Every local business dealing with paper bills and outdated software is bleeding time, customers, and money.
-          </motion.p>
-        </motion.div>
+        <Lines
+          className="mt-[42px] max-w-[900px] font-display text-[clamp(38px,4.2vw,64px)] font-extrabold uppercase leading-[.96] tracking-[-0.01em] [font-stretch:70%]"
+          lines={[
+            'Manual billing is costing you',
+            <>more than you <span className="font-serif text-[0.86em] italic font-medium normal-case tracking-normal text-terracotta">think.</span></>,
+          ]}
+        />
 
-        <div className="relative">
-          {/* Vertical connector — fills with scroll position, not a one-shot reveal */}
-          <div className="absolute left-6 sm:left-8 top-2 bottom-2 w-px bg-zinc-800" aria-hidden="true">
-            <motion.div
-              className="w-full bg-gradient-to-b from-red-400 to-orange-300 origin-top"
-              style={{ scaleY: lineProgress, height: '100%' }}
-            />
-          </div>
-
-          {PAIN_POINTS.map((point, i) => (
-            <motion.div
-              key={point.title}
-              initial={{ opacity: 0, x: -24 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              viewport={viewport}
-              className={`relative flex items-start gap-6 sm:gap-10 pl-16 sm:pl-24 py-9 ${
-                i !== PAIN_POINTS.length - 1 ? 'border-b border-zinc-800/70' : ''
-              }`}
+        <div className="mt-16 grid grid-cols-1 border-t border-paper/25 sm:grid-cols-2 lg:grid-cols-4">
+          {STATS.map((s, i) => (
+            <Reveal
+              key={s.label}
+              delay={i * 80}
+              className={`pt-[30px] pr-[26px] ${i < STATS.length - 1 ? 'border-r border-paper/[0.18]' : ''}`}
             >
-              <span className="absolute left-0 top-9 flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-[#18181B] border border-zinc-800">
-                <point.icon className="h-5 w-5 sm:h-6 sm:w-6 text-red-400" aria-hidden="true" />
-              </span>
-
-              <p className="shrink-0 w-28 sm:w-40 text-4xl sm:text-5xl font-black leading-none bg-gradient-to-br from-red-400 to-orange-300 bg-clip-text text-transparent">
-                {point.stat}
-              </p>
-
-              <div className="flex-1 min-w-0">
-                <h3 className="text-lg sm:text-xl font-semibold text-zinc-100 mb-1.5">{point.title}</h3>
-                <p className="text-sm sm:text-base text-zinc-500 leading-relaxed">{point.description}</p>
+              <div
+                ref={addNum}
+                className="font-display text-[68px] font-extrabold leading-none text-ember [font-stretch:68%]"
+                style={{ opacity: 0, willChange: 'transform, opacity' }}
+              >
+                {s.stat}
               </div>
-            </motion.div>
+              <div className="my-3.5 font-mono text-[11px] tracking-[0.12em] text-faint">{s.label}</div>
+              <p className="text-[14.5px] leading-[1.55] text-paper/80">{s.copy}</p>
+            </Reveal>
           ))}
         </div>
       </div>

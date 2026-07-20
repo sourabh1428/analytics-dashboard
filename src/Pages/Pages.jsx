@@ -9,7 +9,7 @@ import { Steps } from "@/components/sections/Steps"
 
 export default function Page() {
   return (
-    <main className="min-h-screen bg-[#09090B]">
+    <main className="min-h-screen bg-ink">
       <Hero />
       <Partners />
       <Features />

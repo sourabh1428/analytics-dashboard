@@ -1,348 +1,367 @@
 'use client'
 
 import { useRef } from 'react'
-import dynamic from 'next/dynamic'
-import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion'
-import { ArrowRight, CheckCircle, MessageCircle, LayoutDashboard, Users, Package, BarChart3 } from 'lucide-react'
-import { useGeo } from '@/src/hooks/useGeo'
-import { stagger, wordVariant, fadeUp, scaleIn, staggerFast, fadeIn, viewport } from '@/src/lib/motion'
 import { usePostHog } from 'posthog-js/react'
+import { lerp, seg, useScrollScrub } from '@/src/lib/scrollScrub'
 
-// Client-only, code-split: WebGL has no business in the server bundle or SSR pass.
-const HeroScene = dynamic(() => import('./HeroScene'), { ssr: false })
-
-const H1_WORDS_1 = ['Your', 'local', 'business', 'loses', '20–40%', 'of', 'customers', 'every', 'year.']
-const H1_WORDS_2 = ['EasiBill', 'stops', 'that.']
-
-const SAMPLE_ITEMS = [
-  { name: 'Monthly Reorder Pack', qty: '× 1', amount: '$6.00' },
-  { name: 'Deep Tissue Massage — 60 min', qty: '× 1', amount: '$65.00' },
-  { name: 'Wireless Earbuds', qty: '× 1', amount: '$29.00' },
+const TICKER_ITEMS = [
+  'BILL #2406-0047 SENT — RAMESH K. ✓✓',
+  'REMINDER FIRED 09:00 — SUNITA G.',
+  '₹1,240 COLLECTED — VERMA MEDICAL',
+  'FOLLOW-UP BOOKED — 28 DAYS',
+  'CUSTOMER RECOVERED — MOHAN D.',
+  'BROADCAST 234/300 DELIVERED',
 ]
 
-const SIDEBAR_NAV = [
-  { icon: LayoutDashboard, label: 'New Bill', active: true },
-  { icon: Users, label: 'Customers', active: false },
-  { icon: Package, label: 'Inventory', active: false },
-  { icon: BarChart3, label: 'Analytics', active: false },
-]
+const RAIL_NODES = ['01 — LOG THE SALE', '02 — BILL PRINTS', '03 — SENT ON WHATSAPP', '04 — REMINDER BOOKED']
+const RAIL_THRESHOLDS = [0.16, 0.44, 0.6, 0.78]
 
-function AppMockup() {
+function Ticker() {
+  const items = [...TICKER_ITEMS, ...TICKER_ITEMS]
   return (
-    <div className="rounded-2xl border border-zinc-200 bg-white shadow-2xl shadow-black/40 overflow-hidden">
-      <div className="flex items-center gap-2 px-4 py-3 border-b border-gray-100 bg-gray-50">
-        <div className="flex items-center gap-1.5">
-          <span className="h-3 w-3 rounded-full bg-red-300" aria-hidden="true" />
-          <span className="h-3 w-3 rounded-full bg-yellow-300" aria-hidden="true" />
-          <span className="h-3 w-3 rounded-full bg-green-300" aria-hidden="true" />
-        </div>
-        <div className="flex-1 mx-4">
-          <div className="bg-white rounded border border-gray-200 px-3 py-1 text-xs text-gray-400 flex items-center gap-1.5 max-w-xs">
-            <svg className="h-3 w-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-            </svg>
-            app.easibill.com/billing/new
-          </div>
-        </div>
-      </div>
-
-      <div className="flex h-[390px]">
-        <aside className="hidden md:flex w-44 border-r border-gray-100 bg-gray-50/50 p-3 flex-col shrink-0">
-          <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest px-3 mb-3">
-            Verma Medical
-          </p>
-          <nav className="flex flex-col gap-0.5">
-            {SIDEBAR_NAV.map((item) => (
-              <div
-                key={item.label}
-                className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium ${
-                  item.active ? 'bg-amber-50 text-amber-600' : 'text-gray-500'
-                }`}
-              >
-                <item.icon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                {item.label}
-              </div>
-            ))}
-          </nav>
-          <div className="mt-auto space-y-2 pt-3 border-t border-gray-100">
-            <div className="rounded-xl bg-white border border-gray-100 p-2.5">
-              <p className="text-[10px] text-gray-400 mb-0.5">Today's bills</p>
-              <p className="text-lg font-bold text-slate-900 leading-none">47</p>
-            </div>
-            <div className="rounded-xl bg-white border border-gray-100 p-2.5">
-              <p className="text-[10px] text-gray-400 mb-0.5">Reminders sent</p>
-              <p className="text-lg font-bold text-slate-900 leading-none">12</p>
-            </div>
-          </div>
-        </aside>
-
-        <main className="flex-1 p-5 overflow-hidden">
-          <div className="flex items-start justify-between mb-4">
-            <div>
-              <h3 className="text-sm font-semibold text-slate-900">New Bill</h3>
-              <p className="text-xs text-gray-400 mt-0.5">Invoice #2406-0047</p>
-            </div>
-            <span className="px-2.5 py-1 rounded-full bg-amber-50 text-amber-600 text-[10px] font-semibold">
-              Tax-ready ✓
-            </span>
-          </div>
-
-          <div className="flex items-center gap-3 mb-4 p-3 bg-gray-50 rounded-xl border border-gray-100">
-            <div className="h-8 w-8 rounded-full bg-amber-100 flex items-center justify-center text-xs font-bold text-amber-600 shrink-0">
-              RK
-            </div>
-            <div>
-              <p className="text-sm font-semibold text-slate-900">Ramesh Kumar</p>
-              <p className="text-xs text-gray-400">+1 (415) 555-0198</p>
-            </div>
-          </div>
-
-          <table className="w-full text-xs mb-3">
-            <thead>
-              <tr className="text-gray-400 border-b border-gray-100">
-                <th className="text-left pb-2 font-medium">Item/Service</th>
-                <th className="text-right pb-2 font-medium">Qty</th>
-                <th className="text-right pb-2 font-medium">Amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              {SAMPLE_ITEMS.map((m) => (
-                <tr key={m.name} className="border-b border-gray-50">
-                  <td className="py-2 text-slate-700">{m.name}</td>
-                  <td className="py-2 text-right text-gray-400">{m.qty}</td>
-                  <td className="py-2 text-right font-medium text-slate-900">{m.amount}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-
-          <div className="flex justify-between items-center py-2.5 border-t border-gray-200 mb-4">
-            <span className="text-xs text-gray-500">Total (incl. tax)</span>
-            <span className="text-base font-bold text-slate-900">$12.00</span>
-          </div>
-
-          <button
-            className="w-full py-2.5 rounded-xl bg-amber-500 text-white text-xs font-semibold flex items-center justify-center gap-2 cursor-default"
-            tabIndex={-1}
-            aria-hidden="true"
-          >
-            <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
-            Send bill on WhatsApp
-          </button>
-        </main>
-
-        <aside className="hidden lg:flex w-56 border-l border-gray-100 flex-col gap-3 p-4 bg-gray-50/30 shrink-0">
-          <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest">
-            WhatsApp Preview
-          </p>
-          <div className="bg-white rounded-2xl rounded-tl-none p-3 shadow-sm border border-gray-100">
-            <p className="text-[10px] font-bold text-amber-500 mb-1">EasiBill — Verma Medical</p>
-            <p className="text-[10px] text-gray-600 leading-relaxed">
-              Invoice #2406-0047<br />$12.00 · tax included
-            </p>
-            <div className="mt-2 pt-2 border-t border-gray-100 flex items-center gap-1 text-amber-500">
-              <span className="text-[10px]" aria-hidden="true">📄</span>
-              <p className="text-[10px] font-medium">View &amp; download bill</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="text-[10px] text-amber-500" aria-hidden="true">✓✓</span>
-            <p className="text-[10px] text-gray-500">Delivered · 2.3 seconds</p>
-          </div>
-          <div className="mt-auto rounded-xl bg-white border border-gray-100 p-3">
-            <p className="text-[10px] font-semibold text-slate-900 mb-1">Next: Follow-up reminder</p>
-            <p className="text-[10px] text-gray-400">Reorder due in 28 days</p>
-            <p className="text-[10px] text-amber-500 font-medium mt-1">Auto-scheduled ✓</p>
-          </div>
-        </aside>
+    <div className="overflow-hidden border-t border-ink bg-paper-alt">
+      <div className="flex w-max animate-eb-ticker whitespace-nowrap py-[11px] font-mono text-xs tracking-[0.12em] text-ink-soft motion-reduce:animate-none">
+        {items.map((item, i) => (
+          <span key={i} className="flex items-center">
+            <span className="px-[18px]">{item}</span>
+            <span className="text-green">{'//'}</span>
+          </span>
+        ))}
       </div>
     </div>
   )
 }
 
+const NAV_HEIGHT = 64
+
 export default function Hero() {
-  const geo = useGeo()
   const posthog = usePostHog()
-  const sectionRef = useRef(null)
-  const sceneScrollRef = useRef(0)
 
-  // Scroll progress across the hero's own height — drives the 3D scene and
-  // the parallax layers below. Read via a ref (not state) so the 3D frame
-  // loop never triggers a React re-render.
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end start'] })
-  useMotionValueEvent(scrollYProgress, 'change', (v) => { sceneScrollRef.current = v })
+  const trackRef = useRef(null)
+  const stageRef = useRef(null)
+  const hintRef = useRef(null)
+  const progRef = useRef(null)
+  const clockRef = useRef(null)
+  const railFillRef = useRef(null)
+  const nodeRefs = useRef([])
+  const aLayerRef = useRef(null)
+  const aLineRefs = useRef([])
+  const machineRef = useRef(null)
+  const paperRef = useRef(null)
+  const wireRef = useRef(null)
+  const packetRef = useRef(null)
+  const phoneRef = useRef(null)
+  const bubRefs = useRef([])
+  const tickRef = useRef(null)
+  const stampRef = useRef(null)
+  const bLineRefs = useRef([])
+  const bCtaRef = useRef(null)
 
-  const dotGridY = useTransform(scrollYProgress, [0, 1], ['0%', '18%'])
-  const glowY = useTransform(scrollYProgress, [0, 1], ['0%', '35%'])
-  const glowOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.15])
-  const mockupY = useTransform(scrollYProgress, [0, 1], ['0%', '12%'])
-  const copyOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0])
+  useScrollScrub({
+    wrapperRef: trackRef,
+    stageRef,
+    stickyOffset: NAV_HEIGHT,
+    mouseParallax: true,
+    onUpdate: (p, { mx, my }) => {
+      if (hintRef.current) hintRef.current.style.opacity = String(1 - seg(p, 0.01, 0.05))
+      if (progRef.current) progRef.current.textContent = String(Math.round(p * 100)).padStart(2, '0') + '%'
+      if (clockRef.current) {
+        clockRef.current.textContent =
+          p < 0.28
+            ? '08:59 — OPENING THE SHUTTER'
+            : p < 0.5
+              ? '18:32 — SALE LOGGED, BILL PRINTS'
+              : p < 0.68
+                ? '18:32 — SENT ON WHATSAPP'
+                : p < 0.84
+                  ? '18:33 — CUSTOMER REPLIES'
+                  : '09:00, NEXT MONTH — REMINDER FIRES ITSELF'
+      }
 
-  const proofPoints = [
-    geo ? `${geo.flag} Serving local businesses in ${geo.countryName}` : '2,400+ local businesses worldwide',
-    '18M+ bills sent via WhatsApp',
-    'Free to start — no card needed',
-  ]
+      aLineRefs.current.forEach((l, i) => {
+        if (!l) return
+        const drift = -p * 26 * (1 + i * 0.35)
+        const out = seg(p, 0.12 + i * 0.03, 0.24 + i * 0.03)
+        l.style.transform = `translateY(${drift - out * 118}%)`
+      })
+      if (aLayerRef.current) aLayerRef.current.style.opacity = String(1 - seg(p, 0.2, 0.28))
+
+      const mIn = seg(p, 0.16, 0.3)
+      const mOut = seg(p, 0.84, 0.92)
+      if (machineRef.current) {
+        machineRef.current.style.opacity = String(mIn * (1 - mOut * 0.88))
+        machineRef.current.style.transform = `translate(${mx}px, ${lerp(56, 0, mIn) + my - mOut * 54}px) scale(${lerp(0.85, 1, mIn) - mOut * 0.07})`
+      }
+      if (paperRef.current) paperRef.current.style.transform = `translateY(${lerp(-93, 0, seg(p, 0.22, 0.44))}%)`
+      if (phoneRef.current) {
+        phoneRef.current.style.opacity = String(seg(p, 0.34, 0.44))
+        phoneRef.current.style.transform = `translateX(${lerp(110, 0, seg(p, 0.34, 0.48))}px)`
+      }
+      if (wireRef.current) wireRef.current.style.transform = `scaleX(${seg(p, 0.44, 0.54)})`
+      const pk = seg(p, 0.48, 0.6)
+      if (packetRef.current) {
+        packetRef.current.style.opacity = String(seg(p, 0.46, 0.5) * (1 - seg(p, 0.58, 0.62)))
+        packetRef.current.style.transform = `translate(${lerp(-10, 128, pk)}px, -50%) rotate(${lerp(-5, 4, pk)}deg)`
+      }
+      bubRefs.current.forEach((b, i) => {
+        if (!b) return
+        const s = seg(p, 0.6 + i * 0.09, 0.66 + i * 0.09)
+        b.style.opacity = String(s)
+        b.style.transform = `translateY(${lerp(16, 0, s)}px) scale(${lerp(0.92, 1, s)})`
+      })
+      if (tickRef.current) {
+        const on = p > 0.7
+        tickRef.current.textContent = on ? '✓✓ READ 18:33' : '✓ SENT 18:32'
+        tickRef.current.style.color = on ? '#146C3C' : '#6E6753'
+      }
+      const st = seg(p, 0.78, 0.84)
+      if (stampRef.current) {
+        stampRef.current.style.opacity = String(st)
+        stampRef.current.style.transform = `rotate(-6deg) scale(${lerp(2.4, 1, st)})`
+      }
+      bLineRefs.current.forEach((l, i) => {
+        if (!l) return
+        l.style.transform = `translateY(${lerp(i === 0 ? 130 : 112, 0, seg(p, 0.86 + i * 0.025, 0.94 + i * 0.025))}%)`
+      })
+      const cb = seg(p, 0.92, 0.99)
+      if (bCtaRef.current) {
+        bCtaRef.current.style.opacity = String(cb)
+        bCtaRef.current.style.transform = `translateY(${lerp(18, 0, cb)}px)`
+      }
+      if (railFillRef.current) railFillRef.current.style.transform = `scaleY(${p})`
+      nodeRefs.current.forEach((n, i) => {
+        if (!n) return
+        const on = p >= RAIL_THRESHOLDS[i]
+        n.style.opacity = on ? '1' : '.38'
+        const dot = n.firstElementChild
+        if (dot) dot.style.background = on ? '#146C3C' : 'transparent'
+      })
+    },
+  })
+
+  const addA = (el) => { if (el && !aLineRefs.current.includes(el)) aLineRefs.current.push(el) }
+  const addB = (el) => { if (el && !bLineRefs.current.includes(el)) bLineRefs.current.push(el) }
+  const addBub = (el) => { if (el && !bubRefs.current.includes(el)) bubRefs.current.push(el) }
+  const addNode = (el) => { if (el && !nodeRefs.current.includes(el)) nodeRefs.current.push(el) }
 
   return (
-    <section
-      id="hero"
-      ref={sectionRef}
-      aria-labelledby="hero-heading"
-      className="relative pt-28 pb-0 overflow-hidden bg-[#09090B]"
-    >
-      {/* Dot grid texture — drifts slowly on scroll for depth */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: 'radial-gradient(circle, #27272A 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-          y: dotGridY,
-        }}
-        aria-hidden="true"
-      />
-      {/* Amber top glow — recedes as you scroll past */}
-      <motion.div
-        className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none"
-        style={{
-          width: '900px',
-          height: '500px',
-          background: 'radial-gradient(ellipse at center top, rgba(245,158,11,0.09) 0%, transparent 68%)',
-          y: glowY,
-          opacity: glowOpacity,
-        }}
-        aria-hidden="true"
-      />
+    <header id="top" className="border-b border-ink">
+      <div ref={trackRef} className="relative h-[150vh] sm:h-[400vh]">
+        <div
+          ref={stageRef}
+          className="sticky top-16 h-[calc(100vh-64px)] overflow-clip bg-paper"
+        >
+          {/* meta row */}
+          <div className="absolute inset-x-4 top-[22px] z-[7] flex justify-between font-mono text-[11px] tracking-[0.14em] text-mutedink sm:inset-x-8">
+            <span>№ 1 BILLING APP FOR LOCAL BUSINESSES</span>
+            <span ref={clockRef} className="hidden sm:inline">08:59 — OPENING THE SHUTTER</span>
+          </div>
 
-      {/* 3D ambient scene — sits behind the copy, reacts to scroll */}
-      <div className="absolute inset-0 pointer-events-none opacity-60 mix-blend-screen" aria-hidden="true">
-        <HeroScene scrollRef={sceneScrollRef} />
+          {/* timeline rail */}
+          <div className="absolute left-4 top-1/2 z-[7] hidden h-56 -translate-y-1/2 gap-4 lg:flex sm:left-8">
+            <div className="relative w-[2px] bg-ink/[.16]">
+              <span
+                ref={railFillRef}
+                className="absolute inset-0 origin-top bg-green"
+                style={{ transform: 'scaleY(0)', willChange: 'transform' }}
+              />
+            </div>
+            <div className="grid content-between">
+              {RAIL_NODES.map((label) => (
+                <div key={label} ref={addNode} className="flex items-center gap-2.5 opacity-[.38] transition-opacity duration-300">
+                  <span className="h-[9px] w-[9px] border border-ink transition-colors duration-300" />
+                  <span className="font-mono text-[10px] tracking-[0.14em]">{label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ACT A — the problem */}
+          <div ref={aLayerRef} className="pointer-events-none absolute inset-0 z-[5] grid place-content-center text-center">
+            <h1 className="m-0 font-display text-[clamp(44px,5.6vw,92px)] font-extrabold uppercase leading-[.92] tracking-[-0.018em] [font-stretch:68%]">
+              <span className="block overflow-hidden py-[.05em] leading-none">
+                <span ref={addA} className="block leading-none" style={{ willChange: 'transform' }}>
+                  Local businesses
+                </span>
+              </span>
+              <span className="block overflow-hidden py-[.05em] leading-none">
+                <span ref={addA} className="block leading-none" style={{ willChange: 'transform' }}>
+                  lose <span className="text-rust">20–40%</span> of
+                </span>
+              </span>
+              <span className="block overflow-hidden py-[.05em] leading-none">
+                <span ref={addA} className="block leading-none" style={{ willChange: 'transform' }}>
+                  customers a year.
+                </span>
+              </span>
+            </h1>
+            <p className="mt-[34px] font-mono text-[13px] tracking-[0.18em] text-mutedink">
+              THEY DON&apos;T LEAVE. THEY FORGET. KEEP SCROLLING ↓
+            </p>
+          </div>
+
+          {/* ACT B — the machine assembling */}
+          <div
+            ref={machineRef}
+            className="absolute inset-0 z-[4] grid place-items-center opacity-0"
+            style={{ willChange: 'transform, opacity' }}
+          >
+            <div className="relative flex origin-center scale-[.7] flex-col items-center gap-5 min-[420px]:scale-[.85] sm:scale-100 sm:flex-row sm:items-center sm:gap-0">
+              <div className="w-[292px]">
+                <div className="relative z-[3] flex items-center justify-between bg-ink px-4 py-2.5 font-mono text-[11px] tracking-[0.14em] text-paper">
+                  <span>EASIBILL PRINTER</span>
+                  <span className="animate-eb-blink text-green-bright motion-reduce:animate-none">● LIVE</span>
+                </div>
+                <div className="relative h-[396px] overflow-hidden">
+                  <div
+                    ref={paperRef}
+                    className="mx-auto w-[272px] bg-paper-white px-[22px] pb-6 pt-5 font-mono text-xs text-ink shadow-[0_18px_40px_rgba(23,21,15,.18)]"
+                    style={{
+                      transform: 'translateY(-93%)',
+                      willChange: 'transform',
+                      clipPath:
+                        'polygon(0 0, 100% 0, 100% calc(100% - 8px), 96% 100%, 92% calc(100% - 8px), 88% 100%, 84% calc(100% - 8px), 80% 100%, 76% calc(100% - 8px), 72% 100%, 68% calc(100% - 8px), 64% 100%, 60% calc(100% - 8px), 56% 100%, 52% calc(100% - 8px), 48% 100%, 44% calc(100% - 8px), 40% 100%, 36% calc(100% - 8px), 32% 100%, 28% calc(100% - 8px), 24% 100%, 20% calc(100% - 8px), 16% 100%, 12% calc(100% - 8px), 8% 100%, 4% calc(100% - 8px), 0 100%)',
+                    }}
+                  >
+                    <div className="text-center text-[13px] font-semibold tracking-[0.2em]">VERMA MEDICAL</div>
+                    <div className="mt-1 text-center text-mutedink">INVOICE #2406-0047</div>
+                    <div className="my-3 border-t border-dashed border-ink opacity-40" />
+                    <div className="flex justify-between"><span>REORDER PACK ×1</span><span>₹450</span></div>
+                    <div className="mt-1.5 flex justify-between"><span>WELLNESS BUNDLE ×1</span><span>₹640</span></div>
+                    <div className="my-3 border-t border-dashed border-ink opacity-40" />
+                    <div className="flex justify-between text-sm font-semibold"><span>TOTAL</span><span>₹1,090</span></div>
+                    <div className="mt-1 text-mutedink">INCL. TAX · GST-READY ✓</div>
+                    <div
+                      className="my-3.5 h-8"
+                      style={{
+                        background: 'repeating-linear-gradient(90deg, #17150F 0 2px, transparent 2px 5px, #17150F 5px 6px, transparent 6px 10px)',
+                      }}
+                    />
+                    <div className="text-center font-semibold tracking-[0.14em] text-green">LOGGED 18:32 ✓</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative hidden w-[168px] sm:block">
+                <div ref={wireRef} className="origin-left border-t-2 border-dashed border-ink" style={{ transform: 'scaleX(0)', willChange: 'transform' }} />
+                <div
+                  ref={packetRef}
+                  className="absolute left-0 top-1/2 whitespace-nowrap border border-ink bg-paper-white px-2.5 py-1.5 font-mono text-[10px] tracking-[0.1em] shadow-[3px_3px_0_#17150F]"
+                  style={{ transform: 'translate(-10px, -50%)', opacity: 0, willChange: 'transform, opacity' }}
+                >
+                  ▤ ₹1,090 · PDF
+                </div>
+              </div>
+
+              <div
+                ref={phoneRef}
+                className="w-[286px] border border-ink bg-paper-warm opacity-0 shadow-[8px_8px_0_#17150F]"
+                style={{ willChange: 'transform, opacity' }}
+              >
+                <div className="flex items-center gap-2.5 bg-green px-3.5 py-2.5 text-paper">
+                  <span className="grid h-7 w-7 place-items-center rounded-full bg-paper text-xs font-extrabold text-green">RK</span>
+                  <div>
+                    <div className="text-[13px] font-semibold">Ramesh Kumar</div>
+                    <div className="font-mono text-[9px] tracking-[0.1em] opacity-75">VIA YOUR WHATSAPP № — AUTOMATED</div>
+                  </div>
+                </div>
+                <div
+                  className="flex min-h-[300px] flex-col gap-2.5 px-3.5 pb-[18px] pt-4"
+                  style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent 0 26px, rgba(23,21,15,.035) 26px 27px)' }}
+                >
+                  <div
+                    ref={addBub}
+                    className="self-end max-w-[88%] border border-green/35 bg-green-pale px-3 py-2.5 text-[13px]"
+                    style={{ opacity: 0, willChange: 'transform, opacity' }}
+                  >
+                    <div className="flex items-center gap-2.5 border border-ink/15 bg-paper-white px-2.5 py-2">
+                      <span className="font-mono text-base">▤</span>
+                      <div>
+                        <div className="text-[12.5px] font-semibold">Invoice #2406-0047.pdf</div>
+                        <div className="font-mono text-[10px] text-mutedink">₹1,090 · TAX INCLUDED</div>
+                      </div>
+                    </div>
+                    <div ref={tickRef} className="mt-1.5 text-right font-mono text-[10px] text-mutedink">✓ SENT 18:32</div>
+                  </div>
+                  <div
+                    ref={addBub}
+                    className="self-start max-w-[78%] border border-ink/20 bg-paper-white px-3 py-2.5 text-[13px] leading-[1.45]"
+                    style={{ opacity: 0, willChange: 'transform, opacity' }}
+                  >
+                    Mil gaya 🙏 See you next month
+                    <div className="mt-1 text-right font-mono text-[10px] text-mutedink">18:33</div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                ref={stampRef}
+                className="absolute -bottom-[22px] -right-[26px] z-[5] border-2 border-rust bg-paper/[.92] px-[13px] py-[9px] font-mono text-xs tracking-[0.16em] text-rust"
+                style={{ transform: 'rotate(-6deg) scale(2.4)', opacity: 0, willChange: 'transform, opacity' }}
+              >
+                NEXT REMINDER: 17 AUG — AUTO ✓
+              </div>
+            </div>
+          </div>
+
+          {/* ACT C — the fix */}
+          <div className="pointer-events-none absolute inset-0 z-[6] grid place-content-center text-center">
+            <div className="overflow-hidden py-0.5 leading-none">
+              <span
+                ref={addB}
+                className="inline-block font-mono text-xs tracking-[0.2em] text-rust"
+                style={{ transform: 'translateY(130%)', willChange: 'transform' }}
+              >
+                THE LOOP RUNS ITSELF — EVERY CUSTOMER, EVERY DAY
+              </span>
+            </div>
+            <h2 className="m-0 mt-[18px] font-display text-[clamp(44px,5.6vw,92px)] font-extrabold uppercase leading-[.92] tracking-[-0.018em] [font-stretch:68%]">
+              <span className="block overflow-hidden leading-none">
+                <span ref={addB} className="block leading-none" style={{ transform: 'translateY(112%)', willChange: 'transform' }}>
+                  EasiBill
+                </span>
+              </span>
+              <span className="block overflow-hidden leading-none">
+                <span
+                  ref={addB}
+                  className="block font-serif text-[.86em] italic font-medium normal-case tracking-normal leading-none text-green"
+                  style={{ transform: 'translateY(112%)', willChange: 'transform' }}
+                >
+                  stops that.
+                </span>
+              </span>
+            </h2>
+            <div
+              ref={bCtaRef}
+              className="pointer-events-auto mt-[42px] flex flex-wrap justify-center gap-3"
+              style={{ opacity: 0, willChange: 'transform, opacity' }}
+            >
+              <a
+                href="https://dashboard.easibill.com/"
+                onClick={() => posthog?.capture('hero_cta_clicked', { cta: 'start_free', location: 'hero' })}
+                className="inline-block bg-green px-[30px] py-[18px] font-mono text-[13px] tracking-[0.1em] text-paper transition-transform hover:-translate-y-0.5 hover:bg-ink"
+              >
+                START FREE — NO CARD
+              </a>
+              <a
+                href="#day"
+                onClick={() => posthog?.capture('hero_cta_clicked', { cta: 'see_a_day', location: 'hero' })}
+                className="inline-block border border-ink px-6 py-[18px] font-mono text-[13px] tracking-[0.1em] text-ink transition-colors hover:bg-ink hover:text-paper"
+              >
+                SEE THE FULL DAY ↓
+              </a>
+            </div>
+          </div>
+
+          {/* bottom hint / progress readout */}
+          <div ref={hintRef} className="absolute inset-x-0 bottom-[22px] z-[7] flex justify-center gap-5 font-mono text-[11px] tracking-[0.16em] text-mutedink">
+            <span>SCROLL — THE DAY PLAYS OUT ↓</span>
+            <span ref={progRef} className="text-green">00%</span>
+          </div>
+        </div>
       </div>
 
-      {/* Copy — fades out as the scene takes over deeper in the scroll */}
-      <motion.div style={{ opacity: copyOpacity }} className="relative max-w-3xl mx-auto px-6 text-center mb-12">
-        {/* Badge */}
-        <motion.div
-          variants={scaleIn}
-          initial="hidden"
-          animate="visible"
-          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 mb-8"
-        >
-          <span className="relative flex h-2 w-2" aria-hidden="true">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500" />
-          </span>
-          <span className="text-xs font-semibold text-amber-400 uppercase tracking-wide">
-            #1 billing app for local businesses
-          </span>
-        </motion.div>
-
-        {/* Headline — word by word */}
-        <motion.h1
-          id="hero-heading"
-          variants={stagger}
-          initial="hidden"
-          animate="visible"
-          className="text-5xl sm:text-[3.5rem] font-bold text-white leading-[1.08] tracking-tight mb-5"
-        >
-          {H1_WORDS_1.map((word, i) => (
-            <motion.span
-              key={i}
-              variants={wordVariant}
-              className="inline-block mr-[0.22em]"
-            >
-              {word}
-            </motion.span>
-          ))}
-          <br className="hidden sm:block" />
-          {H1_WORDS_2.map((word, i) => (
-            <motion.span
-              key={i}
-              variants={wordVariant}
-              className="inline-block mr-[0.22em] text-amber-400"
-            >
-              {word}
-            </motion.span>
-          ))}
-        </motion.h1>
-
-        {/* Sub */}
-        <motion.p
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 0.5 }}
-          className="text-lg text-zinc-400 leading-relaxed mb-9"
-        >
-          EasiBill is a WhatsApp-first CRM for local businesses. Log a purchase and EasiBill automatically sends a follow-up reminder on the right day — from your own WhatsApp number, without you touching anything.
-        </motion.p>
-
-        {/* CTAs */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 0.62 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-9"
-        >
-          <a
-            href="https://dashboard.easibill.com/"
-            onClick={() => posthog?.capture('hero_cta_clicked', { cta: 'start_free', location: 'hero' })}
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-amber-500 text-zinc-950 font-semibold hover:bg-amber-400 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900 text-base min-h-[48px]"
-          >
-            Start free — no card needed
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </a>
-          <a
-            href="#how-it-works"
-            onClick={() => posthog?.capture('hero_cta_clicked', { cta: 'how_it_works', location: 'hero' })}
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-zinc-700 text-zinc-200 font-semibold hover:bg-zinc-800 hover:border-zinc-600 transition-colors duration-150 text-base min-h-[48px]"
-          >
-            See how it works →
-          </a>
-        </motion.div>
-
-        {/* Proof points */}
-        <motion.ul
-          variants={staggerFast}
-          initial="hidden"
-          animate="visible"
-          transition={{ delayChildren: 0.75 }}
-          className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2"
-          role="list"
-        >
-          {proofPoints.map((point) => (
-            <motion.li
-              key={point}
-              variants={fadeIn}
-              className="flex items-center gap-1.5 text-sm text-zinc-500"
-            >
-              <CheckCircle className="h-4 w-4 text-amber-500 shrink-0" aria-hidden="true" />
-              {point}
-            </motion.li>
-          ))}
-        </motion.ul>
-      </motion.div>
-
-      {/* App mockup — springs up on load, then drifts on scroll for parallax depth */}
-      <motion.div
-        initial={{ opacity: 0, y: 64, scale: 0.96 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.9, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        className="relative max-w-6xl mx-auto px-6"
-      >
-        <motion.div style={{ y: mockupY }} className="relative">
-          {/* Glow under mockup */}
-          <div
-            className="absolute -inset-x-8 -bottom-8 h-40 pointer-events-none"
-            style={{
-              background: 'radial-gradient(ellipse at center bottom, rgba(245,158,11,0.07) 0%, transparent 70%)',
-            }}
-            aria-hidden="true"
-          />
-          <AppMockup />
-        </motion.div>
-      </motion.div>
-    </section>
+      <Ticker />
+    </header>
   )
 }

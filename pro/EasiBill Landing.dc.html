@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Newsreader:ital,opsz,wght@1,6..72,400..600&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #F2EDE3; font-family: 'Archivo', sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #146C3C; text-decoration: none; }
+  a:hover { color: #17150F; }
+  ::selection { background: #146C3C; color: #F2EDE3; }
+  @keyframes ebTicker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes ebPrint { 0% { transform: translateY(-94%); } 6% { transform: translateY(-94%); } 42% { transform: translateY(0); } 88% { transform: translateY(0); } 94% { opacity: 1; } 97% { opacity: 0; transform: translateY(0); } 98% { opacity: 0; transform: translateY(-94%); } 100% { opacity: 1; transform: translateY(-94%); } }
+  @keyframes ebBubble { 0%, 48% { opacity: 0; transform: translateY(14px) scale(.92); } 55%, 90% { opacity: 1; transform: none; } 95%, 100% { opacity: 0; } }
+  @keyframes ebStamp { 0%, 62% { opacity: 0; transform: rotate(-7deg) scale(1.5); } 68%, 90% { opacity: 1; transform: rotate(-7deg) scale(1); } 95%, 100% { opacity: 0; } }
+  @keyframes ebBlink { 0%, 100% { opacity: 1; } 50% { opacity: .2; } }
+</style>
+</helmet>
+<div style="background: #F2EDE3; color: #17150F; overflow-x: clip;">
+
+  <!-- NAV -->
+  <nav style="position: sticky; top: 0; z-index: 50; background: #F2EDE3; border-bottom: 1px solid #17150F;">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 0 32px; height: 64px; display: flex; align-items: center; gap: 32px;">
+      <a href="#top" style="font-family: 'Archivo', sans-serif; font-stretch: 118%; font-weight: 900; font-size: 21px; letter-spacing: .01em; color: #17150F;">EASIBILL<span style="color: #146C3C;">*</span></a>
+      <div style="display: flex; gap: 26px; margin-left: auto; align-items: baseline; font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: .1em;">
+        <a href="#toolkit" style="color: #17150F;" style-hover="color: #146C3C;">TOOLKIT</a>
+        <a href="#day" style="color: #17150F;" style-hover="color: #146C3C;">HOW IT WORKS</a>
+        <a href="#proof" style="color: #17150F;" style-hover="color: #146C3C;">PROOF</a>
+        <a href="#rates" style="color: #17150F;" style-hover="color: #146C3C;">RATES</a>
+        <a href="#faq" style="color: #17150F;" style-hover="color: #146C3C;">FAQ</a>
+      </div>
+      <a href="https://dashboard.easibill.com/" style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: .1em; background: #17150F; color: #F2EDE3; padding: 12px 20px;" style-hover="background: #146C3C; color: #F2EDE3;">START FREE →</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="top" style="border-bottom: 1px solid #17150F;">
+    <div data-hero-track style="height: 400vh; position: relative;">
+      <div data-hero-stage style="position: sticky; top: 64px; height: calc(100vh - 64px); overflow: clip; background: #F2EDE3;">
+        <div style="position: absolute; top: 22px; left: 32px; right: 32px; display: flex; justify-content: space-between; font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .14em; color: #6E6753; z-index: 7;">
+          <span>№ 1 BILLING APP FOR LOCAL BUSINESSES</span>
+          <span data-clock>08:59 — OPENING THE SHUTTER</span>
+        </div>
+        <!-- TIMELINE RAIL -->
+        <div style="position: absolute; left: 32px; top: 50%; transform: translateY(-50%); z-index: 7; display: flex; gap: 16px; height: 224px;">
+          <div style="width: 2px; background: rgba(23,21,15,.16); position: relative;">
+            <span data-rail-fill style="position: absolute; inset: 0; background: #146C3C; transform: scaleY(0); transform-origin: top;"></span>
+          </div>
+          <div style="display: grid; align-content: space-between;">
+            <div data-rail-node style="opacity: .38; display: flex; align-items: center; gap: 10px; transition: opacity .3s;"><span style="width: 9px; height: 9px; border: 1px solid #17150F; transition: background .3s;"></span><span style="font-family: 'Spline Sans Mono', monospace; font-size: 10px; letter-spacing: .14em;">01 — LOG THE SALE</span></div>
+            <div data-rail-node style="opacity: .38; display: flex; align-items: center; gap: 10px; transition: opacity .3s;"><span style="width: 9px; height: 9px; border: 1px solid #17150F; transition: background .3s;"></span><span style="font-family: 'Spline Sans Mono', monospace; font-size: 10px; letter-spacing: .14em;">02 — BILL PRINTS</span></div>
+            <div data-rail-node style="opacity: .38; display: flex; align-items: center; gap: 10px; transition: opacity .3s;"><span style="width: 9px; height: 9px; border: 1px solid #17150F; transition: background .3s;"></span><span style="font-family: 'Spline Sans Mono', monospace; font-size: 10px; letter-spacing: .14em;">03 — SENT ON WHATSAPP</span></div>
+            <div data-rail-node style="opacity: .38; display: flex; align-items: center; gap: 10px; transition: opacity .3s;"><span style="width: 9px; height: 9px; border: 1px solid #17150F; transition: background .3s;"></span><span style="font-family: 'Spline Sans Mono', monospace; font-size: 10px; letter-spacing: .14em;">04 — REMINDER BOOKED</span></div>
+          </div>
+        </div>
+        <!-- ACT A: THE PROBLEM -->
+        <div data-act-a style="position: absolute; inset: 0; display: grid; place-content: center; text-align: center; z-index: 5; pointer-events: none;">
+          <h1 style="font-stretch: 68%; font-weight: 800; font-size: clamp(56px, 8.4vw, 148px); line-height: .92; letter-spacing: -.018em; margin: 0; text-transform: uppercase;">
+            <span style="display: block; overflow: hidden; padding: .05em 0;"><span data-a-line style="display: block; will-change: transform;">Local businesses</span></span>
+            <span style="display: block; overflow: hidden; padding: .05em 0;"><span data-a-line style="display: block; will-change: transform;">lose <span style="color: #C4441C;">20–40%</span> of</span></span>
+            <span style="display: block; overflow: hidden; padding: .05em 0;"><span data-a-line style="display: block; will-change: transform;">customers a year.</span></span>
+          </h1>
+          <p style="font-family: 'Spline Sans Mono', monospace; font-size: 13px; letter-spacing: .18em; color: #6E6753; margin: 34px 0 0;">THEY DON'T LEAVE. THEY FORGET. KEEP SCROLLING ↓</p>
+        </div>
+        <!-- ACT B: THE MACHINE -->
+        <div data-machine style="position: absolute; inset: 0; display: grid; place-items: center; z-index: 4; opacity: 0; will-change: transform, opacity;">
+          <div style="display: flex; align-items: center; position: relative;">
+            <div style="width: 292px;">
+              <div style="background: #17150F; color: #F2EDE3; font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .14em; padding: 10px 16px; display: flex; justify-content: space-between; position: relative; z-index: 3;">
+                <span>EASIBILL PRINTER</span><span style="color: #4ED397; animation: ebBlink 1.4s step-end infinite; animation-play-state: {{ motion }};">● LIVE</span>
+              </div>
+              <div style="height: 396px; overflow: hidden; position: relative;">
+                <div data-paper style="width: 272px; margin: 0 auto; background: #FDFBF5; box-shadow: 0 18px 40px rgba(23,21,15,.18); font-family: 'Spline Sans Mono', monospace; font-size: 12px; color: #17150F; padding: 20px 22px 24px; transform: translateY(-93%); will-change: transform; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), 96% 100%, 92% calc(100% - 8px), 88% 100%, 84% calc(100% - 8px), 80% 100%, 76% calc(100% - 8px), 72% 100%, 68% calc(100% - 8px), 64% 100%, 60% calc(100% - 8px), 56% 100%, 52% calc(100% - 8px), 48% 100%, 44% calc(100% - 8px), 40% 100%, 36% calc(100% - 8px), 32% 100%, 28% calc(100% - 8px), 24% 100%, 20% calc(100% - 8px), 16% 100%, 12% calc(100% - 8px), 8% 100%, 4% calc(100% - 8px), 0 100%);">
+                  <div style="text-align: center; font-weight: 600; letter-spacing: .2em; font-size: 13px;">VERMA MEDICAL</div>
+                  <div style="text-align: center; color: #6E6753; margin-top: 4px;">INVOICE #2406-0047</div>
+                  <div style="border-top: 1px dashed #17150F; margin: 12px 0; opacity: .4;"></div>
+                  <div style="display: flex; justify-content: space-between;"><span>REORDER PACK ×1</span><span>₹450</span></div>
+                  <div style="display: flex; justify-content: space-between; margin-top: 6px;"><span>WELLNESS BUNDLE ×1</span><span>₹640</span></div>
+                  <div style="border-top: 1px dashed #17150F; margin: 12px 0; opacity: .4;"></div>
+                  <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 14px;"><span>TOTAL</span><span>₹1,090</span></div>
+                  <div style="color: #6E6753; margin-top: 4px;">INCL. TAX · GST-READY ✓</div>
+                  <div style="height: 32px; margin: 14px 0 8px; background: repeating-linear-gradient(90deg, #17150F 0 2px, transparent 2px 5px, #17150F 5px 6px, transparent 6px 10px);"></div>
+                  <div style="text-align: center; letter-spacing: .14em; color: #146C3C; font-weight: 600;">LOGGED 18:32 ✓</div>
+                </div>
+              </div>
+            </div>
+            <div style="width: 168px; position: relative;">
+              <div data-wire style="border-top: 2px dashed #17150F; transform: scaleX(0); transform-origin: left; will-change: transform;"></div>
+              <div data-packet style="position: absolute; left: 0; top: 50%; transform: translate(-10px, -50%); opacity: 0; background: #FDFBF5; border: 1px solid #17150F; box-shadow: 3px 3px 0 #17150F; padding: 6px 10px; font-family: 'Spline Sans Mono', monospace; font-size: 10px; letter-spacing: .1em; white-space: nowrap; will-change: transform, opacity;">▤ ₹1,090 · PDF</div>
+            </div>
+            <div data-phone style="width: 286px; opacity: 0; border: 1px solid #17150F; box-shadow: 8px 8px 0 #17150F; background: #E5DDCB; will-change: transform, opacity;">
+              <div style="background: #146C3C; color: #F2EDE3; padding: 10px 14px; display: flex; align-items: center; gap: 10px;">
+                <span style="width: 28px; height: 28px; border-radius: 50%; background: #F2EDE3; color: #146C3C; display: grid; place-items: center; font-weight: 800; font-size: 12px;">RK</span>
+                <div>
+                  <div style="font-weight: 600; font-size: 13px;">Ramesh Kumar</div>
+                  <div style="font-family: 'Spline Sans Mono', monospace; font-size: 9px; letter-spacing: .1em; opacity: .75;">VIA YOUR WHATSAPP № — AUTOMATED</div>
+                </div>
+              </div>
+              <div style="padding: 16px 14px 18px; min-height: 300px; display: flex; flex-direction: column; gap: 10px; background: repeating-linear-gradient(0deg, transparent 0 26px, rgba(23,21,15,.035) 26px 27px), #E5DDCB;">
+                <div data-bub style="opacity: 0; align-self: flex-end; max-width: 88%; background: #D3F2DC; border: 1px solid rgba(20,108,60,.35); padding: 10px 12px; font-size: 13px; will-change: transform, opacity;">
+                  <div style="display: flex; gap: 10px; align-items: center; background: #FDFBF5; border: 1px solid rgba(23,21,15,.15); padding: 8px 10px;">
+                    <span style="font-family: 'Spline Sans Mono', monospace; font-size: 16px;">▤</span>
+                    <div><div style="font-weight: 600; font-size: 12.5px;">Invoice #2406-0047.pdf</div><div style="font-family: 'Spline Sans Mono', monospace; font-size: 10px; color: #6E6753;">₹1,090 · TAX INCLUDED</div></div>
+                  </div>
+                  <div data-tick style="font-family: 'Spline Sans Mono', monospace; font-size: 10px; color: #6E6753; text-align: right; margin-top: 6px;">✓ SENT</div>
+                </div>
+                <div data-bub style="opacity: 0; align-self: flex-start; max-width: 78%; background: #FDFBF5; border: 1px solid rgba(23,21,15,.2); padding: 10px 12px; font-size: 13px; line-height: 1.45; will-change: transform, opacity;">Mil gaya 🙏 See you next month<div style="font-family: 'Spline Sans Mono', monospace; font-size: 10px; color: #6E6753; text-align: right; margin-top: 5px;">18:33</div></div>
+              </div>
+            </div>
+            <div data-stamp style="position: absolute; right: -26px; bottom: -22px; z-index: 5; border: 2px solid #C4441C; color: #C4441C; font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: .16em; padding: 9px 13px; background: rgba(242,237,227,.92); transform: rotate(-6deg) scale(2.4); opacity: 0; will-change: transform, opacity;">NEXT REMINDER: 17 AUG — AUTO ✓</div>
+          </div>
+        </div>
+        <!-- ACT C: THE FIX -->
+        <div data-act-b style="position: absolute; inset: 0; display: grid; place-content: center; text-align: center; z-index: 6; pointer-events: none;">
+          <div style="overflow: hidden; padding: 2px 0;"><span data-b-line style="display: inline-block; transform: translateY(130%); font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: .2em; color: #C4441C; will-change: transform;">THE LOOP RUNS ITSELF — EVERY CUSTOMER, EVERY DAY</span></div>
+          <h2 style="font-stretch: 68%; font-weight: 800; font-size: clamp(64px, 9vw, 160px); line-height: .92; margin: 18px 0 0; text-transform: uppercase; letter-spacing: -.018em;">
+            <span style="display: block; overflow: hidden; padding: .05em 0;"><span data-b-line style="display: block; transform: translateY(112%); will-change: transform;">EasiBill</span></span>
+            <span style="display: block; overflow: hidden; padding: .05em 0;"><span data-b-line style="display: block; transform: translateY(112%); font-family: 'Newsreader', serif; font-style: italic; font-weight: 500; text-transform: none; letter-spacing: 0; color: #146C3C; will-change: transform;">stops that.</span></span>
+          </h2>
+          <div data-b-cta style="opacity: 0; margin-top: 42px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; pointer-events: auto; will-change: transform, opacity;">
+            <a href="https://dashboard.easibill.com/" style="font-family: 'Spline Sans Mono', monospace; font-size: 13px; letter-spacing: .1em; background: #146C3C; color: #F2EDE3; padding: 18px 30px; display: inline-block; transition: transform .2s;" style-hover="background: #17150F; color: #F2EDE3; transform: translateY(-2px);">START FREE — NO CARD</a>
+            <a href="#day" style="font-family: 'Spline Sans Mono', monospace; font-size: 13px; letter-spacing: .1em; border: 1px solid #17150F; color: #17150F; padding: 18px 24px; display: inline-block;" style-hover="background: #17150F; color: #F2EDE3;">SEE THE FULL DAY ↓</a>
+          </div>
+        </div>
+        <div data-hint style="position: absolute; bottom: 22px; left: 0; right: 0; display: flex; justify-content: center; gap: 20px; font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .16em; color: #6E6753; z-index: 7;">
+          <span>SCROLL — THE DAY PLAYS OUT ↓</span><span data-prog style="color: #146C3C;">00%</span>
+        </div>
+      </div>
+    </div>
+    <!-- TICKER -->
+    <div style="border-top: 1px solid #17150F; overflow: hidden; background: #E9E2D2; display: {{ tickerDisplay }};">
+      <div style="display: flex; width: max-content; animation: ebTicker 36s linear infinite; animation-play-state: {{ motion }}; font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: .12em; padding: 11px 0; color: #3E3A2E; white-space: nowrap;">
+        <span style="padding: 0 18px;">BILL #2406-0047 SENT — RAMESH K. ✓✓</span><span style="color: #146C3C;">//</span>
+        <span style="padding: 0 18px;">REMINDER FIRED 09:00 — SUNITA G.</span><span style="color: #146C3C;">//</span>
+        <span style="padding: 0 18px;">₹1,240 COLLECTED — VERMA MEDICAL</span><span style="color: #146C3C;">//</span>
+        <span style="padding: 0 18px;">FOLLOW-UP BOOKED — 28 DAYS</span><span style="color: #146C3C;">//</span>
+        <span style="padding: 0 18px;">CUSTOMER RECOVERED — MOHAN D.</span><span style="color: #146C3C;">//</span>
+        <span style="padding: 0 18px;">BROADCAST 234/300 DELIVERED</span><span style="color: #146C3C;">//</span>
+        <span style="padding: 0 18px;">BILL #2406-0047 SENT — RAMESH K. ✓✓</span><span style="color: #146C3C;">//</span>
+        <span style="padding: 0 18px;">REMINDER FIRED 09:00 — SUNITA G.</span><span style="color: #146C3C;">//</span>
+        <span style="padding: 0 18px;">₹1,240 COLLECTED — VERMA MEDICAL</span><span style="color: #146C3C;">//</span>
+        <span style="padding: 0 18px;">FOLLOW-UP BOOKED — 28 DAYS</span><span style="color: #146C3C;">//</span>
+        <span style="padding: 0 18px;">CUSTOMER RECOVERED — MOHAN D.</span><span style="color: #146C3C;">//</span>
+        <span style="padding: 0 18px;">BROADCAST 234/300 DELIVERED</span><span style="color: #146C3C;">//</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STATS LEDGER ROW -->
+  <div style="border-bottom: 1px solid #17150F;">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: repeat(4, 1fr);">
+      <div data-reveal style="padding: 30px 28px 30px 0; border-right: 1px solid rgba(23,21,15,.25);">
+        <div style="font-stretch: 72%; font-weight: 800; font-size: 52px; line-height: 1;"><span data-count="2400" data-suffix="+">2,400+</span></div>
+        <div style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #6E6753; margin-top: 10px;">LOCAL BUSINESSES ON EASIBILL</div>
+      </div>
+      <div data-reveal data-reveal-delay="80" style="padding: 30px 28px; border-right: 1px solid rgba(23,21,15,.25);">
+        <div style="font-stretch: 72%; font-weight: 800; font-size: 52px; line-height: 1;"><span data-count="18" data-suffix="M+">18M+</span></div>
+        <div style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #6E6753; margin-top: 10px;">BILLS SENT VIA WHATSAPP</div>
+      </div>
+      <div data-reveal data-reveal-delay="160" style="padding: 30px 28px; border-right: 1px solid rgba(23,21,15,.25);">
+        <div style="font-stretch: 72%; font-weight: 800; font-size: 52px; line-height: 1; color: #146C3C;"><span data-count="32" data-prefix="+" data-suffix="%">+32%</span></div>
+        <div style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #6E6753; margin-top: 10px;">AVG. INCREASE IN REPEAT CUSTOMERS</div>
+      </div>
+      <div data-reveal data-reveal-delay="240" style="padding: 30px 0 30px 28px;">
+        <div style="font-stretch: 72%; font-weight: 800; font-size: 52px; line-height: 1;">₹0</div>
+        <div style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #6E6753; margin-top: 10px;">SETUP COST · FREE TO START</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 01 THE LEAK -->
+  <section style="background: #17150F; color: #F2EDE3;">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 88px 32px 96px;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(242,237,227,.25); padding-bottom: 18px; font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: .14em; color: #9A927C;">
+        <span>01 — THE LEAK</span><span>WHAT MANUAL BILLING ACTUALLY COSTS</span>
+      </div>
+      <h2 data-lines style="font-stretch: 70%; font-weight: 800; font-size: clamp(38px, 4.6vw, 74px); line-height: .96; text-transform: uppercase; letter-spacing: -.01em; margin: 42px 0 0; max-width: 900px;">
+        <span style="display: block; overflow: hidden;"><span data-line style="display: block;">Manual billing is costing you</span></span>
+        <span style="display: block; overflow: hidden;"><span data-line style="display: block;">more than you <span style="font-family: 'Newsreader', serif; font-style: italic; font-weight: 500; text-transform: none; color: #C96A3F;">think.</span></span></span>
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 64px; border-top: 1px solid rgba(242,237,227,.25);">
+        <div data-reveal style="padding: 30px 26px 0 0; border-right: 1px solid rgba(242,237,227,.18);">
+          <div style="font-stretch: 68%; font-weight: 800; font-size: 68px; line-height: 1; color: #E4572E;">8 MIN</div>
+          <div style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .12em; margin: 14px 0 10px; color: #9A927C;">PER MANUAL BILL</div>
+          <p style="font-size: 14.5px; line-height: 1.55; color: #C9C2B0; margin: 0;">Hand-written bills slow your queue. Customers leave before they reach the counter.</p>
+        </div>
+        <div data-reveal data-reveal-delay="80" style="padding: 30px 26px 0; border-right: 1px solid rgba(242,237,227,.18);">
+          <div style="font-stretch: 68%; font-weight: 800; font-size: 68px; line-height: 1; color: #E4572E;">6 / 10</div>
+          <div style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .12em; margin: 14px 0 10px; color: #9A927C;">CUSTOMERS NEVER RETURN</div>
+          <p style="font-size: 14.5px; line-height: 1.55; color: #C9C2B0; margin: 0;">Without reminders they forget — and buy from whoever is closest next time.</p>
+        </div>
+        <div data-reveal data-reveal-delay="160" style="padding: 30px 26px 0; border-right: 1px solid rgba(242,237,227,.18);">
+          <div style="font-stretch: 68%; font-weight: 800; font-size: 68px; line-height: 1; color: #E4572E;">₹40K+</div>
+          <div style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .12em; margin: 14px 0 10px; color: #9A927C;">ANNUAL EXPIRED-STOCK LOSS</div>
+          <p style="font-size: 14.5px; line-height: 1.55; color: #C9C2B0; margin: 0;">Perishable stock expires quietly. By the time you notice, the loss is done.</p>
+        </div>
+        <div data-reveal data-reveal-delay="240" style="padding: 30px 0 0 26px;">
+          <div style="font-stretch: 68%; font-weight: 800; font-size: 68px; line-height: 1; color: #E4572E;">2 DAYS</div>
+          <div style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .12em; margin: 14px 0 10px; color: #9A927C;">LOST MONTHLY TO TAX WORK</div>
+          <p style="font-size: 14.5px; line-height: 1.55; color: #C9C2B0; margin: 0;">Compiling tax codes and invoice numbers for your accountant eats a full weekend.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 A DAY — SCROLL STORY -->
+  <section id="day" style="border-bottom: 1px solid #17150F;">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 88px 32px 40px;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #17150F; padding-bottom: 18px; font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: .14em; color: #6E6753;">
+        <span>02 — A DAY WITH EASIBILL</span><span>SCROLL. THE STORY WRITES ITSELF.</span>
+      </div>
+      <h2 data-lines style="font-stretch: 70%; font-weight: 800; font-size: clamp(38px, 4.6vw, 74px); line-height: .96; text-transform: uppercase; letter-spacing: -.01em; margin: 42px 0 24px;">
+        <span style="display: block; overflow: hidden;"><span data-line style="display: block;">One message at the right time.</span></span>
+        <span style="display: block; overflow: hidden;"><span data-line style="display: block; color: #6E6753;">Everything else is <span style="font-family: 'Newsreader', serif; font-style: italic; font-weight: 500; text-transform: none;">noise.</span></span></span>
+      </h2>
+      <div style="display: grid; grid-template-columns: 420px 1fr; gap: 72px; margin-top: 40px;">
+        <!-- STICKY CHAT -->
+        <div style="position: relative;">
+          <div style="position: sticky; top: 104px;">
+            <div style="border: 1px solid #17150F; box-shadow: 8px 8px 0 #17150F; background: #E5DDCB;">
+              <div style="background: #146C3C; color: #F2EDE3; padding: 12px 16px; display: flex; align-items: center; gap: 10px;">
+                <span style="width: 32px; height: 32px; border-radius: 50%; background: #F2EDE3; color: #146C3C; display: grid; place-items: center; font-weight: 800; font-size: 13px; font-stretch: 80%;">RK</span>
+                <div>
+                  <div style="font-weight: 600; font-size: 14px;">Ramesh Kumar</div>
+                  <div style="font-family: 'Spline Sans Mono', monospace; font-size: 10px; letter-spacing: .1em; opacity: .75;">VIA YOUR WHATSAPP № — AUTOMATED</div>
+                </div>
+              </div>
+              <div style="padding: 18px 16px 20px; min-height: 350px; display: flex; flex-direction: column; gap: 10px; background: repeating-linear-gradient(0deg, transparent 0 26px, rgba(23,21,15,.035) 26px 27px), #E5DDCB;">
+                <div data-chat-item="0" style="align-self: center; font-family: 'Spline Sans Mono', monospace; font-size: 10px; letter-spacing: .14em; color: #6E6753; background: rgba(23,21,15,.06); padding: 4px 10px;">TUESDAY — 09:00</div>
+                <div data-chat-item="0" style="align-self: flex-end; max-width: 82%; background: #D3F2DC; border: 1px solid rgba(20,108,60,.35); padding: 10px 12px; font-size: 13.5px; line-height: 1.45;">Namaste Ramesh ji 🙏 Your monthly reorder pack is due. Reply YES and we'll keep it ready at the counter. — Verma Medical<div style="font-family: 'Spline Sans Mono', monospace; font-size: 10px; color: #146C3C; text-align: right; margin-top: 5px;">09:00 ✓✓</div></div>
+                <div data-chat-item="1" style="align-self: flex-start; max-width: 75%; background: #FDFBF5; border: 1px solid rgba(23,21,15,.2); padding: 10px 12px; font-size: 13.5px; line-height: 1.45;">Haan, coming today evening 👍<div style="font-family: 'Spline Sans Mono', monospace; font-size: 10px; color: #6E6753; text-align: right; margin-top: 5px;">09:04</div></div>
+                <div data-chat-item="2" style="align-self: center; font-family: 'Spline Sans Mono', monospace; font-size: 10px; letter-spacing: .14em; color: #6E6753; background: rgba(23,21,15,.06); padding: 4px 10px; margin-top: 6px;">18:32 — AT THE COUNTER</div>
+                <div data-chat-item="2" style="align-self: flex-end; max-width: 82%; background: #D3F2DC; border: 1px solid rgba(20,108,60,.35); padding: 10px 12px; font-size: 13.5px;">
+                  <div style="display: flex; gap: 10px; align-items: center; background: #FDFBF5; border: 1px solid rgba(23,21,15,.15); padding: 8px 10px;">
+                    <span style="font-family: 'Spline Sans Mono', monospace; font-size: 16px;">▤</span>
+                    <div><div style="font-weight: 600; font-size: 12.5px;">Invoice #2406-0047.pdf</div><div style="font-family: 'Spline Sans Mono', monospace; font-size: 10px; color: #6E6753;">₹1,090 · TAX INCLUDED</div></div>
+                  </div>
+                  <div style="font-family: 'Spline Sans Mono', monospace; font-size: 10px; color: #146C3C; text-align: right; margin-top: 6px;">18:32 ✓✓</div>
+                </div>
+                <div data-chat-item="3" style="align-self: center; margin-top: 10px; border: 2px solid #C4441C; color: #C4441C; font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .16em; padding: 7px 12px; transform: rotate(-4deg);">NEXT REMINDER: 17 AUG — AUTO ✓</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- STORY STEPS -->
+        <div>
+          <div data-story-step="0" style="min-height: 62vh; display: flex; flex-direction: column; justify-content: center; border-top: 1px solid rgba(23,21,15,.25); padding: 32px 0;">
+            <div style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: .14em; color: #C4441C;">09:00 — YOU'RE STILL OPENING THE SHUTTER</div>
+            <h3 style="font-stretch: 74%; font-weight: 800; font-size: 40px; text-transform: uppercase; margin: 14px 0 12px; line-height: 1;">The reminder fires. You did nothing.</h3>
+            <p style="font-size: 16px; line-height: 1.6; color: #3E3A2E; max-width: 480px; margin: 0;">28 days ago you logged Ramesh's purchase. EasiBill calculated the follow-up date and sent a personalised message from your own WhatsApp number — at 9 AM sharp.</p>
+          </div>
+          <div data-story-step="1" style="min-height: 62vh; display: flex; flex-direction: column; justify-content: center; border-top: 1px solid rgba(23,21,15,.25); padding: 32px 0;">
+            <div style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: .14em; color: #C4441C;">09:04 — FOUR MINUTES LATER</div>
+            <h3 style="font-stretch: 74%; font-weight: 800; font-size: 40px; text-transform: uppercase; margin: 14px 0 12px; line-height: 1;">He replies. A lost sale, recovered.</h3>
+            <p style="font-size: 16px; line-height: 1.6; color: #3E3A2E; max-width: 480px; margin: 0;">Without the nudge, Ramesh buys from whoever is nearest when he remembers. With it, he's yours. Businesses recover 28–35% of missed follow-ups in month one.</p>
+          </div>
+          <div data-story-step="2" style="min-height: 62vh; display: flex; flex-direction: column; justify-content: center; border-top: 1px solid rgba(23,21,15,.25); padding: 32px 0;">
+            <div style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: .14em; color: #C4441C;">18:32 — AT THE COUNTER</div>
+            <h3 style="font-stretch: 74%; font-weight: 800; font-size: 40px; text-transform: uppercase; margin: 14px 0 12px; line-height: 1;">Bill in 30 seconds, straight to his phone.</h3>
+            <p style="font-size: 16px; line-height: 1.6; color: #3E3A2E; max-width: 480px; margin: 0;">Tap the item, tap the customer, send. Tax-ready PDF delivered on WhatsApp — no paper, no "can you resend the invoice?", no queue.</p>
+          </div>
+          <div data-story-step="3" style="min-height: 62vh; display: flex; flex-direction: column; justify-content: center; border-top: 1px solid rgba(23,21,15,.25); padding: 32px 0;">
+            <div style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: .14em; color: #C4441C;">18:33 — THE LOOP CLOSES</div>
+            <h3 style="font-stretch: 74%; font-weight: 800; font-size: 40px; text-transform: uppercase; margin: 14px 0 12px; line-height: 1;">The next reminder is already booked.</h3>
+            <p style="font-size: 16px; line-height: 1.6; color: #3E3A2E; max-width: 480px; margin: 0 0 24px;">Logging the sale scheduled the next follow-up automatically. This loop runs for every customer, every day — forever.</p>
+            <a href="https://dashboard.easibill.com/" style="font-family: 'Spline Sans Mono', monospace; font-size: 13px; letter-spacing: .1em; background: #17150F; color: #F2EDE3; padding: 16px 26px; align-self: flex-start;" style-hover="background: #146C3C; color: #F2EDE3;">RUN THIS LOOP FOR MY SHOP →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 TOOLKIT — LEDGER TABLE -->
+  <section id="toolkit">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 88px 32px 96px;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #17150F; padding-bottom: 18px; font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: .14em; color: #6E6753;">
+        <span>03 — THE TOOLKIT</span><span>SIX TOOLS. ONE MISSION.</span>
+      </div>
+      <h2 data-lines style="font-stretch: 70%; font-weight: 800; font-size: clamp(38px, 4.6vw, 74px); line-height: .96; text-transform: uppercase; letter-spacing: -.01em; margin: 42px 0 48px;">
+        <span style="display: block; overflow: hidden;"><span data-line style="display: block;">Everything supports</span></span>
+        <span style="display: block; overflow: hidden;"><span data-line style="display: block;">the <span style="font-family: 'Newsreader', serif; font-style: italic; font-weight: 500; text-transform: none; color: #146C3C;">follow-up.</span></span></span>
+      </h2>
+      <div style="border-top: 1px solid #17150F;">
+        <div data-reveal style="display: grid; grid-template-columns: 90px 300px 1fr 180px; gap: 24px; align-items: center; padding: 26px 8px; border-bottom: 1px solid rgba(23,21,15,.3); transition: background .25s, color .25s; cursor: default;" style-hover="background: #17150F; color: #F2EDE3;">
+          <span style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; color: #C4441C;">F/01</span>
+          <span style="font-stretch: 74%; font-weight: 800; font-size: 26px; text-transform: uppercase;">Follow-up Reminders</span>
+          <span style="font-size: 14.5px; line-height: 1.5; opacity: .75;">A WhatsApp reminder on exactly the right day — sent from your number, automatically.</span>
+          <span style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .1em; text-align: right; color: #146C3C;">SENT 09:00 ✓✓</span>
+        </div>
+        <div data-reveal style="display: grid; grid-template-columns: 90px 300px 1fr 180px; gap: 24px; align-items: center; padding: 26px 8px; border-bottom: 1px solid rgba(23,21,15,.3); transition: background .25s, color .25s; cursor: default;" style-hover="background: #17150F; color: #F2EDE3;">
+          <span style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; color: #C4441C;">F/02</span>
+          <span style="font-stretch: 74%; font-weight: 800; font-size: 26px; text-transform: uppercase;">Customer Records</span>
+          <span style="font-size: 14.5px; line-height: 1.5; opacity: .75;">Every customer, item, and interval in one place. CSV import. Search in under a second.</span>
+          <span style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .1em; text-align: right; color: #146C3C;">2,400 ROWS</span>
+        </div>
+        <div data-reveal style="display: grid; grid-template-columns: 90px 300px 1fr 180px; gap: 24px; align-items: center; padding: 26px 8px; border-bottom: 1px solid rgba(23,21,15,.3); transition: background .25s, color .25s; cursor: default;" style-hover="background: #17150F; color: #F2EDE3;">
+          <span style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; color: #C4441C;">F/03</span>
+          <span style="font-stretch: 74%; font-weight: 800; font-size: 26px; text-transform: uppercase;">Daily Queue</span>
+          <span style="font-size: 14.5px; line-height: 1.5; opacity: .75;">Who's due, who's overdue, who came back — sorted by urgency, every morning.</span>
+          <span style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .1em; text-align: right; color: #146C3C;">12 DUE TODAY</span>
+        </div>
+        <div data-reveal style="display: grid; grid-template-columns: 90px 300px 1fr 180px; gap: 24px; align-items: center; padding: 26px 8px; border-bottom: 1px solid rgba(23,21,15,.3); transition: background .25s, color .25s; cursor: default;" style-hover="background: #17150F; color: #F2EDE3;">
+          <span style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; color: #C4441C;">F/04</span>
+          <span style="font-stretch: 74%; font-weight: 800; font-size: 26px; text-transform: uppercase;">Broadcast Campaigns</span>
+          <span style="font-size: 14.5px; line-height: 1.5; opacity: .75;">One message to 300 customers in two minutes. Segmented, personalised, scheduled.</span>
+          <span style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .1em; text-align: right; color: #146C3C;">234/300 ✓</span>
+        </div>
+        <div data-reveal style="display: grid; grid-template-columns: 90px 300px 1fr 180px; gap: 24px; align-items: center; padding: 26px 8px; border-bottom: 1px solid rgba(23,21,15,.3); transition: background .25s, color .25s; cursor: default;" style-hover="background: #17150F; color: #F2EDE3;">
+          <span style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; color: #C4441C;">F/05</span>
+          <span style="font-stretch: 74%; font-weight: 800; font-size: 26px; text-transform: uppercase;">Retention Analytics</span>
+          <span style="font-size: 14.5px; line-height: 1.5; opacity: .75;">Which customers you're keeping — and losing — calculated from real sales data.</span>
+          <span style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .1em; text-align: right; color: #146C3C;">+32% REPEAT</span>
+        </div>
+        <div data-reveal style="display: grid; grid-template-columns: 90px 300px 1fr 180px; gap: 24px; align-items: center; padding: 26px 8px; border-bottom: 1px solid #17150F; transition: background .25s, color .25s; cursor: default;" style-hover="background: #17150F; color: #F2EDE3;">
+          <span style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; color: #C4441C;">F/06</span>
+          <span style="font-stretch: 74%; font-weight: 800; font-size: 26px; text-transform: uppercase;">Item Catalog</span>
+          <span style="font-size: 14.5px; line-height: 1.5; opacity: .75;">Default follow-up intervals per item — 28 days for one, 90 for another. Set once.</span>
+          <span style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .1em; text-align: right; color: #146C3C;">28D / 90D</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 AI — GREEN BAND -->
+  <section style="background: #146C3C; color: #F2EDE3; border-top: 1px solid #17150F; border-bottom: 1px solid #17150F;">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 88px 32px 96px;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(242,237,227,.35); padding-bottom: 18px; font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: .14em; color: #A8D8BC;">
+        <span>04 — THE AI CLERK</span><span>YOU APPROVE. IT TYPES.</span>
+      </div>
+      <h2 data-lines style="font-stretch: 70%; font-weight: 800; font-size: clamp(38px, 4.6vw, 74px); line-height: .96; text-transform: uppercase; letter-spacing: -.01em; margin: 42px 0 0;">
+        <span style="display: block; overflow: hidden;"><span data-line style="display: block;">The AI does the <span style="font-family: 'Newsreader', serif; font-style: italic; font-weight: 500; text-transform: none;">busywork.</span></span></span>
+      </h2>
+      <p data-reveal style="font-size: 16.5px; line-height: 1.6; max-width: 520px; color: #CBE8D6; margin: 20px 0 56px;">Blank page to ready-to-send in seconds instead of twenty minutes. You still approve every message before it goes out.</p>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(242,237,227,.35);">
+        <div data-reveal style="padding: 28px 24px 0 0; border-right: 1px solid rgba(242,237,227,.25);">
+          <div style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; color: #A8D8BC;">A/01</div>
+          <h3 style="font-stretch: 74%; font-weight: 800; font-size: 24px; text-transform: uppercase; margin: 12px 0 10px; line-height: 1.05;">Template Generator</h3>
+          <p style="font-size: 14px; line-height: 1.55; color: #CBE8D6; margin: 0;">Type "remind customers their order is ready." AI drafts three on-brand versions. Pick, tweak, live.</p>
+        </div>
+        <div data-reveal data-reveal-delay="80" style="padding: 28px 24px 0; border-right: 1px solid rgba(242,237,227,.25);">
+          <div style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; color: #A8D8BC;">A/02</div>
+          <h3 style="font-stretch: 74%; font-weight: 800; font-size: 24px; text-transform: uppercase; margin: 12px 0 10px; line-height: 1.05;">Segmentation</h3>
+          <p style="font-size: 14px; line-height: 1.55; color: #CBE8D6; margin: 0;">High-value, lapsing, seasonal — groups form themselves from buying patterns. No manual tagging.</p>
+        </div>
+        <div data-reveal data-reveal-delay="160" style="padding: 28px 24px 0; border-right: 1px solid rgba(242,237,227,.25);">
+          <div style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; color: #A8D8BC;">A/03</div>
+          <h3 style="font-stretch: 74%; font-weight: 800; font-size: 24px; text-transform: uppercase; margin: 12px 0 10px; line-height: 1.05;">Automation Builder</h3>
+          <p style="font-size: 14px; line-height: 1.55; color: #CBE8D6; margin: 0;">"Follow up with anyone quiet for 45 days" becomes a working rule — trigger, wait, send.</p>
+        </div>
+        <div data-reveal data-reveal-delay="240" style="padding: 28px 0 0 24px;">
+          <div style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; color: #A8D8BC;">A/04</div>
+          <h3 style="font-stretch: 74%; font-weight: 800; font-size: 24px; text-transform: uppercase; margin: 12px 0 10px; line-height: 1.05;">Campaign Copywriter</h3>
+          <p style="font-size: 14px; line-height: 1.55; color: #CBE8D6; margin: 0;">Offer + audience in. Broadcast copy, best send time, and schedule out.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 SETUP -->
+  <section>
+    <div style="max-width: 1360px; margin: 0 auto; padding: 88px 32px 96px;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #17150F; padding-bottom: 18px; font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: .14em; color: #6E6753;">
+        <span>05 — SETUP</span><span>NO IT TEAM. NO TRAINING DAYS.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 380px; gap: 64px; margin-top: 42px; align-items: start;">
+        <div>
+          <h2 data-lines style="font-stretch: 70%; font-weight: 800; font-size: clamp(38px, 4.2vw, 68px); line-height: .96; text-transform: uppercase; letter-spacing: -.01em; margin: 0 0 48px;">
+            <span style="display: block; overflow: hidden;"><span data-line style="display: block;">Running in under</span></span>
+            <span style="display: block; overflow: hidden;"><span data-line style="display: block; color: #146C3C;">10 minutes.</span></span>
+          </h2>
+          <div data-reveal style="display: grid; grid-template-columns: 110px 1fr; gap: 24px; border-top: 1px solid rgba(23,21,15,.3); padding: 28px 0;">
+            <div style="font-stretch: 65%; font-weight: 800; font-size: 84px; line-height: .8; color: #C4441C;">1</div>
+            <div>
+              <h3 style="font-stretch: 74%; font-weight: 800; font-size: 26px; text-transform: uppercase; margin: 0 0 8px;">Connect your WhatsApp number</h3>
+              <p style="font-size: 15px; line-height: 1.6; color: #3E3A2E; margin: 0;">Scan a QR code once. Your existing WhatsApp Business number is linked in 2 minutes — no API registration, no new number.</p>
+            </div>
+          </div>
+          <div data-reveal style="display: grid; grid-template-columns: 110px 1fr; gap: 24px; border-top: 1px solid rgba(23,21,15,.3); padding: 28px 0;">
+            <div style="font-stretch: 65%; font-weight: 800; font-size: 84px; line-height: .8; color: #C4441C;">2</div>
+            <div>
+              <h3 style="font-stretch: 74%; font-weight: 800; font-size: 26px; text-transform: uppercase; margin: 0 0 8px;">Add customers and their items</h3>
+              <p style="font-size: 15px; line-height: 1.6; color: #3E3A2E; margin: 0;">Name, WhatsApp number, item, follow-up interval — or upload a CSV. Most shops import their top 30 repeat customers in 10 minutes.</p>
+            </div>
+          </div>
+          <div data-reveal style="display: grid; grid-template-columns: 110px 1fr; gap: 24px; border-top: 1px solid rgba(23,21,15,.3); border-bottom: 1px solid #17150F; padding: 28px 0;">
+            <div style="font-stretch: 65%; font-weight: 800; font-size: 84px; line-height: .8; color: #C4441C;">3</div>
+            <div>
+              <h3 style="font-stretch: 74%; font-weight: 800; font-size: 26px; text-transform: uppercase; margin: 0 0 8px;">Reminders fire — forever</h3>
+              <p style="font-size: 15px; line-height: 1.6; color: #3E3A2E; margin: 0;">EasiBill sends each message at 9 AM on the right day. You do nothing. The customer comes back.</p>
+            </div>
+          </div>
+        </div>
+        <div data-reveal data-reveal-delay="150" style="position: sticky; top: 104px;">
+          <div style="border: 1px solid #17150F; box-shadow: 8px 8px 0 #146C3C;">
+            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="slot-storefront" shape="rect" fit="cover" placeholder="Shop-counter photo — prompt in chat" style="width: 100%; height: 470px; display: block;" hint-size="380px,470px"></x-import>
+          </div>
+          <div style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #6E6753; margin-top: 12px;">FIG. 05 — THE COUNTER, 09:02 AM. THE REMINDER ALREADY WENT OUT.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 PROOF -->
+  <section id="proof" style="border-top: 1px solid #17150F; background: #E9E2D2;">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 88px 32px 96px;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #17150F; padding-bottom: 18px; font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: .14em; color: #6E6753;">
+        <span>06 — PROOF</span><span>REAL OWNERS. REAL COUNTERS.</span>
+      </div>
+      <h2 data-lines style="font-stretch: 70%; font-weight: 800; font-size: clamp(38px, 4.6vw, 74px); line-height: .96; text-transform: uppercase; letter-spacing: -.01em; margin: 42px 0 56px;">
+        <span style="display: block; overflow: hidden;"><span data-line style="display: block;">Owners who switched</span></span>
+        <span style="display: block; overflow: hidden;"><span data-line style="display: block;">never went <span style="font-family: 'Newsreader', serif; font-style: italic; font-weight: 500; text-transform: none; color: #146C3C;">back.</span></span></span>
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;">
+        <figure data-reveal style="margin: 0; border-top: 1px solid #17150F; padding-top: 26px;">
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="slot-portrait-rajesh" shape="rect" fit="cover" placeholder="Portrait — Rajesh (prompt in chat)" style="width: 100%; height: 300px; display: block;" hint-size="100%,300px"></x-import>
+          <blockquote style="font-family: 'Newsreader', serif; font-style: italic; font-size: 20px; line-height: 1.45; margin: 22px 0 18px;">"My old system took 5 minutes per bill. Now it's 30 seconds and the customer gets it on WhatsApp. No more 'can you resend the invoice?'"</blockquote>
+          <figcaption style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #6E6753;">RAJESH VERMA — VERMA MEDICAL STORE, JAIPUR<br>SINCE MAR 2024</figcaption>
+        </figure>
+        <figure data-reveal data-reveal-delay="100" style="margin: 0; border-top: 1px solid #17150F; padding-top: 26px;">
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="slot-portrait-sunita" shape="rect" fit="cover" placeholder="Portrait — Sunita (prompt in chat)" style="width: 100%; height: 300px; display: block;" hint-size="100%,300px"></x-import>
+          <blockquote style="font-family: 'Newsreader', serif; font-style: italic; font-size: 20px; line-height: 1.45; margin: 22px 0 18px;">"The follow-up reminders alone brought back 40% of customers who used to just forget. I changed nothing else. The numbers spoke in 3 months."</blockquote>
+          <figcaption style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #6E6753;">SUNITA PATEL — PATEL WELLNESS SPA, AHMEDABAD<br>SINCE JAN 2024</figcaption>
+        </figure>
+        <figure data-reveal data-reveal-delay="200" style="margin: 0; border-top: 1px solid #17150F; padding-top: 26px;">
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="slot-portrait-arif" shape="rect" fit="cover" placeholder="Portrait — Arif (prompt in chat)" style="width: 100%; height: 300px; display: block;" hint-size="100%,300px"></x-import>
+          <blockquote style="font-family: 'Newsreader', serif; font-style: italic; font-size: 20px; line-height: 1.45; margin: 22px 0 18px;">"Tax filing used to take my whole weekend. Now I export from EasiBill and my accountant finishes in an hour. I get my Sunday back."</blockquote>
+          <figcaption style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #6E6753;">MOHAMMED ARIF — CITY MEDICAL HALL, HYDERABAD<br>SINCE OCT 2023</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 RATE CARD -->
+  <section id="rates" style="border-top: 1px solid #17150F;">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 88px 32px 96px;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #17150F; padding-bottom: 18px; font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: .14em; color: #6E6753;">
+        <span>07 — THE RATE CARD</span><span>14-DAY TRIAL · NO CARD · CANCEL ANYTIME</span>
+      </div>
+      <h2 data-lines style="font-stretch: 70%; font-weight: 800; font-size: clamp(38px, 4.6vw, 74px); line-height: .96; text-transform: uppercase; letter-spacing: -.01em; margin: 42px 0 52px;">
+        <span style="display: block; overflow: hidden;"><span data-line style="display: block;">Simple rates. Written</span></span>
+        <span style="display: block; overflow: hidden;"><span data-line style="display: block;">in <span style="font-family: 'Newsreader', serif; font-style: italic; font-weight: 500; text-transform: none; color: #146C3C;">plain ink.</span></span></span>
+      </h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; border: 1px solid #17150F;">
+        <div data-reveal style="padding: 44px 44px 48px; border-right: 1px solid #17150F;">
+          <div style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: .14em; color: #6E6753;">STARTER — FOR SHOPS REMINDING BY MEMORY</div>
+          <div style="display: flex; align-items: baseline; gap: 10px; margin: 22px 0 6px;">
+            <span style="font-stretch: 66%; font-weight: 800; font-size: 96px; line-height: .9;">₹299</span>
+            <span style="font-family: 'Spline Sans Mono', monospace; font-size: 13px; color: #6E6753;">/ MONTH</span>
+          </div>
+          <div style="border-top: 1px solid rgba(23,21,15,.3); margin: 28px 0 22px;"></div>
+          <ul style="list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; font-size: 14.5px; line-height: 1.5;">
+            <li style="display: flex; gap: 12px;"><span style="color: #146C3C; font-family: 'Spline Sans Mono', monospace;">✓</span>Unlimited customers</li>
+            <li style="display: flex; gap: 12px;"><span style="color: #146C3C; font-family: 'Spline Sans Mono', monospace;">✓</span>Automated WhatsApp follow-up reminders</li>
+            <li style="display: flex; gap: 12px;"><span style="color: #146C3C; font-family: 'Spline Sans Mono', monospace;">✓</span>Your own WhatsApp number — no API needed</li>
+            <li style="display: flex; gap: 12px;"><span style="color: #146C3C; font-family: 'Spline Sans Mono', monospace;">✓</span>Customer records, daily queue, item catalog</li>
+            <li style="display: flex; gap: 12px;"><span style="color: #146C3C; font-family: 'Spline Sans Mono', monospace;">✓</span>CSV import · Hindi + English templates</li>
+            <li style="display: flex; gap: 12px;"><span style="color: #146C3C; font-family: 'Spline Sans Mono', monospace;">✓</span>Email support</li>
+          </ul>
+          <a href="https://dashboard.easibill.com/" style="font-family: 'Spline Sans Mono', monospace; font-size: 13px; letter-spacing: .1em; border: 1px solid #17150F; color: #17150F; padding: 16px 26px; display: inline-block; margin-top: 32px;" style-hover="background: #17150F; color: #F2EDE3;">START 14-DAY TRIAL</a>
+        </div>
+        <div data-reveal data-reveal-delay="120" style="padding: 44px 44px 48px; background: #17150F; color: #F2EDE3; position: relative;">
+          <div style="position: absolute; top: 26px; right: 32px; border: 2px solid #C4441C; color: #E4572E; font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .16em; padding: 6px 10px; transform: rotate(6deg);">MOST POPULAR</div>
+          <div style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: .14em; color: #9A927C;">PRO — FOR SHOPS RUNNING CAMPAIGNS</div>
+          <div style="display: flex; align-items: baseline; gap: 10px; margin: 22px 0 6px;">
+            <span style="font-stretch: 66%; font-weight: 800; font-size: 96px; line-height: .9; color: #4ED397;">₹999</span>
+            <span style="font-family: 'Spline Sans Mono', monospace; font-size: 13px; color: #9A927C;">/ MONTH</span>
+          </div>
+          <div style="border-top: 1px solid rgba(242,237,227,.25); margin: 28px 0 22px;"></div>
+          <ul style="list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #D9D3C2;">
+            <li style="display: flex; gap: 12px;"><span style="color: #4ED397; font-family: 'Spline Sans Mono', monospace;">✓</span>Everything in Starter</li>
+            <li style="display: flex; gap: 12px;"><span style="color: #4ED397; font-family: 'Spline Sans Mono', monospace;">✓</span>Official WhatsApp Business number (WABA — no ban risk)</li>
+            <li style="display: flex; gap: 12px;"><span style="color: #4ED397; font-family: 'Spline Sans Mono', monospace;">✓</span>Broadcast campaigns with segmentation</li>
+            <li style="display: flex; gap: 12px;"><span style="color: #4ED397; font-family: 'Spline Sans Mono', monospace;">✓</span>Advanced retention analytics</li>
+            <li style="display: flex; gap: 12px;"><span style="color: #4ED397; font-family: 'Spline Sans Mono', monospace;">✓</span>5 languages — Hindi, English, Marathi, Telugu, Kannada</li>
+            <li style="display: flex; gap: 12px;"><span style="color: #4ED397; font-family: 'Spline Sans Mono', monospace;">✓</span>Delivery receipts: Sent → Delivered → Read</li>
+            <li style="display: flex; gap: 12px;"><span style="color: #4ED397; font-family: 'Spline Sans Mono', monospace;">✓</span>Priority WhatsApp support</li>
+          </ul>
+          <a href="https://dashboard.easibill.com/" style="font-family: 'Spline Sans Mono', monospace; font-size: 13px; letter-spacing: .1em; background: #146C3C; color: #F2EDE3; padding: 16px 26px; display: inline-block; margin-top: 32px;" style-hover="background: #4ED397; color: #17150F;">START 14-DAY TRIAL</a>
+        </div>
+      </div>
+      <p style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .1em; color: #6E6753; margin-top: 18px;">PRICES IN INR. WORKS ALONGSIDE MARG, VYAPAR & ECOGREEN — NO REPLACEMENT NEEDED. WALLET TOP-UP FROM ₹200; CREDITS NEVER EXPIRE.</p>
+    </div>
+  </section>
+
+  <!-- 08 FAQ -->
+  <section id="faq" style="border-top: 1px solid #17150F;">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 88px 32px 96px; display: grid; grid-template-columns: 380px 1fr; gap: 64px;">
+      <div>
+        <div style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: .14em; color: #6E6753; border-bottom: 1px solid #17150F; padding-bottom: 18px;">08 — QUESTIONS</div>
+        <h2 style="font-stretch: 70%; font-weight: 800; font-size: clamp(34px, 3.4vw, 54px); line-height: .98; text-transform: uppercase; letter-spacing: -.01em; margin: 32px 0 16px;">Asked before switching.</h2>
+        <p style="font-family: 'Newsreader', serif; font-style: italic; font-size: 19px; color: #146C3C; margin: 0;">Honest answers. No marketing fluff.</p>
+      </div>
+      <div style="border-top: 1px solid #17150F;">
+        <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="6">
+          <div style="border-bottom: 1px solid rgba(23,21,15,.3);">
+            <button onClick="{{ f.toggle }}" style="width: 100%; background: none; border: none; cursor: pointer; display: grid; grid-template-columns: 64px 1fr 40px; gap: 16px; align-items: baseline; text-align: left; padding: 22px 4px; font-family: 'Archivo', sans-serif; color: #17150F;">
+              <span style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; color: #C4441C;">{{ f.num }}</span>
+              <span style="font-stretch: 76%; font-weight: 700; font-size: 20px; text-transform: uppercase;">{{ f.q }}</span>
+              <span style="font-family: 'Spline Sans Mono', monospace; font-size: 20px; text-align: right; color: #146C3C;">{{ f.icon }}</span>
+            </button>
+            <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+              <p style="margin: 0; padding: 0 44px 26px 80px; font-size: 15px; line-height: 1.65; color: #3E3A2E; max-width: 680px;">{{ f.a }}</p>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- WIDE IMAGE BAND -->
+  <section style="border-top: 1px solid #17150F; position: relative;">
+    <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="slot-market-band" shape="rect" fit="cover" placeholder="Wide market-street photo — prompt in chat" style="width: 100%; height: 54vh; display: block;" hint-size="100%,54vh"></x-import>
+    <div style="position: absolute; right: 32px; bottom: 24px; background: #F2EDE3; border: 1px solid #17150F; font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .12em; padding: 8px 14px; pointer-events: none;">FIG. 09 — EVERY SHOP ON THIS STREET LOSES CUSTOMERS TO FORGETFULNESS.</div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background: #17150F; color: #F2EDE3; border-top: 1px solid #17150F;">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 110px 32px 120px; text-align: center;">
+      <h2 data-lines style="font-stretch: 68%; font-weight: 800; font-size: clamp(48px, 6.4vw, 104px); line-height: .94; text-transform: uppercase; letter-spacing: -.015em; margin: 0;">
+        <span style="display: block; overflow: hidden;"><span data-line style="display: block;">Stop losing customers</span></span>
+        <span style="display: block; overflow: hidden;"><span data-line style="display: block;">to <span style="font-family: 'Newsreader', serif; font-style: italic; font-weight: 500; text-transform: none; color: #4ED397;">forgetfulness.</span></span></span>
+      </h2>
+      <p data-reveal style="font-size: 16.5px; color: #9A927C; margin: 28px auto 40px; max-width: 460px; line-height: 1.6;">EasiBill runs the reminders. You run the business. Free to start — no card needed.</p>
+      <div data-reveal data-reveal-delay="100" style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <a href="https://dashboard.easibill.com/" style="font-family: 'Spline Sans Mono', monospace; font-size: 14px; letter-spacing: .1em; background: #146C3C; color: #F2EDE3; padding: 20px 38px; display: inline-block; transition: transform .2s;" style-hover="background: #4ED397; color: #17150F; transform: translateY(-2px);">START FREE — NO CARD NEEDED</a>
+      </div>
+      <div data-reveal data-reveal-delay="180" style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .14em; color: #6E6753; margin-top: 24px;">14-DAY TRIAL · SETUP UNDER 30 MIN · CANCEL ANYTIME</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background: #17150F; color: #9A927C; border-top: 1px solid rgba(242,237,227,.2);">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 64px 32px 40px;">
+      <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px;">
+        <div>
+          <div style="font-stretch: 118%; font-weight: 900; font-size: 22px; color: #F2EDE3;">EASIBILL<span style="color: #4ED397;">*</span></div>
+          <p style="font-size: 13.5px; line-height: 1.6; margin: 14px 0 0; max-width: 300px;">The local business retention OS. Fast billing, then WhatsApp follow-ups that bring customers back.</p>
+          <div style="font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .1em; margin-top: 20px; line-height: 2;">SUPPORT@EASIBILL.COM<br>+91 88391 43395</div>
+        </div>
+        <div style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: .08em; display: grid; gap: 12px; align-content: start;">
+          <span style="color: #F2EDE3; letter-spacing: .14em;">TOOLS</span>
+          <a href="https://www.easibill.com/features/follow-up-reminders" style="color: #9A927C;" style-hover="color: #4ED397;">Follow-up Reminders</a>
+          <a href="https://www.easibill.com/features/patient-records" style="color: #9A927C;" style-hover="color: #4ED397;">Customer Records</a>
+          <a href="https://www.easibill.com/features/daily-queue" style="color: #9A927C;" style-hover="color: #4ED397;">Daily Queue</a>
+          <a href="https://www.easibill.com/features/broadcast-campaigns" style="color: #9A927C;" style-hover="color: #4ED397;">Broadcast Campaigns</a>
+          <a href="https://www.easibill.com/features/retention-analytics" style="color: #9A927C;" style-hover="color: #4ED397;">Retention Analytics</a>
+        </div>
+        <div style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: .08em; display: grid; gap: 12px; align-content: start;">
+          <span style="color: #F2EDE3; letter-spacing: .14em;">START</span>
+          <a href="https://dashboard.easibill.com/" style="color: #9A927C;" style-hover="color: #4ED397;">14-Day Free Trial</a>
+          <a href="https://www.easibill.com/contact" style="color: #9A927C;" style-hover="color: #4ED397;">Book a Demo</a>
+          <a href="https://www.easibill.com/onboarding" style="color: #9A927C;" style-hover="color: #4ED397;">Onboarding Guide</a>
+          <a href="#rates" style="color: #9A927C;" style-hover="color: #4ED397;">Pricing</a>
+        </div>
+        <div style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: .08em; display: grid; gap: 12px; align-content: start;">
+          <span style="color: #F2EDE3; letter-spacing: .14em;">COMPANY</span>
+          <a href="https://www.easibill.com/about" style="color: #9A927C;" style-hover="color: #4ED397;">About</a>
+          <a href="https://www.easibill.com/blog" style="color: #9A927C;" style-hover="color: #4ED397;">Blog</a>
+          <a href="https://www.easibill.com/privacy" style="color: #9A927C;" style-hover="color: #4ED397;">Privacy Policy</a>
+          <a href="https://www.easibill.com/terms" style="color: #9A927C;" style-hover="color: #4ED397;">Terms of Service</a>
+        </div>
+      </div>
+      <div style="border-top: 1px solid rgba(242,237,227,.15); margin-top: 48px; padding-top: 20px; display: flex; justify-content: space-between; font-family: 'Spline Sans Mono', monospace; font-size: 11px; letter-spacing: .12em;">
+        <span>© 2026 EASIBILL. ALL RIGHTS RESERVED.</span>
+        <span>SERVING LOCAL BUSINESSES WORLDWIDE</span>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;reduceMotion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;showTicker&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+class Component extends DCLogic {
+  state = { openFaq: 0 };
+  faqData = [
+    { q: "Do I need WhatsApp Business API?", a: "No. Starter works with your existing WhatsApp Business app — scan a QR code once and you're linked. Pro includes an official WABA number with zero ban risk, but it's optional." },
+    { q: "Does it replace Marg, Vyapar or Ecogreen?", a: "No. EasiBill runs alongside your existing billing software. Keep your current system for accounting; EasiBill handles the WhatsApp bills and follow-up reminders it can't." },
+    { q: "What if my WhatsApp disconnects?", a: "You get an alert in the dashboard and reminders queue up automatically. Rescan the QR code and everything queued goes out — nothing is lost." },
+    { q: "Is my customer data safe?", a: "Yes. Data is encrypted, never shared or sold, and you can export or delete it any time. Your customer list is yours." },
+    { q: "How long does setup take?", a: "Under 30 minutes end to end. Connecting WhatsApp takes 2 minutes; most shops import their top repeat customers in 10." },
+    { q: "What if I want to cancel?", a: "Cancel any time from the app — no calls, no lock-in. You can export all your data before you go." }
+  ];
+  componentDidMount() {
+    const rm = this.props.reduceMotion ?? false;
+    const ease = "cubic-bezier(.22,.61,.21,1)";
+    this._initHero(rm);
+    // headline line-mask reveals
+    document.querySelectorAll("[data-lines]").forEach((h) => {
+      const lines = [...h.querySelectorAll("[data-line]")];
+      if (rm) return;
+      lines.forEach((l, i) => {
+        l.style.transform = "translateY(112%)";
+        l.style.transition = "transform .9s " + ease;
+        l.style.transitionDelay = i * 110 + "ms";
+      });
+      const io = new IntersectionObserver((es) => {
+        es.forEach((e) => {
+          if (e.isIntersecting) { lines.forEach((l) => { l.style.transform = "none"; }); io.disconnect(); }
+        });
+      }, { threshold: 0.25 });
+      io.observe(h);
+      this._ios.push(io);
+    });
+    // block reveals
+    const els = [...document.querySelectorAll("[data-reveal]")];
+    if (!rm) {
+      els.forEach((el) => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(22px)";
+        el.style.transition = "opacity .8s " + ease + ", transform .8s " + ease;
+        el.style.transitionDelay = (el.dataset.revealDelay || 0) + "ms";
+      });
+      const rio = new IntersectionObserver((es) => {
+        es.forEach((e) => {
+          if (e.isIntersecting) { e.target.style.opacity = "1"; e.target.style.transform = "none"; rio.unobserve(e.target); }
+        });
+      }, { threshold: 0.12 });
+      els.forEach((el) => rio.observe(el));
+      this._ios.push(rio);
+    }
+    // counters
+    const fmt = (n) => n.toLocaleString("en-IN");
+    const counters = [...document.querySelectorAll("[data-count]")];
+    const run = (el) => {
+      const to = +el.dataset.count, suf = el.dataset.suffix || "", pre = el.dataset.prefix || "";
+      const t0 = performance.now(), dur = 1500;
+      const tick = (t) => {
+        const p = Math.min(1, (t - t0) / dur), e2 = 1 - Math.pow(1 - p, 3);
+        el.textContent = pre + fmt(Math.round(to * e2)) + suf;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    if (rm) counters.forEach((el) => { el.textContent = (el.dataset.prefix || "") + fmt(+el.dataset.count) + (el.dataset.suffix || ""); });
+    else {
+      const cio = new IntersectionObserver((es) => {
+        es.forEach((e) => { if (e.isIntersecting) { run(e.target); cio.unobserve(e.target); } });
+      }, { threshold: 0.6 });
+      counters.forEach((el) => cio.observe(el));
+      this._ios.push(cio);
+    }
+    // scroll story: chat items appear as steps activate
+    const chatItems = [...document.querySelectorAll("[data-chat-item]")];
+    const steps = [...document.querySelectorAll("[data-story-step]")];
+    chatItems.forEach((c) => {
+      c.style.transition = "opacity .55s " + ease + ", transform .55s " + ease;
+      if (!rm) { c.style.opacity = "0"; c.style.transform = "translateY(14px)"; }
+    });
+    const setStory = (n) => {
+      chatItems.forEach((c) => {
+        const on = +c.dataset.chatItem <= n;
+        c.style.opacity = on ? "1" : "0";
+        c.style.transform = on ? (c.dataset.chatItem === "3" ? "rotate(-4deg)" : "none") : "translateY(14px)";
+      });
+      steps.forEach((s) => { s.style.opacity = +s.dataset.storyStep === n ? "1" : ".38"; s.style.transition = "opacity .4s"; });
+    };
+    if (rm) setStory(3);
+    else {
+      const sio = new IntersectionObserver((es) => {
+        es.forEach((e) => { if (e.isIntersecting) setStory(+e.target.dataset.storyStep); });
+      }, { threshold: 0.55 });
+      steps.forEach((s) => sio.observe(s));
+      this._ios.push(sio);
+      setStory(0);
+    }
+  }
+  _initHero(rm) {
+    const stage = document.querySelector("[data-hero-stage]");
+    const track = document.querySelector("[data-hero-track]");
+    if (!stage || !track) return;
+    const q = (s) => stage.querySelector(s);
+    const qa = (s) => [...stage.querySelectorAll(s)];
+    const el = {
+      hint: q("[data-hint]"), prog: q("[data-prog]"), clock: q("[data-clock]"),
+      railFill: q("[data-rail-fill]"), nodes: qa("[data-rail-node]"),
+      aLayer: q("[data-act-a]"), aLines: qa("[data-a-line]"),
+      machine: q("[data-machine]"), paper: q("[data-paper]"),
+      wire: q("[data-wire]"), packet: q("[data-packet]"), phone: q("[data-phone]"),
+      bubs: qa("[data-bub]"), tick: q("[data-tick]"), stamp: q("[data-stamp]"),
+      bLines: qa("[data-b-line]"), bCta: q("[data-b-cta]")
+    };
+    const clamp = (x) => Math.max(0, Math.min(1, x));
+    const seg = (p, a, b) => { const x = clamp((p - a) / (b - a)); return x * x * (3 - 2 * x); };
+    const lerp = (a, b, t) => a + (b - a) * t;
+    let mx = 0, my = 0, lastP = 0;
+    const apply = (p) => {
+      lastP = p;
+      el.hint.style.opacity = String(1 - seg(p, .01, .05));
+      el.prog.textContent = String(Math.round(p * 100)).padStart(2, "0") + "%";
+      el.clock.textContent = p < .28 ? "08:59 — OPENING THE SHUTTER" : p < .5 ? "18:32 — SALE LOGGED, BILL PRINTS" : p < .68 ? "18:32 — SENT ON WHATSAPP" : p < .84 ? "18:33 — CUSTOMER REPLIES" : "09:00, NEXT MONTH — REMINDER FIRES ITSELF";
+      el.aLines.forEach((l, i) => {
+        const drift = -p * 26 * (1 + i * .35);
+        const out = seg(p, .12 + i * .03, .24 + i * .03);
+        l.style.transform = "translateY(" + (drift - out * 118) + "%)";
+      });
+      el.aLayer.style.opacity = String(1 - seg(p, .2, .28));
+      const mIn = seg(p, .16, .3), mOut = seg(p, .84, .92);
+      el.machine.style.opacity = String(mIn * (1 - mOut * .88));
+      el.machine.style.transform = "translate(" + mx + "px, " + (lerp(56, 0, mIn) + my - mOut * 54) + "px) scale(" + (lerp(.85, 1, mIn) - mOut * .07) + ")";
+      el.paper.style.transform = "translateY(" + lerp(-93, 0, seg(p, .22, .44)) + "%)";
+      el.phone.style.opacity = String(seg(p, .34, .44));
+      el.phone.style.transform = "translateX(" + lerp(110, 0, seg(p, .34, .48)) + "px)";
+      el.wire.style.transform = "scaleX(" + seg(p, .44, .54) + ")";
+      const pk = seg(p, .48, .6);
+      el.packet.style.opacity = String(seg(p, .46, .5) * (1 - seg(p, .58, .62)));
+      el.packet.style.transform = "translate(" + lerp(-10, 128, pk) + "px, -50%) rotate(" + lerp(-5, 4, pk) + "deg)";
+      el.bubs.forEach((b, i) => {
+        const s = seg(p, .6 + i * .09, .66 + i * .09);
+        b.style.opacity = String(s);
+        b.style.transform = "translateY(" + lerp(16, 0, s) + "px) scale(" + lerp(.92, 1, s) + ")";
+      });
+      if (el.tick) { const on = p > .7; el.tick.textContent = on ? "✓✓ READ 18:33" : "✓ SENT 18:32"; el.tick.style.color = on ? "#146C3C" : "#6E6753"; }
+      const st = seg(p, .78, .84);
+      el.stamp.style.opacity = String(st);
+      el.stamp.style.transform = "rotate(-6deg) scale(" + lerp(2.4, 1, st) + ")";
+      el.bLines.forEach((l, i) => { l.style.transform = "translateY(" + lerp(i === 0 ? 130 : 112, 0, seg(p, .86 + i * .025, .94 + i * .025)) + "%)"; });
+      const cb = seg(p, .92, .99);
+      el.bCta.style.opacity = String(cb);
+      el.bCta.style.transform = "translateY(" + lerp(18, 0, cb) + "px)";
+      el.railFill.style.transform = "scaleY(" + p + ")";
+      const th = [.16, .44, .6, .78];
+      el.nodes.forEach((n, i) => {
+        const on = p >= th[i];
+        n.style.opacity = on ? "1" : ".38";
+        if (n.firstElementChild) n.firstElementChild.style.background = on ? "#146C3C" : "transparent";
+      });
+    };
+    if (rm) { apply(1); return; }
+    let raf = 0;
+    const compute = () => {
+      raf = 0;
+      const r = track.getBoundingClientRect();
+      const travel = r.height - stage.offsetHeight;
+      apply(clamp((64 - r.top) / travel));
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(compute); };
+    const onMove = (e) => {
+      mx = (e.clientX / window.innerWidth - .5) * 14;
+      my = (e.clientY / window.innerHeight - .5) * 10;
+      if (!raf) raf = requestAnimationFrame(() => { raf = 0; apply(lastP); });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    window.addEventListener("mousemove", onMove, { passive: true });
+    this._offHero = () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("mousemove", onMove);
+      if (raf) cancelAnimationFrame(raf);
+    };
+    compute();
+  }
+  _ios = [];
+  componentWillUnmount() { this._ios.forEach((io) => io.disconnect()); this._offHero && this._offHero(); }
+  renderVals() {
+    const open = this.state.openFaq;
+    const rm = this.props.reduceMotion ?? false;
+    return {
+      motion: rm ? "paused" : "running",
+      tickerDisplay: (this.props.showTicker ?? true) ? "block" : "none",
+      faqs: this.faqData.map((f, i) => ({
+        q: f.q, a: f.a,
+        num: "Q/0" + (i + 1),
+        open: open === i,
+        icon: open === i ? "−" : "+",
+        toggle: () => this.setState({ openFaq: open === i ? -1 : i })
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

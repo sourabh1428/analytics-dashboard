@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -67,17 +67,19 @@ const tutorials = [
 ];
 
 const levelColors: Record<string, string> = {
-  Beginner: "text-green-400 bg-green-400/10",
-  Intermediate: "text-amber-400 bg-amber-400/10",
-  Advanced: "text-amber-400 bg-amber-400/10",
+  Beginner: "text-green bg-green-pale",
+  Intermediate: "text-rust bg-paper-warm",
+  Advanced: "text-rust bg-paper-warm",
 };
 
 export default function TutorialsPage() {
   return (
     <div className="mx-auto max-w-5xl px-6 py-20">
-      <p className="text-sm font-semibold uppercase tracking-widest text-amber-400">Tutorials</p>
-      <h1 className="mt-3 text-4xl font-bold tracking-tight text-white">Learn EasiBill in short bursts</h1>
-      <p className="mt-4 text-white/60">
+      <p className="font-mono text-xs tracking-[0.2em] text-green">TUTORIALS</p>
+      <h1 className="mt-3 font-display text-4xl font-extrabold uppercase leading-[.96] tracking-[-0.018em] text-ink [font-stretch:68%]">
+        Learn EasiBill in short bursts
+      </h1>
+      <p className="mt-4 text-mutedink">
         Each tutorial is under 6 minutes. Watch on your phone between customers or let your staff learn at the counter.
       </p>
 
@@ -85,35 +87,35 @@ export default function TutorialsPage() {
         {tutorials.map((t) => (
           <div
             key={t.id}
-            className="group flex gap-5 rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5 transition hover:border-white/[0.12] hover:bg-white/[0.05]"
+            className="group flex gap-5 border border-ink bg-paper-white p-5 transition-colors hover:bg-paper-alt"
           >
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400 text-xl font-bold">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center border border-ink bg-green-pale text-xl font-bold text-green">
               ▶
             </div>
-            <div className="flex-1 min-w-0">
+            <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
-                <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${levelColors[t.level]}`}>
-                  {t.level}
+                <span className={`px-2 py-0.5 font-mono text-[11px] tracking-[0.05em] ${levelColors[t.level]}`}>
+                  {t.level.toUpperCase()}
                 </span>
-                <span className="text-xs text-white/30">{t.duration}</span>
+                <span className="font-mono text-[11px] text-faint">{t.duration}</span>
               </div>
-              <h2 className="mt-2 text-sm font-semibold text-white group-hover:text-amber-300 transition">{t.title}</h2>
-              <p className="mt-1 text-xs leading-5 text-white/50">{t.description}</p>
+              <h2 className="mt-2 font-display text-sm font-bold text-ink transition-colors group-hover:text-green">{t.title}</h2>
+              <p className="mt-1 text-xs leading-5 text-mutedink">{t.description}</p>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="mt-14 rounded-2xl border border-white/[0.07] bg-white/[0.03] p-8">
-        <h2 className="text-lg font-semibold text-white">Need a live walkthrough instead?</h2>
-        <p className="mt-2 text-sm text-white/60">
+      <div className="mt-14 border border-ink bg-paper-white p-8">
+        <h2 className="font-display text-lg font-extrabold uppercase tracking-[-0.01em] text-ink">Need a live walkthrough instead?</h2>
+        <p className="mt-2 text-sm text-mutedink">
           Book a 30-minute onboarding call with our team. We will screen-share through setup, import your first customers, and send a live test reminder together.
         </p>
         <Link
           href="/contact"
-          className="mt-5 inline-flex rounded-full bg-amber-500 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-amber-400"
+          className="mt-5 inline-flex bg-green px-6 py-2.5 font-mono text-xs tracking-[0.1em] text-paper transition-colors hover:bg-ink"
         >
-          Book a demo
+          BOOK A DEMO
         </Link>
       </div>
     </div>

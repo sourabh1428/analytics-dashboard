@@ -1,110 +1,57 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
-import { useGeo } from '@/src/hooks/useGeo'
-import { fadeIn, viewport } from '@/src/lib/motion'
-import { usePostHog } from 'posthog-js/react'
+import { useRef } from 'react'
+import { seg, useScrollReveal } from '@/src/lib/scrollScrub'
+import { Reveal } from './reveal'
 
 const STATS = [
-  { value: 2400, suffix: '+', label: 'Local businesses using EasiBill' },
-  { value: 18, suffix: 'M+', label: 'Bills sent via WhatsApp' },
-  { value: 34, suffix: '%', label: 'Average increase in repeat customers' },
-  { value: 0, prefix: '$', suffix: '', label: 'Setup cost' },
+  { count: 2400, suffix: '+', label: 'LOCAL BUSINESSES ON EASIBILL' },
+  { count: 18, suffix: 'M+', label: 'BILLS SENT VIA WHATSAPP' },
+  { count: 32, prefix: '+', suffix: '%', label: 'AVG. INCREASE IN REPEAT CUSTOMERS', accent: true },
+  { display: '₹0', label: 'SETUP COST · FREE TO START' },
 ]
 
-function AnimatedNumber({ value, prefix = '', suffix = '' }) {
-  const [display, setDisplay] = useState(0)
-  const ref = useRef(null)
-  const [seen, setSeen] = useState(false)
+// Single-beat stat row — a light one-shot count-up driven by `p` (time-based,
+// via useScrollReveal) instead of a long scroll-scrub: a slim four-cell row
+// doesn't warrant a 300vh pinned wrapper, but still uses the same seg/lerp
+// vocabulary as the heavier sections.
+function CountUp({ value, prefix = '', suffix = '' }) {
+  const spanRef = useRef(null)
+  const format = (n) => `${prefix}${Math.round(n).toLocaleString('en-IN')}${suffix}`
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setSeen(true); obs.disconnect() } },
-      { rootMargin: '-72px' }
-    )
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
+  useScrollReveal({
+    ref: spanRef,
+    duration: 1400,
+    threshold: 0.5,
+    onUpdate: (t) => {
+      const el = spanRef.current
+      if (!el) return
+      el.textContent = format(value * seg(t, 0, 1))
+    },
+  })
 
-  useEffect(() => {
-    if (!seen) return
-    const duration = 1600
-    const start = performance.now()
-    const step = (now) => {
-      const progress = Math.min((now - start) / duration, 1)
-      const eased = 1 - Math.pow(1 - progress, 3)
-      setDisplay(Math.floor(eased * value))
-      if (progress < 1) requestAnimationFrame(step)
-    }
-    requestAnimationFrame(step)
-  }, [seen, value])
-
-  return (
-    <span ref={ref} className="tabular-nums">
-      {prefix}{display.toLocaleString('en-US')}{suffix}
-    </span>
-  )
+  return <span ref={spanRef}>{format(0)}</span>
 }
 
 export default function TrustBar() {
-  const posthog = usePostHog()
-  const sectionRef = useRef(null)
-  useEffect(() => {
-    const el = sectionRef.current
-    if (!el) return
-    const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { posthog?.capture('trustbar_viewed'); obs.disconnect() }
-    }, { rootMargin: '-80px' })
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [posthog])
-
-  const geo = useGeo()
-
-  const label = geo
-    ? `Trusted by local businesses in ${geo.flag} ${geo.countryName} and worldwide`
-    : 'Trusted by local businesses worldwide'
-
   return (
-    <section
-      ref={sectionRef}
-      aria-labelledby="trust-heading"
-      className="bg-[#09090B] border-y border-zinc-800 py-16 px-6"
-    >
-      <div className="max-w-7xl mx-auto">
-        <motion.p
-          id="trust-heading"
-          key={label}
-          variants={fadeIn}
-          initial="hidden"
-          animate="visible"
-          className="text-center text-xs font-semibold text-zinc-600 uppercase tracking-widest mb-10"
-        >
-          {label}
-        </motion.p>
-        <dl className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {STATS.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.12 }}
-              viewport={viewport}
+    <div className="border-b border-ink">
+      <div className="mx-auto grid max-w-[1360px] grid-cols-2 px-4 sm:px-8 lg:grid-cols-4">
+        {STATS.map((stat, i) => (
+          <Reveal
+            key={stat.label}
+            delay={i * 80}
+            className={`py-[30px] px-[28px] first:pl-0 last:pr-0 ${i < STATS.length - 1 ? 'border-r border-ink/25' : ''}`}
+          >
+            <div
+              className={`font-display text-[52px] font-extrabold leading-none [font-stretch:72%] ${stat.accent ? 'text-green' : 'text-ink'}`}
             >
-              <dt className="sr-only">{stat.label}</dt>
-              <dd>
-                <p className="text-4xl font-bold text-white mb-1">
-                  <AnimatedNumber value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
-                </p>
-                <p className="text-sm text-zinc-500">{stat.label}</p>
-              </dd>
-            </motion.div>
-          ))}
-        </dl>
+              {stat.display ?? <CountUp value={stat.count} prefix={stat.prefix} suffix={stat.suffix} />}
+            </div>
+            <div className="mt-2.5 font-mono text-[11px] tracking-[0.12em] text-mutedink">{stat.label}</div>
+          </Reveal>
+        ))}
       </div>
-    </section>
+    </div>
   )
 }

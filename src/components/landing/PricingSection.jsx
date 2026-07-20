@@ -1,177 +1,133 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Check, ArrowRight } from 'lucide-react'
-import { fadeUp, stagger, wordVariant, viewport } from '@/src/lib/motion'
+import { useRef } from 'react'
 import { usePostHog } from 'posthog-js/react'
-import { useRef, useEffect } from 'react'
+import { lerp, seg, useScrollReveal } from '@/src/lib/scrollScrub'
+import { Lines } from './reveal'
 
-const PLANS = [
-  {
-    name: 'Starter',
-    price: '₹299',
-    period: '/month',
-    tagline: 'For local businesses sending reminders manually today and running out of time.',
-    cta: 'Start 14-day free trial',
-    ctaHref: 'https://dashboard.easibill.com/',
-    popular: false,
-    badge: null,
-    features: [
-      'Unlimited customers',
-      'Automated WhatsApp follow-up reminders',
-      'Your own WhatsApp number (no API needed)',
-      'Customer records — item/service, interval, history',
-      'Daily queue — due, overdue, recently followed up',
-      'Item/service catalog with default intervals',
-      'CSV customer import',
-      'Hindi + English message templates',
-      'Email support',
-    ],
-    note: '14-day free trial. No card required.',
-  },
-  {
-    name: 'Pro',
-    price: '₹999',
-    period: '/month',
-    tagline: 'For local businesses ready to run campaigns and measure retention.',
-    cta: 'Start 14-day free trial',
-    ctaHref: 'https://dashboard.easibill.com/',
-    popular: true,
-    badge: 'Most popular',
-    features: [
-      'Everything in Starter',
-      'Official WhatsApp Business number (WABA — no ban risk)',
-      'Broadcast campaigns with customer segmentation',
-      'Advanced retention analytics',
-      'All 5 languages — Hindi, English, Marathi, Telugu, Kannada',
-      'Custom message templates',
-      'Wallet credits for campaigns (1 credit = 1 message)',
-      'Per-message delivery receipts (Sent → Delivered → Read)',
-      'Priority WhatsApp support',
-    ],
-    note: 'Wallet top-up from ₹200. Credits never expire.',
-  },
+const STARTER_FEATURES = [
+  'Unlimited customers',
+  'Automated WhatsApp follow-up reminders',
+  'Your own WhatsApp number — no API needed',
+  'Customer records, daily queue, item catalog',
+  'CSV import · Hindi + English templates',
+  'Email support',
 ]
 
-const H2_WORDS = ['Simple', 'pricing.', 'No', 'hidden', 'fees.']
+const PRO_FEATURES = [
+  'Everything in Starter',
+  'Official WhatsApp Business number (WABA — no ban risk)',
+  'Broadcast campaigns with segmentation',
+  'Advanced retention analytics',
+  '5 languages — Hindi, English, Marathi, Telugu, Kannada',
+  'Delivery receipts: Sent → Delivered → Read',
+  'Priority WhatsApp support',
+]
 
 export default function PricingSection() {
   const posthog = usePostHog()
-  const ref = useRef(null)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { posthog?.capture('pricing_section_viewed'); obs.disconnect() }
-    }, { rootMargin: '-80px' })
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [posthog])
+  const cardsRef = useRef(null)
+  const starterRef = useRef(null)
+  const proRef = useRef(null)
+
+  // Distinct vocabulary: the two plans converge from opposite edges rather
+  // than a uniform stagger — a rate card being laid open on the counter.
+  useScrollReveal({
+    ref: cardsRef,
+    threshold: 0.15,
+    duration: 900,
+    onUpdate: (t) => {
+      const sStarter = seg(t, 0, 0.85)
+      const sPro = seg(t, 0.08, 0.93)
+      if (starterRef.current) {
+        starterRef.current.style.opacity = String(sStarter)
+        starterRef.current.style.transform = `translateX(${lerp(-32, 0, sStarter)}px)`
+      }
+      if (proRef.current) {
+        proRef.current.style.opacity = String(sPro)
+        proRef.current.style.transform = `translateX(${lerp(32, 0, sPro)}px)`
+      }
+    },
+  })
 
   return (
-    <section
-      id="pricing"
-      ref={ref}
-      aria-labelledby="pricing-heading"
-      className="py-24 px-6 bg-[#18181B]"
-    >
-      <div className="max-w-5xl mx-auto">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          variants={stagger}
-          viewport={viewport}
-          className="text-center max-w-2xl mx-auto mb-16"
-        >
-          <motion.h2
-            id="pricing-heading"
-            variants={stagger}
-            className="text-4xl font-bold text-white mb-4 leading-tight"
-          >
-            {H2_WORDS.map((word, i) => (
-              <motion.span key={i} variants={wordVariant} className="inline-block mr-[0.22em]">
-                {word}
-              </motion.span>
-            ))}
-          </motion.h2>
-          <motion.p variants={fadeUp} className="text-zinc-400 text-lg">
-            14-day free trial on both plans. No credit card required. Cancel any time.
-          </motion.p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 gap-6 items-start max-w-3xl mx-auto">
-          {PLANS.map((plan, i) => (
-            <motion.article
-              key={plan.name}
-              initial={{ opacity: 0, scale: plan.popular ? 0.88 : 0.93, y: 24 }}
-              whileInView={{ opacity: 1, scale: plan.popular ? 1.02 : 1, y: 0 }}
-              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: i * 0.12 }}
-              viewport={viewport}
-              className={`relative rounded-2xl p-7 flex flex-col gap-6 ${
-                plan.popular
-                  ? 'bg-[#09090B] border border-amber-500/30 shadow-xl shadow-amber-500/8'
-                  : 'bg-[#09090B] border border-zinc-800'
-              }`}
-            >
-              {plan.badge && (
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                  <span className="px-4 py-1 rounded-full bg-amber-500 text-zinc-950 text-xs font-bold uppercase tracking-wide">
-                    {plan.badge}
-                  </span>
-                </div>
-              )}
-
-              <div>
-                <h3 className="text-lg font-bold text-white mb-1">{plan.name}</h3>
-                <p className="text-sm text-zinc-500">{plan.tagline}</p>
-              </div>
-
-              <div className="flex items-baseline gap-1">
-                <span className="text-5xl font-bold text-white">{plan.price}</span>
-                <span className="text-sm text-zinc-500">{plan.period}</span>
-              </div>
-
-              <ul className="space-y-3 flex-1" role="list">
-                {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-2.5 text-sm">
-                    <Check
-                      className="h-4 w-4 shrink-0 mt-0.5 text-amber-400"
-                      aria-hidden="true"
-                    />
-                    <span className="text-zinc-400">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {plan.note && (
-                <p className="text-xs text-zinc-600">{plan.note}</p>
-              )}
-
-              <a
-                href={plan.ctaHref}
-                onClick={() => posthog?.capture('pricing_cta_clicked', { plan: plan.name, popular: plan.popular })}
-                className={`inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900 min-h-[44px] ${
-                  plan.popular
-                    ? 'bg-amber-500 text-zinc-950 hover:bg-amber-400'
-                    : 'bg-zinc-800 text-zinc-200 hover:bg-zinc-700'
-                }`}
-              >
-                {plan.cta}
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </a>
-            </motion.article>
-          ))}
+    <section id="rates" className="border-t border-ink">
+      <div className="mx-auto max-w-[1360px] px-4 py-[88px] sm:px-8">
+        <div className="flex items-baseline justify-between border-b border-ink pb-[18px] font-mono text-xs tracking-[0.14em] text-mutedink">
+          <span>07 — THE RATE CARD</span>
+          <span className="hidden sm:inline">14-DAY TRIAL · NO CARD · CANCEL ANYTIME</span>
         </div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          viewport={viewport}
-          className="text-center text-sm text-zinc-600 mt-8"
-        >
-          Prices in INR. EasiBill works alongside your existing billing software (Marg, Vyapar, Ecogreen) — no replacement needed.
-        </motion.p>
+        <Lines
+          className="mb-[52px] mt-[42px] font-display text-[clamp(38px,4.2vw,64px)] font-extrabold uppercase leading-[.96] tracking-[-0.01em] [font-stretch:70%]"
+          lines={[
+            'Simple rates. Written',
+            <>in <span className="font-serif text-[0.86em] italic font-medium normal-case tracking-normal text-green">plain ink.</span></>,
+          ]}
+        />
+
+        <div ref={cardsRef} className="grid grid-cols-1 border border-ink md:grid-cols-2">
+          <div
+            ref={starterRef}
+            className="border-b border-ink p-8 sm:p-11 md:border-b-0 md:border-r"
+            style={{ opacity: 0, willChange: 'transform, opacity' }}
+          >
+            <div className="font-mono text-xs tracking-[0.14em] text-mutedink">STARTER — FOR SHOPS REMINDING BY MEMORY</div>
+            <div className="my-[22px] mb-1.5 flex items-baseline gap-2.5">
+              <span className="font-display text-7xl font-extrabold leading-[.9] sm:text-[96px] [font-stretch:66%]">₹299</span>
+              <span className="font-mono text-[13px] text-mutedink">/ MONTH</span>
+            </div>
+            <div className="my-7 border-t border-ink/30" />
+            <ul className="grid gap-3 text-[14.5px] leading-[1.5]">
+              {STARTER_FEATURES.map((f) => (
+                <li key={f} className="flex gap-3">
+                  <span className="font-mono text-green">✓</span>{f}
+                </li>
+              ))}
+            </ul>
+            <a
+              href="https://dashboard.easibill.com/"
+              onClick={() => posthog?.capture('pricing_cta_clicked', { plan: 'Starter', popular: false })}
+              className="mt-8 inline-block border border-ink px-[26px] py-4 font-mono text-[13px] tracking-[0.1em] text-ink transition-colors hover:bg-ink hover:text-paper"
+            >
+              START 14-DAY TRIAL
+            </a>
+          </div>
+
+          <div
+            ref={proRef}
+            className="relative bg-ink p-8 text-paper sm:p-11"
+            style={{ opacity: 0, willChange: 'transform, opacity' }}
+          >
+            <div className="absolute right-6 top-6 rotate-[6deg] border-2 border-rust px-2.5 py-1.5 font-mono text-[11px] tracking-[0.16em] text-ember sm:right-8">
+              MOST POPULAR
+            </div>
+            <div className="font-mono text-xs tracking-[0.14em] text-faint">PRO — FOR SHOPS RUNNING CAMPAIGNS</div>
+            <div className="my-[22px] mb-1.5 flex items-baseline gap-2.5">
+              <span className="font-display text-7xl font-extrabold leading-[.9] text-green-bright sm:text-[96px] [font-stretch:66%]">₹999</span>
+              <span className="font-mono text-[13px] text-faint">/ MONTH</span>
+            </div>
+            <div className="my-7 border-t border-paper/25" />
+            <ul className="grid gap-3 text-[14.5px] leading-[1.5] text-paper/85">
+              {PRO_FEATURES.map((f) => (
+                <li key={f} className="flex gap-3">
+                  <span className="font-mono text-green-bright">✓</span>{f}
+                </li>
+              ))}
+            </ul>
+            <a
+              href="https://dashboard.easibill.com/"
+              onClick={() => posthog?.capture('pricing_cta_clicked', { plan: 'Pro', popular: true })}
+              className="mt-8 inline-block bg-green px-[26px] py-4 font-mono text-[13px] tracking-[0.1em] text-paper transition-colors hover:bg-green-bright hover:text-ink"
+            >
+              START 14-DAY TRIAL
+            </a>
+          </div>
+        </div>
+
+        <p className="mt-[18px] font-mono text-[11px] tracking-[0.1em] text-mutedink">
+          PRICES IN INR. WORKS ALONGSIDE MARG, VYAPAR &amp; ECOGREEN — NO REPLACEMENT NEEDED. WALLET TOP-UP FROM ₹200; CREDITS NEVER EXPIRE.
+        </p>
       </div>
     </section>
   )

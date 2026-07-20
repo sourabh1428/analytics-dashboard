@@ -30,11 +30,11 @@ const FeaturesPage = () => {
             transition={{ duration: 0.7 }}
             className="mx-auto max-w-3xl text-center"
           >
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-cyan-700">Product features</p>
-            <h1 className="mt-4 text-balance text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl">
+            <p className="font-mono text-sm font-semibold uppercase tracking-[0.22em] text-rust">Product features</p>
+            <h1 className="mt-4 text-balance font-display text-5xl font-extrabold uppercase tracking-[-0.018em] text-ink sm:text-6xl">
               Every tool your business counter needs. Nothing it doesn't.
             </h1>
-            <p className="mt-6 text-lg leading-8 text-slate-600">
+            <p className="mt-6 text-lg leading-8 text-mutedink">
               Easibill is not a CRM. It is a focused retention tool that fits the way a business counter already works — no migration, no training programme, no bloat.
             </p>
             <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
@@ -42,7 +42,7 @@ const FeaturesPage = () => {
                 href={DASHBOARD_LOGIN_URL}
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-6 py-3.5 text-sm font-semibold text-white shadow-xl shadow-emerald-900/20 transition hover:bg-emerald-950 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+                className="group inline-flex items-center justify-center gap-2 bg-green px-6 py-3.5 font-mono text-sm tracking-[0.08em] text-paper transition hover:bg-ink focus:outline-none focus:ring-2 focus:ring-green focus:ring-offset-2"
               >
                 Start 14-day trial
                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
@@ -51,7 +51,7 @@ const FeaturesPage = () => {
                 href="/lead"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-6 py-3.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-emerald-300 hover:text-emerald-800"
+                className="inline-flex items-center justify-center border border-ink bg-paper-white px-6 py-3.5 font-mono text-sm tracking-[0.08em] text-ink transition hover:bg-ink hover:text-paper"
               >
                 Book a demo
               </motion.a>
@@ -75,8 +75,8 @@ const FeaturesPage = () => {
             transition={{ duration: 0.7 }}
             className="mx-auto max-w-3xl text-center"
           >
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-emerald-700">How it compares</p>
-            <h2 className="mt-4 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
+            <p className="font-mono text-sm font-semibold uppercase tracking-[0.22em] text-rust">How it compares</p>
+            <h2 className="mt-4 font-display text-4xl font-extrabold uppercase tracking-[-0.018em] text-ink sm:text-5xl">
               Designed for local businesses, not generic CRMs.
             </h2>
           </motion.div>
@@ -86,26 +86,26 @@ const FeaturesPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.7 }}
-            className="mt-10 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm"
+            className="mt-10 overflow-hidden border border-ink bg-paper-white shadow-[8px_8px_0_#17150F]"
           >
             {/* Table header */}
-            <div className="grid grid-cols-4 gap-px bg-slate-200">
-              <div className="bg-slate-50 px-5 py-4 text-sm font-semibold text-slate-500" />
-              <div className="bg-slate-50 px-5 py-4 text-sm font-semibold text-slate-700">Manual WhatsApp</div>
-              <div className="bg-slate-50 px-5 py-4 text-sm font-semibold text-slate-700">Generic CRM</div>
-              <div className="bg-emerald-50 px-5 py-4 text-sm font-semibold text-emerald-800">Easibill</div>
+            <div className="grid grid-cols-4 gap-px bg-ink">
+              <div className="bg-paper-alt px-5 py-4 font-mono text-sm font-semibold text-mutedink" />
+              <div className="bg-paper-alt px-5 py-4 font-mono text-sm font-semibold text-ink-soft">Manual WhatsApp</div>
+              <div className="bg-paper-alt px-5 py-4 font-mono text-sm font-semibold text-ink-soft">Generic CRM</div>
+              <div className="bg-green-pale px-5 py-4 font-mono text-sm font-semibold text-green">Easibill</div>
             </div>
             {/* Rows */}
             {comparison.map((row, index) => (
               <div
                 key={row.label}
-                className="grid grid-cols-4 gap-px bg-slate-200"
+                className="grid grid-cols-4 gap-px bg-ink"
               >
-                <div className="bg-white px-5 py-4 text-sm font-medium text-slate-700">{row.label}</div>
-                <div className="bg-white px-5 py-4 text-sm text-slate-500">{row.manual}</div>
-                <div className="bg-white px-5 py-4 text-sm text-slate-500">{row.crm}</div>
-                <div className="flex items-center gap-2 bg-emerald-50/50 px-5 py-4 text-sm font-medium text-emerald-800">
-                  <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-emerald-600" />
+                <div className="bg-paper-white px-5 py-4 text-sm font-medium text-ink-soft">{row.label}</div>
+                <div className="bg-paper-white px-5 py-4 text-sm text-mutedink">{row.manual}</div>
+                <div className="bg-paper-white px-5 py-4 text-sm text-mutedink">{row.crm}</div>
+                <div className="flex items-center gap-2 bg-green-pale/50 px-5 py-4 text-sm font-medium text-green">
+                  <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-green" />
                   {row.easibill}
                 </div>
               </div>

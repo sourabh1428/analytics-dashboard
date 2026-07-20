@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { helpArticles, helpCategories } from "@/src/data/helpArticles";
 
@@ -34,18 +34,20 @@ const faqs = [
 export default function HelpPage() {
   return (
     <div className="mx-auto max-w-5xl px-6 py-20">
-      <p className="text-sm font-semibold uppercase tracking-widest text-amber-400">Help Center</p>
-      <h1 className="mt-3 text-4xl font-bold tracking-tight text-white">How can we help?</h1>
-      <p className="mt-4 text-white/60">
+      <p className="font-mono text-xs tracking-[0.2em] text-green">HELP CENTER</p>
+      <h1 className="mt-3 font-display text-4xl font-extrabold uppercase leading-[.96] tracking-[-0.018em] text-ink [font-stretch:68%]">
+        How can we help?
+      </h1>
+      <p className="mt-4 text-mutedink">
         Guides and answers for setting up reminders, billing, and customer records.
       </p>
 
       <div className="mt-4 flex gap-3">
         <Link
           href="/contact"
-          className="text-sm font-semibold text-amber-400 hover:text-amber-300"
+          className="font-mono text-xs tracking-[0.1em] text-green hover:text-ink"
         >
-          Can't find your answer? Contact support →
+          CAN'T FIND YOUR ANSWER? CONTACT SUPPORT →
         </Link>
       </div>
 
@@ -56,19 +58,19 @@ export default function HelpPage() {
           ).filter(Boolean);
 
           return (
-            <div key={cat.title} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-6">
+            <div key={cat.title} className="border border-ink bg-paper-white p-6">
               <div className="text-2xl">{cat.icon}</div>
-              <h2 className="mt-3 font-semibold text-white">{cat.title}</h2>
+              <h2 className="mt-3 font-display text-base font-bold uppercase tracking-[-0.005em] text-ink">{cat.title}</h2>
               <ul className="mt-4 space-y-3">
                 {articles.map((a) => a && (
                   <li key={a.slug} className="flex items-start justify-between gap-2">
                     <Link
                       href={`/help/${a.slug}`}
-                      className="text-sm text-white/60 hover:text-amber-400 transition-colors"
+                      className="text-sm text-mutedink transition-colors hover:text-green"
                     >
                       {a.title}
                     </Link>
-                    <span className="shrink-0 text-xs text-white/30">{a.time}</span>
+                    <span className="shrink-0 font-mono text-[11px] text-faint">{a.time}</span>
                   </li>
                 ))}
               </ul>
@@ -77,29 +79,29 @@ export default function HelpPage() {
         })}
       </div>
 
-      <h2 className="mt-16 text-2xl font-bold text-white">Frequently asked questions</h2>
+      <h2 className="mt-16 font-display text-2xl font-extrabold uppercase tracking-[-0.01em] text-ink">Frequently asked questions</h2>
       <div className="mt-6 space-y-6">
         {faqs.map((f) => (
-          <div key={f.q} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-6">
-            <h3 className="font-semibold text-white">{f.q}</h3>
-            <p className="mt-2 text-sm leading-6 text-white/60">{f.a}</p>
+          <div key={f.q} className="border border-ink bg-paper-white p-6">
+            <h3 className="font-display font-bold text-ink">{f.q}</h3>
+            <p className="mt-2 text-sm leading-6 text-mutedink">{f.a}</p>
           </div>
         ))}
       </div>
 
-      <div className="mt-12 rounded-2xl border border-amber-500/20 bg-amber-500/5 p-8 text-center">
-        <h3 className="text-lg font-semibold text-white">Still stuck?</h3>
-        <p className="mt-2 text-sm text-white/60">Our support team typically responds within 2 hours on business days.</p>
+      <div className="mt-12 border border-ink bg-green-pale p-8 text-center">
+        <h3 className="font-display text-lg font-extrabold uppercase tracking-[-0.01em] text-ink">Still stuck?</h3>
+        <p className="mt-2 text-sm text-mutedink">Our support team typically responds within 2 hours on business days.</p>
         <div className="mt-6 flex justify-center gap-4">
           <a
             href="mailto:support@easibill.com"
-            className="inline-flex rounded-full bg-amber-500 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-amber-400"
+            className="inline-flex bg-green px-6 py-2.5 font-mono text-xs tracking-[0.1em] text-paper transition-colors hover:bg-ink"
           >
-            Email support
+            EMAIL SUPPORT
           </a>
           <a
             href="tel:+918839143395"
-            className="inline-flex rounded-full border border-white/[0.1] px-6 py-2.5 text-sm font-semibold text-white/70 transition hover:text-white"
+            className="inline-flex border border-ink px-6 py-2.5 font-mono text-xs tracking-[0.1em] text-ink transition-colors hover:bg-ink hover:text-paper"
           >
             +91 8839143395
           </a>

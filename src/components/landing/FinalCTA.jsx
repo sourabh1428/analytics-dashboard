@@ -1,85 +1,62 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
-import { stagger, wordVariant, fadeUp, scaleIn, viewport } from '@/src/lib/motion'
+import { useRef } from 'react'
 import { usePostHog } from 'posthog-js/react'
-
-const H2_WORDS_1 = ['Stop', 'losing', 'customers']
-const H2_WORDS_2 = ['to', 'forgetfulness.']
+import { useScrollReveal } from '@/src/lib/scrollScrub'
+import { Lines, Reveal } from './reveal'
 
 export default function FinalCTA() {
   const posthog = usePostHog()
+  const sectionRef = useRef(null)
+  const ruleRef = useRef(null)
+
+  // A closing flourish rather than another fade: a green rule draws itself
+  // in under the headline like a line under a final ledger entry, timed to
+  // land just after the headline reveal finishes.
+  useScrollReveal({
+    ref: sectionRef,
+    threshold: 0.3,
+    duration: 900,
+    delay: 450,
+    onUpdate: (t) => {
+      if (ruleRef.current) ruleRef.current.style.transform = `scaleX(${t})`
+    },
+  })
+
   return (
-    <section
-      id="cta"
-      aria-labelledby="cta-heading"
-      className="relative py-24 px-6 bg-[#09090B] overflow-hidden"
-    >
-      {/* Dot grid */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: 'radial-gradient(circle, #27272A 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-        }}
-        aria-hidden="true"
-      />
-      {/* Amber glow */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-        style={{
-          width: '700px',
-          height: '400px',
-          background: 'radial-gradient(ellipse at center, rgba(245,158,11,0.1) 0%, transparent 70%)',
-        }}
-        aria-hidden="true"
-      />
+    <section id="cta" ref={sectionRef} className="border-t border-ink bg-ink text-paper">
+      <div className="mx-auto max-w-[1360px] px-4 py-[110px] text-center sm:px-8">
+        <Lines
+          className="mx-auto font-display text-[clamp(44px,5.4vw,88px)] font-extrabold uppercase leading-[.94] tracking-[-0.015em] [font-stretch:68%]"
+          lines={[
+            'Stop losing customers',
+            <>to <span className="font-serif text-[0.86em] italic font-medium normal-case tracking-normal text-green-bright">forgetfulness.</span></>,
+          ]}
+        />
 
-      <div className="max-w-4xl mx-auto text-center relative">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          variants={stagger}
-          viewport={viewport}
-        >
-          <motion.h2
-            id="cta-heading"
-            variants={stagger}
-            className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight"
+        <div
+          ref={ruleRef}
+          className="mx-auto mt-8 h-px w-[220px] origin-center bg-green-bright/70"
+          style={{ transform: 'scaleX(0)', willChange: 'transform' }}
+        />
+
+        <Reveal as="p" className="mx-auto my-7 mb-10 max-w-[460px] text-[16.5px] leading-[1.6] text-faint">
+          EasiBill runs the reminders. You run the business. Free to start — no card needed.
+        </Reveal>
+
+        <Reveal delay={100} className="flex flex-wrap justify-center gap-3.5">
+          <a
+            href="https://dashboard.easibill.com/"
+            onClick={() => posthog?.capture('final_cta_clicked')}
+            className="inline-block bg-green px-[38px] py-5 font-mono text-sm tracking-[0.1em] text-paper transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:bg-green-bright hover:text-ink"
           >
-            {H2_WORDS_1.map((word, i) => (
-              <motion.span key={i} variants={wordVariant} className="inline-block mr-[0.22em]">
-                {word}
-              </motion.span>
-            ))}
-            <br className="hidden sm:block" />
-            {H2_WORDS_2.map((word, i) => (
-              <motion.span key={i} variants={wordVariant} className="inline-block mr-[0.22em] text-amber-400">
-                {word}
-              </motion.span>
-            ))}
-          </motion.h2>
+            START FREE — NO CARD NEEDED
+          </a>
+        </Reveal>
 
-          <motion.p variants={fadeUp} className="text-zinc-400 text-lg mb-8 max-w-xl mx-auto">
-            EasiBill runs the reminders. You run the business. Free to start — no card needed.
-          </motion.p>
-
-          <motion.div variants={scaleIn} className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a
-              href="https://dashboard.easibill.com/"
-              onClick={() => posthog?.capture('final_cta_clicked')}
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-amber-500 text-zinc-950 font-semibold hover:bg-amber-400 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900 text-base min-h-[52px]"
-            >
-              Start free — no card needed
-              <ArrowRight className="h-5 w-5" aria-hidden="true" />
-            </a>
-          </motion.div>
-
-          <motion.p variants={fadeUp} className="text-xs text-zinc-600 mt-5">
-            14-day free trial. Setup in under 30 minutes. Cancel any time.
-          </motion.p>
-        </motion.div>
+        <Reveal delay={180} as="p" className="mt-6 font-mono text-[11px] tracking-[0.14em] text-faint">
+          14-DAY TRIAL · SETUP UNDER 30 MIN · CANCEL ANYTIME
+        </Reveal>
       </div>
     </section>
   )

@@ -1,158 +1,118 @@
 'use client'
 
-import { motion, useScroll, useSpring } from 'framer-motion'
-import { Smartphone, Users, Bell } from 'lucide-react'
-import { slideLeft, slideRight, fadeUp, stagger, wordVariant, viewport } from '@/src/lib/motion'
-import { usePostHog } from 'posthog-js/react'
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
+import Image from 'next/image'
+import { lerp, seg, useScrollReveal } from '@/src/lib/scrollScrub'
+import { Lines, Reveal } from './reveal'
 
 const STEPS = [
   {
-    number: '01',
-    icon: Smartphone,
+    n: '1',
     title: 'Connect your WhatsApp number',
-    description: 'Scan a QR code once in the dashboard. Your existing WhatsApp Business number is now linked. Takes 2 minutes. No API registration needed.',
-    detail: 'Works with your current WhatsApp Business app — no new number required.',
-    direction: 'left',
+    copy: 'Scan a QR code once. Your existing WhatsApp Business number is linked in 2 minutes — no API registration, no new number.',
   },
   {
-    number: '02',
-    icon: Users,
-    title: 'Add your customers and their items',
-    description: 'Add each customer with their name, WhatsApp number, item or service, and follow-up interval. Or upload a CSV to import your existing customer list in bulk.',
-    detail: 'Most local businesses import their top 30 repeat customers in under 10 minutes.',
-    direction: 'up',
+    n: '2',
+    title: 'Add customers and their items',
+    copy: 'Name, WhatsApp number, item, follow-up interval — or upload a CSV. Most shops import their top 30 repeat customers in 10 minutes.',
   },
   {
-    number: '03',
-    icon: Bell,
-    title: 'Reminders fire automatically — forever',
-    description: 'EasiBill calculates each customer\'s follow-up date and sends a WhatsApp message at 9 AM on that day. You do nothing. The customer comes back.',
-    detail: 'Average local business recovers 28–35% of missed follow-ups in the first month.',
-    direction: 'right',
+    n: '3',
+    title: 'Reminders fire — forever',
+    copy: 'EasiBill sends each message at 9 AM on the right day. You do nothing. The customer comes back.',
   },
 ]
 
-const directionVariants = {
-  left: slideLeft,
-  right: slideRight,
-  up: fadeUp,
+const N = STEPS.length
+
+function StepRow({ step, index, addNum, addBody }) {
+  return (
+    <div
+      className={`grid grid-cols-[70px_1fr] gap-6 border-t border-ink/30 py-7 sm:grid-cols-[110px_1fr] ${
+        index === N - 1 ? 'border-b border-ink' : ''
+      }`}
+    >
+      <div ref={(el) => addNum(el, index)} className="font-display text-[64px] font-extrabold leading-[.8] text-rust sm:text-[84px] [font-stretch:65%]" style={{ opacity: 0, willChange: 'transform, opacity' }}>
+        {step.n}
+      </div>
+      <div ref={(el) => addBody(el, index)} style={{ opacity: 0, willChange: 'transform, opacity' }}>
+        <h3 className="mb-2 font-display text-2xl font-extrabold uppercase [font-stretch:74%] sm:text-[26px]">{step.title}</h3>
+        <p className="text-[15px] leading-[1.6] text-ink-soft">{step.copy}</p>
+      </div>
+    </div>
+  )
 }
 
-const H2_WORDS = ['Up', 'and', 'running', 'in', 'under', '10', 'minutes']
-
 export default function HowItWorks() {
-  const posthog = usePostHog()
-  const ref = useRef(null)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { posthog?.capture('how_it_works_viewed'); obs.disconnect() }
-    }, { rootMargin: '-80px' })
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [posthog])
+  const listRef = useRef(null)
+  const numRefs = useRef([])
+  const bodyRefs = useRef([])
+  const addNum = (el, i) => { if (el) numRefs.current[i] = el }
+  const addBody = (el, i) => { if (el) bodyRefs.current[i] = el }
 
-  // Connector line fills in step with actual scroll position through the
-  // section, rather than firing once when it enters the viewport.
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 0.75', 'end 0.35'] })
-  const lineProgress = useSpring(scrollYProgress, { stiffness: 120, damping: 22, restDelta: 0.001 })
+  // Distinct vocabulary: a slower vertical cascade with the giant step
+  // digits scaling in from behind their copy — emphasises "step 1, step 2,
+  // step 3" as a numbered procedure rather than a generic card grid.
+  useScrollReveal({
+    ref: listRef,
+    threshold: 0.15,
+    duration: 1100,
+    onUpdate: (t) => {
+      for (let i = 0; i < N; i++) {
+        const numEl = numRefs.current[i]
+        const bodyEl = bodyRefs.current[i]
+        const sNum = seg(t, i * 0.22, i * 0.22 + 0.4)
+        const sBody = seg(t, i * 0.22 + 0.08, i * 0.22 + 0.48)
+        if (numEl) {
+          numEl.style.opacity = String(sNum)
+          numEl.style.transform = `scale(${lerp(0.7, 1, sNum)})`
+        }
+        if (bodyEl) {
+          bodyEl.style.opacity = String(sBody)
+          bodyEl.style.transform = `translateY(${lerp(18, 0, sBody)}px)`
+        }
+      }
+    },
+  })
 
   return (
-    <section
-      id="how-it-works"
-      ref={ref}
-      aria-labelledby="how-heading"
-      className="py-24 px-6 bg-[#18181B]"
-    >
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          variants={stagger}
-          viewport={viewport}
-          className="text-center max-w-2xl mx-auto mb-16"
-        >
-          <motion.h2
-            id="how-heading"
-            variants={stagger}
-            className="text-4xl font-bold text-white mb-4 leading-tight"
-          >
-            {H2_WORDS.map((word, i) => (
-              <motion.span key={i} variants={wordVariant} className="inline-block mr-[0.22em]">
-                {word}
-              </motion.span>
-            ))}
-          </motion.h2>
-          <motion.p variants={fadeUp} className="text-zinc-400 text-lg">
-            No IT team. No training days. No complicated onboarding. Just three steps.
-          </motion.p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-3 gap-8 relative">
-          {/* Connector line — fills in step with actual scroll position */}
-          <div className="hidden md:block absolute top-10 left-[calc(16.67%+2rem)] right-[calc(16.67%+2rem)] h-px overflow-hidden bg-zinc-700" aria-hidden="true">
-            <motion.div
-              className="h-full bg-gradient-to-r from-amber-500 to-amber-300"
-              style={{ scaleX: lineProgress, originX: 0 }}
-            />
-          </div>
-
-          {STEPS.map((step, i) => (
-            <motion.div
-              key={step.number}
-              initial="hidden"
-              whileInView="visible"
-              variants={directionVariants[step.direction]}
-              transition={{ delay: i * 0.15 }}
-              viewport={viewport}
-              className="relative flex flex-col items-center text-center"
-            >
-              {/* Step icon */}
-              <div className="relative mb-6">
-                <motion.div
-                  initial={{ scale: 0.5, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.5, delay: i * 0.15 + 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  viewport={viewport}
-                  className="h-20 w-20 rounded-2xl bg-[#09090B] border border-zinc-800 flex items-center justify-center"
-                >
-                  <step.icon className="h-8 w-8 text-amber-400" aria-hidden="true" />
-                </motion.div>
-                <motion.span
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.4, delay: i * 0.15 + 0.25, type: 'spring', stiffness: 300 }}
-                  viewport={viewport}
-                  className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-amber-500 text-zinc-950 text-xs font-bold flex items-center justify-center"
-                >
-                  {i + 1}
-                </motion.span>
-              </div>
-
-              <h3 className="text-xl font-bold text-zinc-100 mb-3">{step.title}</h3>
-              <p className="text-zinc-500 text-sm leading-relaxed mb-3">{step.description}</p>
-              <p className="text-xs text-amber-400 font-medium">{step.detail}</p>
-            </motion.div>
-          ))}
+    <section id="setup">
+      <div className="mx-auto max-w-[1360px] px-4 py-[88px] sm:px-8">
+        <div className="flex items-baseline justify-between border-b border-ink pb-[18px] font-mono text-xs tracking-[0.14em] text-mutedink">
+          <span>05 — SETUP</span>
+          <span className="hidden sm:inline">NO IT TEAM. NO TRAINING DAYS.</span>
         </div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          variants={fadeUp}
-          viewport={viewport}
-          className="text-center mt-14"
-        >
-          <a
-            href="https://dashboard.easibill.com/"
-            onClick={() => posthog?.capture('how_it_works_cta_clicked')}
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-amber-500 text-zinc-950 font-semibold hover:bg-amber-400 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900 text-base"
-          >
-            Start free — no card needed
-          </a>
-        </motion.div>
+        <div className="mt-[42px] grid grid-cols-1 items-start gap-16 lg:grid-cols-[1fr_380px]">
+          <div ref={listRef}>
+            <Lines
+              className="mb-12 font-display text-[clamp(38px,3.8vw,58px)] font-extrabold uppercase leading-[.96] tracking-[-0.01em] [font-stretch:70%]"
+              lines={[
+                'Running in under',
+                <span key="l2" className="text-green">10 minutes.</span>,
+              ]}
+            />
+
+            {STEPS.map((step, i) => (
+              <StepRow key={step.n} step={step} index={i} addNum={addNum} addBody={addBody} />
+            ))}
+          </div>
+
+          <Reveal delay={150} className="sticky top-[104px]">
+            <div className="relative h-[470px] w-full border border-ink shadow-[8px_8px_0_#146C3C]">
+              <Image
+                src="/images/shop-counter.png"
+                alt="A shop owner at the billing counter, managing the business on their phone"
+                fill
+                sizes="380px"
+                className="object-cover"
+              />
+            </div>
+            <div className="mt-3 font-mono text-[11px] tracking-[0.12em] text-mutedink">
+              FIG. 05 — THE COUNTER, 09:02 AM. THE REMINDER ALREADY WENT OUT.
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   )

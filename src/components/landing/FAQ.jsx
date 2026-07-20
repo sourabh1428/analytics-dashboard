@@ -1,149 +1,80 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Plus, Minus } from 'lucide-react'
-import { fadeUp, scaleIn, stagger, wordVariant, viewport } from '@/src/lib/motion'
 import { usePostHog } from 'posthog-js/react'
-import { useRef, useEffect } from 'react'
+import { Lines, Reveal } from './reveal'
 
+// Exact copy from the comp's faqData array (pro/EasiBill Landing.dc.html)
 const FAQS = [
-  {
-    question: 'Do I need WhatsApp Business API to use EasiBill?',
-    answer: 'No. The Starter plan connects to your existing WhatsApp Business number by scanning a QR code — no API registration, no waiting period, no extra cost. Just scan once and you are live in 2 minutes. The Pro plan uses an official WhatsApp Business API number (via Gupshup) for local businesses who need broadcast campaigns at scale.',
-  },
-  {
-    question: 'Does EasiBill replace my billing software (Marg, Vyapar, Ecogreen)?',
-    answer: 'No — and intentionally so. EasiBill works alongside your existing billing software. It is a customer retention CRM, not a billing or inventory system. You continue using Marg or Vyapar for GST invoicing. EasiBill handles customer records, follow-up reminders, and WhatsApp campaigns.',
-  },
-  {
-    question: 'What happens if my WhatsApp disconnects?',
-    answer: 'EasiBill automatically reconnects with retry — sessions persist through server restarts and network drops, so you never need to re-scan the QR code. If a reminder fails to send, it appears on the dashboard immediately so you can retry manually or follow up by phone.',
-  },
-  {
-    question: 'Is my customer data safe?',
-    answer: 'All customer data is encrypted and stored on secure cloud infrastructure. Data is scoped per business — no other business can access your records. You can export everything at any time.',
-  },
-  {
-    question: 'How long does setup take?',
-    answer: 'Most local businesses go from sign-up to first reminder in under 30 minutes. Step 1: scan the WhatsApp QR code (2 min). Step 2: add or import your top 20–30 customers (8–10 min). Step 3: enable reminders. Everything else is automatic.',
-  },
-  {
-    question: 'What happens if I want to cancel?',
-    answer: 'Cancel any time from your account settings. No cancellation fee, no lock-in. Your customer data is preserved and you can export it before you leave.',
-  },
+  { q: 'Do I need WhatsApp Business API?', a: "No. Starter works with your existing WhatsApp Business app — scan a QR code once and you're linked. Pro includes an official WABA number with zero ban risk, but it's optional." },
+  { q: 'Does it replace Marg, Vyapar or Ecogreen?', a: 'No. EasiBill runs alongside your existing billing software. Keep your current system for accounting; EasiBill handles the WhatsApp bills and follow-up reminders it can\'t.' },
+  { q: 'What if my WhatsApp disconnects?', a: 'You get an alert in the dashboard and reminders queue up automatically. Rescan the QR code and everything queued goes out — nothing is lost.' },
+  { q: 'Is my customer data safe?', a: 'Yes. Data is encrypted, never shared or sold, and you can export or delete it any time. Your customer list is yours.' },
+  { q: 'How long does setup take?', a: 'Under 30 minutes end to end. Connecting WhatsApp takes 2 minutes; most shops import their top repeat customers in 10.' },
+  { q: 'What if I want to cancel?', a: 'Cancel any time from the app — no calls, no lock-in. You can export all your data before you go.' },
 ]
 
-function FAQItem({ item, index, onOpen }) {
-  const [open, setOpen] = useState(false)
-  const id = `faq-answer-${index}`
-  const buttonId = `faq-button-${index}`
+// Accordion open/close is click-driven, not scroll-scrubbed content, so it
+// stays a plain CSS transition — a `grid-template-rows: 0fr -> 1fr` trick
+// instead of animating `height`, so there's no need to measure scrollHeight
+// in JS at all.
+function FAQItem({ item, index, open, onToggle }) {
+  const isOpen = open === index
 
   return (
-    <motion.div
-      variants={fadeUp}
-      className="border-b border-zinc-800 last:border-0"
-    >
+    <div className="border-b border-ink/30">
       <button
-        id={buttonId}
-        aria-expanded={open}
-        aria-controls={id}
-        onClick={() => { const next = !open; setOpen(next); if (next) onOpen?.(item.question) }}
-        className="w-full flex items-center justify-between py-5 text-left gap-4 focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900 rounded-sm group"
+        onClick={() => onToggle(isOpen ? -1 : index)}
+        aria-expanded={isOpen}
+        className="grid w-full grid-cols-[48px_1fr_32px] items-baseline gap-4 py-[22px] px-1 text-left font-sans text-ink sm:grid-cols-[64px_1fr_40px] sm:gap-4"
       >
-        <span className="font-semibold text-zinc-200 text-base group-hover:text-white transition-colors duration-150">
-          {item.question}
-        </span>
-        {open
-          ? <Minus className="h-5 w-5 text-amber-400 shrink-0" aria-hidden="true" />
-          : <Plus className="h-5 w-5 text-zinc-600 shrink-0 group-hover:text-zinc-400 transition-colors duration-150" aria-hidden="true" />
-        }
+        <span className="font-mono text-xs text-rust">Q/0{index + 1}</span>
+        <span className="font-display text-lg font-bold uppercase [font-stretch:76%] sm:text-xl">{item.q}</span>
+        <span className="text-right font-mono text-xl text-green">{isOpen ? '−' : '+'}</span>
       </button>
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            id={id}
-            role="region"
-            aria-labelledby={buttonId}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden"
-          >
-            <p className="pb-5 text-zinc-500 text-sm leading-relaxed">{item.answer}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
+      <div
+        className="grid transition-[grid-template-rows] duration-300 ease-out"
+        style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}
+      >
+        <div className="overflow-hidden">
+          <p className="max-w-[680px] py-0 pb-[26px] pl-0 pr-11 text-[15px] leading-[1.65] text-ink-soft sm:pl-20">
+            {item.a}
+          </p>
+        </div>
+      </div>
+    </div>
   )
 }
 
-const H2_WORDS = ['Questions', 'business', 'owners', 'ask', 'before', 'switching']
-
 export default function FAQ() {
   const posthog = usePostHog()
-  const ref = useRef(null)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { posthog?.capture('faq_section_viewed'); obs.disconnect() }
-    }, { rootMargin: '-80px' })
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [posthog])
+  const [open, setOpen] = useState(0)
+
+  const handleToggle = (nextIndex) => {
+    setOpen(nextIndex)
+    if (nextIndex !== -1) posthog?.capture('faq_opened', { question: FAQS[nextIndex].q, index: nextIndex })
+  }
 
   return (
-    <section
-      id="faq"
-      ref={ref}
-      aria-labelledby="faq-heading"
-      className="py-24 px-6 bg-[#09090B]"
-    >
-      <div className="max-w-3xl mx-auto">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          variants={stagger}
-          viewport={viewport}
-          className="text-center mb-14"
-        >
-          <motion.h2
-            id="faq-heading"
-            variants={stagger}
-            className="text-4xl font-bold text-white mb-4 leading-tight"
-          >
-            {H2_WORDS.map((word, i) => (
-              <motion.span key={i} variants={wordVariant} className="inline-block mr-[0.22em]">
-                {word}
-              </motion.span>
-            ))}
-          </motion.h2>
-          <motion.p variants={fadeUp} className="text-zinc-400 text-lg">
+    <section id="faq" className="border-t border-ink">
+      <div className="mx-auto grid max-w-[1360px] grid-cols-1 gap-16 px-4 py-[88px] sm:px-8 lg:grid-cols-[380px_1fr]">
+        <div>
+          <div className="border-b border-ink pb-[18px] font-mono text-xs tracking-[0.14em] text-mutedink">08 — QUESTIONS</div>
+          <Lines
+            as="h2"
+            className="my-4 mt-8 font-display text-[clamp(32px,3vw,46px)] font-extrabold uppercase leading-[.98] tracking-[-0.01em] [font-stretch:70%]"
+            lines={['Asked before switching.']}
+          />
+          <Reveal as="p" delay={100} className="font-serif text-lg italic text-green">
             Honest answers. No marketing fluff.
-          </motion.p>
-        </motion.div>
+          </Reveal>
+        </div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.07, delayChildren: 0.05 } },
-          }}
-          viewport={viewport}
-          className="bg-[#18181B] rounded-2xl border border-zinc-800 px-8"
-        >
+        <div className="border-t border-ink">
           {FAQS.map((item, i) => (
-            <FAQItem
-              key={item.question}
-              item={item}
-              index={i}
-              onOpen={(q) => posthog?.capture('faq_opened', { question: q, index: i })}
-            />
+            <FAQItem key={item.q} item={item} index={i} open={open} onToggle={handleToggle} />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

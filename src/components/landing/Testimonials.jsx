@@ -1,123 +1,95 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Star } from 'lucide-react'
-import { slideLeft, slideRight, fadeUp, stagger, wordVariant, viewport } from '@/src/lib/motion'
+import { useRef } from 'react'
+import Image from 'next/image'
 import { usePostHog } from 'posthog-js/react'
-import { useRef, useEffect } from 'react'
+import { lerp, seg, useScrollReveal } from '@/src/lib/scrollScrub'
+import { Lines } from './reveal'
 
 const TESTIMONIALS = [
   {
-    quote: "My old system took 5 minutes per bill. Now it's 30 seconds and the customer gets it directly on WhatsApp. They can view it any time — no more 'can you resend the invoice?'",
-    name: 'Rajesh Verma',
-    role: 'Owner, Verma Medical Store',
-    location: 'Jaipur',
-    since: 'Using EasiBill since March 2024',
-    initials: 'RV',
-    enterFrom: slideLeft,
+    quote: '"My old system took 5 minutes per bill. Now it\'s 30 seconds and the customer gets it on WhatsApp. No more \'can you resend the invoice?\'"',
+    name: 'RAJESH VERMA — VERMA MEDICAL STORE, JAIPUR',
+    since: 'SINCE MAR 2024',
+    image: '/images/testimonial-rajesh.png',
   },
   {
-    quote: "The follow-up reminders alone brought back 40% of customers who used to just forget. I didn't change anything else — just switched to EasiBill. The numbers spoke for themselves in 3 months.",
-    name: 'Sunita Patel',
-    role: 'Owner, Patel Wellness Spa',
-    location: 'Ahmedabad',
-    since: 'Using EasiBill since January 2024',
-    initials: 'SP',
-    enterFrom: fadeUp,
+    quote: '"The follow-up reminders alone brought back 40% of customers who used to just forget. I changed nothing else. The numbers spoke in 3 months."',
+    name: 'SUNITA PATEL — PATEL WELLNESS SPA, AHMEDABAD',
+    since: 'SINCE JAN 2024',
+    image: '/images/testimonial-sunita.png',
   },
   {
-    quote: "Tax filing used to take my whole weekend every month. Now I export from EasiBill and my accountant finishes it in one hour. I get my Sunday back. Worth every penny.",
-    name: 'Mohammed Arif',
-    role: 'Owner, City Medical Hall',
-    location: 'Hyderabad',
-    since: 'Using EasiBill since October 2023',
-    initials: 'MA',
-    enterFrom: slideRight,
+    quote: '"Tax filing used to take my whole weekend. Now I export from EasiBill and my accountant finishes in an hour. I get my Sunday back."',
+    name: 'Swetha  — CITY MEDICAL HALL, HYDERABAD',
+    since: 'SINCE OCT 2023',
+    image: '/images/testimonial-arif.png',
   },
 ]
 
-const H2_WORDS = ['Business', 'owners', 'who', 'switched', 'never', 'went', 'back']
-
 export default function Testimonials() {
   const posthog = usePostHog()
-  const ref = useRef(null)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { posthog?.capture('testimonials_section_viewed'); obs.disconnect() }
-    }, { rootMargin: '-80px' })
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [posthog])
+  const gridRef = useRef(null)
+  const cardRefs = useRef([])
+  cardRefs.current = []
+  const addCard = (el) => { if (el) cardRefs.current.push(el) }
+
+  // Distinct vocabulary again: a very slight rotation-in, like index cards
+  // being set down on a desk — editorial rather than a straight fade/rise.
+  useScrollReveal({
+    ref: gridRef,
+    threshold: 0.15,
+    duration: 1000,
+    onUpdate: (t) => {
+      cardRefs.current.forEach((el, i) => {
+        const s = seg(t, i * 0.16, i * 0.16 + 0.55)
+        el.style.opacity = String(s)
+        el.style.transform = `translateY(${lerp(30, 0, s)}px) rotate(${lerp(-1.6, 0, s)}deg)`
+      })
+      if (t >= 1) TESTIMONIALS.forEach((tm) => posthog?.capture('testimonial_viewed', { name: tm.name }))
+    },
+  })
 
   return (
-    <section
-      id="testimonials"
-      ref={ref}
-      aria-labelledby="testimonials-heading"
-      className="py-24 px-6 bg-[#09090B]"
-    >
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          variants={stagger}
-          viewport={viewport}
-          className="text-center max-w-2xl mx-auto mb-16"
-        >
-          <motion.h2
-            id="testimonials-heading"
-            variants={stagger}
-            className="text-4xl font-bold text-white mb-4 leading-tight"
-          >
-            {H2_WORDS.map((word, i) => (
-              <motion.span key={i} variants={wordVariant} className="inline-block mr-[0.22em]">
-                {word}
-              </motion.span>
-            ))}
-          </motion.h2>
-          <motion.p variants={fadeUp} className="text-zinc-400 text-lg">
-            Real store owners. Real results. No marketing language.
-          </motion.p>
-        </motion.div>
+    <section id="proof" className="border-t border-ink bg-paper-alt">
+      <div className="mx-auto max-w-[1360px] px-4 py-[88px] sm:px-8">
+        <div className="flex items-baseline justify-between border-b border-ink pb-[18px] font-mono text-xs tracking-[0.14em] text-mutedink">
+          <span>06 — PROOF</span>
+          <span className="hidden sm:inline">REAL OWNERS. REAL COUNTERS.</span>
+        </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {TESTIMONIALS.map((t, i) => (
-            <motion.figure
+        <Lines
+          className="mb-14 mt-[42px] font-display text-[clamp(38px,4.2vw,64px)] font-extrabold uppercase leading-[.96] tracking-[-0.01em] [font-stretch:70%]"
+          lines={[
+            'Owners who switched',
+            <>never went <span className="font-serif text-[0.86em] italic font-medium normal-case tracking-normal text-green">back.</span></>,
+          ]}
+        />
+
+        <div ref={gridRef} className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          {TESTIMONIALS.map((t) => (
+            <figure
               key={t.name}
-              initial="hidden"
-              whileInView="visible"
-              variants={t.enterFrom}
-              transition={{ delay: i * 0.12 }}
-              viewport={viewport}
-              whileHover={{ y: -6, transition: { duration: 0.2 } }}
-              className="bg-[#18181B] rounded-2xl border border-zinc-800 p-7 flex flex-col gap-5"
+              ref={addCard}
+              className="m-0 border-t border-ink pt-6"
+              style={{ opacity: 0, transformOrigin: 'top left', willChange: 'transform, opacity' }}
             >
-              <div className="flex gap-0.5" aria-label="5 out of 5 stars">
-                {[...Array(5)].map((_, j) => (
-                  <Star key={j} className="h-4 w-4 fill-amber-400 text-amber-400" aria-hidden="true" />
-                ))}
+              <div className="relative h-[300px] w-full">
+                <Image
+                  src={t.image}
+                  alt={t.name.split(' — ')[0]}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover"
+                />
               </div>
-
-              <blockquote className="text-zinc-300 text-base leading-relaxed flex-1">
-                "{t.quote}"
-              </blockquote>
-
-              <figcaption className="flex items-center gap-3 pt-2 border-t border-zinc-800">
-                <div
-                  className="h-10 w-10 rounded-full bg-amber-500/20 flex items-center justify-center text-sm font-bold text-amber-400 shrink-0"
-                  aria-hidden="true"
-                >
-                  {t.initials}
-                </div>
-                <div>
-                  <p className="font-semibold text-zinc-200 text-sm">{t.name}</p>
-                  <p className="text-xs text-zinc-500">{t.role} · {t.location}</p>
-                  <p className="text-xs mt-0.5 text-amber-500">{t.since}</p>
-                </div>
+              <blockquote className="my-[22px] font-serif text-xl italic leading-[1.45] text-ink">{t.quote}</blockquote>
+              <figcaption className="font-mono text-[11px] tracking-[0.12em] text-mutedink">
+                {t.name}
+                <br />
+                {t.since}
               </figcaption>
-            </motion.figure>
+            </figure>
           ))}
         </div>
       </div>

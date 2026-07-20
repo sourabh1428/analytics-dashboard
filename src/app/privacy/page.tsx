@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacy Policy – EasiBill",
@@ -56,17 +56,19 @@ const sections = [
 export default function PrivacyPage() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-20">
-      <p className="text-sm font-semibold uppercase tracking-widest text-amber-400">Legal</p>
-      <h1 className="mt-3 text-4xl font-bold tracking-tight text-white">Privacy Policy</h1>
-      <p className="mt-3 text-white/50">Last updated: June 2026</p>
-      <p className="mt-6 leading-7 text-white/70">
+      <p className="font-mono text-xs tracking-[0.2em] text-green">LEGAL</p>
+      <h1 className="mt-3 font-display text-4xl font-extrabold uppercase leading-[.96] tracking-[-0.018em] text-ink [font-stretch:68%]">
+        Privacy policy
+      </h1>
+      <p className="mt-3 font-mono text-xs tracking-[0.08em] text-faint">LAST UPDATED: JUNE 2026</p>
+      <p className="mt-6 leading-7 text-mutedink">
         EasiBill ("we", "our", "us") is committed to protecting the privacy of local business owners and their customers. This policy explains what data we collect, how we use it, and the rights you have over it.
       </p>
       <div className="mt-10 space-y-8">
         {sections.map((s) => (
-          <div key={s.heading}>
-            <h2 className="text-lg font-semibold text-white">{s.heading}</h2>
-            <p className="mt-2 leading-7 text-white/60">{s.body}</p>
+          <div key={s.heading} className="border-t border-ink pt-6">
+            <h2 className="font-display text-lg font-bold uppercase tracking-[-0.005em] text-ink">{s.heading}</h2>
+            <p className="mt-2 leading-7 text-mutedink">{s.body}</p>
           </div>
         ))}
       </div>

@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Clock, Tag, ArrowRight } from "lucide-react";
@@ -84,30 +84,30 @@ export default async function BlogPostPage({ params }: PageProps) {
     .slice(0, 3);
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="min-h-screen bg-paper">
       {/* Back */}
-      <div className="max-w-3xl mx-auto px-6 pt-8">
-        <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-slate-900 transition-colors">
-          <ArrowLeft className="h-4 w-4" /> Back to Blog
+      <div className="mx-auto max-w-3xl px-6 pt-8">
+        <Link href="/blog" className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.1em] text-mutedink transition-colors hover:text-green">
+          <ArrowLeft className="h-4 w-4" /> BACK TO BLOG
         </Link>
       </div>
 
       {/* Header */}
-      <header className="max-w-3xl mx-auto px-6 pt-8 pb-10 border-b border-gray-100">
-        <div className="flex items-center gap-3 mb-4">
-          <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${CATEGORY_COLORS[post.category] ?? "text-white/50 bg-white/10"}`}>
+      <header className="mx-auto max-w-3xl border-b border-ink px-6 pb-10 pt-8">
+        <div className="mb-4 flex items-center gap-3">
+          <span className={`px-2.5 py-0.5 font-mono text-[11px] tracking-[0.08em] ${(CATEGORY_COLORS[post.category] ?? "text-mutedink bg-paper-alt").replace("rounded-full", "")}`}>
             {post.category}
           </span>
-          <span className="flex items-center gap-1 text-xs text-gray-400">
+          <span className="flex items-center gap-1 font-mono text-[11px] text-faint">
             <Clock className="h-3 w-3" /> {post.readTime} read
           </span>
-          <span className="text-xs text-gray-400">{post.date}</span>
+          <span className="font-mono text-[11px] text-faint">{post.date}</span>
         </div>
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 leading-tight">{post.title}</h1>
-        <p className="mt-4 text-lg text-gray-600 leading-relaxed">{post.excerpt}</p>
+        <h1 className="font-display text-3xl font-extrabold uppercase leading-tight tracking-[-0.015em] text-ink md:text-4xl">{post.title}</h1>
+        <p className="mt-4 text-lg leading-relaxed text-mutedink">{post.excerpt}</p>
         <div className="mt-4 flex flex-wrap gap-2">
           {post.tags.map((tag) => (
-            <span key={tag} className="inline-flex items-center gap-1 text-xs text-gray-400">
+            <span key={tag} className="inline-flex items-center gap-1 font-mono text-[11px] tracking-[0.05em] text-faint">
               <Tag className="h-3 w-3" /> {tag}
             </span>
           ))}
@@ -115,41 +115,41 @@ export default async function BlogPostPage({ params }: PageProps) {
       </header>
 
       {/* Body */}
-      <article className="max-w-3xl mx-auto px-6 py-12 prose prose-slate prose-lg">
+      <article className="prose prose-lg mx-auto max-w-3xl px-6 py-12">
         {sections.map((s) => (
           <div key={s.heading} className="mb-10">
-            <h2 className="text-xl font-bold text-slate-900 mb-3">{s.heading}</h2>
-            <p className="text-gray-600 leading-relaxed">{s.body}</p>
+            <h2 className="mb-3 font-display text-xl font-extrabold uppercase tracking-[-0.01em] text-ink">{s.heading}</h2>
+            <p className="leading-relaxed text-mutedink">{s.body}</p>
           </div>
         ))}
       </article>
 
       {/* CTA */}
-      <div className="max-w-3xl mx-auto px-6 pb-16">
-        <div className="rounded-2xl bg-amber-500 p-8 text-center">
-          <h2 className="text-2xl font-bold text-white mb-3">Put this into practice with EasiBill</h2>
-          <p className="text-amber-200 mb-6">Free to start. No card required. Set up in under 5 minutes.</p>
+      <div className="mx-auto max-w-3xl px-6 pb-16">
+        <div className="border border-ink bg-green p-8 text-center">
+          <h2 className="mb-3 font-display text-2xl font-extrabold uppercase tracking-[-0.01em] text-paper">Put this into practice with EasiBill</h2>
+          <p className="mb-6 text-green-pale">Free to start. No card required. Set up in under 5 minutes.</p>
           <Link
             href="https://dashboard.easibill.com/"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-amber-600 font-semibold hover:bg-amber-50 transition-colors"
+            className="inline-flex items-center gap-2 border border-paper bg-paper px-6 py-3 font-mono text-xs tracking-[0.1em] text-green transition-colors hover:bg-ink hover:text-paper"
           >
-            Start free trial <ArrowRight className="h-4 w-4" />
+            START FREE TRIAL <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </div>
 
       {/* Related posts */}
       {related.length > 0 && (
-        <div className="max-w-3xl mx-auto px-6 pb-20 border-t border-gray-100 pt-12">
-          <h2 className="text-lg font-bold text-slate-900 mb-6">Related articles</h2>
-          <div className="grid sm:grid-cols-3 gap-4">
+        <div className="mx-auto max-w-3xl border-t border-ink px-6 pb-20 pt-12">
+          <h2 className="mb-6 font-display text-lg font-extrabold uppercase tracking-[-0.01em] text-ink">Related articles</h2>
+          <div className="grid gap-4 sm:grid-cols-3">
             {related.map((r) => (
-              <Link key={r.slug} href={`/blog/${r.slug}`} className="block rounded-xl border border-gray-100 p-4 hover:border-amber-200 hover:bg-amber-50/30 transition-colors">
-                <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${CATEGORY_COLORS[r.category] ?? "text-gray-500 bg-gray-100"}`}>
+              <Link key={r.slug} href={`/blog/${r.slug}`} className="block border border-ink p-4 transition-colors hover:bg-paper-alt">
+                <span className={`px-2 py-0.5 font-mono text-[10px] tracking-[0.08em] ${(CATEGORY_COLORS[r.category] ?? "text-mutedink bg-paper-alt").replace("rounded-full", "")}`}>
                   {r.category}
                 </span>
-                <p className="mt-2 text-sm font-semibold text-slate-900 leading-snug">{r.title}</p>
-                <p className="mt-1 text-xs text-gray-400">{r.readTime} · {r.date}</p>
+                <p className="mt-2 font-display text-sm font-bold leading-snug text-ink">{r.title}</p>
+                <p className="mt-1 font-mono text-[11px] text-faint">{r.readTime} · {r.date}</p>
               </Link>
             ))}
           </div>

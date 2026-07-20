@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -85,34 +85,36 @@ const steps = [
 export default function OnboardingPage() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-20">
-      <p className="text-sm font-semibold uppercase tracking-widest text-amber-400">Onboarding Guide</p>
-      <h1 className="mt-3 text-4xl font-bold tracking-tight text-white">From sign-up to first reminder</h1>
-      <p className="mt-4 text-white/60">
+      <p className="font-mono text-xs tracking-[0.2em] text-green">ONBOARDING GUIDE</p>
+      <h1 className="mt-3 font-display text-4xl font-extrabold uppercase leading-[.96] tracking-[-0.018em] text-ink [font-stretch:68%]">
+        From sign-up to first reminder
+      </h1>
+      <p className="mt-4 text-mutedink">
         Follow these six steps in order. Most local businesses complete setup in under 30 minutes.
       </p>
 
       <div className="mt-12 space-y-6">
         {steps.map((s) => (
-          <div key={s.step} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-6">
+          <div key={s.step} className="border border-ink bg-paper-white p-6">
             <div className="flex items-start gap-4">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-500/15 text-sm font-bold text-amber-400">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-ink bg-green-pale font-mono text-sm font-bold text-green">
                 {s.step}
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-3">
-                  <h2 className="text-base font-semibold text-white">{s.title}</h2>
-                  <span className="text-xs text-white/30">{s.time}</span>
+                  <h2 className="font-display text-base font-bold uppercase tracking-[-0.005em] text-ink">{s.title}</h2>
+                  <span className="font-mono text-[11px] text-faint">{s.time}</span>
                 </div>
                 <ul className="mt-3 space-y-2">
                   {s.details.map((d) => (
-                    <li key={d} className="flex gap-2 text-sm text-white/60">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500/50" />
+                    <li key={d} className="flex gap-2 text-sm text-mutedink">
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-green" />
                       {d}
                     </li>
                   ))}
                 </ul>
-                <div className="mt-4 rounded-xl bg-amber-500/5 border border-amber-500/10 px-4 py-3">
-                  <p className="text-xs text-amber-300/80"><span className="font-semibold">Tip: </span>{s.tip}</p>
+                <div className="mt-4 border border-ink bg-green-pale px-4 py-3">
+                  <p className="font-mono text-xs tracking-[0.02em] text-ink"><span className="font-bold text-green">TIP: </span>{s.tip}</p>
                 </div>
               </div>
             </div>
@@ -120,23 +122,23 @@ export default function OnboardingPage() {
         ))}
       </div>
 
-      <div className="mt-12 rounded-2xl border border-white/[0.07] bg-white/[0.03] p-8">
-        <h2 className="text-lg font-semibold text-white">Prefer a guided walkthrough?</h2>
-        <p className="mt-2 text-sm text-white/60">
+      <div className="mt-12 border border-ink bg-paper-white p-8">
+        <h2 className="font-display text-lg font-extrabold uppercase tracking-[-0.01em] text-ink">Prefer a guided walkthrough?</h2>
+        <p className="mt-2 text-sm text-mutedink">
           Book a free 30-minute onboarding call. Our team will screen-share through every step and import your first customers together with you.
         </p>
         <div className="mt-5 flex flex-wrap gap-3">
           <Link
             href="/contact"
-            className="inline-flex rounded-full bg-amber-500 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-amber-400"
+            className="inline-flex bg-green px-6 py-2.5 font-mono text-xs tracking-[0.1em] text-paper transition-colors hover:bg-ink"
           >
-            Book onboarding call
+            BOOK ONBOARDING CALL
           </Link>
           <Link
             href="/tutorials"
-            className="inline-flex rounded-full border border-white/[0.1] px-6 py-2.5 text-sm font-semibold text-white/70 transition hover:text-white"
+            className="inline-flex border border-ink px-6 py-2.5 font-mono text-xs tracking-[0.1em] text-ink transition-colors hover:bg-ink hover:text-paper"
           >
-            Watch tutorials
+            WATCH TUTORIALS
           </Link>
         </div>
       </div>

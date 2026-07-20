@@ -46,32 +46,32 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="bg-[#FAF9FF] px-4 pb-20 pt-32 text-slate-950 sm:px-6 lg:px-8">
+    <div className="bg-paper px-4 pb-20 pt-32 text-ink sm:px-6 lg:px-8">
       <section className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
         >
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-500">Talk to Easibill</p>
-          <h1 className="mt-4 text-5xl font-semibold tracking-tight sm:text-6xl">
+          <p className="font-mono text-sm font-semibold uppercase tracking-[0.22em] text-rust">Talk to Easibill</p>
+          <h1 className="mt-4 font-display text-5xl font-extrabold uppercase tracking-[-0.018em] sm:text-6xl">
             Bring your business follow-up workflow. We will make it automatic.
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-mutedink">
             For sales, onboarding, or a live demo, reach the team directly. We are building with local business owners, not guessing from a template.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
               href={DASHBOARD_LOGIN_URL}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-500 px-6 py-3.5 text-sm font-semibold text-white shadow-xl shadow-amber-500/25 transition hover:bg-amber-600"
+              className="inline-flex items-center justify-center gap-2 bg-green px-6 py-3.5 font-mono text-sm tracking-[0.08em] text-paper transition hover:bg-ink"
             >
               Open Easibill app
               <ArrowRight className="h-4 w-4" />
             </a>
             <a
               href={DISCORD_URL}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-6 py-3.5 text-sm font-semibold text-zinc-800 transition hover:border-amber-300"
+              className="inline-flex items-center justify-center gap-2 border border-ink px-6 py-3.5 font-mono text-sm tracking-[0.08em] text-ink transition hover:bg-ink hover:text-paper"
             >
               <MessageCircle className="h-4 w-4" />
               Join Discord
@@ -80,12 +80,12 @@ const ContactPage = () => {
 
           <div className="mt-10 grid gap-3 text-sm">
             <div className="flex items-center gap-3">
-              <Mail className="h-4 w-4 text-amber-500" />
-              <a href="mailto:support@easibill.com" className="hover:text-amber-600">support@easibill.com</a>
+              <Mail className="h-4 w-4 text-green" />
+              <a href="mailto:support@easibill.com" className="hover:text-green">support@easibill.com</a>
             </div>
             <div className="flex items-center gap-3">
-              <Phone className="h-4 w-4 text-amber-500" />
-              <a href="mailto:support@easibill.com" className="hover:text-amber-600">support@easibill.com</a>
+              <Phone className="h-4 w-4 text-green" />
+              <a href="mailto:support@easibill.com" className="hover:text-green">support@easibill.com</a>
             </div>
           </div>
         </motion.div>
@@ -94,24 +94,24 @@ const ContactPage = () => {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-2xl shadow-slate-950/8"
+          className="border border-ink bg-paper-white p-5 shadow-[8px_8px_0_#17150F]"
         >
-          <div className="rounded-[1.5rem] bg-[#0D0B1E] p-6 text-white">
+          <div className="bg-ink p-6 text-paper">
             <div className="mb-5 flex items-center gap-3">
-              <div className="rounded-2xl bg-amber-500 p-3 text-white">
+              <div className="bg-green p-3 text-paper">
                 <Send className="h-5 w-5" />
               </div>
               <div>
-                <h2 className="text-xl font-semibold">Send your details</h2>
-                <p className="text-sm text-slate-300">We will reply with the best next step.</p>
+                <h2 className="font-display text-xl font-bold">Send your details</h2>
+                <p className="text-sm text-faint">We will reply with the best next step.</p>
               </div>
             </div>
 
             {done ? (
               <div className="flex flex-col items-center gap-3 py-8 text-center">
-                <CheckCircle2 className="h-10 w-10 text-amber-400" />
-                <p className="text-lg font-semibold text-white">Got it — we will be in touch shortly.</p>
-                <p className="text-sm text-slate-400">Expect a reply within 1 business day.</p>
+                <CheckCircle2 className="h-10 w-10 text-green-bright" />
+                <p className="text-lg font-semibold text-paper">Got it — we will be in touch shortly.</p>
+                <p className="text-sm text-faint">Expect a reply within 1 business day.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="grid gap-3">
@@ -120,7 +120,7 @@ const ContactPage = () => {
                   value={form.name}
                   onChange={handleChange}
                   required
-                  className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:border-amber-400"
+                  className="border border-white/10 bg-white/10 px-4 py-3 text-sm outline-none placeholder:text-faint focus:border-green"
                   placeholder="Your name"
                 />
                 <div className="grid grid-cols-2 gap-3">
@@ -129,7 +129,7 @@ const ContactPage = () => {
                     type="email"
                     value={form.email}
                     onChange={handleChange}
-                    className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:border-amber-400"
+                    className="border border-white/10 bg-white/10 px-4 py-3 text-sm outline-none placeholder:text-faint focus:border-green"
                     placeholder="Email address"
                   />
                   <input
@@ -137,30 +137,30 @@ const ContactPage = () => {
                     type="tel"
                     value={form.mobile}
                     onChange={handleChange}
-                    className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:border-amber-400"
+                    className="border border-white/10 bg-white/10 px-4 py-3 text-sm outline-none placeholder:text-faint focus:border-green"
                     placeholder="Phone number"
                   />
                 </div>
-                <p className="text-xs text-slate-400 -mt-1 px-1">At least one of email or phone is required.</p>
+                <p className="text-xs text-faint -mt-1 px-1">At least one of email or phone is required.</p>
                 <input
                   name="company"
                   value={form.company}
                   onChange={handleChange}
-                  className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:border-amber-400"
+                  className="border border-white/10 bg-white/10 px-4 py-3 text-sm outline-none placeholder:text-faint focus:border-green"
                   placeholder="Business / company name"
                 />
                 <textarea
                   name="message"
                   value={form.message}
                   onChange={handleChange}
-                  className="min-h-28 rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:border-amber-400"
+                  className="min-h-28 border border-white/10 bg-white/10 px-4 py-3 text-sm outline-none placeholder:text-faint focus:border-green"
                   placeholder="What do you want help with?"
                 />
-                {error && <p className="text-center text-sm text-red-400">{error}</p>}
+                {error && <p className="text-center text-sm text-rust">{error}</p>}
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-amber-50 disabled:opacity-60"
+                  className="bg-paper px-5 py-3 font-mono text-sm tracking-[0.08em] text-ink transition hover:bg-green-pale disabled:opacity-60"
                 >
                   {submitting ? 'Submitting…' : 'Submit inquiry'}
                 </button>

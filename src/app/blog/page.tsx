@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { blogPosts, CATEGORY_COLORS } from "@/src/data/blogPosts";
 
@@ -16,9 +16,11 @@ export default function BlogPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-20">
-      <p className="text-sm font-semibold uppercase tracking-widest text-amber-400">Blog</p>
-      <h1 className="mt-3 text-4xl font-bold tracking-tight text-white">Business growth, plainly explained</h1>
-      <p className="mt-4 text-white/60 max-w-2xl">
+      <p className="font-mono text-xs tracking-[0.2em] text-green">BLOG</p>
+      <h1 className="mt-3 font-display text-4xl font-extrabold uppercase leading-[.96] tracking-[-0.018em] text-ink [font-stretch:68%]">
+        Business growth, plainly explained
+      </h1>
+      <p className="mt-4 max-w-2xl text-mutedink">
         200+ practical articles for local business owners. Retention, WhatsApp billing, compliance, and operations — no fluff.
       </p>
 
@@ -27,13 +29,13 @@ export default function BlogPage() {
         {ALL_CATEGORIES.map((cat) => (
           <span
             key={cat}
-            className={`rounded-full px-3 py-1 text-xs font-semibold border ${
+            className={`border px-3 py-1 font-mono text-xs tracking-[0.1em] ${
               cat === "All"
-                ? "bg-amber-500/20 text-amber-300 border-amber-500/30"
-                : "border-white/10 text-white/50 bg-white/[0.03] hover:border-white/20 hover:text-white/70 cursor-pointer transition-colors"
+                ? "border-ink bg-ink text-paper"
+                : "cursor-pointer border-ink bg-paper-white text-mutedink transition-colors hover:bg-ink hover:text-paper"
             }`}
           >
-            {cat}
+            {cat.toUpperCase()}
           </span>
         ))}
       </div>
@@ -44,55 +46,55 @@ export default function BlogPage() {
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="flex flex-col rounded-2xl border border-white/[0.07] bg-white/[0.03] p-6 transition hover:border-amber-500/30 hover:bg-white/[0.05] group"
+            className="group flex flex-col border border-ink bg-paper-white p-6 shadow-[8px_8px_0_#17150F] transition-transform hover:-translate-y-0.5"
           >
             <div className="flex items-center gap-3">
-              <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${CATEGORY_COLORS[post.category] ?? "text-white/50 bg-white/10"}`}>
+              <span className={`px-2.5 py-0.5 font-mono text-[11px] tracking-[0.08em] ${(CATEGORY_COLORS[post.category] ?? "text-mutedink bg-paper-alt").replace("rounded-full", "")}`}>
                 {post.category}
               </span>
-              <span className="text-xs text-white/30">{post.readTime}</span>
+              <span className="font-mono text-[11px] text-faint">{post.readTime}</span>
             </div>
-            <h2 className="mt-4 text-base font-semibold leading-6 text-white group-hover:text-amber-300 transition-colors">{post.title}</h2>
-            <p className="mt-3 flex-1 text-sm leading-6 text-white/50">{post.excerpt}</p>
-            <p className="mt-4 text-xs text-white/30">{post.date}</p>
+            <h2 className="mt-4 font-display text-base font-bold leading-6 text-ink transition-colors group-hover:text-green">{post.title}</h2>
+            <p className="mt-3 flex-1 text-sm leading-6 text-mutedink">{post.excerpt}</p>
+            <p className="mt-4 font-mono text-[11px] text-faint">{post.date}</p>
           </Link>
         ))}
       </div>
 
       {/* Newsletter */}
-      <div className="mt-12 rounded-2xl border border-amber-500/20 bg-amber-500/5 p-8">
-        <h2 className="text-lg font-semibold text-white">Get articles in your inbox</h2>
-        <p className="mt-2 text-sm text-white/60">One email per week. Practical retention tips for local businesses. Unsubscribe anytime.</p>
-        <div className="mt-5 flex max-w-sm overflow-hidden rounded-full border border-white/[0.1] bg-white/[0.04]">
+      <div className="mt-12 border border-ink bg-green-pale p-8">
+        <h2 className="font-display text-lg font-extrabold uppercase tracking-[-0.01em] text-ink">Get articles in your inbox</h2>
+        <p className="mt-2 text-sm text-mutedink">One email per week. Practical retention tips for local businesses. Unsubscribe anytime.</p>
+        <div className="mt-5 flex max-w-sm border border-ink bg-paper-white">
           <input
             type="email"
             placeholder="your@email.com"
-            className="min-w-0 flex-1 bg-transparent px-4 py-3 text-sm text-white outline-none placeholder:text-white/30"
+            className="min-w-0 flex-1 bg-transparent px-4 py-3 text-sm text-ink outline-none placeholder:text-faint"
           />
-          <button className="bg-amber-500 px-5 text-sm font-semibold text-white transition hover:bg-amber-400">
-            Subscribe
+          <button className="bg-green px-5 font-mono text-xs tracking-[0.1em] text-paper transition-colors hover:bg-ink">
+            SUBSCRIBE
           </button>
         </div>
       </div>
 
       {/* All posts */}
-      <h2 className="mt-16 text-2xl font-bold text-white">All articles</h2>
+      <h2 className="mt-16 font-display text-2xl font-extrabold uppercase tracking-[-0.01em] text-ink">All articles</h2>
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {rest.map((post) => (
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="flex flex-col rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5 transition hover:border-amber-500/30 hover:bg-white/[0.05] group"
+            className="group flex flex-col border border-ink bg-paper-white p-5 transition-colors hover:bg-paper-alt"
           >
             <div className="flex items-center gap-2">
-              <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${CATEGORY_COLORS[post.category] ?? "text-white/50 bg-white/10"}`}>
+              <span className={`px-2 py-0.5 font-mono text-[10px] tracking-[0.08em] ${(CATEGORY_COLORS[post.category] ?? "text-mutedink bg-paper-alt").replace("rounded-full", "")}`}>
                 {post.category}
               </span>
-              <span className="text-[10px] text-white/30">{post.readTime}</span>
+              <span className="font-mono text-[10px] text-faint">{post.readTime}</span>
             </div>
-            <h3 className="mt-3 text-sm font-semibold leading-5 text-white group-hover:text-amber-300 transition-colors">{post.title}</h3>
-            <p className="mt-1.5 flex-1 text-xs leading-5 text-white/40 line-clamp-2">{post.excerpt}</p>
-            <p className="mt-3 text-[10px] text-white/25">{post.date}</p>
+            <h3 className="mt-3 font-display text-sm font-bold leading-5 text-ink transition-colors group-hover:text-green">{post.title}</h3>
+            <p className="mt-1.5 flex-1 text-xs leading-5 text-mutedink line-clamp-2">{post.excerpt}</p>
+            <p className="mt-3 font-mono text-[10px] text-faint">{post.date}</p>
           </Link>
         ))}
       </div>

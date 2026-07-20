@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -74,28 +74,30 @@ const groups = [
 export default function SitemapPageRoute() {
   return (
     <div className="mx-auto max-w-4xl px-6 py-20">
-      <p className="text-sm font-semibold uppercase tracking-widest text-amber-400">Sitemap</p>
-      <h1 className="mt-3 text-4xl font-bold tracking-tight text-white">All pages</h1>
-      <p className="mt-4 text-white/60">Every page on easibill.com, organised by section.</p>
+      <p className="font-mono text-xs tracking-[0.2em] text-green">SITEMAP</p>
+      <h1 className="mt-3 font-display text-4xl font-extrabold uppercase leading-[.96] tracking-[-0.018em] text-ink [font-stretch:68%]">
+        All pages
+      </h1>
+      <p className="mt-4 text-mutedink">Every page on easibill.com, organised by section.</p>
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {groups.map((g) => (
-          <div key={g.title} className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-6">
-            <h2 className="font-semibold text-white">{g.title}</h2>
-            <ul className="mt-4 space-y-2">
+          <div key={g.title} className="border border-ink bg-paper-white p-6">
+            <h2 className="font-mono text-xs tracking-[0.15em] text-green">{g.title.toUpperCase()}</h2>
+            <ul className="mt-4">
               {g.links.map((l) => (
-                <li key={l.label}>
+                <li key={l.label} className="border-t border-ink py-2.5 first:border-t-0 first:pt-0">
                   {l.external ? (
                     <a
                       href={l.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-white/60 hover:text-amber-400"
+                      className="font-mono text-xs tracking-[0.02em] text-ink transition-colors hover:text-green"
                     >
                       {l.label} ↗
                     </a>
                   ) : (
-                    <Link href={l.href} className="text-sm text-white/60 hover:text-amber-400">
+                    <Link href={l.href} className="font-mono text-xs tracking-[0.02em] text-ink transition-colors hover:text-green">
                       {l.label}
                     </Link>
                   )}

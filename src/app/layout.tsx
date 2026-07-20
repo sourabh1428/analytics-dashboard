@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { IBM_Plex_Sans } from "next/font/google";
+import { Archivo, Newsreader, Spline_Sans_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { ScrollProgressBar } from "@/components/ScrollProgressBar";
@@ -13,10 +13,26 @@ import PostHogProvider from "@/src/components/PostHogProvider";
 import PostHogPageView from "@/src/components/PostHogPageView";
 import "./globals.css";
 
-const ibmPlexSans = IBM_Plex_Sans({
+const archivo = Archivo({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-ibm-plex",
+  weight: "variable",
+  axes: ["wdth"],
+  variable: "--font-archivo",
+  display: "swap",
+});
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["italic"],
+  variable: "--font-newsreader",
+  display: "swap",
+});
+
+const splineSansMono = Spline_Sans_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-spline-mono",
   display: "swap",
 });
 
@@ -41,12 +57,30 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={ibmPlexSans.variable}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${archivo.variable} ${newsreader.variable} ${splineSansMono.variable}`}
+    >
       <body suppressHydrationWarning>
         <PostHogProvider>
           <PostHogPageView />
           <SmoothScroll>
-            <div className="relative min-h-screen overflow-x-hidden bg-[#09090B] text-[#FAFAFA]">
+            {/*
+              No overflow-x-hidden here on purpose: per the CSS overflow
+              spec, a non-visible overflow-x forces overflow-y's computed
+              value to `auto` too — even if overflow-y is explicitly set to
+              `visible` — which turns this div into an unintended scroll
+              container. Since the page actually scrolls on <body>/window
+              (via Lenis), this div's own scrollTop never moves, which
+              breaks `position: sticky` for every descendant that depends
+              on real viewport scroll (Hero's stage, DayInTheLife's chat
+              panel, etc.) — they end up behaving like `position: relative`
+              and just scroll away with the page instead of pinning.
+              Horizontal-bleed clipping, if needed, should be scoped to the
+              individual section that needs it, not this global wrapper.
+            */}
+            <div className="relative min-h-screen bg-paper text-ink font-sans">
               <ScrollProgressBar />
               <NavBar />
               <main className="relative">{children}</main>
