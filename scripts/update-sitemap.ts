@@ -12,7 +12,7 @@ function escapeXml(value: string) {
 }
 
 async function updateSitemap() {
-  const siteUrl = (process.env.SITE_URL ?? "https://easibill.com").replace(/\/$/, "");
+  const siteUrl = (process.env.SITE_URL ?? "https://ferbz.com").replace(/\/$/, "");
   const slugs = await getAllSlugs();
   const lastmod = new Date().toISOString().slice(0, 10);
   const urls = [

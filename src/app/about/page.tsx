@@ -2,9 +2,9 @@
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About EasiBill – Local Business Retention Software",
-  description: "EasiBill was built to help local business owners stop losing customers to forgetfulness. Learn our story, mission, and the team behind the product.",
-  alternates: { canonical: "https://easibill.com/about" },
+  title: "About Ferbz – Local Business Retention Software",
+  description: "Ferbz was built to help local business owners stop losing customers to forgetfulness. Learn our story, mission, and the team behind the product.",
+  alternates: { canonical: "https://ferbz.com/about" },
 };
 
 const values = [
@@ -41,7 +41,7 @@ export default function AboutPage() {
         Built for the local business at the corner of every neighbourhood
       </h1>
       <p className="mt-6 max-w-2xl leading-7 text-mutedink">
-        EasiBill started in 2023 when our founder watched a family member miss three consecutive follow-ups because the local business they trusted had no way to check back in. The owner cared — she just had no tool.
+        Ferbz started in 2023 when our founder watched a family member miss three consecutive follow-ups because the local business they trusted had no way to check back in. The owner cared — she just had no tool.
       </p>
       <p className="mt-4 max-w-2xl leading-7 text-mutedink">
         We set out to fix that with the simplest possible stack: WhatsApp (which every customer already uses), a lightweight customer record system, and automated daily queues. No complicated ERP. No six-week onboarding. Just reminders that actually get sent.
@@ -68,10 +68,10 @@ export default function AboutPage() {
 
       <h2 className="mt-16 font-display text-2xl font-extrabold uppercase tracking-[-0.014em] text-ink">Where we are headed</h2>
       <p className="mt-4 max-w-2xl leading-7 text-mutedink">
-        EasiBill is expanding its reminders engine to support regional languages, adding an integrated billing module, and building a network analytics layer so multi-location businesses can see customer retention across all locations in one view.
+        Ferbz is expanding its reminders engine to support regional languages, adding an integrated billing module, and building a network analytics layer so multi-location businesses can see customer retention across all locations in one view.
       </p>
       <p className="mt-4 max-w-2xl leading-7 text-mutedink">
-        We are a small, focused team. If you want to see a feature, tell us — most of our best ideas have come from business owners who emailed support@easibill.com at 7 AM before their counter opened.
+        We are a small, focused team. If you want to see a feature, tell us — most of our best ideas have come from business owners who emailed support@ferbz.com at 7 AM before their counter opened.
       </p>
 
       <div className="mt-12 flex flex-wrap gap-4">
@@ -85,7 +85,7 @@ export default function AboutPage() {
           href="https://dashboard.easibill.com/"
           className="inline-flex items-center border border-ink bg-paper-white px-6 py-3 font-mono text-sm tracking-[0.08em] text-ink transition hover:bg-ink hover:text-paper"
         >
-          Try EasiBill free
+          Try Ferbz free
         </a>
       </div>
     </div>

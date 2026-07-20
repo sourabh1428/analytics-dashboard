@@ -31,7 +31,7 @@ export default {
     				border: '#27272A',
     				borderSubtle: '#3F3F46',
     			},
-    			// EasiBill "ledger" design system — paper/ink/green, from pro/EasiBill Landing.dc.html
+    			// Ferbz "ledger" design system — paper/ink/green, from pro/Ferbz Landing.dc.html
     			paper: '#F2EDE3',
     			'paper-alt': '#E9E2D2',
     			'paper-warm': '#E5DDCB',

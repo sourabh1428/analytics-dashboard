@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import LoadingSpinner from '../components/LoadingSpinner';
 
-const EasibillCTA = lazy(() => import('../components/easibill/EasibillCTA'));
+const FerbzCTA = lazy(() => import('../components/ferbz/FerbzCTA'));
 
 const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
 
@@ -64,7 +64,7 @@ const BulkBillingSolutionPage = () => {
               Customisable bulk billing built for local businesses.
             </h1>
             <p className="mt-6 text-lg leading-8 text-mutedink">
-              Send the right message to the right customers at the right time. Easibill's bulk messaging is built around customer segments — not generic contact lists.
+              Send the right message to the right customers at the right time. Ferbz's bulk messaging is built around customer segments — not generic contact lists.
             </p>
             <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <motion.a
@@ -229,7 +229,7 @@ const BulkBillingSolutionPage = () => {
               <div className="border border-ink bg-paper-white p-6">
                 <div className="mb-4 inline-flex items-center gap-2 border border-rust bg-paper-white px-3 py-1.5 text-sm font-semibold text-rust">
                   <X className="h-4 w-4" />
-                  Before Easibill
+                  Before Ferbz
                 </div>
                 <ul className="space-y-3 text-mutedink">
                   {[
@@ -249,7 +249,7 @@ const BulkBillingSolutionPage = () => {
               <div className="border border-ink bg-paper-white p-6">
                 <div className="mb-4 inline-flex items-center gap-2 border border-green bg-green-pale px-3 py-1.5 text-sm font-semibold text-green">
                   <CheckCircle2 className="h-4 w-4" />
-                  After Easibill
+                  After Ferbz
                 </div>
                 <ul className="space-y-3 text-mutedink">
                   {[
@@ -299,7 +299,7 @@ const BulkBillingSolutionPage = () => {
 
       {/* CTA strip */}
       <Suspense fallback={<LoadingSpinner />}>
-        <EasibillCTA />
+        <FerbzCTA />
       </Suspense>
     </div>
   );

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Sitemap – EasiBill",
-  description: "All pages on easibill.com — local business billing, customer retention, WhatsApp reminders, pricing, help, and more.",
-  alternates: { canonical: "https://easibill.com/sitemap-page" },
+  title: "Sitemap – Ferbz",
+  description: "All pages on ferbz.com — local business billing, customer retention, WhatsApp reminders, pricing, help, and more.",
+  alternates: { canonical: "https://ferbz.com/sitemap-page" },
 };
 
 const groups = [
@@ -78,7 +78,7 @@ export default function SitemapPageRoute() {
       <h1 className="mt-3 font-display text-4xl font-extrabold uppercase leading-[.96] tracking-[-0.018em] text-ink [font-stretch:68%]">
         All pages
       </h1>
-      <p className="mt-4 text-mutedink">Every page on easibill.com, organised by section.</p>
+      <p className="mt-4 text-mutedink">Every page on ferbz.com, organised by section.</p>
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {groups.map((g) => (

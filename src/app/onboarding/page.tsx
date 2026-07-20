@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Onboarding Guide – EasiBill",
+  title: "Onboarding Guide – Ferbz",
   description: "Step-by-step setup from your first customer import to your first WhatsApp follow-up reminder — in under 30 minutes.",
-  alternates: { canonical: "https://easibill.com/onboarding" },
+  alternates: { canonical: "https://ferbz.com/onboarding" },
 };
 
 const steps = [

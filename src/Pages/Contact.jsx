@@ -53,7 +53,7 @@ const ContactPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
         >
-          <p className="font-mono text-sm font-semibold uppercase tracking-[0.22em] text-rust">Talk to Easibill</p>
+          <p className="font-mono text-sm font-semibold uppercase tracking-[0.22em] text-rust">Talk to Ferbz</p>
           <h1 className="mt-4 font-display text-5xl font-extrabold uppercase tracking-[-0.018em] sm:text-6xl">
             Bring your business follow-up workflow. We will make it automatic.
           </h1>
@@ -66,7 +66,7 @@ const ContactPage = () => {
               href={DASHBOARD_LOGIN_URL}
               className="inline-flex items-center justify-center gap-2 bg-green px-6 py-3.5 font-mono text-sm tracking-[0.08em] text-paper transition hover:bg-ink"
             >
-              Open Easibill app
+              Open Ferbz app
               <ArrowRight className="h-4 w-4" />
             </a>
             <a
@@ -81,11 +81,11 @@ const ContactPage = () => {
           <div className="mt-10 grid gap-3 text-sm">
             <div className="flex items-center gap-3">
               <Mail className="h-4 w-4 text-green" />
-              <a href="mailto:support@easibill.com" className="hover:text-green">support@easibill.com</a>
+              <a href="mailto:support@ferbz.com" className="hover:text-green">support@ferbz.com</a>
             </div>
             <div className="flex items-center gap-3">
               <Phone className="h-4 w-4 text-green" />
-              <a href="mailto:support@easibill.com" className="hover:text-green">support@easibill.com</a>
+              <a href="mailto:support@ferbz.com" className="hover:text-green">support@ferbz.com</a>
             </div>
           </div>
         </motion.div>

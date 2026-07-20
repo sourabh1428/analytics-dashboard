@@ -43,7 +43,7 @@ const rows = [
   ['Recovered revenue', '₹42,800', 'This month'],
 ];
 
-const EasibillFeatures = () => {
+const FerbzFeatures = () => {
   return (
     <section className="px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
@@ -61,7 +61,7 @@ const EasibillFeatures = () => {
             <span className="text-emerald-400">Simple where staff use it.</span>
           </h2>
           <p className="mt-5 text-lg leading-8 text-white/45">
-            EasiBill avoids bloated CRM behavior and focuses on the retention jobs a local business performs every single day.
+            Ferbz avoids bloated CRM behavior and focuses on the retention jobs a local business performs every single day.
           </p>
         </motion.div>
 
@@ -165,4 +165,4 @@ const EasibillFeatures = () => {
   );
 };
 
-export default EasibillFeatures;
+export default FerbzFeatures;

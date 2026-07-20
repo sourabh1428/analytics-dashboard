@@ -1,7 +1,7 @@
 import mixpanel from 'mixpanel-browser';
 
 const TOKEN = '1282b0f6a2f0be1a4aeaa5bb88a6d47f';
-const CONSENT_KEY = 'easibill_analytics_consent';
+const CONSENT_KEY = 'ferbz_analytics_consent';
 
 let initialized = false;
 

@@ -10,7 +10,7 @@ type PageProps = {
   }>;
 };
 
-const siteUrl = process.env.SITE_URL ?? "https://easibill.com";
+const siteUrl = process.env.SITE_URL ?? "https://ferbz.com";
 
 export async function generateStaticParams() {
   const slugs = await getAllSlugs();
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: page.metaTitle,
       description: page.metaDescription,
       url: canonical,
-      siteName: "EasiBill",
+      siteName: "Ferbz",
       type: "article",
     },
     twitter: {

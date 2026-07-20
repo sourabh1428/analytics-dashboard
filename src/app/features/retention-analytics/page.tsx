@@ -3,9 +3,9 @@ import Link from "next/link";
 import { BarChart3, ArrowRight, TrendingUp, Users, AlertTriangle, Activity, RefreshCw, DollarSign } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Retention Analytics – Follow-ups & Recovery | EasiBill",
+  title: "Retention Analytics – Follow-ups & Recovery | Ferbz",
   description: "See exactly how many reminders you sent, how many follow-ups you recovered, and which customers have gone inactive. Data every local business owner needs.",
-  alternates: { canonical: "https://easibill.com/features/retention-analytics" },
+  alternates: { canonical: "https://ferbz.com/features/retention-analytics" },
 };
 
 const bars = [60, 75, 55, 80, 70, 90, 85];
@@ -27,7 +27,7 @@ export default function RetentionAnalyticsPage() {
                 <span className="text-green">keeping and losing</span>
               </h1>
               <p className="mb-8 text-lg leading-relaxed text-mutedink">
-                EasiBill tracks every reminder sent, every follow-up recovered, and every customer who went silent — so you can make decisions based on data, not gut feel.
+                Ferbz tracks every reminder sent, every follow-up recovered, and every customer who went silent — so you can make decisions based on data, not gut feel.
               </p>
               <div className="flex flex-col gap-4 sm:flex-row">
                 <Link href="https://dashboard.easibill.com/" className="inline-flex items-center justify-center gap-2 bg-green px-6 py-3 font-mono text-sm uppercase tracking-[0.08em] text-paper transition-colors hover:bg-ink">
@@ -104,7 +104,7 @@ export default function RetentionAnalyticsPage() {
       <section className="border-b border-ink bg-paper-alt px-6 py-24">
         <div className="mx-auto max-w-5xl">
           <h2 className="mb-4 text-center font-display text-2xl font-extrabold uppercase tracking-[-0.018em] text-ink">The metrics that actually matter</h2>
-          <p className="mx-auto mb-12 max-w-xl text-center text-mutedink">Most business owners track only daily revenue. EasiBill shows you the numbers that predict future revenue.</p>
+          <p className="mx-auto mb-12 max-w-xl text-center text-mutedink">Most business owners track only daily revenue. Ferbz shows you the numbers that predict future revenue.</p>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { icon: Activity, title: "Follow-up rate", body: "What percentage of customers who were due actually came back. The single best measure of your retention programme." },
@@ -112,7 +112,7 @@ export default function RetentionAnalyticsPage() {
               { icon: AlertTriangle, title: "Inactive customers", body: "Customers who haven't come back in 90+ days. These are your reactivation targets for broadcast campaigns." },
               { icon: Users, title: "Customer lifetime value", body: "Average total spend per customer over 12 months. Knowing this tells you how much each new customer is worth." },
               { icon: TrendingUp, title: "Month-over-month trend", body: "Is retention improving or declining? Trend matters more than any single month's number." },
-              { icon: DollarSign, title: "Revenue from reminders", body: "Total revenue from customers who were reminded. Proves the ROI of running EasiBill." },
+              { icon: DollarSign, title: "Revenue from reminders", body: "Total revenue from customers who were reminded. Proves the ROI of running Ferbz." },
             ].map(({ icon: Icon, title, body }) => (
               <div key={title} className="border border-ink bg-paper-white p-6 shadow-[6px_6px_0_#17150F]">
                 <Icon className="mb-4 h-6 w-6 text-green" />
@@ -127,7 +127,7 @@ export default function RetentionAnalyticsPage() {
       {/* CTA */}
       <section className="bg-ink px-6 py-20 text-center">
         <h2 className="mb-4 font-display text-3xl font-extrabold uppercase tracking-[-0.018em] text-paper">Start measuring what matters</h2>
-        <p className="mx-auto mb-8 max-w-md text-paper/60">Analytics are included in every EasiBill plan. No setup required.</p>
+        <p className="mx-auto mb-8 max-w-md text-paper/60">Analytics are included in every Ferbz plan. No setup required.</p>
         <Link href="https://dashboard.easibill.com/" className="inline-flex items-center gap-2 bg-green px-8 py-4 font-mono text-sm uppercase tracking-[0.08em] text-paper transition-colors hover:bg-green-bright hover:text-ink">
           Start free — no card needed <ArrowRight className="h-4 w-4" />
         </Link>

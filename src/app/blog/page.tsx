@@ -3,9 +3,9 @@ import Link from "next/link";
 import { blogPosts, CATEGORY_COLORS } from "@/src/data/blogPosts";
 
 export const metadata: Metadata = {
-  title: "Blog – EasiBill Business Growth",
+  title: "Blog – Ferbz Business Growth",
   description: "Practical articles on customer retention, WhatsApp billing, follow-up automation, and running a local business more profitably every month.",
-  alternates: { canonical: "https://easibill.com/blog" },
+  alternates: { canonical: "https://ferbz.com/blog" },
 };
 
 const ALL_CATEGORIES = ["All", "Retention", "WhatsApp", "How-to", "Growth", "Analytics", "Compliance", "Operations"];

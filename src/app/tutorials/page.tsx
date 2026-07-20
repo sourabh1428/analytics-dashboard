@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Tutorials – EasiBill",
-  description: "Short video and text walkthroughs covering setup, customer imports, WhatsApp connection, and reminders — onboard your team onto EasiBill in under an hour.",
-  alternates: { canonical: "https://easibill.com/tutorials" },
+  title: "Tutorials – Ferbz",
+  description: "Short video and text walkthroughs covering setup, customer imports, WhatsApp connection, and reminders — onboard your team onto Ferbz in under an hour.",
+  alternates: { canonical: "https://ferbz.com/tutorials" },
 };
 
 const tutorials = [
@@ -77,7 +77,7 @@ export default function TutorialsPage() {
     <div className="mx-auto max-w-5xl px-6 py-20">
       <p className="font-mono text-xs tracking-[0.2em] text-green">TUTORIALS</p>
       <h1 className="mt-3 font-display text-4xl font-extrabold uppercase leading-[.96] tracking-[-0.018em] text-ink [font-stretch:68%]">
-        Learn EasiBill in short bursts
+        Learn Ferbz in short bursts
       </h1>
       <p className="mt-4 text-mutedink">
         Each tutorial is under 6 minutes. Watch on your phone between customers or let your staff learn at the counter.

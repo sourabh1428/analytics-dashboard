@@ -3,9 +3,9 @@ import Link from "next/link";
 import { Radio, ArrowRight, Users, Target, MessageSquare, TrendingUp, Calendar, Send } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Broadcast Campaigns & Loyalty Messages | EasiBill",
+  title: "Broadcast Campaigns & Loyalty Messages | Ferbz",
   description: "Send targeted WhatsApp campaigns to customer groups. Promote seasonal sales, loyalty offers, and event messages from your business.",
-  alternates: { canonical: "https://easibill.com/features/broadcast-campaigns" },
+  alternates: { canonical: "https://ferbz.com/features/broadcast-campaigns" },
 };
 
 export default function BroadcastCampaignsPage() {

@@ -106,10 +106,10 @@ function pickVertical(): Vertical {
   return VERTICALS[Math.floor(Math.random() * VERTICALS.length)];
 }
 
-function buildEasibillBrief(vertical: Vertical): string {
+function buildFerbzBrief(vertical: Vertical): string {
   return `
-## EasiBill — What It Is
-EasiBill is a SaaS platform for independent local businesses in India, currently used heavily by ${vertical.label}. Core features:
+## Ferbz — What It Is
+Ferbz is a SaaS platform for independent local businesses in India, currently used heavily by ${vertical.label}. Core features:
 - WhatsApp + SMS follow-up reminders: automatically reminds customers when it's time to come back, based on a per-customer interval
 - Bulk GST-compliant billing: generate and send invoices to multiple customers in one click, delivered on WhatsApp
 - Customer records: every customer's contact info, item/service history, and follow-up interval in one place
@@ -132,12 +132,12 @@ ${vertical.gstFacts}
 
 ## CTA
 Trial: https://dashboard.easibill.com/
-Contact: support@easibill.com
+Contact: support@ferbz.com
 `;
 }
 
 function buildMetadataPrompt(vertical: Vertical, existingSlugs: string[]): string {
-  return `${buildEasibillBrief(vertical)}
+  return `${buildFerbzBrief(vertical)}
 
 ---
 
@@ -150,8 +150,8 @@ Return ONLY this JSON with no extra text:
 {
   "slug": "${vertical.key}-unique-lowercase-kebab-2-to-5-words",
   "keyword": "the exact keyword phrase the ${vertical.ownerLabel} would search",
-  "metaTitle": "Under 60 characters. Include keyword. Brand: EasiBill.",
-  "metaDescription": "Under 160 characters. State the benefit clearly. Mention EasiBill.",
+  "metaTitle": "Under 60 characters. Include keyword. Brand: Ferbz.",
+  "metaDescription": "Under 160 characters. State the benefit clearly. Mention Ferbz.",
   "h1": "A question or statement the ${vertical.ownerLabel} would instantly recognise as their problem."
 }
 
@@ -159,7 +159,7 @@ The slug MUST start with "${vertical.key}-".`;
 }
 
 function buildContentPrompt(vertical: Vertical, meta: { slug: string; keyword: string; h1: string }): string {
-  return `${buildEasibillBrief(vertical)}
+  return `${buildFerbzBrief(vertical)}
 
 ---
 
@@ -174,8 +174,8 @@ Open with a specific, realistic scenario: a ${vertical.ownerLabel} in a Tier 2 c
 ### ## How ${vertical.label.replace(/^./, (c) => c.toUpperCase())} Owners Manage This Today (at least 350 words)
 Step-by-step practical advice they can act on TODAY without any software. Use a numbered list. Real-world tools: notebooks, Excel, WhatsApp groups, phone calls. Acknowledge the limitations. Include at least one real GST/regulatory fact relevant to this vertical.
 
-### ## How EasiBill Solves This (at least 300 words)
-Name the specific EasiBill feature that addresses this pain. Explain exactly how it works for a ${vertical.ownerLabel}. Quantify time or money saved. Be specific ("replaces a 45-minute nightly Excel session" not "saves time").
+### ## How Ferbz Solves This (at least 300 words)
+Name the specific Ferbz feature that addresses this pain. Explain exactly how it works for a ${vertical.ownerLabel}. Quantify time or money saved. Be specific ("replaces a 45-minute nightly Excel session" not "saves time").
 
 ### ## Frequently Asked Questions (at least 5 questions)
 Write exactly 5 Q&A pairs. Each question must be something a real Indian ${vertical.ownerLabel} would Google. Each answer: 3–5 sentences, specific, useful. Format EXACTLY like this — do not deviate:
@@ -188,8 +188,8 @@ Write exactly 5 Q&A pairs. Each question must be something a real Indian ${verti
 
 (continue for all 5 pairs)
 
-### ## Get Started with EasiBill (at least 100 words)
-A closing CTA section. Include the trial link https://dashboard.easibill.com/ and contact support@easibill.com.
+### ## Get Started with Ferbz (at least 100 words)
+A closing CTA section. Include the trial link https://dashboard.easibill.com/ and contact support@ferbz.com.
 
 ---
 
@@ -198,7 +198,7 @@ Rules:
 - Use ## for section headings
 - Write in plain markdown — no HTML
 - Do not return JSON or code fences — return ONLY the markdown article
-- Do not invent GST rates, HSN codes, or features that EasiBill does not have
+- Do not invent GST rates, HSN codes, or features that Ferbz does not have
 - Do not use pharmacy/medical language (refill, prescription, chronic-care, dosage) unless the vertical is pharmacy
 - Write as a trusted local business advisor, not a marketer`;
 }

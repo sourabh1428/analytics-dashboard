@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Quote, Star } from 'lucide-react';
 import LoadingSpinner from '../components/LoadingSpinner';
 
-const EasibillCTA = lazy(() => import('../components/easibill/EasibillCTA'));
+const FerbzCTA = lazy(() => import('../components/ferbz/FerbzCTA'));
 
 const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
 
@@ -14,7 +14,7 @@ const testimonials = [
     name: 'Rajesh Kumar',
     role: 'Owner, Kumar Medicos',
     location: 'Bengaluru',
-    text: 'We used to remember only the regular customers. Easibill now shows the full due list every morning, and my staff sends follow-ups without me checking WhatsApp chats.',
+    text: 'We used to remember only the regular customers. Ferbz now shows the full due list every morning, and my staff sends follow-ups without me checking WhatsApp chats.',
   },
   {
     name: 'Priya Sharma',
@@ -26,13 +26,13 @@ const testimonials = [
     name: 'Amit Patel',
     role: 'Clinic Manager',
     location: 'Indore',
-    text: 'We tried manual reminder lists before. They stopped working whenever the counter got busy. Easibill gives us a simple system the team can actually follow.',
+    text: 'We tried manual reminder lists before. They stopped working whenever the counter got busy. Ferbz gives us a simple system the team can actually follow.',
   },
   {
     name: 'Sunita Joshi',
     role: 'Owner, Joshi Medical Store',
     location: 'Bhopal',
-    text: 'Before Easibill, I had a notebook of dates I kept forgetting. Now the list is ready every morning and I do not need to think about it at all.',
+    text: 'Before Ferbz, I had a notebook of dates I kept forgetting. Now the list is ready every morning and I do not need to think about it at all.',
   },
   {
     name: 'Ravi Mehta',
@@ -77,7 +77,7 @@ const TestimonialsPage = () => {
             </div>
             <div className="space-y-5">
               <p className="text-lg leading-8 text-mutedink">
-                We interviewed over 120 local business owners before writing a line of code. Every feature in Easibill came from a real counter workflow — not a whiteboard assumption.
+                We interviewed over 120 local business owners before writing a line of code. Every feature in Ferbz came from a real counter workflow — not a whiteboard assumption.
               </p>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <motion.a
@@ -191,7 +191,7 @@ const TestimonialsPage = () => {
 
       {/* CTA strip */}
       <Suspense fallback={<LoadingSpinner />}>
-        <EasibillCTA />
+        <FerbzCTA />
       </Suspense>
     </div>
   );

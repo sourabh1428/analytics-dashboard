@@ -134,7 +134,7 @@ export default function LeadNudge() {
                 </div>
                 <div>
                   <p className="font-display text-base font-extrabold uppercase leading-tight text-paper [font-stretch:80%]">
-                    {geo ? `${geo.flag} EasiBill for ${geo.countryName}` : "Let's get you set up"}
+                    {geo ? `${geo.flag} Ferbz for ${geo.countryName}` : "Let's get you set up"}
                   </p>
                   <p className="mt-0.5 font-mono text-[11px] tracking-[0.04em] text-faint">We reply with the best next step — usually same day.</p>
                 </div>

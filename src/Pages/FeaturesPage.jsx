@@ -5,17 +5,17 @@ import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import LoadingSpinner from '../components/LoadingSpinner';
 
-const EasibillFeatures = lazy(() => import('../components/easibill/EasibillFeatures'));
-const EasibillCTA = lazy(() => import('../components/easibill/EasibillCTA'));
+const FerbzFeatures = lazy(() => import('../components/ferbz/FerbzFeatures'));
+const FerbzCTA = lazy(() => import('../components/ferbz/FerbzCTA'));
 
 const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
 
 const comparison = [
-  { label: 'Setup time',           manual: 'None',           crm: '2–4 weeks',     easibill: '< 5 minutes' },
-  { label: 'Monthly staff effort', manual: 'Hours of chats', crm: 'Training needed', easibill: 'Daily 2-min review' },
-  { label: 'Customer tracking',    manual: 'Memory / notebook', crm: 'Spreadsheet import', easibill: 'Built-in, automatic' },
-  { label: 'Reminder automation',  manual: 'None',           crm: 'Complex setup',  easibill: 'On by default' },
-  { label: 'Monthly cost',         manual: '$0',             crm: '$20–80/user', easibill: 'From $9' },
+  { label: 'Setup time',           manual: 'None',           crm: '2–4 weeks',     ferbz: '< 5 minutes' },
+  { label: 'Monthly staff effort', manual: 'Hours of chats', crm: 'Training needed', ferbz: 'Daily 2-min review' },
+  { label: 'Customer tracking',    manual: 'Memory / notebook', crm: 'Spreadsheet import', ferbz: 'Built-in, automatic' },
+  { label: 'Reminder automation',  manual: 'None',           crm: 'Complex setup',  ferbz: 'On by default' },
+  { label: 'Monthly cost',         manual: '$0',             crm: '$20–80/user', ferbz: 'From $9' },
 ];
 
 const FeaturesPage = () => {
@@ -35,7 +35,7 @@ const FeaturesPage = () => {
               Every tool your business counter needs. Nothing it doesn't.
             </h1>
             <p className="mt-6 text-lg leading-8 text-mutedink">
-              Easibill is not a CRM. It is a focused retention tool that fits the way a business counter already works — no migration, no training programme, no bloat.
+              Ferbz is not a CRM. It is a focused retention tool that fits the way a business counter already works — no migration, no training programme, no bloat.
             </p>
             <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <motion.a
@@ -62,7 +62,7 @@ const FeaturesPage = () => {
 
       {/* Feature grid (reuse existing section) */}
       <Suspense fallback={<LoadingSpinner />}>
-        <EasibillFeatures />
+        <FerbzFeatures />
       </Suspense>
 
       {/* Comparison table */}
@@ -93,7 +93,7 @@ const FeaturesPage = () => {
               <div className="bg-paper-alt px-5 py-4 font-mono text-sm font-semibold text-mutedink" />
               <div className="bg-paper-alt px-5 py-4 font-mono text-sm font-semibold text-ink-soft">Manual WhatsApp</div>
               <div className="bg-paper-alt px-5 py-4 font-mono text-sm font-semibold text-ink-soft">Generic CRM</div>
-              <div className="bg-green-pale px-5 py-4 font-mono text-sm font-semibold text-green">Easibill</div>
+              <div className="bg-green-pale px-5 py-4 font-mono text-sm font-semibold text-green">Ferbz</div>
             </div>
             {/* Rows */}
             {comparison.map((row, index) => (
@@ -106,7 +106,7 @@ const FeaturesPage = () => {
                 <div className="bg-paper-white px-5 py-4 text-sm text-mutedink">{row.crm}</div>
                 <div className="flex items-center gap-2 bg-green-pale/50 px-5 py-4 text-sm font-medium text-green">
                   <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-green" />
-                  {row.easibill}
+                  {row.ferbz}
                 </div>
               </div>
             ))}
@@ -116,7 +116,7 @@ const FeaturesPage = () => {
 
       {/* CTA strip */}
       <Suspense fallback={<LoadingSpinner />}>
-        <EasibillCTA />
+        <FerbzCTA />
       </Suspense>
     </div>
   );

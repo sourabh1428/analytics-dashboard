@@ -45,7 +45,7 @@ jobs:
         continue-on-error: true
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          SITE_URL: ${{ vars.SITE_URL || 'https://easibill.com' }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://ferbz.com' }}
         run: npm run seo:generate
 
       - name: Skip when generation fails
@@ -61,7 +61,7 @@ jobs:
       - name: Update sitemap
         if: steps.generate.outcome == 'success'
         env:
-          SITE_URL: ${{ vars.SITE_URL || 'https://easibill.com' }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://ferbz.com' }}
         run: npm run seo:sitemap
 
       - name: Show changes

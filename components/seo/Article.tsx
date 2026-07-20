@@ -63,7 +63,7 @@ const THEMES: Record<string, SectionTheme> = {
   handle:   { icon: "📋", iconBg: "bg-amber-50",   accent: "border-amber-400",   badge: "bg-amber-50 text-amber-700" },
   today:    { icon: "📋", iconBg: "bg-amber-50",   accent: "border-amber-400",   badge: "bg-amber-50 text-amber-700" },
   manual:   { icon: "📋", iconBg: "bg-amber-50",   accent: "border-amber-400",   badge: "bg-amber-50 text-amber-700" },
-  easibill: { icon: "🚀", iconBg: "bg-violet-50", accent: "border-violet-500", badge: "bg-violet-50 text-violet-700" },
+  ferbz: { icon: "🚀", iconBg: "bg-violet-50", accent: "border-violet-500", badge: "bg-violet-50 text-violet-700" },
   solv:     { icon: "🚀", iconBg: "bg-violet-50", accent: "border-violet-500", badge: "bg-violet-50 text-violet-700" },
   start:    { icon: "🎯", iconBg: "bg-indigo-50",  accent: "border-indigo-400",  badge: "bg-indigo-50 text-indigo-700" },
   get:      { icon: "🎯", iconBg: "bg-indigo-50",  accent: "border-indigo-400",  badge: "bg-indigo-50 text-indigo-700" },
@@ -282,10 +282,10 @@ export function Article({ page, relatedPages }: ArticleProps) {
             <div className="rounded-xl border border-zinc-200 bg-white px-4 py-4 shadow-sm">
               <p className="text-xs text-zinc-500">Questions? Reach us directly.</p>
               <a
-                href="mailto:support@easibill.com"
+                href="mailto:support@ferbz.com"
                 className="mt-1 inline-flex items-center gap-1 text-sm font-semibold text-violet-700 hover:underline"
               >
-                support@easibill.com →
+                support@ferbz.com →
               </a>
             </div>
           </aside>

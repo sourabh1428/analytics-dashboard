@@ -3,9 +3,9 @@ import Link from "next/link";
 import { FileText, ArrowRight, User, Phone, Pill, Calendar, Search, Shield } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Customer Records – Item, Interval & Contact | EasiBill",
-  description: "Store every customer's item, follow-up interval, and WhatsApp number in one place. EasiBill makes customer records simple for local businesses.",
-  alternates: { canonical: "https://easibill.com/features/patient-records" },
+  title: "Customer Records – Item, Interval & Contact | Ferbz",
+  description: "Store every customer's item, follow-up interval, and WhatsApp number in one place. Ferbz makes customer records simple for local businesses.",
+  alternates: { canonical: "https://ferbz.com/features/patient-records" },
 };
 
 const customers = [
@@ -31,7 +31,7 @@ export default function CustomerRecordsPage() {
                 <span className="text-green">always at your fingertips</span>
               </h1>
               <p className="mb-8 text-lg leading-relaxed text-mutedink">
-                Stop searching through paper registers. EasiBill stores each customer's items, purchases, follow-up intervals, and WhatsApp number — searchable in seconds.
+                Stop searching through paper registers. Ferbz stores each customer's items, purchases, follow-up intervals, and WhatsApp number — searchable in seconds.
               </p>
               <div className="flex flex-col gap-4 sm:flex-row">
                 <Link href="https://dashboard.easibill.com/" className="inline-flex items-center justify-center gap-2 bg-green px-6 py-3 font-mono text-sm uppercase tracking-[0.08em] text-paper transition-colors hover:bg-ink">

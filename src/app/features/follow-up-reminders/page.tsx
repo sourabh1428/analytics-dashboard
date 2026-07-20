@@ -3,14 +3,14 @@ import Link from "next/link";
 import { Bell, CheckCircle, Clock, MessageCircle, ArrowRight, Users, TrendingUp, RefreshCw } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Follow-up Reminders – Automatic WhatsApp Follow-ups | EasiBill",
+  title: "Follow-up Reminders – Automatic WhatsApp Follow-ups | Ferbz",
   description: "Automatically remind customers when it's time for their next refill, appointment, treatment, or repeat purchase.",
-  alternates: { canonical: "https://easibill.com/features/follow-up-reminders" },
+  alternates: { canonical: "https://ferbz.com/features/follow-up-reminders" },
 };
 
 const steps = [
   { step: "1", title: "Log the visit", body: "When you serve a customer, record their name, item or service, and interval — takes 10 seconds." },
-  { step: "2", title: "EasiBill tracks the due date", body: "The system calculates when the customer is likely due back based on the interval you set." },
+  { step: "2", title: "Ferbz tracks the due date", body: "The system calculates when the customer is likely due back based on the interval you set." },
   { step: "3", title: "WhatsApp reminder fires automatically", body: "3 days before the due date, the customer gets a friendly message. No manual work from you." },
   { step: "4", title: "Customer walks in (or calls)", body: "Recovered visits show up in your analytics so you can see exactly how much revenue reminders brought back." },
 ];
@@ -38,7 +38,7 @@ export default function FollowUpRemindersPage() {
                 <span className="text-green">one message away</span>
               </h1>
               <p className="mb-8 text-lg leading-relaxed text-mutedink">
-                EasiBill tracks every customer's next-due date and sends an automatic WhatsApp reminder before they forget — without you lifting a finger.
+                Ferbz tracks every customer's next-due date and sends an automatic WhatsApp reminder before they forget — without you lifting a finger.
               </p>
               <div className="flex flex-col gap-4 sm:flex-row">
                 <Link
@@ -61,7 +61,7 @@ export default function FollowUpRemindersPage() {
                     <MessageCircle className="h-5 w-5 text-paper" />
                   </div>
                   <div>
-                    <p className="font-mono text-sm font-semibold text-paper">WhatsApp · EasiBill</p>
+                    <p className="font-mono text-sm font-semibold text-paper">WhatsApp · Ferbz</p>
                     <p className="font-mono text-xs text-paper/40">Follow-up Reminders</p>
                   </div>
                 </div>

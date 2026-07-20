@@ -5,7 +5,7 @@ import { seg, useScrollReveal } from '@/src/lib/scrollScrub'
 import { Reveal } from './reveal'
 
 const STATS = [
-  { count: 2400, suffix: '+', label: 'LOCAL BUSINESSES ON EASIBILL' },
+  { count: 2400, suffix: '+', label: 'LOCAL BUSINESSES ON FERBZ' },
   { count: 18, suffix: 'M+', label: 'BILLS SENT VIA WHATSAPP' },
   { count: 32, prefix: '+', suffix: '%', label: 'AVG. INCREASE IN REPEAT CUSTOMERS', accent: true },
   { display: '₹0', label: 'SETUP COST · FREE TO START' },

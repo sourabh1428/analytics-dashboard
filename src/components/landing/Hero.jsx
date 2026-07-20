@@ -209,7 +209,7 @@ export default function Hero() {
             <div className="relative flex origin-center scale-[.7] flex-col items-center gap-5 min-[420px]:scale-[.85] sm:scale-100 sm:flex-row sm:items-center sm:gap-0">
               <div className="w-[292px]">
                 <div className="relative z-[3] flex items-center justify-between bg-ink px-4 py-2.5 font-mono text-[11px] tracking-[0.14em] text-paper">
-                  <span>EASIBILL PRINTER</span>
+                  <span>FERBZ PRINTER</span>
                   <span className="animate-eb-blink text-green-bright motion-reduce:animate-none">● LIVE</span>
                 </div>
                 <div className="relative h-[396px] overflow-hidden">
@@ -318,7 +318,7 @@ export default function Hero() {
             <h2 className="m-0 mt-[18px] font-display text-[clamp(44px,5.6vw,92px)] font-extrabold uppercase leading-[.92] tracking-[-0.018em] [font-stretch:68%]">
               <span className="block overflow-hidden leading-none">
                 <span ref={addB} className="block leading-none" style={{ transform: 'translateY(112%)', willChange: 'transform' }}>
-                  EasiBill
+                  Ferbz
                 </span>
               </span>
               <span className="block overflow-hidden leading-none">

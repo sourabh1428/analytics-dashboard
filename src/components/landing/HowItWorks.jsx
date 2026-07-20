@@ -19,7 +19,7 @@ const STEPS = [
   {
     n: '3',
     title: 'Reminders fire — forever',
-    copy: 'EasiBill sends each message at 9 AM on the right day. You do nothing. The customer comes back.',
+    copy: 'Ferbz sends each message at 9 AM on the right day. You do nothing. The customer comes back.',
   },
 ]
 

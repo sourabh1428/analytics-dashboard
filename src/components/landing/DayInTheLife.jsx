@@ -9,7 +9,7 @@ const STEPS = [
   {
     time: "09:00 — YOU'RE STILL OPENING THE SHUTTER",
     title: 'The reminder fires. You did nothing.',
-    copy: "28 days ago you logged Ramesh's purchase. EasiBill calculated the follow-up date and sent a personalised message from your own WhatsApp number — at 9 AM sharp.",
+    copy: "28 days ago you logged Ramesh's purchase. Ferbz calculated the follow-up date and sent a personalised message from your own WhatsApp number — at 9 AM sharp.",
   },
   {
     time: '09:04 — FOUR MINUTES LATER',
@@ -164,7 +164,7 @@ export default function DayInTheLife() {
     <section id="day" className="border-b border-ink">
       <div className="mx-auto max-w-[1360px] px-4 pb-10 pt-[88px] sm:px-8">
         <div className="flex items-baseline justify-between border-b border-ink pb-[18px] font-mono text-xs tracking-[0.14em] text-mutedink">
-          <span>02 — A DAY WITH EASIBILL</span>
+          <span>02 — A DAY WITH FERBZ</span>
           <span className="hidden sm:inline">SCROLL. THE STORY WRITES ITSELF.</span>
         </div>
 

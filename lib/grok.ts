@@ -161,7 +161,7 @@ export async function generateSeoPage(
       // --- Call 1: metadata only (tiny JSON, reliable) ---
       const metaRaw = await callGroq(
         apiKey,
-        "You generate SEO page metadata for EasiBill. Return ONLY a JSON object with exactly 5 fields: slug, keyword, metaTitle, metaDescription, h1. No markdown fences. No extra fields.",
+        "You generate SEO page metadata for Ferbz. Return ONLY a JSON object with exactly 5 fields: slug, keyword, metaTitle, metaDescription, h1. No markdown fences. No extra fields.",
         metadataPrompt,
         512,
       );

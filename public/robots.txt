@@ -1,4 +1,4 @@
-# EasiBill Website Robot Rules
+# Ferbz Website Robot Rules
 User-agent: *
 Allow: /
 Disallow: /admin/
@@ -29,4 +29,4 @@ User-agent: PerplexityBot
 Allow: /
 
 # Sitemap
-Sitemap: https://easibill.site/sitemap.xml
+Sitemap: https://ferbz.com/sitemap.xml

@@ -21,7 +21,7 @@ export function CTASection() {
         <h2 className="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl">
           Stop doing billing manually.
           <br />
-          <span className="text-violet-400">Let EasiBill handle it.</span>
+          <span className="text-violet-400">Let Ferbz handle it.</span>
         </h2>
 
         <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-zinc-400">
@@ -39,7 +39,7 @@ export function CTASection() {
             Start free trial →
           </Link>
           <a
-            href="mailto:support@easibill.com"
+            href="mailto:support@ferbz.com"
             className="inline-flex min-h-12 items-center justify-center rounded-xl border border-zinc-700 px-6 py-3 text-sm font-semibold text-zinc-300 transition hover:border-zinc-500 hover:text-white"
           >
             Talk to us

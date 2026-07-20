@@ -41,7 +41,7 @@ export default function FinalCTA() {
         />
 
         <Reveal as="p" className="mx-auto my-7 mb-10 max-w-[460px] text-[16.5px] leading-[1.6] text-faint">
-          EasiBill runs the reminders. You run the business. Free to start — no card needed.
+          Ferbz runs the reminders. You run the business. Free to start — no card needed.
         </Reveal>
 
         <Reveal delay={100} className="flex flex-wrap justify-center gap-3.5">

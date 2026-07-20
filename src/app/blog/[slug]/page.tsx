@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: post.title,
     description: post.excerpt,
-    alternates: { canonical: `https://easibill.com/blog/${slug}` },
+    alternates: { canonical: `https://ferbz.com/blog/${slug}` },
     openGraph: { title: post.title, description: post.excerpt, type: "article" },
   };
 }
@@ -31,21 +31,21 @@ function buildBody(post: (typeof blogPosts)[number]): { heading: string; body: s
       { heading: "Why this happens more than business owners realise", body: `${intro} Most business owners notice the problem only when monthly revenue starts declining. By then, several customers have already made the switch to a competitor. The good news: retention problems are almost always fixable once you know where to look.` },
       { heading: "The data behind the problem", body: "Our analysis of 1,200 local businesses shows that the top quartile retains 78% of their regular customers month-over-month. The bottom quartile retains 44%. The gap is not driven by price, location, or product range — it is driven almost entirely by follow-up behaviour and communication consistency." },
       { heading: "What the best local businesses do differently", body: "High-retention businesses share three traits: they know their customers by name and preference, they send reminders before the customer runs out (not after), and they make it easy for customers to respond. None of this requires expensive technology. It requires a system and the discipline to run it every day." },
-      { heading: "How to implement this at your business", body: "Start with your top 20 regular customers — the ones who spend the most and return the most consistently. Set up follow-up intervals for each, configure a reminder template in EasiBill, and watch the first cycle. Most local businesses see a measurable improvement in the first 30 days. Scale from there." },
+      { heading: "How to implement this at your business", body: "Start with your top 20 regular customers — the ones who spend the most and return the most consistently. Set up follow-up intervals for each, configure a reminder template in Ferbz, and watch the first cycle. Most local businesses see a measurable improvement in the first 30 days. Scale from there." },
     );
   } else if (post.category === "WhatsApp") {
     sections.push(
       { heading: "Why WhatsApp is different from every other channel", body: `${intro} The fundamental reason WhatsApp works where SMS, email, and printed notices fail is familiarity. Customers already use WhatsApp for conversations that matter to them — family, friends, work. A message from a trusted source arrives in the same channel as those conversations.` },
       { heading: "Open rates, reply rates, and what they mean for your business", body: "WhatsApp messages from known contacts get a 90%+ open rate. That compares to 22% for SMS and 18% for email. More importantly, the reply rate is 40% — meaning four out of ten customers who receive a follow-up reminder on WhatsApp actively respond. That is a conversation, not a broadcast." },
-      { heading: "Setting up WhatsApp for your business", body: "You don't need the WhatsApp Business API to start. EasiBill integrates with WhatsApp Business at the account level, allowing you to send personalised follow-up reminders, billing messages, and campaign broadcasts to your customer list without technical setup." },
+      { heading: "Setting up WhatsApp for your business", body: "You don't need the WhatsApp Business API to start. Ferbz integrates with WhatsApp Business at the account level, allowing you to send personalised follow-up reminders, billing messages, and campaign broadcasts to your customer list without technical setup." },
       { heading: "What to expect in the first 30 days", body: "In the first week, expect some customers to opt out — this is healthy. It means your list becomes qualified quickly. By week four, you will see a measurable increase in visit rates from customers who received reminders. The average local business recovers 28–35% of its missed follow-ups in the first month." },
     );
   } else if (post.category === "How-to") {
     sections.push(
-      { heading: "What you will need before you start", body: `${intro} The setup is simpler than most business owners expect. You need a list of your regular customers (even a partial one works), the items or services they buy, and a rough follow-up interval. Everything else is configured inside EasiBill.` },
-      { heading: "Step-by-step walkthrough", body: "Step 1: Log into EasiBill and navigate to Customer Records. Step 2: Add each customer's name, WhatsApp number, item or service, and interval. Step 3: Choose a reminder template or write your own. Step 4: Enable the reminder for each customer. The system handles the rest — calculating due dates, sending messages, and updating the queue every morning." },
+      { heading: "What you will need before you start", body: `${intro} The setup is simpler than most business owners expect. You need a list of your regular customers (even a partial one works), the items or services they buy, and a rough follow-up interval. Everything else is configured inside Ferbz.` },
+      { heading: "Step-by-step walkthrough", body: "Step 1: Log into Ferbz and navigate to Customer Records. Step 2: Add each customer's name, WhatsApp number, item or service, and interval. Step 3: Choose a reminder template or write your own. Step 4: Enable the reminder for each customer. The system handles the rest — calculating due dates, sending messages, and updating the queue every morning." },
       { heading: "Common mistakes and how to avoid them", body: "The most common mistake is setting all customers to a 30-day interval regardless of how they actually buy. Some customers stock up and buy 45 days at a time. Others are inconsistent. Reviewing purchase history before setting intervals improves reminder accuracy significantly." },
-      { heading: "How to measure whether it's working", body: "Check your recovery rate every two weeks for the first two months. A recovery rate above 25% means your reminders are working. Below 15% means something is off — usually the interval setting or the message timing. EasiBill's analytics tab shows this breakdown automatically." },
+      { heading: "How to measure whether it's working", body: "Check your recovery rate every two weeks for the first two months. A recovery rate above 25% means your reminders are working. Below 15% means something is off — usually the interval setting or the message timing. Ferbz's analytics tab shows this breakdown automatically." },
     );
   } else if (post.category === "Growth") {
     sections.push(
@@ -57,16 +57,16 @@ function buildBody(post: (typeof blogPosts)[number]): { heading: string; body: s
   } else if (post.category === "Analytics") {
     sections.push(
       { heading: "Why this metric matters more than daily revenue", body: `${intro} Revenue is a lagging indicator — it tells you what already happened. Retention metrics are leading indicators — they tell you what will happen to revenue in 60–90 days. The local businesses that catch problems early are the ones watching their retention numbers, not just their daily sales.` },
-      { heading: "How to calculate this at your business", body: "You need three data points: the number of customers who were due for a follow-up, the number who actually followed up, and the time window you're measuring. Monthly tracking gives you a trend. Quarterly tracking gives you a pattern. EasiBill calculates all of this automatically from your customer records." },
+      { heading: "How to calculate this at your business", body: "You need three data points: the number of customers who were due for a follow-up, the number who actually followed up, and the time window you're measuring. Monthly tracking gives you a trend. Quarterly tracking gives you a pattern. Ferbz calculates all of this automatically from your customer records." },
       { heading: "What the benchmarks look like", body: "Top-performing local businesses retain 75–80% of their regular customers month over month. The industry average is 55–60%. A business below 45% is losing customers faster than it can replace them — a situation that requires immediate intervention." },
-      { heading: "How to improve the number you're tracking", body: "Every percentage point of retention improvement requires a specific intervention. Better reminder timing, improved message personalisation, and proactive outreach to inactive customers each contribute differently. EasiBill's analytics tab shows which interventions have the highest impact for your specific customer mix." },
+      { heading: "How to improve the number you're tracking", body: "Every percentage point of retention improvement requires a specific intervention. Better reminder timing, improved message personalisation, and proactive outreach to inactive customers each contribute differently. Ferbz's analytics tab shows which interventions have the highest impact for your specific customer mix." },
     );
   } else {
     sections.push(
       { heading: "The context behind this topic", body: `${intro} Local business owners deal with this challenge every week, often without a clear framework for thinking about it. The approaches that work consistently share one thing in common: they are systematic, not ad hoc.` },
       { heading: "How the best local businesses approach this", body: "Consistent execution matters more than occasional effort. A local business that sends reminders every week, reviews its queue every morning, and sends one campaign per month will outperform one that does all three perfectly once and then stops. The discipline is the differentiator." },
       { heading: "Practical steps you can take this week", body: "Start small. Pick the one change that will have the most impact on your specific situation. Implement it consistently for four weeks before adding another. Business owners who try to change everything at once change nothing — they burn out before the improvements compound." },
-      { heading: "How EasiBill helps", body: "EasiBill is designed for exactly this kind of systematic, consistent operation. It automates the parts that require no judgement — reminders, billing, queue updates — and surfaces the exceptions that do require judgement, like a customer who hasn't responded to three reminders. The goal is a business that retains more customers with less manual effort." },
+      { heading: "How Ferbz helps", body: "Ferbz is designed for exactly this kind of systematic, consistent operation. It automates the parts that require no judgement — reminders, billing, queue updates — and surfaces the exceptions that do require judgement, like a customer who hasn't responded to three reminders. The goal is a business that retains more customers with less manual effort." },
     );
   }
 
@@ -127,7 +127,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       {/* CTA */}
       <div className="mx-auto max-w-3xl px-6 pb-16">
         <div className="border border-ink bg-green p-8 text-center">
-          <h2 className="mb-3 font-display text-2xl font-extrabold uppercase tracking-[-0.01em] text-paper">Put this into practice with EasiBill</h2>
+          <h2 className="mb-3 font-display text-2xl font-extrabold uppercase tracking-[-0.01em] text-paper">Put this into practice with Ferbz</h2>
           <p className="mb-6 text-green-pale">Free to start. No card required. Set up in under 5 minutes.</p>
           <Link
             href="https://dashboard.easibill.com/"

@@ -4,10 +4,10 @@ import { useState } from 'react'
 import { usePostHog } from 'posthog-js/react'
 import { Lines, Reveal } from './reveal'
 
-// Exact copy from the comp's faqData array (pro/EasiBill Landing.dc.html)
+// Exact copy from the comp's faqData array (pro/Ferbz Landing.dc.html)
 const FAQS = [
   { q: 'Do I need WhatsApp Business API?', a: "No. Starter works with your existing WhatsApp Business app — scan a QR code once and you're linked. Pro includes an official WABA number with zero ban risk, but it's optional." },
-  { q: 'Does it replace Marg, Vyapar or Ecogreen?', a: 'No. EasiBill runs alongside your existing billing software. Keep your current system for accounting; EasiBill handles the WhatsApp bills and follow-up reminders it can\'t.' },
+  { q: 'Does it replace Marg, Vyapar or Ecogreen?', a: 'No. Ferbz runs alongside your existing billing software. Keep your current system for accounting; Ferbz handles the WhatsApp bills and follow-up reminders it can\'t.' },
   { q: 'What if my WhatsApp disconnects?', a: 'You get an alert in the dashboard and reminders queue up automatically. Rescan the QR code and everything queued goes out — nothing is lost.' },
   { q: 'Is my customer data safe?', a: 'Yes. Data is encrypted, never shared or sold, and you can export or delete it any time. Your customer list is yours.' },
   { q: 'How long does setup take?', a: 'Under 30 minutes end to end. Connecting WhatsApp takes 2 minutes; most shops import their top repeat customers in 10.' },

@@ -37,13 +37,13 @@ const splineSansMono = Spline_Sans_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.SITE_URL ?? "https://easibill.com"),
+  metadataBase: new URL(process.env.SITE_URL ?? "https://ferbz.com"),
   title: {
-    default: "EasiBill – Local Business Billing & Customer Retention",
-    template: "%s | EasiBill",
+    default: "Ferbz – Local Business Billing & Customer Retention",
+    template: "%s | Ferbz",
   },
   description:
-    "EasiBill is billing software for local businesses. Send bills on WhatsApp, retain customers with automated reminders, and run your business hassle-free.",
+    "Ferbz is billing software for local businesses. Send bills on WhatsApp, retain customers with automated reminders, and run your business hassle-free.",
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",

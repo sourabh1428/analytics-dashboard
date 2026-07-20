@@ -27,22 +27,32 @@ const nextConfig: NextConfig = {
       { source: "/customers", destination: "/testimonials", permanent: true },
       {
         source: "/bulk-billing",
-        destination: "/easibill-customisable-bulk-billing-solution",
+        destination: "/ferbz-customisable-bulk-billing-solution",
         permanent: true,
       },
       {
         source: "/bulk-billing-solution",
-        destination: "/easibill-customisable-bulk-billing-solution",
+        destination: "/ferbz-customisable-bulk-billing-solution",
         permanent: true,
       },
       {
         source: "/customisable-billing",
-        destination: "/easibill-customisable-bulk-billing-solution",
+        destination: "/ferbz-customisable-bulk-billing-solution",
+        permanent: true,
+      },
+      {
+        source: "/ferbz-bulk-billing",
+        destination: "/ferbz-customisable-bulk-billing-solution",
+        permanent: true,
+      },
+      {
+        source: "/easibill-customisable-bulk-billing-solution",
+        destination: "/ferbz-customisable-bulk-billing-solution",
         permanent: true,
       },
       {
         source: "/easibill-bulk-billing",
-        destination: "/easibill-customisable-bulk-billing-solution",
+        destination: "/ferbz-customisable-bulk-billing-solution",
         permanent: true,
       },
     ];

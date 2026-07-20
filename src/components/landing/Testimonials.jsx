@@ -20,7 +20,7 @@ const TESTIMONIALS = [
     image: '/images/testimonial-sunita.png',
   },
   {
-    quote: '"Tax filing used to take my whole weekend. Now I export from EasiBill and my accountant finishes in an hour. I get my Sunday back."',
+    quote: '"Tax filing used to take my whole weekend. Now I export from Ferbz and my accountant finishes in an hour. I get my Sunday back."',
     name: 'Swetha  — CITY MEDICAL HALL, HYDERABAD',
     since: 'SINCE OCT 2023',
     image: '/images/testimonial-arif.png',

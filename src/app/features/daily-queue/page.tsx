@@ -3,9 +3,9 @@ import Link from "next/link";
 import { List, ArrowRight, CheckCircle, AlertCircle, Clock, RefreshCw, Bell } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Daily Queue – Who's Due or Overdue Today | EasiBill",
-  description: "Start every morning knowing exactly which customers are due for a follow-up today. EasiBill's daily queue organises your workload automatically.",
-  alternates: { canonical: "https://easibill.com/features/daily-queue" },
+  title: "Daily Queue – Who's Due or Overdue Today | Ferbz",
+  description: "Start every morning knowing exactly which customers are due for a follow-up today. Ferbz's daily queue organises your workload automatically.",
+  alternates: { canonical: "https://ferbz.com/features/daily-queue" },
 };
 
 const queue = [
@@ -35,7 +35,7 @@ export default function DailyQueuePage() {
                 <span className="text-green">exactly who needs a call</span>
               </h1>
               <p className="mb-8 text-lg leading-relaxed text-mutedink">
-                Every morning, EasiBill shows you who is due today, who is overdue, and who just followed up. Your team works the list — no manual checking required.
+                Every morning, Ferbz shows you who is due today, who is overdue, and who just followed up. Your team works the list — no manual checking required.
               </p>
               <div className="flex flex-col gap-4 sm:flex-row">
                 <Link href="https://dashboard.easibill.com/" className="inline-flex items-center justify-center gap-2 bg-green px-6 py-3 font-mono text-sm uppercase tracking-[0.08em] text-paper transition-colors hover:bg-ink">

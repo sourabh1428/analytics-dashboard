@@ -14,7 +14,7 @@ const trial = [
 
 const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
 
-const EasibillCTA = () => {
+const FerbzCTA = () => {
   return (
     <section className="px-4 sm:px-6 lg:px-8">
       {/* Dark section scales in from slightly small */}
@@ -41,7 +41,7 @@ const EasibillCTA = () => {
                 <span className="text-amber-400">to memory.</span>
               </h2>
               <p className="mt-5 max-w-xl text-lg leading-8 text-slate-300">
-                Launch EasiBill with one store, one staff workflow, and one simple goal — bring repeat customers back before they buy elsewhere.
+                Launch Ferbz with one store, one staff workflow, and one simple goal — bring repeat customers back before they buy elsewhere.
               </p>
               <motion.div
                 className="mt-8 flex flex-col gap-3 sm:flex-row"
@@ -61,7 +61,7 @@ const EasibillCTA = () => {
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </motion.a>
                 <motion.a
-                  href="mailto:support@easibill.com"
+                  href="mailto:support@ferbz.com"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-white/8 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-2 focus:ring-offset-slate-950"
@@ -118,4 +118,4 @@ const EasibillCTA = () => {
   );
 };
 
-export default EasibillCTA;
+export default FerbzCTA;

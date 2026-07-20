@@ -15,9 +15,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const article = helpArticles.find((a) => a.slug === slug);
   if (!article) return {};
   return {
-    title: `${article.title} – EasiBill Help`,
+    title: `${article.title} – Ferbz Help`,
     description: article.intro,
-    alternates: { canonical: `https://easibill.com/help/${slug}` },
+    alternates: { canonical: `https://ferbz.com/help/${slug}` },
   };
 }
 
@@ -154,7 +154,7 @@ export default async function HelpArticlePage({ params }: PageProps) {
                 <p className="mb-1 font-display text-sm font-bold text-ink">Need more help?</p>
                 <p className="mb-3 text-xs text-mutedink">Support team replies within 2 hours</p>
                 <a
-                  href="mailto:support@easibill.com"
+                  href="mailto:support@ferbz.com"
                   className="flex w-full items-center justify-center bg-green px-4 py-2 font-mono text-xs tracking-[0.1em] text-paper transition-colors hover:bg-ink"
                 >
                   EMAIL SUPPORT

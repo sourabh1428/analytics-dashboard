@@ -7,7 +7,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { track } from '../utils/mixpanel';
 import { prefersReducedMotion } from '@/src/lib/scrollScrub';
 
-// Comp anchors (see pro/EasiBill Landing.dc.html nav): #toolkit #day #proof #rates #faq
+// Comp anchors (see pro/Ferbz Landing.dc.html nav): #toolkit #day #proof #rates #faq
 const navLinks = [
   { name: 'TOOLKIT', section: 'toolkit' },
   { name: 'HOW IT WORKS', section: 'day' },
@@ -69,9 +69,9 @@ const NavBar = () => {
           type="button"
           onClick={() => goTo('/')}
           className="font-display text-xl font-black tracking-[0.01em] text-ink [font-stretch:118%] focus:outline-none"
-          aria-label="Go to EasiBill home"
+          aria-label="Go to Ferbz home"
         >
-          EASIBILL<span className="text-green">*</span>
+          FERBZ<span className="text-green">*</span>
         </button>
 
         {/* Desktop nav */}

@@ -6,7 +6,7 @@ import { useScrollReveal } from '@/src/lib/scrollScrub';
 
 const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
 
-// Comp footer (pro/EasiBill Landing.dc.html) uses a 3-column link grid
+// Comp footer (pro/Ferbz Landing.dc.html) uses a 3-column link grid
 // (TOOLS / START / COMPANY) beside the wordmark column. The old footer had
 // a 4th "Resources" group — folded into COMPANY below so no link is dropped.
 const linkGroups = [
@@ -85,13 +85,13 @@ const Footer = () => {
               onClick={() => router.push('/')}
               className="font-display text-2xl font-black tracking-[0.01em] text-paper [font-stretch:118%] focus:outline-none"
             >
-              EASIBILL<span className="text-green-bright">*</span>
+              FERBZ<span className="text-green-bright">*</span>
             </button>
             <p className="mt-3.5 max-w-[300px] text-[13.5px] leading-relaxed">
               The local business retention OS. Fast billing, then WhatsApp follow-ups that bring customers back.
             </p>
             <div className="mt-5 font-mono text-[11px] leading-loose tracking-[0.1em]">
-              SUPPORT@EASIBILL.COM<br />+91 88391 43395
+              SUPPORT@FERBZ.COM<br />+91 88391 43395
             </div>
           </div>
 
@@ -115,7 +115,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-12 flex flex-col gap-3 border-t border-white/15 pt-5 font-mono text-[11px] tracking-[0.12em] sm:flex-row sm:items-center sm:justify-between">
-          <span>&copy; {currentYear} EASIBILL. ALL RIGHTS RESERVED.</span>
+          <span>&copy; {currentYear} FERBZ. ALL RIGHTS RESERVED.</span>
           <span>SERVING LOCAL BUSINESSES WORLDWIDE</span>
         </div>
       </div>

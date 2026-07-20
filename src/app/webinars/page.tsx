@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Webinars – EasiBill",
+  title: "Webinars – Ferbz",
   description: "Live and recorded sessions on follow-up automation, customer retention, and running a profitable local business.",
-  alternates: { canonical: "https://easibill.com/webinars" },
+  alternates: { canonical: "https://ferbz.com/webinars" },
 };
 
 const upcoming = [
@@ -12,29 +12,29 @@ const upcoming = [
     date: "July 9, 2026",
     time: "7:00 PM IST",
     title: "Follow-up Automation 101: From Zero to 500 Reminders/Month",
-    description: "A hands-on demo of the EasiBill daily queue. We will import real customer records, configure reminder templates, and show you exactly what customers receive.",
-    host: "EasiBill Team",
+    description: "A hands-on demo of the Ferbz daily queue. We will import real customer records, configure reminder templates, and show you exactly what customers receive.",
+    host: "Ferbz Team",
   },
   {
     date: "July 23, 2026",
     time: "7:00 PM IST",
     title: "Broadcast Campaigns That Actually Fill Your Next Event",
     description: "Learn how to segment regular customers, write a compelling event announcement, and schedule a broadcast that gets replies — not just read receipts.",
-    host: "EasiBill Team",
+    host: "Ferbz Team",
   },
   {
     date: "August 6, 2026",
     time: "7:00 PM IST",
     title: "Reading Your Retention Analytics: What the Numbers Mean",
     description: "Walk through the retention dashboard with us — delivered vs responded rates, recovered follow-ups, inactive cohorts, and how to act on each metric.",
-    host: "EasiBill Team",
+    host: "Ferbz Team",
   },
 ];
 
 const past = [
   {
     date: "June 11, 2026",
-    title: "Getting Started With EasiBill in 30 Minutes",
+    title: "Getting Started With Ferbz in 30 Minutes",
     attendees: "312",
     duration: "34 min",
   },
@@ -93,7 +93,7 @@ export default function WebinarsPage() {
       </div>
 
       <h2 className="mt-14 font-display text-xl font-extrabold uppercase tracking-[-0.01em] text-ink">Past sessions</h2>
-      <p className="mt-2 text-sm text-mutedink">Recordings available on request — email support@easibill.com with the session title.</p>
+      <p className="mt-2 text-sm text-mutedink">Recordings available on request — email support@ferbz.com with the session title.</p>
       <div className="mt-5 space-y-3">
         {past.map((w) => (
           <div key={w.title} className="flex items-center justify-between gap-4 border border-ink bg-paper-white px-5 py-4">
@@ -102,7 +102,7 @@ export default function WebinarsPage() {
               <p className="mt-0.5 font-mono text-[11px] text-faint">{w.date} · {w.duration} · {w.attendees} attendees</p>
             </div>
             <a
-              href="mailto:support@easibill.com"
+              href="mailto:support@ferbz.com"
               className="shrink-0 font-mono text-xs tracking-[0.1em] text-green hover:text-ink"
             >
               REQUEST RECORDING

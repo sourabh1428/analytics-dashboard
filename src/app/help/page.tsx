@@ -3,19 +3,19 @@ import Link from "next/link";
 import { helpArticles, helpCategories } from "@/src/data/helpArticles";
 
 export const metadata: Metadata = {
-  title: "Help Center – EasiBill",
-  description: "Setup guides, FAQs, and troubleshooting for EasiBill local business billing, WhatsApp reminders, and customer records.",
-  alternates: { canonical: "https://easibill.com/help" },
+  title: "Help Center – Ferbz",
+  description: "Setup guides, FAQs, and troubleshooting for Ferbz local business billing, WhatsApp reminders, and customer records.",
+  alternates: { canonical: "https://ferbz.com/help" },
 };
 
 const faqs = [
   {
     q: "Do my customers need to install WhatsApp?",
-    a: "Yes — customers need WhatsApp installed on their phone. EasiBill sends messages to the phone number stored in their customer record. If WhatsApp is not installed, the message will not be delivered.",
+    a: "Yes — customers need WhatsApp installed on their phone. Ferbz sends messages to the phone number stored in their customer record. If WhatsApp is not installed, the message will not be delivered.",
   },
   {
-    q: "Can I use EasiBill without a WhatsApp Business account?",
-    a: "You need a WhatsApp Business number to send reminders. EasiBill guides you through connecting one during onboarding — the process takes about 10 minutes.",
+    q: "Can I use Ferbz without a WhatsApp Business account?",
+    a: "You need a WhatsApp Business number to send reminders. Ferbz guides you through connecting one during onboarding — the process takes about 10 minutes.",
   },
   {
     q: "Is customer data stored securely?",
@@ -94,7 +94,7 @@ export default function HelpPage() {
         <p className="mt-2 text-sm text-mutedink">Our support team typically responds within 2 hours on business days.</p>
         <div className="mt-6 flex justify-center gap-4">
           <a
-            href="mailto:support@easibill.com"
+            href="mailto:support@ferbz.com"
             className="inline-flex bg-green px-6 py-2.5 font-mono text-xs tracking-[0.1em] text-paper transition-colors hover:bg-ink"
           >
             EMAIL SUPPORT

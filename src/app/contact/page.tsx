@@ -2,25 +2,25 @@ import type { Metadata } from "next";
 import ContactPage from "@/src/Pages/Contact";
 
 export const metadata: Metadata = {
-  title: "Contact EasiBill – Talk to Our Local Business Billing Team",
+  title: "Contact Ferbz – Talk to Our Local Business Billing Team",
   description:
-    "Get in touch with EasiBill. We help local business owners set up WhatsApp billing, follow-up reminders, and retention tools. Book a demo or email us.",
+    "Get in touch with Ferbz. We help local business owners set up WhatsApp billing, follow-up reminders, and retention tools. Book a demo or email us.",
   alternates: {
-    canonical: "https://easibill.com/contact",
+    canonical: "https://ferbz.com/contact",
   },
   openGraph: {
-    title: "Contact EasiBill – Talk to Our Local Business Billing Team",
+    title: "Contact Ferbz – Talk to Our Local Business Billing Team",
     description:
-      "Get in touch with EasiBill. We help local business owners set up WhatsApp billing, follow-up reminders, and retention tools. Book a demo or email us.",
-    url: "https://easibill.com/contact",
-    siteName: "EasiBill",
+      "Get in touch with Ferbz. We help local business owners set up WhatsApp billing, follow-up reminders, and retention tools. Book a demo or email us.",
+    url: "https://ferbz.com/contact",
+    siteName: "Ferbz",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact EasiBill – Talk to Our Local Business Billing Team",
+    title: "Contact Ferbz – Talk to Our Local Business Billing Team",
     description:
-      "Get in touch with EasiBill. We help local business owners set up WhatsApp billing, follow-up reminders, and retention tools. Book a demo or email us.",
+      "Get in touch with Ferbz. We help local business owners set up WhatsApp billing, follow-up reminders, and retention tools. Book a demo or email us.",
   },
 };
 
