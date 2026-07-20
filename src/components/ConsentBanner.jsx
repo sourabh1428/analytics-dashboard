@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { acceptConsent, declineConsent, getConsentState } from '../utils/mixpanel';
+import { useGeo } from '../hooks/useGeo';
 
 const ConsentBanner = () => {
   // Start unmounted-looking (false) so the very first client render matches
@@ -10,12 +11,23 @@ const ConsentBanner = () => {
   // from a returning visitor's client output and breaks hydration. Checking
   // in an effect defers the read until after hydration completes.
   const [dismissed, setDismissed] = useState(false);
+  const geo = useGeo();
 
   useEffect(() => {
     setDismissed(getConsentState() !== null);
   }, []);
 
-  if (dismissed) return null;
+  // India isn't under GDPR/UK-style mandatory cookie-consent rules, so skip
+  // the banner there — but still auto-enable analytics (implicit consent)
+  // rather than silently opting the largest visitor segment out of tracking.
+  useEffect(() => {
+    if (geo?.countryCode === 'IN' && getConsentState() === null) {
+      acceptConsent();
+      setDismissed(true);
+    }
+  }, [geo]);
+
+  if (dismissed || geo?.countryCode === 'IN') return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-[100] border-t border-ink bg-paper px-4 py-4 pb-[calc(1rem+env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgba(23,21,15,.12)] sm:px-6">

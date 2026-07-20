@@ -72,7 +72,7 @@ const NavBar = () => {
           className="flex items-center gap-2 focus:outline-none"
           aria-label="Go to Ferbz home"
         >
-          <Image src="/logo.png" alt="" width={28} height={28} className="h-7 w-7" priority />
+          <Image src="/logo.png" alt="" width={44} height={44} className="h-11 w-11" priority />
           <span className="font-display text-xl font-black tracking-[0.01em] text-ink [font-stretch:118%]">
             FERBZ<span className="text-green">*</span>
           </span>

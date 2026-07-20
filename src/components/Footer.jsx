@@ -86,7 +86,7 @@ const Footer = () => {
               onClick={() => router.push('/')}
               className="flex items-center gap-2.5 focus:outline-none"
             >
-              <Image src="/logo.png" alt="" width={30} height={30} className="h-[30px] w-[30px]" />
+              <Image src="/logo.png" alt="" width={44} height={44} className="h-11 w-11" />
               <span className="font-display text-2xl font-black tracking-[0.01em] text-paper [font-stretch:118%]">
                 FERBZ<span className="text-green-bright">*</span>
               </span>
