@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useScrollReveal } from '@/src/lib/scrollScrub';
 
@@ -83,9 +84,12 @@ const Footer = () => {
             <button
               type="button"
               onClick={() => router.push('/')}
-              className="font-display text-2xl font-black tracking-[0.01em] text-paper [font-stretch:118%] focus:outline-none"
+              className="flex items-center gap-2.5 focus:outline-none"
             >
-              FERBZ<span className="text-green-bright">*</span>
+              <Image src="/logo.png" alt="" width={30} height={30} className="h-[30px] w-[30px]" />
+              <span className="font-display text-2xl font-black tracking-[0.01em] text-paper [font-stretch:118%]">
+                FERBZ<span className="text-green-bright">*</span>
+              </span>
             </button>
             <p className="mt-3.5 max-w-[300px] text-[13.5px] leading-relaxed">
               The local business retention OS. Fast billing, then WhatsApp follow-ups that bring customers back.
