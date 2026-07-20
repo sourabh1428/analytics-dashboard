@@ -38,7 +38,7 @@ export default function DailyQueuePage() {
                 Every morning, Ferbz shows you who is due today, who is overdue, and who just followed up. Your team works the list — no manual checking required.
               </p>
               <div className="flex flex-col gap-4 sm:flex-row">
-                <Link href="https://dashboard.easibill.com/" className="inline-flex items-center justify-center gap-2 bg-green px-6 py-3 font-mono text-sm uppercase tracking-[0.08em] text-paper transition-colors hover:bg-ink">
+                <Link href="https://dashboard.ferbz.com/" className="inline-flex items-center justify-center gap-2 bg-green px-6 py-3 font-mono text-sm uppercase tracking-[0.08em] text-paper transition-colors hover:bg-ink">
                   Start free <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link href="/contact" className="inline-flex items-center justify-center gap-2 border border-ink px-6 py-3 font-mono text-sm uppercase tracking-[0.08em] text-ink transition-colors hover:bg-ink hover:text-paper">
@@ -125,7 +125,7 @@ export default function DailyQueuePage() {
       <section className="bg-ink px-6 py-20 text-center">
         <h2 className="mb-4 font-display text-3xl font-extrabold uppercase tracking-[-0.018em] text-paper">Start every day with a clear plan</h2>
         <p className="mx-auto mb-8 max-w-md text-paper/60">No more guessing who needs to be called. Set up your queue in 5 minutes.</p>
-        <Link href="https://dashboard.easibill.com/" className="inline-flex items-center gap-2 bg-green px-8 py-4 font-mono text-sm uppercase tracking-[0.08em] text-paper transition-colors hover:bg-green-bright hover:text-ink">
+        <Link href="https://dashboard.ferbz.com/" className="inline-flex items-center gap-2 bg-green px-8 py-4 font-mono text-sm uppercase tracking-[0.08em] text-paper transition-colors hover:bg-green-bright hover:text-ink">
           Start free — no card needed <ArrowRight className="h-4 w-4" />
         </Link>
       </section>

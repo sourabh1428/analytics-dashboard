@@ -29,7 +29,7 @@ const faqs = [
   ['Is customer data safe?', 'Your business owns its data. Access is restricted, reminders are tracked, and data is not shared across businesses.'],
 ];
 
-const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
+const DASHBOARD_LOGIN_URL = 'https://dashboard.ferbz.com/';
 
 const EasibillPricing = () => {
   return (

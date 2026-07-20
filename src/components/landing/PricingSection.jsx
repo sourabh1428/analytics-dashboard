@@ -86,7 +86,7 @@ export default function PricingSection() {
               ))}
             </ul>
             <a
-              href="https://dashboard.easibill.com/"
+              href="https://dashboard.ferbz.com/"
               onClick={() => posthog?.capture('pricing_cta_clicked', { plan: 'Starter', popular: false })}
               className="mt-8 inline-block border border-ink px-[26px] py-4 font-mono text-[13px] tracking-[0.1em] text-ink transition-colors hover:bg-ink hover:text-paper"
             >
@@ -116,7 +116,7 @@ export default function PricingSection() {
               ))}
             </ul>
             <a
-              href="https://dashboard.easibill.com/"
+              href="https://dashboard.ferbz.com/"
               onClick={() => posthog?.capture('pricing_cta_clicked', { plan: 'Pro', popular: true })}
               className="mt-8 inline-block bg-green px-[26px] py-4 font-mono text-[13px] tracking-[0.1em] text-paper transition-colors hover:bg-green-bright hover:text-ink"
             >

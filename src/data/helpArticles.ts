@@ -20,7 +20,7 @@ export const helpArticles: HelpArticle[] = [
     time: "2 min",
     intro: "Getting started with Ferbz takes under 2 minutes. You do not need a credit card — both plans include a 14-day free trial.",
     steps: [
-      { title: "Go to dashboard.easibill.com", body: "Open dashboard.easibill.com in your browser. Click 'Get started free' on the home screen." },
+      { title: "Go to dashboard.ferbz.com", body: "Open dashboard.ferbz.com in your browser. Click 'Get started free' on the home screen." },
       { title: "Enter your business details", body: "Fill in your business name, your name, email address, and phone number. These details appear on reminder messages sent to customers." },
       { title: "Choose your country and time zone", body: "Select India (or your country) and your time zone. Ferbz uses this to schedule reminders at 9:00 AM in your local time — not UTC." },
       { title: "Verify your email", body: "Check your inbox for a verification link. Click it to activate your account. If it does not arrive within 2 minutes, check your spam folder or click 'Resend'." },

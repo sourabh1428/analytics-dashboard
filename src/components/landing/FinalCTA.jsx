@@ -46,7 +46,7 @@ export default function FinalCTA() {
 
         <Reveal delay={100} className="flex flex-wrap justify-center gap-3.5">
           <a
-            href="https://dashboard.easibill.com/"
+            href="https://dashboard.ferbz.com/"
             onClick={() => posthog?.capture('final_cta_clicked')}
             className="inline-block bg-green px-[38px] py-5 font-mono text-sm tracking-[0.1em] text-paper transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:bg-green-bright hover:text-ink"
           >

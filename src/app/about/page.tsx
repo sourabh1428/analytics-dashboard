@@ -82,7 +82,7 @@ export default function AboutPage() {
           Talk to us
         </Link>
         <a
-          href="https://dashboard.easibill.com/"
+          href="https://dashboard.ferbz.com/"
           className="inline-flex items-center border border-ink bg-paper-white px-6 py-3 font-mono text-sm tracking-[0.08em] text-ink transition hover:bg-ink hover:text-paper"
         >
           Try Ferbz free

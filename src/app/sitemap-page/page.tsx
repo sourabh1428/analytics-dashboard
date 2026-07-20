@@ -30,7 +30,7 @@ const groups = [
   {
     title: "Getting Started",
     links: [
-      { label: "14-Day Free Trial", href: "https://dashboard.easibill.com/", external: true },
+      { label: "14-Day Free Trial", href: "https://dashboard.ferbz.com/", external: true },
       { label: "Book a Demo", href: "/contact" },
       { label: "Onboarding Guide", href: "/onboarding" },
     ],

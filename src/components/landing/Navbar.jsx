@@ -56,14 +56,14 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-3">
           <a
-            href="https://dashboard.easibill.com/"
+            href="https://dashboard.ferbz.com/"
             onClick={() => posthog?.capture('navbar_signin_clicked')}
             className="text-sm text-zinc-400 hover:text-white transition-colors duration-150 font-medium focus-visible:ring-2 focus-visible:ring-amber-500 rounded-sm"
           >
             Sign in
           </a>
           <a
-            href="https://dashboard.easibill.com/"
+            href="https://dashboard.ferbz.com/"
             onClick={() => posthog?.capture('navbar_cta_clicked', { location: 'navbar_desktop' })}
             className="inline-flex items-center px-4 py-2 rounded-xl bg-amber-500 text-zinc-950 text-sm font-semibold hover:bg-amber-400 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900"
           >
@@ -107,7 +107,7 @@ export default function Navbar() {
                 </a>
               ))}
               <a
-                href="https://dashboard.easibill.com/"
+                href="https://dashboard.ferbz.com/"
                 onClick={() => posthog?.capture('navbar_cta_clicked', { location: 'navbar_mobile' })}
                 className="mt-2 inline-flex items-center justify-center px-4 py-3 rounded-xl bg-amber-500 text-zinc-950 text-sm font-semibold hover:bg-amber-400 transition-colors min-h-[44px]"
               >

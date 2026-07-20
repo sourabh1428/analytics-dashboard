@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { useScrollReveal } from '@/src/lib/scrollScrub';
 
-const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
+const DASHBOARD_LOGIN_URL = 'https://dashboard.ferbz.com/';
 
 // Comp footer (pro/Ferbz Landing.dc.html) uses a 3-column link grid
 // (TOOLS / START / COMPANY) beside the wordmark column. The old footer had

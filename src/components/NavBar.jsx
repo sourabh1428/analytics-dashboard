@@ -16,7 +16,7 @@ const navLinks = [
   { name: 'FAQ', section: 'faq' },
 ];
 
-const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
+const DASHBOARD_LOGIN_URL = 'https://dashboard.ferbz.com/';
 
 const NavBar = () => {
   const router = useRouter();

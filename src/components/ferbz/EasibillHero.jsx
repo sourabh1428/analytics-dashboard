@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import { track } from '../../utils/mixpanel';
 
-const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
+const DASHBOARD_LOGIN_URL = 'https://dashboard.ferbz.com/';
 
 const reminders = [
   { name: 'Anita R.', product: 'Metformin 500mg', status: 'Reminder sent', dot: 'bg-emerald-400' },

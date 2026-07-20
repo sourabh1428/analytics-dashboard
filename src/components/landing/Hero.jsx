@@ -337,7 +337,7 @@ export default function Hero() {
               style={{ opacity: 0, willChange: 'transform, opacity' }}
             >
               <a
-                href="https://dashboard.easibill.com/"
+                href="https://dashboard.ferbz.com/"
                 onClick={() => posthog?.capture('hero_cta_clicked', { cta: 'start_free', location: 'hero' })}
                 className="inline-block bg-green px-[30px] py-[18px] font-mono text-[13px] tracking-[0.1em] text-paper transition-transform hover:-translate-y-0.5 hover:bg-ink"
               >

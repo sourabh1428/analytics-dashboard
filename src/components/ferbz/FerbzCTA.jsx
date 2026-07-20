@@ -12,7 +12,7 @@ const trial = [
   'Review follow-up performance',
 ];
 
-const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
+const DASHBOARD_LOGIN_URL = 'https://dashboard.ferbz.com/';
 
 const FerbzCTA = () => {
   return (

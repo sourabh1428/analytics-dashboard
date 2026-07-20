@@ -8,7 +8,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 const FerbzFeatures = lazy(() => import('../components/ferbz/FerbzFeatures'));
 const FerbzCTA = lazy(() => import('../components/ferbz/FerbzCTA'));
 
-const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
+const DASHBOARD_LOGIN_URL = 'https://dashboard.ferbz.com/';
 
 const comparison = [
   { label: 'Setup time',           manual: 'None',           crm: '2–4 weeks',     ferbz: '< 5 minutes' },

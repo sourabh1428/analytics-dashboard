@@ -236,7 +236,7 @@ export function Article({ page, relatedPages }: ArticleProps) {
                 ))}
               </ul>
               <Link
-                href="https://dashboard.easibill.com/"
+                href="https://dashboard.ferbz.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-5 flex items-center justify-center rounded-xl bg-white px-4 py-3 text-sm font-bold text-violet-700 shadow transition hover:bg-violet-50"

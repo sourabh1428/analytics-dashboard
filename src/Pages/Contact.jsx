@@ -6,7 +6,7 @@ import { ArrowRight, CheckCircle2, Mail, MessageCircle, Phone, Send } from 'luci
 import { track } from '../utils/mixpanel';
 
 const WORKER_URL = 'https://landingpage-lead.sppathak1428.workers.dev/';
-const DASHBOARD_LOGIN_URL = 'https://dashboard.easibill.com/';
+const DASHBOARD_LOGIN_URL = 'https://dashboard.ferbz.com/';
 const DISCORD_URL = 'https://discord.gg/easibill';
 
 const ContactPage = () => {

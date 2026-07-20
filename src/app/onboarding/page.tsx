@@ -13,7 +13,7 @@ const steps = [
     title: "Create your account",
     time: "2 min",
     details: [
-      "Go to dashboard.easibill.com and click Get started free.",
+      "Go to dashboard.ferbz.com and click Get started free.",
       "Enter your business name, your name, email, and phone number.",
       "Choose your country and time zone — this controls when daily reminders are sent.",
       "Verify your email and you are in.",

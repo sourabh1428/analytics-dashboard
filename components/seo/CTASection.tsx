@@ -31,7 +31,7 @@ export function CTASection() {
 
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
-            href="https://dashboard.easibill.com/"
+            href="https://dashboard.ferbz.com/"
             className="inline-flex min-h-12 items-center justify-center rounded-xl bg-violet-600 px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-violet-500"
             target="_blank"
             rel="noopener noreferrer"

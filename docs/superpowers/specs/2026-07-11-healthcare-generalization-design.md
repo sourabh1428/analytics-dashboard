@@ -11,7 +11,7 @@ naming each vertical, the site should speak in fully generic "local business" la
 verticals don't require another copy pass.
 
 This is a marketing-site content change only. The real product/dashboard app
-(`dashboard.easibill.com`) is not in this repo and is out of scope.
+(`dashboard.ferbz.com`) is not in this repo and is out of scope.
 
 ## Terminology system
 

@@ -95,7 +95,7 @@ function StoryStep({ step, addStep, posthog }) {
       <p className="max-w-[480px] text-base leading-[1.6] text-ink-soft">{step.copy}</p>
       {step.cta && (
         <a
-          href="https://dashboard.easibill.com/"
+          href="https://dashboard.ferbz.com/"
           onClick={() => posthog?.capture('day_in_the_life_cta_clicked')}
           className="mt-6 inline-block self-start bg-ink px-[26px] py-4 font-mono text-[13px] tracking-[0.1em] text-paper transition-colors hover:bg-green"
         >

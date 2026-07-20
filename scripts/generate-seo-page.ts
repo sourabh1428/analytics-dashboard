@@ -131,7 +131,7 @@ ${vertical.itemExamples}
 ${vertical.gstFacts}
 
 ## CTA
-Trial: https://dashboard.easibill.com/
+Trial: https://dashboard.ferbz.com/
 Contact: support@ferbz.com
 `;
 }
@@ -189,7 +189,7 @@ Write exactly 5 Q&A pairs. Each question must be something a real Indian ${verti
 (continue for all 5 pairs)
 
 ### ## Get Started with Ferbz (at least 100 words)
-A closing CTA section. Include the trial link https://dashboard.easibill.com/ and contact support@ferbz.com.
+A closing CTA section. Include the trial link https://dashboard.ferbz.com/ and contact support@ferbz.com.
 
 ---
 

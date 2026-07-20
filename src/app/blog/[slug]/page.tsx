@@ -130,7 +130,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           <h2 className="mb-3 font-display text-2xl font-extrabold uppercase tracking-[-0.01em] text-paper">Put this into practice with Ferbz</h2>
           <p className="mb-6 text-green-pale">Free to start. No card required. Set up in under 5 minutes.</p>
           <Link
-            href="https://dashboard.easibill.com/"
+            href="https://dashboard.ferbz.com/"
             className="inline-flex items-center gap-2 border border-paper bg-paper px-6 py-3 font-mono text-xs tracking-[0.1em] text-green transition-colors hover:bg-ink hover:text-paper"
           >
             START FREE TRIAL <ArrowRight className="h-4 w-4" />
