@@ -1,0 +1,39 @@
+# Ferbz
+
+> Ferbz is billing software for local businesses. It sends bills on WhatsApp and runs automatic follow-up reminders so customers come back, without the owner having to remember to chase anyone.
+
+Ferbz combines fast, tax-ready billing with WhatsApp-based customer retention: every sale is billed in seconds, delivered as a WhatsApp PDF, and followed up automatically on a schedule the business sets once. It is built for independent local businesses (pharmacies, kirana/grocery stores, electronics shops, clothing stores, salons/spas) rather than enterprise retailers.
+
+## Product
+
+- [Homepage](https://ferbz.com/): overview of the product, the retention problem it solves, and a walkthrough of a typical day using Ferbz.
+- [Features](https://ferbz.com/features): all tools in one view.
+- [Follow-up Reminders](https://ferbz.com/features/follow-up-reminders): automatic WhatsApp reminders sent on the right day from the business's own number.
+- [Customer Records](https://ferbz.com/features/patient-records): centralized customer, item, and follow-up-interval data with CSV import.
+- [Daily Queue](https://ferbz.com/features/daily-queue): a sorted daily list of who is due, overdue, or recently returned.
+- [Broadcast Campaigns](https://ferbz.com/features/broadcast-campaigns): segmented WhatsApp broadcasts to many customers at once.
+- [Retention Analytics](https://ferbz.com/features/retention-analytics): reporting on which customers are being kept versus lost.
+- [Automation](https://ferbz.com/#automation): multi-step WhatsApp journeys (trigger, message, follow-up, exit) beyond a single fixed reminder.
+- [Pricing](https://ferbz.com/#rates): Starter and Pro plan pricing and feature comparison.
+- [Bulk Billing Solution](https://ferbz.com/ferbz-customisable-bulk-billing-solution): customisable bulk billing for higher-volume businesses.
+
+## Company
+
+- [About](https://ferbz.com/about): company background and mission.
+- [Contact](https://ferbz.com/contact): how to reach the team or book a demo.
+- [Testimonials](https://ferbz.com/testimonials): customer stories and results.
+- [Privacy Policy](https://ferbz.com/privacy)
+- [Terms of Service](https://ferbz.com/terms)
+
+## Resources
+
+- [Blog](https://ferbz.com/blog): articles on customer retention, WhatsApp billing, and local business operations.
+- [Help Center](https://ferbz.com/help): setup guides and how-to articles.
+- [Onboarding Guide](https://ferbz.com/onboarding): getting started end to end.
+- [Sitemap](https://ferbz.com/sitemap-page): full list of site pages.
+
+## Optional
+
+- [Full XML sitemap](https://ferbz.com/sitemap.xml): machine-readable list of all indexable URLs.
+- [Tutorials](https://ferbz.com/tutorials)
+- [Webinars](https://ferbz.com/webinars)
