@@ -100,6 +100,10 @@ export default {
     			'eb-blink': {
     				'0%, 100%': { opacity: '1' },
     				'50%': { opacity: '.2' }
+    			},
+    			'nav-in': {
+    				from: { opacity: '0', transform: 'translateY(-16px)' },
+    				to: { opacity: '1', transform: 'translateY(0)' }
     			}
     		},
     		animation: {
@@ -114,6 +118,7 @@ export default {
     			'eb-bubble': 'eb-bubble 10s ease infinite',
     			'eb-stamp': 'eb-stamp 10s ease infinite',
     			'eb-blink': 'eb-blink 1.4s step-end infinite',
+    			'nav-in': 'nav-in .5s cubic-bezier(.22,.61,.21,1) both',
     		}
     	}
     },

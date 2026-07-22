@@ -1,12 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 import { track } from '../utils/mixpanel';
-import { prefersReducedMotion } from '@/src/lib/scrollScrub';
 
 // Comp anchors (see pro/Ferbz Landing.dc.html nav): #toolkit #day #proof #rates #faq
 const navLinks = [
@@ -23,26 +22,8 @@ const NavBar = () => {
   const router = useRouter();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const headerRef = useRef(null);
 
   useEffect(() => { setIsOpen(false); }, [pathname]);
-
-  // Light-touch mount transition only — this is global chrome, not a
-  // homepage section, so it should announce itself once and then get out
-  // of the way. A plain CSS transition on mount (not scroll-driven), so no
-  // rAF/scroll plumbing is warranted here.
-  useEffect(() => {
-    const el = headerRef.current
-    if (!el || prefersReducedMotion()) return
-    el.style.transform = 'translateY(-16px)'
-    el.style.opacity = '0'
-    el.style.transition = 'transform .5s cubic-bezier(.22,.61,.21,1), opacity .5s cubic-bezier(.22,.61,.21,1)'
-    const raf = requestAnimationFrame(() => {
-      el.style.transform = 'translateY(0)'
-      el.style.opacity = '1'
-    })
-    return () => cancelAnimationFrame(raf)
-  }, [])
 
   const goTo = (path) => { router.push(path); setIsOpen(false); };
 
@@ -60,8 +41,7 @@ const NavBar = () => {
 
   return (
     <header
-      ref={headerRef}
-      className="sticky top-0 z-50 border-b border-ink bg-paper"
+      className="sticky top-0 z-50 animate-nav-in border-b border-ink bg-paper"
       data-section="navigation"
     >
       <div className="mx-auto flex h-16 max-w-[1360px] items-center gap-8 px-4 sm:px-6 lg:px-8">

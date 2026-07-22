@@ -39,11 +39,6 @@
 } 
 html {
   scroll-behavior: smooth;
-  /* Third-party widgets (e.g. AssistLoop) inject fixed-position containers
-     sized for desktop that can sit partially off-screen on narrow viewports.
-     Chrome still counts those in the page's scrollable area, producing a
-     horizontal scrollbar even though real content fits. Clamp it here. */
-  overflow-x: hidden;
 }
 
 /* Lenis (src/components/landing/SmoothScroll.jsx) drives scroll itself via
@@ -66,7 +61,6 @@ html.lenis {
 }
 
 body {
-  overflow-x: hidden;
   overflow-y: scroll;
   scrollbar-width: thin; /* For Firefox */
   scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track); /* For Firefox */
@@ -154,6 +148,17 @@ iframe[src*="assistloop"] {
   left: 1.25rem !important;
   right: auto !important;
   bottom: 1.25rem !important;
+}
+
+/* The widget's own wrapping container is sized for a desktop chat window
+   (fixed, ~376px wide) and isn't responsive on its own — on narrow
+   viewports it can extend past the screen edge. Chrome counts that
+   off-viewport fixed box toward the page's scrollable area, producing a
+   horizontal scrollbar even though real page content fits. Clamp the
+   container itself instead of clipping overflow on html/body — the
+   latter breaks `position: sticky` for every element on the page. */
+.assistloop-iframe-container {
+  max-width: calc(100vw - 2.5rem);
 }
 
 /* Respect user motion preference */

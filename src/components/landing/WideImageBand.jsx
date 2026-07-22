@@ -26,7 +26,7 @@ export default function WideImageBand() {
       gsap.set(img, { scale: 1, filter: 'grayscale(0) contrast(1)' })
       gsap.set(shutterTopRef.current, { yPercent: -100 })
       gsap.set(shutterBottomRef.current, { yPercent: 100 })
-      gsap.set(scanRef.current, { opacity: 0 })
+      gsap.set(scanRef.current, { y: 0, opacity: 0 })
       return undefined
     }
 
@@ -59,8 +59,8 @@ export default function WideImageBand() {
         .to(shutterBottomRef.current, { yPercent: 100, duration: 0.55, ease: 'power4.inOut' }, 0)
         .fromTo(
           scanRef.current,
-          { top: '0%', opacity: 1 },
-          { top: '100%', opacity: 1, duration: 0.7, ease: 'power2.inOut' },
+          { y: '0vh', opacity: 1 },
+          { y: '54vh', opacity: 1, duration: 0.7, ease: 'power2.inOut' },
           0.35
         )
         .to(scanRef.current, { opacity: 0, duration: 0.15 }, '>-0.05')
@@ -89,7 +89,7 @@ export default function WideImageBand() {
         <div
           ref={scanRef}
           className="pointer-events-none absolute inset-x-0 z-[3] h-[2px] bg-green-bright"
-          style={{ top: '0%', opacity: 0, boxShadow: '0 0 0 1px rgba(23,21,15,.4)', willChange: 'top, opacity' }}
+          style={{ top: 0, opacity: 0, boxShadow: '0 0 0 1px rgba(23,21,15,.4)', willChange: 'transform, opacity' }}
         />
       </div>
     </section>
