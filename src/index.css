@@ -157,8 +157,32 @@ iframe[src*="assistloop"] {
    horizontal scrollbar even though real page content fits. Clamp the
    container itself instead of clipping overflow on html/body — the
    latter breaks `position: sticky` for every element on the page. */
-.assistloop-iframe-container {
+.assistloop-iframe-container,
+.assistloop-widget-container {
   max-width: calc(100vw - 2.5rem);
+}
+
+/* The opened chat window (assistloop-iframe-container, not the small
+   closed bubble button) is meant to take over the screen on mobile, but
+   the widget's own script sizes it to a fixed desktop-chat-window width
+   even on narrow viewports, leaving a gap on one side where page content
+   shows through behind it. Make it a proper full-screen sheet below the
+   sm breakpoint instead. */
+@media (max-width: 640px) {
+  .assistloop-iframe-container {
+    left: 0 !important;
+    right: 0 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    max-width: 100vw !important;
+    max-height: 100dvh !important;
+  }
+  .assistloop-iframe-container iframe.assistloop-iframe {
+    width: 100% !important;
+    height: 100% !important;
+  }
 }
 
 /* Respect user motion preference */

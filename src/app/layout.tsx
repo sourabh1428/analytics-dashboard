@@ -128,32 +128,15 @@ export default function RootLayout({
               var script = document.createElement('script');
               script.src = 'https://assistloop.ai/assistloop-widget.js';
               script.onload = function() {
-                AssistLoopWidget.init({ agentId: "fe2f60b9-35f6-4337-b517-75e80e069174", position: "bottom-right" });
-                // Force right-side position via CSS override and MutationObserver
-                var style = document.createElement('style');
-                style.textContent = [
-                  'iframe[src*="assistloop"], div[id*="assistloop"], div[class*="assistloop"] {',
-                  '  left: auto !important;',
-                  '  right: 20px !important;',
-                  '}'
-                ].join('');
-                document.head.appendChild(style);
-                // Watch for the widget element being added to DOM and reposition it
-                var observer = new MutationObserver(function(mutations) {
-                  mutations.forEach(function(m) {
-                    m.addedNodes.forEach(function(node) {
-                      if (node.nodeType === 1) {
-                        var el = node;
-                        var id = (el.id || '') + (el.className || '');
-                        if (id.toLowerCase().indexOf('assist') !== -1 || el.querySelector && el.querySelector('[id*="assist"],[class*="assist"]')) {
-                          el.style.left = 'auto';
-                          el.style.right = '20px';
-                        }
-                      }
-                    });
-                  });
-                });
-                observer.observe(document.body, { childList: true, subtree: true });
+                // Bottom-left (see src/index.css) - bottom-right is already
+                // taken by ScrollToTopButton. Positioning is enforced by the
+                // CSS rules in src/index.css (single source of truth); do
+                // not also fight it here with inline styles or a
+                // MutationObserver - that previously left both the left and
+                // right insets set at once (two important stylesheet rules
+                // on different properties, both applying), which is what
+                // broke the opened chat window's layout on mobile.
+                AssistLoopWidget.init({ agentId: "fe2f60b9-35f6-4337-b517-75e80e069174", position: "bottom-left" });
               };
               document.head.appendChild(script);
             })();

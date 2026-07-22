@@ -31,9 +31,23 @@ export default function SmoothScroll({ children }) {
     }
     rafId = requestAnimationFrame(raf)
 
+    // The page has no intentional horizontal scroll. Third-party widgets
+    // (chat bubble, etc.) can still trigger a one-off native auto-scroll —
+    // e.g. a focus event on a newly-inserted off-screen node — that leaves
+    // the page nudged sideways by a few px with no way back for the user.
+    // Clamping html/body overflow-x to prevent this instead breaks
+    // `position: sticky` site-wide (verified — do not reintroduce that), so
+    // correct any horizontal drift directly instead.
+    const clampX = () => {
+      if (window.scrollX !== 0) window.scrollTo(0, window.scrollY)
+    }
+    window.addEventListener('scroll', clampX, { passive: true })
+    clampX()
+
     return () => {
       cancelAnimationFrame(rafId)
       lenis.destroy()
+      window.removeEventListener('scroll', clampX)
     }
   }, [])
 
