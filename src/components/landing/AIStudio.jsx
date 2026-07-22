@@ -71,7 +71,7 @@ export default function AIStudio() {
           Blank page to ready-to-send in seconds instead of twenty minutes. You still approve every message before it goes out.
         </Reveal>
 
-        <div ref={gridRef} className="grid grid-cols-1 border-t border-paper/35 sm:grid-cols-2 lg:grid-cols-4">
+        <div ref={gridRef} className="grid grid-cols-1 overflow-x-clip border-t border-paper/35 sm:grid-cols-2 lg:grid-cols-4">
           {AI_FEATURES.map((f, i) => (
             <div
               key={f.num}
