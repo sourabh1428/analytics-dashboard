@@ -2,10 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { blogPosts, CATEGORY_COLORS } from "@/src/data/blogPosts";
 
+const title = "Blog – Ferbz Business Growth";
+const description =
+  "Practical articles on customer retention, WhatsApp billing, follow-up automation, and running a local business more profitably every month.";
+
 export const metadata: Metadata = {
-  title: "Blog – Ferbz Business Growth",
-  description: "Practical articles on customer retention, WhatsApp billing, follow-up automation, and running a local business more profitably every month.",
+  title,
+  description,
   alternates: { canonical: "https://ferbz.com/blog" },
+  openGraph: { title, description, url: "https://ferbz.com/blog", siteName: "Ferbz", type: "website" },
+  twitter: { card: "summary_large_image", title, description },
 };
 
 const ALL_CATEGORIES = ["All", "Retention", "WhatsApp", "How-to", "Growth", "Analytics", "Compliance", "Operations"];

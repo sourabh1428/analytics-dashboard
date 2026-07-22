@@ -1,10 +1,26 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
 
+const title = "About Ferbz – Local Business Retention Software";
+const description =
+  "Ferbz was built to help local business owners stop losing customers to forgetfulness. Learn our story, mission, and the team behind the product.";
+
 export const metadata: Metadata = {
-  title: "About Ferbz – Local Business Retention Software",
-  description: "Ferbz was built to help local business owners stop losing customers to forgetfulness. Learn our story, mission, and the team behind the product.",
+  title,
+  description,
   alternates: { canonical: "https://ferbz.com/about" },
+  openGraph: {
+    title,
+    description,
+    url: "https://ferbz.com/about",
+    siteName: "Ferbz",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
 };
 
 const values = [

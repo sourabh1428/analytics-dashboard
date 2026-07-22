@@ -2,9 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { helpArticles, helpCategories } from "@/src/data/helpArticles";
 
+const title = "Help Center – Ferbz";
+const description =
+  "Setup guides, FAQs, and troubleshooting for Ferbz local business billing, WhatsApp reminders, and customer records.";
+
 export const metadata: Metadata = {
-  title: "Help Center – Ferbz",
-  description: "Setup guides, FAQs, and troubleshooting for Ferbz local business billing, WhatsApp reminders, and customer records.",
+  title,
+  description,
+  openGraph: { title, description, url: "https://ferbz.com/help", siteName: "Ferbz", type: "website" },
+  twitter: { card: "summary_large_image", title, description },
   alternates: { canonical: "https://ferbz.com/help" },
 };
 

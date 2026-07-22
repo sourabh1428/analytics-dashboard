@@ -70,6 +70,21 @@ export default function RootLayout({
       className={`${archivo.variable} ${newsreader.variable} ${splineSansMono.variable}`}
     >
       <body suppressHydrationWarning>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Ferbz",
+              url: "https://ferbz.com",
+              logo: "https://ferbz.com/android-chrome-512x512.png",
+              description:
+                "Ferbz is billing software for local businesses. Send bills on WhatsApp, retain customers with automated reminders, and run your business hassle-free.",
+              sameAs: [],
+            }),
+          }}
+        />
         <PostHogProvider>
           <PostHogPageView />
           <SmoothScroll>
@@ -99,7 +114,15 @@ export default function RootLayout({
             </div>
           </SmoothScroll>
         </PostHogProvider>
-        <Script id="assistloop-widget" strategy="afterInteractive">
+        {/*
+          lazyOnload (not afterInteractive): this is a support-chat widget,
+          not needed for first render or SEO. afterInteractive was firing it
+          in the same window as hydration + the Lenis/GSAP scroll rig +
+          PostHog + GTM, all competing for the main thread right when the
+          user is most likely to start scrolling. lazyOnload defers it until
+          the browser is idle, so it no longer contributes to that jank.
+        */}
+        <Script id="assistloop-widget" strategy="lazyOnload">
           {`
             (function() {
               var script = document.createElement('script');

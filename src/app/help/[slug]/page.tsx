@@ -14,9 +14,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const article = helpArticles.find((a) => a.slug === slug);
   if (!article) return {};
+  const title = `${article.title} – Ferbz Help`;
   return {
-    title: `${article.title} – Ferbz Help`,
+    title,
     description: article.intro,
+    openGraph: { title, description: article.intro, url: `https://ferbz.com/help/${slug}`, siteName: "Ferbz", type: "article" },
+    twitter: { card: "summary_large_image", title, description: article.intro },
     alternates: { canonical: `https://ferbz.com/help/${slug}` },
   };
 }

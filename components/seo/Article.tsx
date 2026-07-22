@@ -113,8 +113,31 @@ export function Article({ page, relatedPages }: ArticleProps) {
   const hero = pickHero(page.slug);
   const mins = readingTime(page.content);
 
+  const faqPairs = sections
+    .filter((s): s is FaqSection => s.type === "faq")
+    .flatMap((s) => s.pairs);
+
+  const faqJsonLd =
+    faqPairs.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqPairs.map((pair) => ({
+            "@type": "Question",
+            name: pair.q,
+            acceptedAnswer: { "@type": "Answer", text: pair.a },
+          })),
+        }
+      : null;
+
   return (
     <div className="bg-zinc-50">
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
 
       {/* ── Hero ── */}
       <div className="relative h-80 w-full overflow-hidden sm:h-[28rem]">

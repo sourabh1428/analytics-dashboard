@@ -2,9 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BarChart3, ArrowRight, TrendingUp, Users, AlertTriangle, Activity, RefreshCw, DollarSign } from "lucide-react";
 
+const title = "Retention Analytics – Follow-ups & Recovery | Ferbz";
+const description =
+  "See exactly how many reminders you sent, how many follow-ups you recovered, and which customers have gone inactive. Data every local business owner needs.";
+
 export const metadata: Metadata = {
-  title: "Retention Analytics – Follow-ups & Recovery | Ferbz",
-  description: "See exactly how many reminders you sent, how many follow-ups you recovered, and which customers have gone inactive. Data every local business owner needs.",
+  title,
+  description,
+  openGraph: { title, description, url: "https://ferbz.com/features/retention-analytics", siteName: "Ferbz", type: "website" },
+  twitter: { card: "summary_large_image", title, description },
   alternates: { canonical: "https://ferbz.com/features/retention-analytics" },
 };
 

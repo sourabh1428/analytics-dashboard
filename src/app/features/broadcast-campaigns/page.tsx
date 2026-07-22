@@ -2,9 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Radio, ArrowRight, Users, Target, MessageSquare, TrendingUp, Calendar, Send } from "lucide-react";
 
+const title = "Broadcast Campaigns & Loyalty Messages | Ferbz";
+const description =
+  "Send targeted WhatsApp campaigns to customer groups. Promote seasonal sales, loyalty offers, and event messages from your business.";
+
 export const metadata: Metadata = {
-  title: "Broadcast Campaigns & Loyalty Messages | Ferbz",
-  description: "Send targeted WhatsApp campaigns to customer groups. Promote seasonal sales, loyalty offers, and event messages from your business.",
+  title,
+  description,
+  openGraph: { title, description, url: "https://ferbz.com/features/broadcast-campaigns", siteName: "Ferbz", type: "website" },
+  twitter: { card: "summary_large_image", title, description },
   alternates: { canonical: "https://ferbz.com/features/broadcast-campaigns" },
 };
 

@@ -2,9 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FileText, ArrowRight, User, Phone, Pill, Calendar, Search, Shield } from "lucide-react";
 
+const title = "Customer Records – Item, Interval & Contact | Ferbz";
+const description =
+  "Store every customer's item, follow-up interval, and WhatsApp number in one place. Ferbz makes customer records simple for local businesses.";
+
 export const metadata: Metadata = {
-  title: "Customer Records – Item, Interval & Contact | Ferbz",
-  description: "Store every customer's item, follow-up interval, and WhatsApp number in one place. Ferbz makes customer records simple for local businesses.",
+  title,
+  description,
+  openGraph: { title, description, url: "https://ferbz.com/features/patient-records", siteName: "Ferbz", type: "website" },
+  twitter: { card: "summary_large_image", title, description },
   alternates: { canonical: "https://ferbz.com/features/patient-records" },
 };
 

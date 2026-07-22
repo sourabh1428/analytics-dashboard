@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const title = "Webinars – Ferbz";
+const description =
+  "Live and recorded sessions on follow-up automation, customer retention, and running a profitable local business.";
+
 export const metadata: Metadata = {
-  title: "Webinars – Ferbz",
-  description: "Live and recorded sessions on follow-up automation, customer retention, and running a profitable local business.",
+  title,
+  description,
+  openGraph: { title, description, url: "https://ferbz.com/webinars", siteName: "Ferbz", type: "website" },
+  twitter: { card: "summary_large_image", title, description },
   alternates: { canonical: "https://ferbz.com/webinars" },
 };
 

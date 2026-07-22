@@ -2,9 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Bell, CheckCircle, Clock, MessageCircle, ArrowRight, Users, TrendingUp, RefreshCw } from "lucide-react";
 
+const title = "Follow-up Reminders – Automatic WhatsApp Follow-ups | Ferbz";
+const description =
+  "Automatically remind customers when it's time for their next refill, appointment, treatment, or repeat purchase.";
+
 export const metadata: Metadata = {
-  title: "Follow-up Reminders – Automatic WhatsApp Follow-ups | Ferbz",
-  description: "Automatically remind customers when it's time for their next refill, appointment, treatment, or repeat purchase.",
+  title,
+  description,
+  openGraph: { title, description, url: "https://ferbz.com/features/follow-up-reminders", siteName: "Ferbz", type: "website" },
+  twitter: { card: "summary_large_image", title, description },
   alternates: { canonical: "https://ferbz.com/features/follow-up-reminders" },
 };
 

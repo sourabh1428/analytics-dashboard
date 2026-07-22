@@ -2,9 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { List, ArrowRight, CheckCircle, AlertCircle, Clock, RefreshCw, Bell } from "lucide-react";
 
+const title = "Daily Queue – Who's Due or Overdue Today | Ferbz";
+const description =
+  "Start every morning knowing exactly which customers are due for a follow-up today. Ferbz's daily queue organises your workload automatically.";
+
 export const metadata: Metadata = {
-  title: "Daily Queue – Who's Due or Overdue Today | Ferbz",
-  description: "Start every morning knowing exactly which customers are due for a follow-up today. Ferbz's daily queue organises your workload automatically.",
+  title,
+  description,
+  openGraph: { title, description, url: "https://ferbz.com/features/daily-queue", siteName: "Ferbz", type: "website" },
+  twitter: { card: "summary_large_image", title, description },
   alternates: { canonical: "https://ferbz.com/features/daily-queue" },
 };
 
