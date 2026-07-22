@@ -83,8 +83,27 @@ export default async function BlogPostPage({ params }: PageProps) {
     .filter((p) => p.slug !== slug && (p.category === post.category || p.tags.some((t) => post.tags.includes(t))))
     .slice(0, 3);
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: new Date(post.date).toISOString(),
+    author: { "@type": "Organization", name: "Ferbz" },
+    publisher: {
+      "@type": "Organization",
+      name: "Ferbz",
+      logo: { "@type": "ImageObject", url: "https://ferbz.com/android-chrome-512x512.png" },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": `https://ferbz.com/blog/${post.slug}` },
+  };
+
   return (
     <div className="min-h-screen bg-paper">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       {/* Back */}
       <div className="mx-auto max-w-3xl px-6 pt-8">
         <Link href="/blog" className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.1em] text-mutedink transition-colors hover:text-green">
