@@ -66,7 +66,7 @@ export default function PricingSection() {
           ]}
         />
 
-        <div ref={cardsRef} className="grid grid-cols-1 border border-ink md:grid-cols-2">
+        <div ref={cardsRef} className="grid grid-cols-1 overflow-x-clip border border-ink md:grid-cols-2">
           <div
             ref={starterRef}
             className="border-b border-ink p-8 sm:p-11 md:border-b-0 md:border-r"
