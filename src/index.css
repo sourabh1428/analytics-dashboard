@@ -141,12 +141,13 @@ body {
   animation-play-state: paused;
 }
 
-/* AssistLoop widget — keep on bottom-left to avoid conflict with scroll-to-top (bottom-right) */
+/* AssistLoop widget — bottom-right. ScrollToTopButton sits higher
+   (bottom-24) so the two don't collide. */
 [id^="assistloop"],
 .assistloop-widget,
 iframe[src*="assistloop"] {
-  left: 1.25rem !important;
-  right: auto !important;
+  right: 1.25rem !important;
+  left: auto !important;
   bottom: 1.25rem !important;
 }
 

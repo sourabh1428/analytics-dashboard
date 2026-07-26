@@ -128,15 +128,16 @@ export default function RootLayout({
               var script = document.createElement('script');
               script.src = 'https://assistloop.ai/assistloop-widget.js';
               script.onload = function() {
-                // Bottom-left (see src/index.css) - bottom-right is already
-                // taken by ScrollToTopButton. Positioning is enforced by the
-                // CSS rules in src/index.css (single source of truth); do
+                // Bottom-right (see src/index.css). ScrollToTopButton sits
+                // higher (bottom-24) so it doesn't collide with the chat
+                // bubble at bottom-6. Positioning is enforced by the CSS
+                // rules in src/index.css (single source of truth); do
                 // not also fight it here with inline styles or a
                 // MutationObserver - that previously left both the left and
                 // right insets set at once (two important stylesheet rules
                 // on different properties, both applying), which is what
                 // broke the opened chat window's layout on mobile.
-                AssistLoopWidget.init({ agentId: "fe2f60b9-35f6-4337-b517-75e80e069174", position: "bottom-left" });
+                AssistLoopWidget.init({ agentId: "fe2f60b9-35f6-4337-b517-75e80e069174", position: "bottom-right" });
               };
               document.head.appendChild(script);
             })();
